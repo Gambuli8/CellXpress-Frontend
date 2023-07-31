@@ -1,0 +1,64 @@
+.tituloAbout {
+  text-align: center;
+  font-size: 50px;
+}
+
+.quienesSomos {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.subTitulo {
+  text-align: center;
+  font-size: 30px;
+}
+
+.parrafo {
+  font-size: 20px;
+  text-align: center;
+}
+
+.bloqueDos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #689689;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.parrafoDos {
+  font-size: 20px;
+  width: 50%;
+  text-align: center;
+}
+
+.bloqueUno {
+  width: 35rem;
+}
+
+.imagenAbout {
+  width: 250px;
+  height: 300px;
+  box-shadow: 10px 10px 30px black;
+  border-radius: 20px;
+}
+
+.sectionCreadores {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.caracteristicas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

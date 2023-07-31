@@ -1,14 +1,22 @@
 import { NavLink } from "react-router-dom";
-
+import style from "./navBar.module.css";
 export default function Navbar() {
   return (
-    <nav>
+    <nav className={style.navContainer}>
       <div>
-        <h1>CellXpress</h1>
+        <NavLink to="/" className={style.link}>
+          <h1 className={style.logo}>CellXpress</h1>
+        </NavLink>
       </div>
-      <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink></NavLink>
+      <div className={style.linkContainer}>
+        <NavLink to="/" className={style.link}>
+          Inicio
+        </NavLink>
+        <NavLink to="/aboutus" className={style.link}>
+          Sobre Nosotros
+        </NavLink>
+        <NavLink className={style.link}>Registrarse</NavLink>
+        <NavLink className={style.link}>Ingresar</NavLink>
       </div>
     </nav>
   );
