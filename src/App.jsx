@@ -1,11 +1,12 @@
-import './App.css'
+import React from "react";
+import "./App.css"
 
 function App() {
   return (
-    <div>
-      <h1>CellXpress</h1>
-    </div>
-  )
+    <BrowserRouter>
+      <ClerkProviderWithRoutes />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
