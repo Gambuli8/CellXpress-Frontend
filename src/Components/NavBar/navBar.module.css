@@ -1,0 +1,22 @@
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #001d4a;
+  height: 5rem;
+  box-shadow: 2px 2px 10px black;
+  margin-bottom: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  margin-inline: 1rem;
+}
+
+.logo {
+  font-size: 40px;
+  margin-left: 2rem;
+  color: white;
+}

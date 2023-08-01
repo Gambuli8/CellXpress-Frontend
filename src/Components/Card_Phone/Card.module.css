@@ -1,0 +1,14 @@
+.containerCard{
+    width:fit-content;
+    box-shadow: 2px 2px 10px black;
+    padding: 2rem;
+    transition: 2s;
+}
+.containerCard:hover{  
+box-shadow: 2px 2px 10px yellow;
+cursor: pointer;
+/* transform: scale(1.1); */
+}
+.image{
+width: 200px;
+}
