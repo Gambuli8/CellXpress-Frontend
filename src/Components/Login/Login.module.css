@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 28rem;
 }
 .inputContainer{
     display: flex;
@@ -14,5 +14,32 @@
     border: 2px solid  #001d4a;
     padding: 10px;
     box-shadow: 5px 5px 15px black;
-    width: 30%;
+    width: 25%;
+}
+.label{
+    text-align: center;
+    width: 90%;
+    margin: 5px;
+}
+.input{
+    border-radius: 15px 0 15px 0;
+    height: 20px;
+    text-align: center;
+    width: 90%;
+    margin: 5px;
+    box-shadow: 3px 3px 10px black;
+}
+.button{
+    width: 90%;
+    height: 30px;
+    border-radius: 15px 0 15px 0;
+    margin: 10px; 
+    background-color: #001d4a;
+    color: white;
+    padding: 5px;
+}
+.button:hover{
+    box-shadow: 5px 5px 15px black;
+    background-color: #004ec2;
+    cursor: pointer;
 }

@@ -8,10 +8,11 @@ function Login() {
   <div className={style.Container}>
     <div className={style.inputContainer}>
     <h2>Iniciar Sesion</h2>
-    <label >Email</label>
-    <input type="email" name="email" />
-    <label >Contraseña</label>
-    <input type="password" name="password" />
+    <label className={style.label}>Email</label>
+    <input className={style.input} placeholder="Email" type="email" name="email" />
+    <label className={style.label}>Contraseña</label>
+    <input className={style.input} placeholder="Contraseña" type="password" name="password" />
+    <button className={style.button}>Iniciar</button>
     </div>
   </div>
   )
