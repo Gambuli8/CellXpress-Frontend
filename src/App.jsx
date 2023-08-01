@@ -6,6 +6,7 @@ import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/NavBar/Navbar";
 import AboutUs from "./Views/About Us/AboutUs";
 import Login from "./Components/Login/Login"
+import Register from "./Components/Register/Register";
 import { ClerkProvider } from "@clerk/clerk-react";
 import "./App.css";
 
@@ -16,6 +17,7 @@ const clerkPubKey = "pk_test_c3VpdGVkLWxlbW1pbmctNDkuY2xlcmsuYWNjb3VudHMuZGV2JA"
 if (!clerkPubKey) {
   throw new Error("Missing Publishable Key")
 }
+
 function App() {
   return (
     <div>
@@ -25,6 +27,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/detailCard/:id" element={<Detail_Card />} />
         <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
