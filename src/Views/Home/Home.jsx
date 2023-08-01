@@ -1,5 +1,6 @@
-import React from 'react'
 import Cards_Phone from '../../Components/Cards_Phone/Cards_Phone'
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from '../../Components/Footer/Footer';
 export const Product = [
   {
     id: 1,
@@ -48,7 +49,9 @@ export const Product = [
 const Home = () => {
   return (
     <div>
+      <Navbar/>
       <Cards_Phone Product = {Product}/>
+      <Footer/>
     </div>
   )
 }
