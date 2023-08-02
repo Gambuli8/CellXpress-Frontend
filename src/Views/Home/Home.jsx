@@ -14,20 +14,13 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getProduct());
-    setTimeout(() => {
-      Swal.fire({
-        title: "Bienvenido a CellXpress",
-        text: "La mejor tienda de celulares",
-        icon: "success",
-        timer: 1000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-      });
-    }, 2000);
   }, []);
 
   const handleSearchByName = (name) => {
     setSearch(name);
+  };
+  const handleShowAllProducts = () => {
+    setSearch("");
   };
 
   console.log("allProduct", allProduct);
@@ -36,7 +29,10 @@ const Home = () => {
   return (
     <div>
       <Navbar onSearch={handleSearchByName} />
-      <Cards_Phone Product={search ? allProductsByName.products : allProduct} />
+      <Cards_Phone
+        Product={search ? allProductsByName : allProduct}
+        onShowAllProducts={handleShowAllProducts}
+      />
       <Footer />
     </div>
   );

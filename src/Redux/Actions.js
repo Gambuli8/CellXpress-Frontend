@@ -46,10 +46,10 @@ export const getProductsByName = (name) => {
     try {
       const response = (await axios.get(`/products/search?keyword=${name}`))
         .data;
-      console.log("1111111111111111111", response);
+      console.log("1111111111111111111", response.products);
       dispatch({
         type: GET_PRODUCTS_BY_NAME,
-        payload: response,
+        payload: response.products,
       });
     } catch (error) {
       console.log(error);
