@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import style from "./navBar.module.css";
+import Searchbar from "../SearchBar/SearchBar";
 export default function Navbar() {
   return (
     <nav className={style.navContainer}>
@@ -7,6 +8,9 @@ export default function Navbar() {
         <NavLink to="/home" className={style.link}>
           <h1 className={style.logo}>CellXpress</h1>
         </NavLink>
+      </div>
+      <div>
+        <Searchbar />
       </div>
       <div className={style.linkContainer}>
         <NavLink to="/home" className={style.link}>
