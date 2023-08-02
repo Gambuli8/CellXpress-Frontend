@@ -8,6 +8,7 @@ const Cards_Phone = ({Product}) => {
     <Card_Phone 
     id={p.id}
     name= {p.name}
+    price= {p.price}
     description ={p.description}
     image={p.image}
     key={p.id}
