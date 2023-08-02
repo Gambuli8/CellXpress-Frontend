@@ -5,7 +5,7 @@ import {
 } from "./ActionsTypes";
 
 let inicialState = {
-  allProducts: [],
+  allProduct: [],
   allUsers: [],
   user: {},
   allProductsByName: [],
@@ -19,7 +19,7 @@ const rootReducer = (state = inicialState, action) => {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.payload,
+        allProduct: action.payload,
       };
     case GET_USERS:
       return {

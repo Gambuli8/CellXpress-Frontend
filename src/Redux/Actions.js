@@ -4,11 +4,13 @@ import {
   POST_USER,
   GET_PRODUCTS_BY_NAME,
 } from "./ActionsTypes";
+
 import axios from "axios";
 // import swal from "sweetalert2";
 
-export const getAllProducts = () => {
-  return async (dispatch) => {
+// funcion  para traer todos los productos de la db...
+export function getProduct() {
+  return async function (dispatch) {
     try {
       const response = await axios.get("/products");
       console.log("hola");
@@ -20,7 +22,7 @@ export const getAllProducts = () => {
       console.log(error);
     }
   };
-};
+}
 
 export const getUsers = () => {
   return async (dispatch) => {
