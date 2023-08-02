@@ -4,6 +4,8 @@ import Home from "./Views/Home/Home";
 import Detail_Card from "./Components/Detail_Card/Detail_Card";
 import AboutUs from "./Views/About Us/AboutUs";
 import "./App.css";
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3002";
 
 function App() {
 
