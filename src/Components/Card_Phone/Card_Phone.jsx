@@ -3,7 +3,6 @@ import style from "./Card.module.css"
 import { Link } from "react-router-dom"
 
 const Card_Phone = (props) => {
-console.log("AYUDA", props)
   return (
     <Link className={style.link} to={`/detailCard/${props.id}`}>
  <div className={style.containerCard}>

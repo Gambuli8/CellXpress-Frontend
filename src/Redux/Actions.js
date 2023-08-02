@@ -5,22 +5,19 @@ import {
   GET_PRODUCTS_BY_NAME,
 } from "./ActionsTypes";
 import axios from "axios";
-import swal from "sweetalert2";
+// import swal from "sweetalert2";
 
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get("/products");
-      dispatch({
+      console.log("hola");
+      return dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response.data,
       });
     } catch (error) {
-      swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.response.data.message,
-      });
+      console.log(error);
     }
   };
 };
