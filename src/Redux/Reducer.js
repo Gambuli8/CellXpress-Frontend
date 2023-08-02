@@ -1,14 +1,11 @@
-
-import {
-  GET_PRODUCT,
-  GET_USERS,
-  GET_PRODUCTS_BY_NAME,
-} from "./ActionsTypes";
+import { GET_PRODUCT, GET_USERS, GET_PRODUCTS_BY_NAME } from "./ActionsTypes";
 
 let inicialState = {
   allProduct: [],
   allUsers: [],
   user: {},
+  allProductsByName: [],
+  viewProducts: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -26,11 +23,10 @@ const rootReducer = (state = inicialState, action) => {
     case GET_PRODUCTS_BY_NAME:
       return {
         ...state,
-        allProducts: action.payload,
+        allProductsByName: action.payload,
       };
   }
   return state;
 };
 
 export default rootReducer;
-

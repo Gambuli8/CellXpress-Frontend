@@ -1,7 +1,19 @@
 import { NavLink } from "react-router-dom";
 import style from "./navBar.module.css";
 import Searchbar from "../SearchBar/SearchBar";
-export default function Navbar() {
+import { useState } from "react";
+
+export default function Navbar({ onSearch }) {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleSearch = () => {
+    onSearch(searchValue);
+  };
+
   return (
     <nav className={style.navContainer}>
       <div>
@@ -10,7 +22,11 @@ export default function Navbar() {
         </NavLink>
       </div>
       <div>
-        <Searchbar />
+        <Searchbar
+          value={searchValue}
+          onChange={handleChange}
+          onSearch={handleSearch}
+        />
       </div>
       <div className={style.linkContainer}>
         <NavLink to="/home" className={style.link}>
