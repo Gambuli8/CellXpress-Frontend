@@ -1,4 +1,10 @@
-import { GET_PRODUCT, GET_PRODUCTS_BY_NAME, GET_USERS } from "./ActionsTypes";
+import {
+  GET_ALL_PRODUCTS,
+  GET_USERS,
+  POST_USER,
+  GET_PRODUCTS_BY_NAME,
+} from "./ActionsTypes";
+
 import axios from "axios";
 import swal from "sweetalert2";
 
@@ -6,10 +12,10 @@ import swal from "sweetalert2";
 export function getProduct() {
   return async function (dispatch) {
     try {
-      const response = (await axios.get("/products/")).data;
-      return dispatch({
-        type: GET_PRODUCT,
-        payload: response,
+      const response = await axios.get("/products");
+      dispatch({
+        type: GET_ALL_PRODUCTS,
+        payload: response.data,
       });
     } catch (error) {
       swal.fire({
@@ -47,6 +53,19 @@ export const getProductsByName = (name) => {
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+export const postUser = (user) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("/users", user);
+      dispatch({ type: POST_USER, payload: response.data });
+      alert(`Bienvenido ${user.name} a CELLXPRESS`);
+      return response;
+    } catch (error) {
+      alert(error.message);
     }
   };
 };

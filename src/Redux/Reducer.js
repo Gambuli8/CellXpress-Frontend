@@ -1,4 +1,8 @@
-import { GET_PRODUCT, GET_USERS, GET_PRODUCTS_BY_NAME } from "./ActionsTypes";
+import {
+  GET_ALL_PRODUCTS,
+  GET_USERS,
+  GET_PRODUCTS_BY_NAME,
+} from "./ActionsTypes";
 
 let inicialState = {
   allProduct: [],
@@ -10,7 +14,7 @@ let inicialState = {
 
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
-    case GET_PRODUCT:
+    case GET_ALL_PRODUCTS:
       return {
         ...state,
         allProduct: action.payload,

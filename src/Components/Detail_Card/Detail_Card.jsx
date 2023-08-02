@@ -2,11 +2,16 @@
 import style from './detail.module.css'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 export default function Detail_Card() {
   const [count, setCount] = useState(1)
   const [price, setPrice] = useState(1099)
   const [product, setProduct] = useState({})
+
+  const allProducts = useSelector((state) => state.allProducts)
+
+  console.log(allProducts);
 
   const { id } = useParams();
     
