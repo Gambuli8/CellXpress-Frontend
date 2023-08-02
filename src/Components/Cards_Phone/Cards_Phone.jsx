@@ -6,11 +6,15 @@ const Cards_Phone = ({Product}) => {
     <div className={style.contenedorCards}>
   {Product.map((p)=>
     <Card_Phone 
-    id={p.id}
-    name= {p.name}
+    id={p._id}
+    title= {p.title}
+    price= {p.price}
+    brand = {p.brand}
     description ={p.description}
     image={p.image}
-    key={p.id}
+    rating={p.rating}
+    count={p.count}
+    key={p._id}
     />)}
     </div>
   )}

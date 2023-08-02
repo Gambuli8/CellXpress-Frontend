@@ -1,21 +1,22 @@
+
 import {
-  GET_ALL_PRODUCTS,
+  GET_PRODUCT,
   GET_USERS,
   GET_PRODUCTS_BY_NAME,
 } from "./ActionsTypes";
 
 let inicialState = {
-  allProducts: [],
+  allProduct: [],
   allUsers: [],
   user: {},
 };
 
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
-    case GET_ALL_PRODUCTS:
+    case GET_PRODUCT:
       return {
         ...state,
-        allProducts: action.payload,
+        allProduct: action.payload,
       };
     case GET_USERS:
       return {
@@ -32,3 +33,4 @@ const rootReducer = (state = inicialState, action) => {
 };
 
 export default rootReducer;
+
