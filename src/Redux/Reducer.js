@@ -1,0 +1,25 @@
+import { GET_ALL_PRODUCTS, GET_USERS } from "./ActionsTypes";
+
+let inicialState = {
+  allProducts: [],
+  allUsers: [],
+  user: {},
+};
+
+const rootReducer = (state = inicialState, action) => {
+  switch (action.type) {
+    case GET_ALL_PRODUCTS:
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
+    case GET_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+  }
+  return state;
+};
+
+export default rootReducer;

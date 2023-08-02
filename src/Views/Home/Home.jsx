@@ -1,5 +1,8 @@
-import React from 'react'
 import Cards_Phone from '../../Components/Cards_Phone/Cards_Phone'
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from '../../Components/Footer/Footer';
+import swal from 'sweetalert2';
+import { useEffect } from 'react';
 export const Product = [
   {
     id: 1,
@@ -46,9 +49,26 @@ export const Product = [
 ]
 
 const Home = () => {
+
+  useEffect(() => {
+    setTimeout(() => {
+      swal.fire({
+        title: 'Bienvenido a CellXpress',
+        text: 'La mejor tienda de celulares',
+        icon: 'success',
+        timer: 1000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      })
+    }, 2000);
+  }, [])
+
+
   return (
     <div>
+      <Navbar/>
       <Cards_Phone Product = {Product}/>
+      <Footer/>
     </div>
   )
 }

@@ -1,0 +1,41 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-image: url(https://www.blog-nouvelles-technologies.fr/wp-content/uploads/2021/09/2156181_Newsroom_NewYorkTimelapse_PR_02_571x321.jpg.large_.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+.titulo{
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgb(34, 111, 234);
+    margin-bottom: 1rem;
+}
+
+.btn{
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+.btn:hover{
+    background-color: #ffffff;
+    color: #000000;
+    transform: scale(1.1);
+}
