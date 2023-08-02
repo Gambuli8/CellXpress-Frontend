@@ -12,8 +12,6 @@ let inicialState = {
   viewProducts: [],
 };
 
-console.log(inicialState?.allProducts);
-
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
     case GET_ALL_PRODUCTS:

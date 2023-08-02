@@ -13,8 +13,7 @@ export function getProduct() {
   return async function (dispatch) {
     try {
       const response = await axios.get("/products");
-      console.log("hola");
-      return dispatch({
+      dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response.data,
       });
