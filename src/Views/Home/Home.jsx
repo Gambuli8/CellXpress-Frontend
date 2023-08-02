@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <div>
       <Navbar onSearch={handleSearchByName} />
-      <Cards_Phone Product={search ? allProductsByName : allProduct} />
+      <Cards_Phone Product={search ? allProductsByName.products : allProduct} />
       <Footer />
     </div>
   );
