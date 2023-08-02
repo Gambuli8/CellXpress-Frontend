@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../Components/NavBar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import Swal from "sweetalert2";
 import Cards_Phone from "../../Components/Cards_Phone/Cards_Phone";
 import { getProduct } from "../../Redux/Actions";
+import style from "./home.module.css";
 
 const Home = () => {
   const allProduct = useSelector((state) => state.allProduct);
@@ -30,11 +31,8 @@ const Home = () => {
     setSearch(name);
   };
 
-  console.log("allProduct", allProduct);
-  console.log("allProductBynameee", allProductsByName);
-
   return (
-    <div>
+    <div className={style.container}>
       <Navbar onSearch={handleSearchByName} />
       <Cards_Phone Product={search ? allProductsByName : allProduct} />
       <Footer />

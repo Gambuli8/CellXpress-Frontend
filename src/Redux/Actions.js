@@ -6,7 +6,7 @@ import {
 } from "./ActionsTypes";
 
 import axios from "axios";
-import swal from "sweetalert2";
+// import swal from "sweetalert2";
 
 // funcion  para traer todos los productos de la db...
 export function getProduct() {
@@ -18,11 +18,7 @@ export function getProduct() {
         payload: response.data,
       });
     } catch (error) {
-      swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.response.data.message,
-      });
+      console.log(error);
     }
   };
 }

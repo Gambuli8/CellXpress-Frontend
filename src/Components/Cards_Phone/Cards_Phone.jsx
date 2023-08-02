@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import Card_Phone from "../Card_Phone/Card_Phone";
 import style from "./Cards_Phone.module.css";
 const Cards_Phone = ({ Product }) => {
