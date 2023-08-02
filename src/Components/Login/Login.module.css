@@ -1,45 +1,61 @@
-.Container{
+.container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 28rem;
 }
 .inputContainer{
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    border-radius: 15px 0 15px 0;
+    align-items: center;
+    justify-content: center;  
+    border-radius: 50px 0 50px 0;
     border: 2px solid  #001d4a;
-    padding: 10px;
-    box-shadow: 5px 5px 15px black;
+    padding: 20px;
+    box-shadow: 5px 5px 15px #001d4a;
     width: 25%;
+    transition: 2s;
+}
+.inputContainer:hover{
+    border-radius: 0 50px 0 50px;
+}
+.inputContainer h2{
+    color: #001d4a;
 }
 .label{
+    font-size: large;
+    color: #001d4a;
     text-align: center;
     width: 90%;
     margin: 5px;
 }
 .input{
+    border: none;
     border-radius: 15px 0 15px 0;
-    height: 20px;
+    height: 30px;
     text-align: center;
     width: 90%;
     margin: 5px;
-    box-shadow: 3px 3px 10px black;
+    box-shadow: 3px 3px 10px #001d4a;
+    transition: 2s;
+}
+.input:focus{
+    border-radius: 0 15px 0 15px;
 }
 .button{
+    font-size: large;
     width: 90%;
     height: 30px;
     border-radius: 15px 0 15px 0;
-    margin: 10px; 
+    margin: 15px; 
     background-color: #001d4a;
     color: white;
-    padding: 5px;
+    transition: 1s;
 }
 .button:hover{
-    box-shadow: 5px 5px 15px black;
+    box-shadow: 5px 5px 15px #001d4a;
     background-color: #004ec2;
     cursor: pointer;
+    border-radius: 0 15px 0 15px;
 }

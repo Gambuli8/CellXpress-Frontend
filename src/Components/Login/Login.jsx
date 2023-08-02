@@ -3,9 +3,10 @@ import { SignIn } from "@clerk/clerk-react";
 import style from "./Login.module.css"
 
 
+
 function Login() {
-  return( 
-  <div className={style.Container}>
+  return(
+  <div className={style.container}>
     <div className={style.inputContainer}>
     <h2>Iniciar Sesion</h2>
     <label className={style.label}>Email</label>
