@@ -10,35 +10,46 @@ import Filters from "../../Components/Filters/Filters";
 
 const Home = () => {
   const allProduct = useSelector((state) => state.allProduct);
+
   const allProductsByName = useSelector((state) => state.allProductsByName);
+
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(getProduct());
-    setTimeout(() => {
-      Swal.fire({
-        title: "Bienvenido a CellXpress",
-        text: "La mejor tienda de celulares",
-        icon: "success",
-        timer: 1000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-      });
-    }, 2000);
   }, []);
 
   const handleSearchByName = (name) => {
     setSearch(name);
   };
+  const handleShowAllProducts = () => {
+    setSearch("");
+  };
+
+  const hadleSearch  = () => {
+    if (search) {
+      if (allProductsByName.length !== 0) {
+       return allProductsByName
+      }
+      else  {
+       return allProduct
+      }
+    }
+    else {
+      return allProduct
+    }
+  }
 
   return (
     <div className={style.container}>
-      
-      <Navbar onSearch={handleSearchByName} /><Filters />
-      
-      
-      <Cards_Phone Product={search ? allProductsByName : allProduct} />
+      <Navbar onSearch={handleSearchByName} />
+      <Filters/>
+      <Cards_Phone
+       Product={hadleSearch()}
+        // Product={search ? allProductsByName : allProduct}
+        onShowAllProducts={handleShowAllProducts}
+      />
       <Footer />
     </div>
   );
