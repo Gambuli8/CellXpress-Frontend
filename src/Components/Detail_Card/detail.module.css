@@ -32,9 +32,6 @@
     padding: 0px 0px 0px 0px;
     width: 70%;
     height: 100%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     transition: all 0.3s ease-in-out;
 }
 
@@ -50,48 +47,40 @@
     font-weight: 600;
     color: #000000;
     transition: all 0.3s ease-in-out;
+    border-bottom: 3px solid #000000;
 }
 
-.titulo{
-
+.totalPrice{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin: 30px;
     padding: 0px 0px 0px 0px;
     width: 100%;
     height: 100%;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: 600;
     color: #000000;
     transition: all 0.3s ease-in-out;
+    border-bottom: 3px solid #000000;
 }
 
-.list{
-    text-decoration: none;
-    list-style: none;
-    margin: 10px;
-    padding: 0px 0px 0px 0px;
-
-}
-
-.btn_quantity{
+.btn_addCart{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
-    width: 40px;
-    height: 20px;
+    margin: 30px;
+    width: 200px;
+    height: 100%;
     font-size: 20px;
-    font-weight: 600;
-    color: #000000;
-    transition: all 0.3s ease-in-out;
-    background-color: white;
+    color: white;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    background-color: #001d4a;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
-.btn_quantity:hover{
+
+.btn_addCart:hover{
     transform: scale(1.1);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
@@ -109,32 +98,62 @@
     transition: all 0.3s ease-in-out;
 }
 
-.count_Number{
+.cardContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.price_Number{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    width: 100px;
     height: 30px;
     margin: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.cardInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 0px 0px 0px 0px;
+    width: 100%;
+    height: 100%;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 400;
     color: #000000;
     transition: all 0.3s ease-in-out;
 }
 
 .card__text{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
     margin-bottom: 20px;
     padding: 0px 0px 0px 0px;
-    width: 70%;
+    width: 100%;
     height: 100%;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 100;
     color: #000000;
     transition: all 0.3s ease-in-out;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: 400;
+    color: #001d4a; 
 }
 
 .cart{
@@ -159,11 +178,54 @@
     align-items: center;
     margin: 0px 0px 0px 0px;
     padding-right: 15px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     transition: all 0.3s ease-in-out;
 }
+
+.countContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin: 0px 0px 0px 0px;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.card__counter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding: 5px;
+    background: #666;
+    border-radius: 50px;
+  }
+  
+  .card__counter_score, .card__btn {
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--main-color);
+  }
+  
+  .card__btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: none;
+    background: transparent;
+  }
+
+  .card__btn:hover, .card__btn:focus {
+    background: var(--main-color);
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .card__btn_plus {
+    background: var(--bg-color);
+  }
 
 .btn_back{
     font-family: Arial, Helvetica, sans-serif;
