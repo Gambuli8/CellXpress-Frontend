@@ -6,10 +6,13 @@ import Swal from "sweetalert2";
 import Cards_Phone from "../../Components/Cards_Phone/Cards_Phone";
 import { getProduct } from "../../Redux/Actions";
 import style from "./home.module.css";
+import Filters from "../../Components/Filters/Filters";
 
 const Home = () => {
   const allProduct = useSelector((state) => state.allProduct);
+
   const allProductsByName = useSelector((state) => state.allProductsByName);
+
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
@@ -24,11 +27,27 @@ const Home = () => {
     setSearch("");
   };
 
+  const hadleSearch  = () => {
+    if (search) {
+      if (allProductsByName.length !== 0) {
+       return allProductsByName
+      }
+      else  {
+       return allProduct
+      }
+    }
+    else {
+      return allProduct
+    }
+  }
+
   return (
     <div className={style.container}>
       <Navbar onSearch={handleSearchByName} />
+      <Filters/>
       <Cards_Phone
-        Product={search ? allProductsByName : allProduct}
+       Product={hadleSearch()}
+        // Product={search ? allProductsByName : allProduct}
         onShowAllProducts={handleShowAllProducts}
       />
       <Footer />
