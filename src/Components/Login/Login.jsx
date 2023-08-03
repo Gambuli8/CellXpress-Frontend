@@ -1,21 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import { SignIn } from "@clerk/clerk-react";
 import style from "./Login.module.css"
+import { useDispatch } from "react-redux";
+import { validate } from "../Validate/Validate";
+import { loginUser } from "../../Redux/Actions";
+
 
 
 
 function Login() {
-  return(
-  <div className={style.container}>
-    <div className={style.inputContainer}>
-    <h2>Iniciar Sesion</h2>
-    <label className={style.label}>Email</label>
-    <input className={style.input} placeholder="Email" type="email" name="email" />
-    <label className={style.label}>Contraseña</label>
-    <input className={style.input} placeholder="Contraseña" type="password" name="password" />
-    <button className={style.button}>Iniciar</button>
+
+  const dispatch = useDispatch()
+  const [input, setInput] = useState({
+    emailAcces: "",
+    passwordAcces: ""
+  })
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    //? Manejo del input
+    const { name, value } = event.target;
+    const error = validate(name, value);
+    setInput((prevInput) => ({
+      ...prevInput,
+      [name]: value,
+    }));
+    setErrors((prevErrors) => ({
+      //? Manejo de errores
+      ...prevErrors,
+      [name]: error,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const validationErrors = validate(input);
+
+    if (Object.keys(validationErrors).length === 0) {
+      dispatch(loginUser(input));
+      setInput({
+        emailAcces: "",
+        passwordAcces: ""
+      });
+    }
+  };
+
+  return (
+    <div className={style.container}>
+      <form className={style.inputContainer} onSubmit={handleSubmit}>
+        <h2>Iniciar Sesion</h2>
+        <label className={style.label}>Email</label>
+        <input
+          className={style.input}
+          placeholder="Email"
+          type="email"
+          name="emailAcces"
+          onChange={handleChange}
+        />
+        {errors.emailAcces && <p className={style.error}>{errors.emailAcces}</p>}
+        <label className={style.label}>Contraseña</label>
+        <input
+          className={style.input}
+          placeholder="Contraseña"
+          type="password"
+          name="passwordAcces"
+          onChange={handleChange}
+        />
+        {errors.passwordAcces && <p className={style.error}>{errors.passwordAcces}</p>}
+        <button className={style.button}>Iniciar</button>
+      </form>
     </div>
-  </div>
   )
 }
 

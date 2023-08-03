@@ -59,3 +59,6 @@
     cursor: pointer;
     border-radius: 0 15px 0 15px;
 }
+.error{
+    color: red;
+}

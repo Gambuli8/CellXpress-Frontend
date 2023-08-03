@@ -1,4 +1,4 @@
-import { POST_USER,POST_PRODUCT } from "./ActionTypes";
+import { POST_USER,POST_PRODUCT, LOGIN_USER } from "./ActionTypes";
 const initialState = {
     user: [],
 }
@@ -14,6 +14,11 @@ const Reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 product: [...state.product, payload],
+            }
+        case LOGIN_USER:
+            return {
+                ...state,
+                userlog:[...state.userlog, payload],
             }
         default:
             return { ...state }

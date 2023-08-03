@@ -3,10 +3,9 @@ import { postProduct } from "../../Redux/Actions"
 import { useDispatch } from "react-redux";
 import { validate } from "../Validate/Validate"
 import style from "./NewProduct.module.css"
-import CloudImage from "./Image"
 
 const NewProduct = () => {
-    /*if (user.admin) {*/
+    //if (user.admin) {
 
     const dispatch = useDispatch()
     const [input, setInput] = useState({
@@ -50,6 +49,32 @@ const NewProduct = () => {
             });
         }
     };
+
+    const [image, setImage] = useState("");
+
+    const CloudImage = async (e) => {
+        e.preventDefault();
+        try {
+            const selectedFiles = e.target.files;
+            const data = new FormData();
+            data.append("file", selectedFiles[0]);
+            data.append("upload_preset", "Activities");
+            const res = await fetch(
+                "https://api.cloudinary.com/v1_1/djqwbu0my/upload",
+                {
+                    method: "POST",
+                    body: data,
+                }
+            );
+            const file = await res.json();
+            setImage(file.secure_url);
+            console.log(file.secure_url);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
 
 
 
@@ -98,7 +123,7 @@ const NewProduct = () => {
                 <input
                     className={style.image}
                     type="file"
-                    name="file"
+                    name="files"
                     onChange={CloudImage}
                     value={input.image}
                 />
@@ -115,7 +140,7 @@ const NewProduct = () => {
             </form>
         </div>
     )
-    /*}*/
+    //}
 };
 
 export default NewProduct;

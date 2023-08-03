@@ -1,4 +1,4 @@
-import { POST_USER, POST_PRODUCT } from "../Redux/ActionTypes"
+import { POST_USER, POST_PRODUCT,LOGIN_USER } from "../Redux/ActionTypes"
 import axios from "axios"
 
 export const postUser = (user) => {
@@ -19,6 +19,18 @@ export const postProduct = (product) => {
             const response = await axios.post('http://localhost:3002/', product);
             dispatch({ type: POST_PRODUCT, payload: response.data });
             alert(`${product.brand} Agregado correctamente`)
+            return response;
+        } catch (error) {
+            alert(error.message)
+        }
+    };
+};
+export const loginUser = (userlog) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post('http://localhost:3002/users', userlog);
+            dispatch({ type: LOGIN_USER, payload: response.data });
+            alert(`Bienvenido de nuevo a CELLXPRESS`)
             return response;
         } catch (error) {
             alert(error.message)
