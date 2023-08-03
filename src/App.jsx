@@ -7,6 +7,7 @@ import Navbar from "./Components/NavBar/Navbar";
 import AboutUs from "./Views/About Us/AboutUs";
 import Login from "./Components/Login/Login"
 import Register from "./Components/Register/Register";
+import NewProduct from "./Components/NewProduct/NewProduct";
 import { ClerkProvider } from "@clerk/clerk-react";
 import "./App.css";
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/detailCard/:id" element={<Detail_Card />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/newproduct" element={<NewProduct />} />
       </Routes>
       <Footer />
       </ClerkProvider>

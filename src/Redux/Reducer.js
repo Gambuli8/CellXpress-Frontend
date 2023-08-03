@@ -1,6 +1,6 @@
-import { POST_USER } from "./ActionTypes";
+import { POST_USER,POST_PRODUCT } from "./ActionTypes";
 const initialState = {
-    user:[],
+    user: [],
 }
 
 const Reducer = (state = initialState, { type, payload }) => {
@@ -10,7 +10,12 @@ const Reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 user: [...state.user, payload],
             }
-            default:
+        case POST_PRODUCT:
+            return {
+                ...state,
+                product: [...state.product, payload],
+            }
+        default:
             return { ...state }
     }
 };
