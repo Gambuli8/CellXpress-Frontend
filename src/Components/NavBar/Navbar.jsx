@@ -3,7 +3,7 @@ import style from "./navBar.module.css";
 import Searchbar from "../SearchBar/SearchBar";
 import { useState } from "react";
 
-export default function Navbar({ onSearch }) {
+export default function Navbar({ onSearch, onShowAllProducts }) {
   const [searchValue, setSearchValue] = useState("");
 
   const handleChange = (event) => {
@@ -14,11 +14,18 @@ export default function Navbar({ onSearch }) {
     onSearch(searchValue);
   };
 
+  const handleShowAll = () => {
+    setSearchValue("");
+    onShowAllProducts();
+  };
+
   return (
     <nav className={style.navContainer}>
       <div>
         <NavLink to="/home" className={style.link}>
-          <h1 className={style.logo}>CellXpress</h1>
+          <h1 className={style.logo} onClick={handleShowAll}>
+            CellXpress
+          </h1>
         </NavLink>
       </div>
       <div>
@@ -29,7 +36,7 @@ export default function Navbar({ onSearch }) {
         />
       </div>
       <div className={style.linkContainer}>
-        <NavLink to="/home" className={style.link}>
+        <NavLink to="/home" className={style.link} onClick={handleShowAll}>
           Inicio
         </NavLink>
         <NavLink to="/aboutus" className={style.link}>
