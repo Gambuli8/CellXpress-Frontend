@@ -1,0 +1,15 @@
+.containerSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBtn {
+  background-image: url(https://cdn-icons-png.flaticon.com/128/954/954591.png);
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+}

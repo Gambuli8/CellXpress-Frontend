@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
+import axios from "axios";
 import Landing from "./Views/Landing/Landing";
 import Home from "./Views/Home/Home";
 import Detail_Card from "./Components/Detail_Card/Detail_Card";
-import Footer from "./Components/Footer/Footer";
-import Navbar from "./Components/NavBar/Navbar";
 import AboutUs from "./Views/About Us/AboutUs";
 import Login from "./Components/Login/Login"
 import Register from "./Components/Register/Register";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import { ClerkProvider } from "@clerk/clerk-react";
 import "./App.css";
+axios.defaults.baseURL = "http://localhost:3002";
 
 
 
@@ -21,9 +21,7 @@ if (!clerkPubKey) {
 
 function App() {
   return (
-    <div>
-      <ClerkProvider publishableKey={clerkPubKey}>
-      <Navbar />
+    <div className="App">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
@@ -33,8 +31,6 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/newproduct" element={<NewProduct />} />
       </Routes>
-      <Footer />
-      </ClerkProvider>
     </div>
   );
 }

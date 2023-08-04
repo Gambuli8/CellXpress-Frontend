@@ -1,5 +1,3 @@
-import { POST_USER, POST_PRODUCT,LOGIN_USER } from "../Redux/ActionTypes"
-import axios from "axios"
 
 export const postUser = (user) => {
     return async (dispatch) => {

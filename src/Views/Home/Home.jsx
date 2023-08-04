@@ -1,56 +1,58 @@
-import React from 'react'
-import Cards_Phone from '../../Components/Cards_Phone/Cards_Phone'
-export const Product = [
-  {
-    id: 1,
-    name: "Sansung Galaxy s23",
-    description: "El celular mas potente del Mundo",
-    image: "https://smselectronic.com/wp-content/uploads/2023/05/8806094711417_a.jpg"
-  },
-  {
-    id: 2,
-    name: "Sansung Galaxy s23",
-    description: "El celular mas potente del Mundo",
-    image: "https://smselectronic.com/wp-content/uploads/2023/05/8806094711417_a.jpg"
-  },
-  {
-    id: 3,
-    name: "Sansung Galaxy s23",
-    description: "El celular mas potente del Mundo",
-    image: "https://smselectronic.com/wp-content/uploads/2023/05/8806094711417_a.jpg"
-  },
-  {
-    id: 4,
-    name: "Sansung Galaxy s23",
-    description: "El celular mas potente del Mundo",
-    image: "https://smselectronic.com/wp-content/uploads/2023/05/8806094711417_a.jpg"
-  },
-  {
-    id: 5,
-    name: "Sansung Galaxy s23",
-    description: "El celular mas potente del Mundo",
-    image: "https://smselectronic.com/wp-content/uploads/2023/05/8806094711417_a.jpg"
-  },
-  {
-    id: 6,
-    name: "Sansung Galaxy s23",
-    description: "El celular mas potente del Mundo",
-    image: "https://smselectronic.com/wp-content/uploads/2023/05/8806094711417_a.jpg"
-  },
-  {
-    id: 7,
-    name: "Sansung Galaxy s23",
-    description: "El celular mas potente del Mundo",
-    image: "https://smselectronic.com/wp-content/uploads/2023/05/8806094711417_a.jpg"
-  }
-]
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Navbar from "../../Components/NavBar/Navbar";
+import Footer from "../../Components/Footer/Footer";
+import Swal from "sweetalert2";
+import Cards_Phone from "../../Components/Cards_Phone/Cards_Phone";
+import { getProduct } from "../../Redux/Actions";
+import style from "./home.module.css";
+import Filters from "../../Components/Filters/Filters";
 
 const Home = () => {
-  return (
-    <div>
-      <Cards_Phone Product = {Product}/>
-    </div>
-  )
-}
+  const allProduct = useSelector((state) => state.allProduct);
 
-export default Home
+  const allProductsByName = useSelector((state) => state.allProductsByName);
+
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    dispatch(getProduct());
+  }, []);
+
+  const handleSearchByName = (name) => {
+    setSearch(name);
+  };
+  const handleShowAllProducts = () => {
+    setSearch("");
+  };
+
+  const hadleSearch  = () => {
+    if (search) {
+      if (allProductsByName.length !== 0) {
+       return allProductsByName
+      }
+      else  {
+       return allProduct
+      }
+    }
+    else {
+      return allProduct
+    }
+  }
+
+  return (
+    <div className={style.container}>
+      <Navbar onSearch={handleSearchByName} />
+      <Filters/>
+      <Cards_Phone
+       Product={hadleSearch()}
+        // Product={search ? allProductsByName : allProduct}
+        onShowAllProducts={handleShowAllProducts}
+      />
+      <Footer />
+    </div>
+  );
+};
+
+export default Home;
