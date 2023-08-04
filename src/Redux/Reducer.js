@@ -1,5 +1,5 @@
 import { POST_USER, POST_PRODUCT, LOGIN_USER, GET_ALL_PRODUCTS, GET_USERS, GET_PRODUCTS_BY_NAME } from "./ActionTypes";
-const initialState = {
+const inicialState = {
   user: [],
   allProduct: [],
   allUsers: [],
