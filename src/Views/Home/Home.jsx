@@ -24,11 +24,30 @@ const Home = () => {
     setSearch("");
   };
 
+  const hadleSearc = async () => {
+    if (search) {
+      if (allProductsByName.length !== 0) {
+        console.log("111111111111111111", allProductsByName);
+        return allProductsByName;
+      } else {
+        console.log("9999999999999", allProductsByName);
+        Swal.fire({
+          text: "No se encontro el producto",
+          icon: "error",
+          confirmButtonText: "ok",
+        });
+        return allProduct;
+      }
+    } else {
+      return allProduct;
+    }
+  };
+
   return (
     <div className={style.container}>
       <Navbar onSearch={handleSearchByName} />
       <Cards_Phone
-        Product={search ? allProductsByName : allProduct}
+        Product={hadleSearc()}
         onShowAllProducts={handleShowAllProducts}
       />
       <Footer />

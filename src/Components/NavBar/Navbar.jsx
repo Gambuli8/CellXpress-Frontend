@@ -22,10 +22,8 @@ export default function Navbar({ onSearch, onShowAllProducts }) {
   return (
     <nav className={style.navContainer}>
       <div>
-        <NavLink to="/home" className={style.link}>
-          <h1 className={style.logo} onClick={handleShowAll}>
-            CellXpress
-          </h1>
+        <NavLink to="/home" className={style.link} onClick={handleShowAll}>
+          <h1 className={style.logo}>CellXpress</h1>
         </NavLink>
       </div>
       <div>
