@@ -13,10 +13,10 @@ import axios from "axios";
 export function getProduct() {
   return async function (dispatch) {
     try {
-      const response = await axios.get("/products");
+      const response = (await axios.get("/products")).data;
       dispatch({
         type: GET_ALL_PRODUCTS,
-        payload: response.data,
+        payload: response,
       });
     } catch (error) {
       console.log(error);
