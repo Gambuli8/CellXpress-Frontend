@@ -27,7 +27,7 @@ export function getProduct() {
 export const getUsers = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/users");
+      const response = await axios.get("/");
       dispatch({
         type: GET_USERS,
         payload: response.data,
