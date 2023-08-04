@@ -5,7 +5,7 @@
     align-items: center;
     height: 100vh;
     width: 100%;
-    background-image: url(https://www.blog-nouvelles-technologies.fr/wp-content/uploads/2021/09/2156181_Newsroom_NewYorkTimelapse_PR_02_571x321.jpg.large_.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.658), rgba(0, 0, 0, 0.651)),  url(https://res.cloudinary.com/djqwbu0my/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1691067974/Landing_kpciba.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -13,10 +13,26 @@
     margin: 0;
     padding: 0;
 }
+
+.contentInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 1000px;
+    background-color: rgb(3, 6, 58);
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+    opacity: 0.9;
+}
+
 .titulo{
     font-size: 4rem;
     font-weight: 700;
-    color: rgb(34, 111, 234);
+    color: white;
+    font-family: 'Roboto', sans-serif;
     margin-bottom: 1rem;
 }
 

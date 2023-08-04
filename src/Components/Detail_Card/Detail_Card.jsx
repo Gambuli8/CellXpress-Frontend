@@ -38,10 +38,43 @@ export default function Detail_Card() {
   return (
     <div className={style.container}>
     {product?._id ? (
-        <>
+        <div className={style.cardContainer}>
         <a className={style.btn_back} href="/home">Atras</a>
         <div className={style.card}>
-          <div className={style.card__content}>
+          <div className={style.card__image}>
+            <img className={style.card__image} src={product?.image} alt="image" />
+          </div>
+          <div className={style.cardInfo}>
+            <h4 className={style.card__brand}>{product?.brand}</h4>
+            <h1 className={style.card__title}>{product?.title}</h1>
+            <div className={style.price}>
+              <h3>Precio:</h3>
+            <p className={style.price_Number}>${product?.price}</p>
+            </div>
+            <div className={style.countContainer}>
+              <div className={style.card__counter}>
+                <button onClick={handleSubtract} className={style.card__btn}>-</button>
+                <div className={style.card__counter_score}>{count}</div>
+                <button onClick={handleAdd} className={style.card__btn}>+</button>
+              </div>
+              <li className={style.totalPrice}>Total: ${price} </li>
+            </div>
+            <button className={style.btn_addCart}>Agregar al carrito</button>
+            <h3>Descripción:</h3>
+            <p className={style.card__text}>{product?.description}</p>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <h1>Cargando...</h1>
+    )}
+    </div>
+    )
+}
+
+
+
+/*  <div className={style.card__content}>
             <h4 className={style.card_brand}>{product?.brand}</h4>
             <h1 className={style.card__title}>{product?.title}</h1>
             <h3>Descripción:</h3>
@@ -62,13 +95,4 @@ export default function Detail_Card() {
               </div>
               <li className={style.list}>Total: {price} </li>
               </ul>
-              <button className={style.btn_addCart}>Agregar al carrito</button>
-            </div>
-            </div>
-        </>
-    ) : (
-      <h1>Cargando...</h1>
-    )}
-    </div>
-    )
-}
+              <button className={style.btn_addCart}>Agregar al carrito</button> */
