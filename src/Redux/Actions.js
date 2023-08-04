@@ -27,7 +27,7 @@ export function getProduct() {
 export const getUsers = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/users");
+      const response = await axios.get("/");
       dispatch({
         type: GET_USERS,
         payload: response.data,
@@ -42,24 +42,21 @@ export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
       const response = (await axios.get(`/products/search?keyword=${name}`))
-        .data;
-        if(response.products.length ===0){
-          Swal.fire({
-            text: "No se encontro el producto",
-           icon: "error",
-            confirmButtonText: "ok",
-          });
-          
-        } else{
-          dispatch({
-            type: GET_PRODUCTS_BY_NAME,
-            payload: response.products,
-          });
-         
-        }
-   
+        .data.products;
+      console.log(response);
+      if (response.length === 0) {
+        Swal.fire({
+          text: "No se encontro el producto",
+          icon: "error",
+          confirmButtonText: "ok",
+        });
+      }
+      return dispatch({
+        type: GET_PRODUCTS_BY_NAME,
+        payload: response,
+      });
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   };
 };
