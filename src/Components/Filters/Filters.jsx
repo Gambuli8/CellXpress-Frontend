@@ -6,10 +6,9 @@ const Filters = () => {
 const dispatch = useDispatch()
 
 const filterPhones = (event)=>{
-  
    setTimeout(() => {
      dispatch(filterPhone(event.target.value)) 
-   }, 790);
+   }, 1000);
    dispatch(getProduct())
    
  }
