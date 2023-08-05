@@ -1,0 +1,16 @@
+.containerPaginado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginado {
+  padding: 2px;
+}
+
+.buttonPag {
+  background-color: #88ace0;
+  color: aliceblue;
+  border: none;
+  border-radius: 2px;
+}

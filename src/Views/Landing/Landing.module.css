@@ -1,0 +1,57 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.658), rgba(0, 0, 0, 0.651)),  url(https://res.cloudinary.com/djqwbu0my/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1691070974/Landing_wztwwh.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+.contentInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 1000px;
+    background-color: rgb(3, 6, 58);
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+    opacity: 0.9;
+}
+
+.titulo{
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.btn{
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+.btn:hover{
+    background-color: #ffffff;
+    color: #000000;
+    transform: scale(1.1);
+}

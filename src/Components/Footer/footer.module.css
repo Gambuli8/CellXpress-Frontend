@@ -1,0 +1,18 @@
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #001d4a;
+  margin-top: 2rem;
+  color: aliceblue;
+}
+
+.icon {
+  margin-inline: 5px;
+}
+
+.logo {
+  margin-left: 3rem;
+  font-size: 25px;
+  font-weight: bold;
+}
