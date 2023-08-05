@@ -45,15 +45,14 @@ const Home = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(getProductsByName(search));
-    console.log("filteredddddsib,otttt", filtered);
+   
   };
 
   const handleReloadProducts = () => {
     dispatch(getProduct()); // O la acción para cargar los productos
     setCurrentPag(1);
   };
-  console.log("filtereeedddd", filtered);
-
+ 
   return (
     <div className={style.container}>
       <Navbar

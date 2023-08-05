@@ -4,6 +4,8 @@ import {
   GET_USERS,
   POST_USER,
   GET_PRODUCTS_BY_NAME,
+  ORDERPHONE,
+  FILTERPHONE
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -73,3 +75,49 @@ export const postUser = (user) => {
     }
   };
 };
+
+export function orderPhone(order) {
+  
+  return function (dispatch) {
+
+      return dispatch({
+          type: ORDERPHONE,
+          payload: order
+
+      })
+  }
+}
+// export function filterPhone(filter){
+//   return function (dispatch){
+//     return dispatch({
+//       type: FILTERPHONE,
+//       payload: filter
+//     })
+//   }
+// }
+
+export function filterPhone(filter){
+  
+  return function (dispatch){
+    
+    return dispatch({
+      type: FILTERPHONE,
+      payload: filter
+    })
+  }
+}
+
+
+// export function filterPhone(filter) {
+//   return async function (dispatch) {
+//     try {
+//       const response = (await axios.get("/products")).data;
+//       dispatch({
+//         type: GET_ALL_PRODUCTS,
+//         payload: response,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
