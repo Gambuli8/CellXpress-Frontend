@@ -2,6 +2,7 @@ import {
   GET_ALL_PRODUCTS,
   GET_USERS,
   GET_PRODUCTS_BY_NAME,
+  POST_PRODUCT
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -29,6 +30,11 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allProductsByName: action.payload,
       };
+    case POST_PRODUCT:
+      return {
+        ...state,
+        product: action.payload,
+      }
   }
   return state;
 };

@@ -4,6 +4,7 @@ import {
   GET_USERS,
   POST_USER,
   GET_PRODUCTS_BY_NAME,
+  POST_PRODUCT
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -23,6 +24,19 @@ export function getProduct() {
     }
   };
 }
+
+export const postProduct = (products) => {
+  return async (dispatch) => {
+      try {
+          const response = await axios.post('/products', products);
+          dispatch({ type: POST_PRODUCT, payload: response.data });
+          alert(`${products.title} Agregado correctamente`)
+          return response;
+      } catch (error) {
+          alert(error.message)
+      }
+  };
+};
 
 export const getUsers = () => {
   return async (dispatch) => {

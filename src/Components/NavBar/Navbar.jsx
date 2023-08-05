@@ -42,6 +42,7 @@ export default function Navbar({ onSearch, onShowAllProducts }) {
         <NavLink to="/aboutus" className={style.link}>
           Sobre Nosotros
         </NavLink>
+        <NavLink to="/newproduct" className={style.link}>Crear Producto</NavLink>
         <NavLink className={style.link}>Registrarse</NavLink>
         <NavLink className={style.link}>Ingresar</NavLink>
       </div>
