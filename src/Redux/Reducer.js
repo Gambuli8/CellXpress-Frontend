@@ -2,6 +2,7 @@ import {
   GET_ALL_PRODUCTS,
   GET_USERS,
   GET_PRODUCTS_BY_NAME,
+  LOGIN_USER
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -14,6 +15,11 @@ let inicialState = {
 
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
+    case LOGIN_USER:
+      return {
+        ...state,
+        userlog: action.payload,
+      }
     case GET_ALL_PRODUCTS:
       return {
         ...state,
