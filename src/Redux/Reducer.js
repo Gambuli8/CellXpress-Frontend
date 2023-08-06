@@ -3,7 +3,8 @@ import {
   GET_USERS,
   GET_PRODUCTS_BY_NAME,
   ORDERPHONE,
-  FILTERPHONE
+  GETFILTERS
+  
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -13,7 +14,7 @@ let inicialState = {
   allProductsByName: [],
   viewProducts: [],
 };
-
+console.log("000000000000000",inicialState.allProduct)
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
@@ -26,11 +27,23 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allUsers: action.payload,
       };
+
     case GET_PRODUCTS_BY_NAME:
       return {
         ...state,
         allProductsByName: action.payload,
       };
+
+
+      case GETFILTERS:
+        return {
+          ...state,
+          allProduct: action.payload,
+          
+        };
+
+
+
 
 
     case ORDERPHONE:
@@ -84,17 +97,7 @@ const rootReducer = (state = inicialState, action) => {
 
 
   }
-  case FILTERPHONE:
-    
-  if (action.payload ) {
-    return {
-        ...state,
-        // filters: false,
-        allProduct: [...state.allProduct].filter((f) => f.brand === action.payload)
-        
-    }
-
-  }
+ 
   }
   return state;
 

@@ -6,7 +6,6 @@ import Detail_Card from "./Components/Detail_Card/Detail_Card";
 import AboutUs from "./Views/About Us/AboutUs";
 import "./App.css";
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
-
 function App() {
   return (
     <div className="App">

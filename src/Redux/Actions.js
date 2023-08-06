@@ -4,8 +4,8 @@ import {
   GET_USERS,
   POST_USER,
   GET_PRODUCTS_BY_NAME,
-  ORDERPHONE,
-  FILTERPHONE
+  GETFILTERS,
+  ORDERPHONE
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -51,6 +51,11 @@ export const getProductsByName = (name) => {
           text: "No se encontro el producto",
           icon: "error",
           confirmButtonText: "ok",
+          
+        });
+        dispatch({
+          type: GET_ALL_PRODUCTS,
+          payload: response,
         });
       }
       return dispatch({
@@ -76,6 +81,28 @@ export const postUser = (user) => {
   };
 };
 
+export const getfilters = (info) => {
+//  console.log("66666666666666666666666",info)
+  return async (dispatch) => {
+    try {
+       const response = (await axios.get(`products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`)).data.products;
+      if(response.length ===0) {
+      Swal.fire({
+        text: "Producto no encontrado",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
+    }
+      dispatch({
+        type: GETFILTERS,
+        payload: response,
+      });
+    } catch (error) {
+      alert(error)
+    }
+  };
+};
+
 export function orderPhone(order) {
   
   return function (dispatch) {
@@ -87,37 +114,3 @@ export function orderPhone(order) {
       })
   }
 }
-// export function filterPhone(filter){
-//   return function (dispatch){
-//     return dispatch({
-//       type: FILTERPHONE,
-//       payload: filter
-//     })
-//   }
-// }
-
-export function filterPhone(filter){
-  
-  return function (dispatch){
-    
-    return dispatch({
-      type: FILTERPHONE,
-      payload: filter
-    })
-  }
-}
-
-
-// export function filterPhone(filter) {
-//   return async function (dispatch) {
-//     try {
-//       const response = (await axios.get("/products")).data;
-//       dispatch({
-//         type: GET_ALL_PRODUCTS,
-//         payload: response,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }

@@ -10,7 +10,9 @@ const Card_Phone = (props) => {
   <img className={style.image} src={props.image} />
   </div>
   <div className={style.card_info}>
+  <p className={style.text_title}>{props.rating[0].rate}</p>
     <p className={style.text_title}>{props.brand}</p>
+    
     <p className={style.text_body}>{props.title}</p>
     <div className={style.btn}>
     <Link className={style.link} to={`/detailCard/${props.id}`}>
