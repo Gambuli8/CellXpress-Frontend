@@ -46,7 +46,10 @@ const NewProduct = () => {
                 description: "",
                 brand: "",
                 image: "",
-                rating: [0],
+                rating: [{
+                    "rate":0,
+                    "count":0
+                }],
                 count: ""
             });
         }
