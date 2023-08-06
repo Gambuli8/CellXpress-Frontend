@@ -5,6 +5,7 @@ import {
   ORDERPHONE,
   GETFILTERS,
   POST_PRODUCT,
+  POST_USER,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -87,6 +88,11 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         product: action.payload,
+      };
+    case POST_USER:
+      return {
+        ...state,
+        user: action.payload,
       };
   }
   return state;

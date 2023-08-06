@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { postProduct } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
 import { validate } from "../Validate/Validate";
-import { NavLink } from "react-router-dom";
 import style from "./NewProduct.module.css";
 
 const NewProduct = () => {
@@ -84,9 +83,9 @@ const NewProduct = () => {
 
   return (
     <div className={style.back}>
-      <NavLink to="/home" className={style.buttonBack}>
+      <a href="/home" className={style.buttonBack}>
         Volver
-      </NavLink>
+      </a>
       <div className={style.container}>
         <form className={style.inputContainer} onSubmit={handleSubmit}>
           <h2 className={style.titulo}>Añadir Producto</h2>
