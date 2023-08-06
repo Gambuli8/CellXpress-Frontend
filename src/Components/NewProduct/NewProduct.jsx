@@ -46,10 +46,7 @@ const NewProduct = () => {
                 description: "",
                 brand: "",
                 image: "",
-                rating: [{
-                    "rate":0,
-                    "count":0
-                }],
+                rating: [],
                 count: ""
             });
         }
@@ -110,7 +107,7 @@ const NewProduct = () => {
                     <label className={style.label}>Descripción</label>
                     <textarea
                         className={style.descripcion}
-                        type="text-area"
+                        type="text"
                         name="description"
                         onChange={handleChange}
                         value={input.description}
