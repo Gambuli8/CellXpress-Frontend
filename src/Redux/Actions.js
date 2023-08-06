@@ -66,7 +66,7 @@ export const postUser = (user) => {
     try {
       const response = await axios.post("/users", user);
       dispatch({ type: POST_USER, payload: response.data });
-      alert(`Bienvenido ${user.name} a CELLXPRESS`);
+      alert(`${user.name} Bienvenido  a CELLXPRESS`);
       return response;
     } catch (error) {
       alert(error.message);
