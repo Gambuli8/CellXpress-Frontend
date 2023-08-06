@@ -6,6 +6,7 @@ import {
   GETFILTERS,
   POST_PRODUCT,
   POST_USER,
+  LOGIN_USER,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -18,6 +19,11 @@ let inicialState = {
 console.log("000000000000000", inicialState.allProduct);
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
+    case LOGIN_USER:
+      return {
+        ...state,
+        userlog: action.payload,
+      };
     case GET_ALL_PRODUCTS:
       return {
         ...state,
