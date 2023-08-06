@@ -21,7 +21,7 @@ const Home = () => {
   const indexLastPhone = currentPag * cantPerPage;
   const indexFirstPhone = indexLastPhone - cantPerPage;
   const currentPhone = filtered.slice(indexFirstPhone, indexLastPhone);
-   console.log("PPPPP",currentPhone)
+  console.log("PPPPP", currentPhone);
 
   const paginado = (pageNumber) => {
     setCurrentPag(pageNumber);
@@ -47,14 +47,13 @@ const Home = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(getProductsByName(search));
-   
   };
 
   const handleReloadProducts = () => {
     dispatch(getProduct()); // O la acción para cargar los productos
     setCurrentPag(1);
   };
- 
+
   return (
     <div className={style.container}>
       <Navbar
@@ -68,10 +67,7 @@ const Home = () => {
         allProducts={filtered.length}
         Paginado={paginado}
       />
-      <Cards_Phone
-        Product={currentPhone}
-        // Product={search ? allProductsByName : allProduct}
-      />
+      <Cards_Phone Product={currentPhone} />
       <Footer />
     </div>
   );

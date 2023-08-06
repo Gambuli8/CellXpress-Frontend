@@ -5,7 +5,8 @@ import {
   POST_USER,
   GET_PRODUCTS_BY_NAME,
   GETFILTERS,
-  ORDERPHONE
+  ORDERPHONE,
+  POST_PRODUCT,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -25,6 +26,20 @@ export function getProduct() {
     }
   };
 }
+
+export const postProduct = (products) => {
+  console.log("productsssss", products);
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("/products", products);
+      dispatch({ type: POST_PRODUCT, payload: response.data });
+      alert(`${products.title} Agregado correctamente`);
+      return response;
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+};
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -51,7 +66,6 @@ export const getProductsByName = (name) => {
           text: "No se encontro el producto",
           icon: "error",
           confirmButtonText: "ok",
-          
         });
         dispatch({
           type: GET_ALL_PRODUCTS,
@@ -82,35 +96,36 @@ export const postUser = (user) => {
 };
 
 export const getfilters = (info) => {
-//  console.log("66666666666666666666666",info)
+  //  console.log("66666666666666666666666",info)
   return async (dispatch) => {
     try {
-       const response = (await axios.get(`products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`)).data.products;
-      if(response.length ===0) {
-      Swal.fire({
-        text: "Producto no encontrado",
-        icon: "error",
-        confirmButtonText: "ok",
-      });
-    }
+      const response = (
+        await axios.get(
+          `products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
+        )
+      ).data.products;
+      if (response.length === 0) {
+        Swal.fire({
+          text: "Producto no encontrado",
+          icon: "error",
+          confirmButtonText: "ok",
+        });
+      }
       dispatch({
         type: GETFILTERS,
         payload: response,
       });
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   };
 };
 
 export function orderPhone(order) {
-  
   return function (dispatch) {
-
-      return dispatch({
-          type: ORDERPHONE,
-          payload: order
-
-      })
-  }
+    return dispatch({
+      type: ORDERPHONE,
+      payload: order,
+    });
+  };
 }
