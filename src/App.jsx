@@ -7,7 +7,8 @@ import AboutUs from "./Views/About Us/AboutUs";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import Register from "./Components/Register/Register";
 import "./App.css";
-axios.defaults.baseURL = "https://cellxpress.onrender.com";
+// axios.defaults.baseURL =  "http://localhost:3002"
+ axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
   return (
     <div className="App">

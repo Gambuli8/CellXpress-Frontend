@@ -21,7 +21,7 @@ const Home = () => {
   const indexLastPhone = currentPag * cantPerPage;
   const indexFirstPhone = indexLastPhone - cantPerPage;
   const currentPhone = filtered.slice(indexFirstPhone, indexLastPhone);
-  console.log("PPPPP", currentPhone);
+ 
 
   const paginado = (pageNumber) => {
     setCurrentPag(pageNumber);

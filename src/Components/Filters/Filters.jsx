@@ -37,15 +37,20 @@ const dispatch = useDispatch()
     <div className={style.container}>
     <form onSubmit={handleSubmit}> 
          <div className={style.containerMarca}> 
+
          <div > 
         <select className={style.select} name="brand" onChange={handleChange} required>
         <option defaultChecked value="">Marca</option>
-       <option value="MOTOROLA">Motorola</option>
-        <option value="SAMSUNG">Samsung</option>
-        <option value="XIAOMI">Xiaomi</option>
-       <option value="TECNO">Tecno</option>
+        <option value="APPLE">Apple</option>
+            <option value="MOTOROLA">Motorola</option>
+            <option value="SAMSUNG">Samsung</option>
+            <option value="SONY">Sony</option>
+            <option value="TECNO">Tecno</option>
+            <option value="HUAWEI">Huawei</option>
+            <option value="XIAOMI">Xiaomi</option>Realme
+            <option value="REALME">Realme</option>
+       </select>
        
-        </select>
    </div>
    <div>
        <input  className={style.select} type="number" name="minPrice" onChange={handleChange}  placeholder="Precio Minimo" />
