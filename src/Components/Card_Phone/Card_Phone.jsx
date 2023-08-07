@@ -5,26 +5,29 @@ import { Link } from "react-router-dom";
 const Card_Phone = (props) => {
   return (
     <>
-    <div className={style.card}>
-  <div className={style.card_img}>
-  <img className={style.image} src={props.image} />
-  </div>
-  <div className={style.card_info}>
-    <p className={style.text_title}>{props.brand}</p>
-    <p className={style.text_body}>{props.title}</p>
-    <div className={style.btn}>
-    <Link className={style.link} to={`/detailCard/${props.id}`}>
-      <button className={style.btn}>Ver más</button>
-    </Link>
-  </div>
-  </div>
-  <div className={style.card_footer}>
-  <span className={style.text_title}>${props.price}</span>
-  <div className={style.card_button}>
-  <img className={style.svg_icon} src="https://res.cloudinary.com/djqwbu0my/image/upload/v1691159692/Pngtree_shopping_cart_icon_3582761_vd41rl.png" alt="" />
-  </div>
-</div></div>
-  </>
+      <div className={style.card}>
+        <div className={style.card_img}>
+          <img className={style.image} src={props.image} />
+        </div>
+        <div className={style.card_info}>
+          {/* <p className={style.text_title}>{props.rating[0].rate}</p> */}
+          <p className={style.text_title}>{props.brand.toUpperCase()}</p>
+
+          <p className={style.text_body}>{props.title}</p>
+          <div className={style.btn}>
+            <Link className={style.link} to={`/detailCard/${props.id}`}>
+              <button className={style.btn}>Ver más</button>
+            </Link>
+          </div>
+        </div>
+        <div className={style.card_footer}>
+          <span className={style.text_title}>${props.price}</span>
+          <div className={style.card_button}>
+            <img className={style.svg_icon} src="https://res.cloudinary.com/djqwbu0my/image/upload/v1691159692/Pngtree_shopping_cart_icon_3582761_vd41rl.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 export default Card_Phone;
