@@ -7,6 +7,7 @@ import {
   GETFILTERS,
   ORDERPHONE,
   POST_PRODUCT,
+  LOGIN_USER,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -28,7 +29,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
-  console.log("productsssss", products);
+  
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -45,6 +46,7 @@ export const getUsers = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get("/");
+      
       dispatch({
         type: GET_USERS,
         payload: response.data,
@@ -96,7 +98,7 @@ export const postUser = (user) => {
 };
 
 export const getfilters = (info) => {
-  //  console.log("66666666666666666666666",info)
+
   return async (dispatch) => {
     try {
       const response = (
@@ -129,3 +131,15 @@ export function orderPhone(order) {
     });
   };
 }
+export const loginUser = (userlog) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:3002/users", userlog);
+      dispatch({ type: LOGIN_USER, payload: response.data });
+      alert(`Bienvenido de nuevo a CELLXPRESS`);
+      return response;
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+};

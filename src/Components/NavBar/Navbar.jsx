@@ -43,7 +43,9 @@ export default function Navbar({
         <NavLink to="/register" className={style.link}>
           Registrarse
         </NavLink>
-        <NavLink className={style.link}>Ingresar</NavLink>
+        <NavLink to="/login" className={style.link}>
+          Ingresar
+        </NavLink>
       </div>
     </nav>
   );

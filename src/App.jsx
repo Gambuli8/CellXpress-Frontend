@@ -6,8 +6,9 @@ import Detail_Card from "./Components/Detail_Card/Detail_Card";
 import AboutUs from "./Views/About Us/AboutUs";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import Register from "./Components/Register/Register";
-import "./App.css";
+import Login from "./Components/Login/Login";
 import { AuthProvider } from "./context/authContext";
+import "./App.css";
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       </AuthProvider>
     </div>
   );
-}
+
+};
 
 export default App;

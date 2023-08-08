@@ -17,11 +17,11 @@ const Home = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [currentPag, setCurrentPag] = useState(1);
-  const [cantPerPage, setCantPerPage] = useState(5);
+  const [cantPerPage, setCantPerPage] = useState(8);
   const indexLastPhone = currentPag * cantPerPage;
   const indexFirstPhone = indexLastPhone - cantPerPage;
   const currentPhone = filtered.slice(indexFirstPhone, indexLastPhone);
-  console.log("PPPPP", currentPhone);
+ 
 
   const paginado = (pageNumber) => {
     setCurrentPag(pageNumber);
