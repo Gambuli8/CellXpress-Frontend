@@ -7,10 +7,10 @@ import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const {signup} = useAuth()
+  const { signup, loginGoogle } = useAuth()
   const navigate = useNavigate()
-  
-    
+
+
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
@@ -39,14 +39,16 @@ const Register = () => {
     event.preventDefault();
     setErrors("")
     const validationErrors = validate(input);
-    
+
     if (Object.keys(validationErrors).length === 0) {
-    
+
       try {
         await signup(input.email, input.password)
         navigate("/home")
       } catch (error) {
-        alert(error.message)
+        if (error.message === "auth/email-already-in-use") {
+          alert("email ya registrado")
+        }
       }
 
       dispatch(postUser(input));
@@ -56,6 +58,14 @@ const Register = () => {
         email: "",
         password: "",
       });
+    }
+  };
+  const registerWithGoogle = async () => {
+    try {
+      await loginGoogle()
+      navigate("/home")
+    } catch (error) {
+      console.log(error.message)
     }
   };
 
@@ -105,6 +115,13 @@ const Register = () => {
           {errors.password && <p className={style.error}>{errors.password}</p>}
           <button type="submit" className={style.button}>
             Registrar
+          </button>
+          <p>-------------0-------------</p>
+          <button
+            type="button"
+            className={style.button}
+            onClick={registerWithGoogle}>
+            Registrarse con Google
           </button>
         </form>
       </div>

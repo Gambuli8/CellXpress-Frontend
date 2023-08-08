@@ -1,13 +1,15 @@
 import { NavLink } from "react-router-dom";
 import style from "./navBar.module.css";
 import Searchbar from "../SearchBar/SearchBar";
-import { useState } from "react";
+import { useAuth } from "../../context/authContext"
 
 export default function Navbar({
   handleSubmit,
   handlerChanges,
   handleReloadProducts,
 }) {
+  const {user, logout} = useAuth()
+  console.log(user)
   return (
     <nav className={style.navContainer}>
       <div>
@@ -39,13 +41,18 @@ export default function Navbar({
         <NavLink to="/newproduct" className={style.link}>
           Crear Producto
         </NavLink>
-
+        {!user &&
         <NavLink to="/register" className={style.link}>
           Registrarse
-        </NavLink>
-        <NavLink to="/login" className={style.link}>
+        </NavLink>}
+        {!user?
+         <NavLink to="/login" className={style.link}>
           Ingresar
-        </NavLink>
+        </NavLink>:
+        <div>
+        <p>{user.displayName}</p>
+        <button className={style.btn} onClick={logout}>Desconectar</button> 
+        </div>}
       </div>
     </nav>
   );
