@@ -15,9 +15,7 @@ const Card_Phone = (props) => {
       timer: 1000,
     });
   };
-
-
-
+ 
   return (
     <>
       <div className={style.card}>
@@ -29,6 +27,7 @@ const Card_Phone = (props) => {
           <p className={style.text_title}>{props.brand.toUpperCase()}</p>
 
           <p className={style.text_body}>{props.title}</p>
+
           <div className={style.btn}>
             <Link className={style.link} to={`/detailCard/${props.id}`}>
               <button className={style.btn}>Ver más</button>
