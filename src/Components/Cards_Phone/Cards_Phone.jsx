@@ -1,24 +1,43 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import Card_Phone from "../Card_Phone/Card_Phone";
 import style from "./Cards_Phone.module.css";
-import Swal from "sweetalert2";
+import useCart from "../Hooks/useCart";
+
 const Cards_Phone = ({ Product }) => {
+
+  const {addToCart, cart, removeFromCart} = useCart();
+  const checkProduct = (product) => {
+    return cart.some((item) => item.id === product.id);
+  };
+  console.log(cart);
  
   return (
     <div className={style.contenedorCards}>
-      {Product.map((p) => (
+      {Product.map((product) => {
+        const isProductInCart = checkProduct(product);
+       return (
         <Card_Phone
-          id={p._id}
-          title={p.title}
-          price={p.price}
-          brand={p.brand}
-          description={p.description}
-          image={p.image}
-          rating={p.rating}
-          count={p.count}
-          key={p._id}
+          id={product._id}
+          title={product.title}
+          price={product.price}
+          brand={product.brand}
+          description={product.description}
+          image={product.image}
+          rating={product.rating}
+          count={product.count}
+          key={product._id}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          isProductInCart={isProductInCart}
+          // button={
+          //   isProductInCart 
+          //   ? <div className={style.card_button} onClick={() => removeFromCart(product)}>Eliminar</div>
+          //   : <div className={style.card_button} onClick={() => addToCart(product)}>Agregar</div>
+          // }
         />
-      ))}
+       );
+       })}
     </div>
   );
 };
