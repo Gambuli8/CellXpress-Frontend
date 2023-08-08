@@ -16,6 +16,10 @@ const NewProduct = () => {
     image: "",
     count: "",
     rating: [],
+    screenSize: "",
+    cameraInches: "",
+    ram: ""
+
   });
   const [errors, setErrors] = useState({});
 
@@ -46,6 +50,9 @@ const NewProduct = () => {
         description: "",
         brand: "",
         image: "",
+        screenSize: "",
+        cameraInches: "",
+        ram: "",
         rating: [
           {
             rate: 0,
@@ -96,8 +103,9 @@ const NewProduct = () => {
             name="title"
             onChange={handleChange}
             value={input.title}
+            required
           />
-          {errors.title && <p className={style.error}>{errors.title}</p>}
+         
           <label className={style.label}>Precio</label>
           <input
             className={style.input}
@@ -105,8 +113,47 @@ const NewProduct = () => {
             name="price"
             onChange={handleChange}
             value={input.price}
+            required
           />
-          {errors.price && <p className={style.error}>{errors.price}</p>}
+          
+          <label className={style.label}>Memoria Ram</label>
+            <select className={style.input} name="ram" onChange={handleChange} required>
+            <option defaultChecked value="">Seleccione Ram</option>
+            <option value="2 GB DE RAM"> 2 Gb </option>
+            <option value="4 GB DE RAM"> 4 Gb  </option>
+            <option value="6 GB DE RAM"> 6 Gb  </option>
+            <option value="8 GB DE RAM"> 8 Gb  </option>
+            <option value="12 GB DE RAM"> 12 Gb </option>
+            <option value="16 GB DE RAM">16 Gb </option> 
+          </select>
+
+          <label className={style.label}>Tamaño de Pantalla</label>
+          <select className={style.input} name="screenSize" onChange={handleChange} required>
+            <option defaultChecked value="">Seleccione Tamaño</option>
+            <option value="3.5 PULGADAS"> 3.5 Pulgadas</option>
+            <option value="4 PULGADAS"> 4 Pulgadas </option>
+            <option value="4.7 PULGADAS"> 4.7 Pulgadas </option>
+            <option value="5.5 PULGADAS">5.5 Pulgadas </option>
+            <option value="	6.1 PULGADAS"> 	6.1 Pulgadas </option>
+            <option value="6.5 PULGADAS">6.5 Pulgadas </option> 
+            <option value="6.2 PULGADAS">6.2 Pulgadas </option> 
+          </select>
+
+          <label className={style.label}>Resolucion Camara</label>
+          <select className={style.input} name="cameraInches" onChange={handleChange} required>
+            <option defaultChecked value="">Seleccione Resolucion</option>
+            <option value=" 2 MP" > 2 Mp</option>
+            <option value=" 5 MP" > 5  Mp </option>
+            <option value=" 8 MP" > 8 Mp </option>
+            <option value=" 12 MP" >12 Mp </option>
+            <option value=" 16 MP" > 16 Mp </option>
+            <option value=" 20 MP" >20 Mp </option> 
+            <option value=" 32 MP" >32 Mp </option> 
+            <option value=" 48 MP" >48 Mp </option> 
+            <option value=" 64 MP" >64 Mp </option> 
+            <option value=" 108 MP" >108 Mp </option> 
+          </select>
+
           <label className={style.label}>Descripción</label>
           <textarea
             className={style.descripcion}
@@ -114,27 +161,33 @@ const NewProduct = () => {
             name="description"
             onChange={handleChange}
             value={input.description}
+            required
           />
-          {errors.description && (
-            <p className={style.error}>{errors.description}</p>
-          )}
+        
+
+
           <label className={style.label}>Marca</label>
-          <input
-            className={style.input}
-            type="text"
-            name="brand"
-            on
-            onChange={handleChange}
-            value={input.brand.toUpperCase()}
-          />
-          {errors.brand && <p className={style.error}>{errors.brand}</p>}
+            <select className={style.input} name="brand" onChange={handleChange} required>
+            <option defaultChecked value="">Seleccione Marca</option>
+            <option value="APPLE">Apple</option>
+            <option value="MOTOROLA">Motorola</option>
+            <option value="SAMSUNG">Samsung</option>
+            <option value="SONY">Sony</option>
+            <option value="TECNO">Tecno</option>
+            <option value="HUAWEI">Huawei</option>
+            <option value="XIAOMI">Xiaomi</option>Realme
+            <option value="REALME">Realme</option>
+          </select>
+         
+       
           <label className={style.label}>Imagen</label>
           <input
             className={style.input}
-            type="text"
+            type="url"
             name="image"
             onChange={handleChange}
             value={input.image}
+            required
           />
           <label className={style.label}>Stock</label>
           <input
@@ -143,8 +196,9 @@ const NewProduct = () => {
             name="count"
             onChange={handleChange}
             value={input.count}
+            required
           />
-          {errors.count && <p className={style.error}>{errors.count}</p>}
+         
           <button className={style.button} type="submit">
             Crear
           </button>
@@ -152,13 +206,18 @@ const NewProduct = () => {
         <div className={style.inputContainer}>
           <h2 className={style.titulo}>{input.title}</h2>
           <img src={input.image} className={style.img} alt={input.title} />
+          <p className={style.label}>Precio$ {input.price} </p>
+          
+          <p className={style.label}>Ram: {input.ram} </p>
+          <p className={style.label}>Pantalla: {input.screenSize} </p>
+          <p className={style.label}>Resolucion: {input.cameraInches} </p>
 
-          <p className={style.label}>Marca:{input.brand} </p>
-          <p className={style.label}>Stock:{input.count} </p>
-          <p className={style.label}>${input.price} </p>
+           <p className={style.label}>Marca: {input.brand} </p>
+          <p className={style.label}>Stock: {input.count} </p>
+         
         </div>
         <div className={style.inputContainer}>
-          <p className={style.label}>{input.description} </p>
+          <p className={style.label}> {input.description} </p>
         </div>
       </div>
     </div>

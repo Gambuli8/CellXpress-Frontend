@@ -29,7 +29,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
-  console.log("productsssss", products);
+  
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -46,6 +46,7 @@ export const getUsers = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get("/");
+      
       dispatch({
         type: GET_USERS,
         payload: response.data,
@@ -97,7 +98,7 @@ export const postUser = (user) => {
 };
 
 export const getfilters = (info) => {
-  //  console.log("66666666666666666666666",info)
+
   return async (dispatch) => {
     try {
       const response = (

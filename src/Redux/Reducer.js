@@ -16,7 +16,7 @@ let inicialState = {
   allProductsByName: [],
   viewProducts: [],
 };
-console.log("000000000000000", inicialState.allProduct);
+
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
     case LOGIN_USER:
