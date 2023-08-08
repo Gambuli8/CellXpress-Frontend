@@ -7,18 +7,21 @@ import AboutUs from "./Views/About Us/AboutUs";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import Register from "./Components/Register/Register";
 import "./App.css";
+import { AuthProvider } from "./context/authContext";
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/detailCard/:id" element={<Detail_Card />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/newproduct" element={<NewProduct />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/detailCard/:id" element={<Detail_Card />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/newproduct" element={<NewProduct />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </AuthProvider>
     </div>
   );
 }

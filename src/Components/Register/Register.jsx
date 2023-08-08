@@ -3,8 +3,14 @@ import style from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../Redux/Actions";
 import { validate } from "../Validate/Validate";
+import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const {signup} = useAuth()
+  const navigate = useNavigate()
+  
+    
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
@@ -29,11 +35,20 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setErrors("")
     const validationErrors = validate(input);
-
+    
     if (Object.keys(validationErrors).length === 0) {
+    
+      try {
+        await signup(input.email, input.password)
+        navigate("/home")
+      } catch (error) {
+        alert(error.message)
+      }
+
       dispatch(postUser(input));
       setInput({
         name: "",
