@@ -11,26 +11,28 @@ import "./App.css";
 import { CartProvider } from "./Components/Context/CartContext";
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
 import Login from "./Components/Login/Login";
+import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
 import "./App.css";
-// axios.defaults.baseURL =  "http://localhost:3002"
- axios.defaults.baseURL = "https://cellxpress.onrender.com";
+axios.defaults.baseURL = "https://cellxpress.onrender.com";
+// axios.defaults.baseURL = "http://localhost:3002";
 function App() {
   return (
     <>
       <CartProvider>
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/detailCard/:id" element={<Detail_Card />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/newproduct" element={<NewProduct />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/carrito" element={<DetailCarrito />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </div>
-    </CartProvider>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/detailCard/:id" element={<Detail_Card />} />
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/newproduct" element={<NewProduct />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/carrito" element={<DetailCarrito />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<DashboardAdmin />} />
+          </Routes>
+        </div>
+      </CartProvider>
     </>
   );
 }
