@@ -39,6 +39,7 @@ const NewProduct = () => {
     const validationErrors = validate(input);
     console.log(input);
     if (Object.keys(validationErrors).length === 0) {
+      console.log(input.image);
       dispatch(postProduct(input));
       setInput({
         title: "",
@@ -56,30 +57,28 @@ const NewProduct = () => {
       });
     }
   };
-  /*
-        const [image, setImage] = useState("");
-    
-        const CloudImage = async (e) => {
-            e.preventDefault();
-            try {
-                const selectedFiles = e.target.files;
-                const data = new FormData();
-                data.append("file", selectedFiles[0]);
-                data.append("upload_preset", "Activities");
-                const res = await fetch(
-                    "https://api.cloudinary.com/v1_1/djqwbu0my/upload",
-                    {
-                        method: "POST",
-                        body: data,
-                    }
-                );
-                const file = await res.json();
-                setImage(file.secure_url);
-                console.log(file.secure_url);
-            } catch (error) {
-                console.log(error);
-            }
-        };*/
+
+  // const CloudImage = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const selectedFiles = e.target.files;
+  //     const data = new FormData();
+  //     data.append("file", selectedFiles[0]);
+  //     data.append("upload_preset", "Activities");
+  //     const res = await fetch(
+  //       "https://api.cloudinary.com/v1_1/djqwbu0my/image/upload",
+  //       {
+  //         method: "POST",
+  //         body: data,
+  //       }
+  //     );
+  //     const file = await res.json();
+  //     setImage(file.secure_url);
+  //     console.log(file.secure_url);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div className={style.back}>
@@ -123,7 +122,6 @@ const NewProduct = () => {
             className={style.input}
             type="text"
             name="brand"
-            on
             onChange={handleChange}
             value={input.brand.toUpperCase()}
           />
@@ -131,10 +129,9 @@ const NewProduct = () => {
           <label className={style.label}>Imagen</label>
           <input
             className={style.input}
-            type="text"
+            type="file"
             name="image"
-            onChange={handleChange}
-            value={input.image}
+            onChange={handleImageChange}
           />
           <label className={style.label}>Stock</label>
           <input
@@ -145,13 +142,23 @@ const NewProduct = () => {
             value={input.count}
           />
           {errors.count && <p className={style.error}>{errors.count}</p>}
-          <button className={style.button} type="submit">
+          <button
+            className={style.button}
+            type="submit"
+            onClick={handleImageUpload}
+          >
             Crear
           </button>
         </form>
         <div className={style.inputContainer}>
           <h2 className={style.titulo}>{input.title}</h2>
-          <img src={input.image} className={style.img} alt={input.title} />
+          {/* <img src={input.image} className={style.img} alt={input.title} /> */}
+          {selectedImage && (
+            <img
+              src={URL.createObjectURL(selectedImage)}
+              className={style.img}
+            />
+          )}
 
           <p className={style.label}>Marca:{input.brand} </p>
           <p className={style.label}>Stock:{input.count} </p>

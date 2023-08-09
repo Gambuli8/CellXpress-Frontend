@@ -45,10 +45,11 @@ export const postProduct = (products) => {
 export const getUsers = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/");
+      const response = (await axios.get("/")).data;
+      console.log("0000000000", response);
       dispatch({
         type: GET_USERS,
-        payload: response.data,
+        payload: response,
       });
     } catch (error) {
       console.log(error);

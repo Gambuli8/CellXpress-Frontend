@@ -46,6 +46,9 @@ export default function Navbar({
         <NavLink to="/login" className={style.link}>
           Ingresar
         </NavLink>
+        <NavLink to="/admin" className={style.link}>
+          Dashboard
+        </NavLink>
       </div>
     </nav>
   );

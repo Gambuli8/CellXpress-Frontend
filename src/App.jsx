@@ -7,8 +7,10 @@ import AboutUs from "./Views/About Us/AboutUs";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import Register from "./Components/Register/Register";
 import Login from "./Components/Login/Login";
+import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
 import "./App.css";
-axios.defaults.baseURL = "https://cellxpress.onrender.com";
+// axios.defaults.baseURL = "https://cellxpress.onrender.com";
+axios.defaults.baseURL = "http://localhost:3002";
 function App() {
   return (
     <div className="App">
@@ -20,6 +22,7 @@ function App() {
         <Route path="/newproduct" element={<NewProduct />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<DashboardAdmin />} />
       </Routes>
     </div>
   );
