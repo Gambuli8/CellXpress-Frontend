@@ -18,7 +18,7 @@ const Card_Phone = (props) => {
 
           <div className={style.btn}>
             <Link className={style.link} to={`/detailCard/${props.id}`}>
-             {/*<button className={style.btn}>Ver más</button> */}
+             <button className={style.btn}>Ver más</button> 
             </Link>
           </div>
         </div>

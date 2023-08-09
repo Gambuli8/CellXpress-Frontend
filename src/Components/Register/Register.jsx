@@ -5,16 +5,15 @@ import { postUser } from "../../Redux/Actions";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
-
+ 
 const Register = () => {
-  const { signup, loginGoogle } = useAuth()
+  const { signup, loginGoogle,user } = useAuth()
   const navigate = useNavigate()
-
 
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
-    lastname: "",
+    phone: "",
     email: "",
     password: "",
   });
@@ -51,15 +50,25 @@ const Register = () => {
         }
       }
 
+
       dispatch(postUser(input));
       setInput({
         name: "",
-        lastname: "",
+        phone: "",
         email: "",
         password: "",
       });
     }
   };
+  if (user){
+    dispatch(postUser(user));
+    setInput({
+      name: user.displayName,
+      phone: user.phoneNumber,
+      email: user.email,
+      password: user.uid,
+    })
+  }
   const registerWithGoogle = async () => {
     try {
       await loginGoogle()
@@ -72,12 +81,12 @@ const Register = () => {
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>
-        Volver
+        Back
       </a>
       <div className={style.container}>
         <form className={style.inputContainer} onSubmit={handleSubmit}>
-          <h2>Registrarse</h2>
-          <label className={style.label}>Nombre</label>
+          <h2>Sign Up</h2>
+          <label className={style.label}>Full Name</label>
           <input
             className={style.input}
             onChange={handleChange}
@@ -86,13 +95,13 @@ const Register = () => {
             name="name"
           />
           {errors.name && <p className={style.error}>{errors.name}</p>}
-          <label className={style.label}>Apellido</label>
+          <label className={style.label}>Phone</label>
           <input
             className={style.input}
             onChange={handleChange}
             value={input.lastname}
             type="text"
-            name="lastname"
+            name="phone"
           />
           {errors.lastname && <p className={style.error}>{errors.lastname}</p>}
           <label className={style.label}>Email</label>
@@ -104,7 +113,7 @@ const Register = () => {
             name="email"
           />
           {errors.email && <p className={style.error}>{errors.email}</p>}
-          <label className={style.label}>Contraseña</label>
+          <label className={style.label}>Password</label>
           <input
             className={style.input}
             onChange={handleChange}
@@ -114,14 +123,14 @@ const Register = () => {
           />
           {errors.password && <p className={style.error}>{errors.password}</p>}
           <button type="submit" className={style.button}>
-            Registrar
+            Submit
           </button>
           <p>-------------0-------------</p>
           <button
             type="button"
             className={style.button}
             onClick={registerWithGoogle}>
-            Registrarse con Google
+            Login With Google
           </button>
         </form>
       </div>
