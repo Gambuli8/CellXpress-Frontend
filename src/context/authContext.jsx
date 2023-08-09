@@ -17,23 +17,23 @@ export const AuthProvider = ({ children }) => {
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
 
-   const signup = (email, password) => {
-      createUserWithEmailAndPassword(auth, email, password)
+   const signup = async (email, password) => {
+      await createUserWithEmailAndPassword(auth, email, password)
    }
-   const login = (email, password) => {
-      signInWithEmailAndPassword(auth, email, password)
+   const login = async (email, password) => {
+      await signInWithEmailAndPassword(auth, email, password)
    }
-   const logout = () => {
-      signOut(auth)
+   const logout = async () => {
+      await signOut(auth)
    }
-   const loginGoogle =()=>{
-      const provgoogle = new GoogleAuthProvider();
-      return signInWithPopup(auth, provgoogle)
+   const loginGoogle = async ()=>{
+       const provgoogle = new GoogleAuthProvider();
+      return await signInWithPopup(auth, provgoogle)
    }
    useEffect(() => {
           onAuthStateChanged(auth, currentuser => {
          setUser(currentuser);
-         setLoading(false); 
+         setLoading(false);
       })
    }, [])
 

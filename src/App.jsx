@@ -11,7 +11,6 @@ import "./App.css";
 import { CartProvider } from "./Components/Context/CartContext";
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
 import Login from "./Components/Login/Login";
-import { AuthProvider } from "./context/authContext";
 import "./App.css";
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
