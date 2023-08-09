@@ -1,11 +1,11 @@
 import { useState } from "react";
 import style from "./Login.module.css";
 import { validate } from "../Validate/Validate";
-import { loginUser } from "../../Redux/Actions";
-import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const {login, loginGoogle} = useAuth();
+  const {login, loginGoogle, user} = useAuth();
   const navigate = useNavigate()
   const [input, setInput] = useState({
     email: "",
@@ -47,6 +47,15 @@ function Login() {
     try {
       await loginGoogle()
       navigate("/home")
+      if (user){
+        dispatch(postUser(user));
+        setInput({
+          name: user.displayName,
+          phone: user.phoneNumber,
+          email: user.email,
+          password: user.uid,
+        })
+      }
     } catch (error) {
       console.log(error.message)
     }
