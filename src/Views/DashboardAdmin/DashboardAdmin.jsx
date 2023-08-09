@@ -17,7 +17,7 @@ export default function DashboardAdmin() {
     dispatch(getUsers());
   };
 
-  console.log("este es el nameeee", allUsers.email);
+  console.log("este es el nameeee", allUsers);
 
   return (
     <div className={style.dashContainer}>
@@ -34,9 +34,6 @@ export default function DashboardAdmin() {
               <ul className={style.listContainer}>
                 <li key={index} className={style.itemList}>
                   {user.name}
-                </li>
-                <li key={index} className={style.itemList}>
-                  {user.lastname}
                 </li>
                 <li key={index} className={style.itemList}>
                   {user.email}

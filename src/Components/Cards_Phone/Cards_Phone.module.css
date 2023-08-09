@@ -5,3 +5,17 @@
   justify-content: center;
   align-items: center;
 }
+
+.card_button {
+  border: 1px solid #252525;
+  display: flex;
+  padding: .3em;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: .3s ease-in-out;
+ }
+
+ .card_button:hover {
+  border: 1px solid rgb(3, 6, 58);
+  background-color: rgb(3, 6, 58);
+ }

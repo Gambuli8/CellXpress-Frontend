@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom";
 import style from "./navBar.module.css";
 import Searchbar from "../SearchBar/SearchBar";
-import { useState } from "react";
+import Carrito from "../Carrito/Carrito";
 
 export default function Navbar({
   handleSubmit,
@@ -50,6 +51,9 @@ export default function Navbar({
           Dashboard
         </NavLink>
       </div>
+        <div className={style.link}>
+          <Carrito />
+        </div>
     </nav>
   );
 }

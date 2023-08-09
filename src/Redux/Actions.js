@@ -46,7 +46,7 @@ export const getUsers = () => {
   return async (dispatch) => {
     try {
       const response = (await axios.get("/")).data;
-      console.log("0000000000", response);
+      console.log("actionsssss", response);
       dispatch({
         type: GET_USERS,
         payload: response,
@@ -98,7 +98,6 @@ export const postUser = (user) => {
 };
 
 export const getfilters = (info) => {
-  //  console.log("66666666666666666666666",info)
   return async (dispatch) => {
     try {
       const response = (
