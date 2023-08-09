@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import style from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { validate } from "../Validate/Validate";
 import { loginUser } from "../../Redux/Actions";
-import { NavLink } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();

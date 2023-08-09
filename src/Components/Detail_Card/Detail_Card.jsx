@@ -99,26 +99,3 @@ export default function Detail_Card() {
   </>
   );
 }
-
-/*  <div className={style.card__content}>
-            <h4 className={style.card_brand}>{product?.brand}</h4>
-            <h1 className={style.card__title}>{product?.title}</h1>
-            <h3>Descripción:</h3>
-            <p className={style.card__text}>{product?.description}</p>
-        <div className={style.card__image}>
-          <img width={400} height={400} src={product?.image} alt="image" />
-          </div>
-            </div>
-            <div className={style.cart}>
-              <h1>Carrito</h1>
-              <ul className={style.list_Cart}>
-              <li className={style.list}>Precio: ${price} </li>
-              <div className={style.count}>
-              <h3 className={style.list}>Cantidad:</h3>
-              <a className={style.btn_quantity} onClick={handleAdd}> + </a>
-              <h3 className={style.count_Number}>{count}</h3>
-              <a onClick={handleSubtract} className={style.btn_quantity}> - </a>
-              </div>
-              <li className={style.list}>Total: {price} </li>
-              </ul>
-              <button className={style.btn_addCart}>Agregar al carrito</button> */
