@@ -77,7 +77,7 @@ const Register = () => {
       console.log(error.message)
     }
   };
-
+  console.log(user)
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>

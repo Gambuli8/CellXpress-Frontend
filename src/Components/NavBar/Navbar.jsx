@@ -12,8 +12,7 @@ export default function Navbar({
   handlerChanges,
   handleReloadProducts,
 }) {
-  const {user, logout} = useAuth()
-  console.log(user)
+  const { user, logout } = useAuth()
   return (
     <nav className={style.navContainer}>
       <div>
@@ -46,21 +45,21 @@ export default function Navbar({
           Crear Producto
         </NavLink>
         {!user &&
-        <NavLink to="/register" className={style.link}>
-          Registrarse
-        </NavLink>}
-        {!user?
-         <NavLink to="/login" className={style.link}>
-          Ingresar
-        </NavLink>:
-        <div>
-        <p>{user.displayName}</p>
-        <button className={style.btn} onClick={logout}>Desconectar</button> 
-        </div>}
+          <NavLink to="/register" className={style.link}>
+            Registrarse
+          </NavLink>}
+        {!user ?
+          <NavLink to="/login" className={style.link}>
+            Ingresar
+          </NavLink> :
+          <div>
+            <p>{user.displayName}</p>
+            <button className={style.btn} onClick={logout}>Desconectar</button>
+          </div>}
+      <div className={style.link}>
+        <Carrito />
       </div>
-        <div className={style.link}>
-          <Carrito />
-        </div>
+      </div>
     </nav>
   );
 }
