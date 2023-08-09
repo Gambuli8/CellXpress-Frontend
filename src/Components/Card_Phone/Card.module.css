@@ -10,6 +10,7 @@
   text-decoration: none;
   border-radius: 0.5rem;
   transition: 0.3s ease-in-out;
+  margin-bottom: 1.5em;
 }
 
 .card_img {
@@ -137,15 +138,18 @@
 
 /*Button*/
 .card_button {
-  border: 1px solid #252525;
   display: flex;
   padding: 0.3em;
   cursor: pointer;
-  border-radius: 50px;
   transition: 0.3s ease-in-out;
 }
 
 /*Hover*/
+
+.card_button:hover {
+  transform: scale(1.1);
+  filter: brightness(1.8);
+}
 
 .btn:hover {
   transform: scale(1.05);
@@ -156,13 +160,4 @@
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.card_button:hover {
-  border: 1px solid rgb(3, 6, 58);
-  background-color: rgb(3, 6, 58);
-}
-
-.card_button:hover .svg_icon {
-  fill: #fff;
 }
