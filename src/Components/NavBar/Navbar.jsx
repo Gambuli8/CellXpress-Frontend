@@ -41,22 +41,20 @@ export default function Navbar({
         <NavLink to="/aboutus" className={style.link}>
           Sobre Nosotros
         </NavLink>
-        {!user &&
-          <NavLink to="/register" className={style.link}>
-            Registrarse
-          </NavLink>}
-        {!user ?
-          <NavLink to="/login" className={style.link}>
-            Ingresar
-          </NavLink> :
-          <div>
-            <p>{user.displayName}</p>
-            <button className={style.btn} onClick={logout}>Desconectar</button>
-          </div>}
-          {user && <div className={style.link}>
-        <Carrito />
-      </div>}
+        <NavLink to="/newproduct" className={style.link}>
+          Crear Producto
+        </NavLink>
+
+        <NavLink to="/register" className={style.link}>
+          Registrarse
+        </NavLink>
+        <NavLink to="/login" className={style.link}>
+          Ingresar
+        </NavLink>
       </div>
+        <div className={style.link}>
+          <Carrito />
+        </div>
     </nav>
   );
 }
