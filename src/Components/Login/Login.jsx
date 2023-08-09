@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import style from "./Login.module.css";
 import { validate } from "../Validate/Validate";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
+import { loginUser } from "../../Redux/Actions";
+import { NavLink } from "react-router-dom";
 
 function Login() {
   const {login, loginGoogle} = useAuth();

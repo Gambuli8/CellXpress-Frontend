@@ -4,10 +4,25 @@ import style from "./detail.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useCart from "../Hooks/useCart";
+import Swal from "sweetalert2";
+import Navbar from "../NavBar/Navbar";
 
 export default function Detail_Card() {
   /*estado de productos */
   const [product, setProduct] = useState({});
+
+  const { addToCart } = useCart();
+
+  const handlerAddToCart = () => {
+    addToCart(product);
+    Swal.fire({
+      title: "Producto agregado al carrito",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  };
 
   /* estado de redux */
   const allProduct = useSelector((state) => state.allProduct);
@@ -34,6 +49,8 @@ export default function Detail_Card() {
   };
 
   return (
+    <>
+      <Navbar/>
     <div className={style.container}>
       {product?._id ? (
         <div className={style.cardContainer}>
@@ -46,7 +63,7 @@ export default function Detail_Card() {
                 className={style.card__image}
                 src={product?.image}
                 alt="image"
-              />
+                />
             </div>
             <div className={style.cardInfo}>
               <h4 className={style.card__brand}>
@@ -69,7 +86,7 @@ export default function Detail_Card() {
                 </div>
                 <li className={style.totalPrice}>Total: ${price} </li>
               </div>
-              <button className={style.btn_addCart}>Agregar al carrito</button>
+              <button className={style.btn_addCart} onClick={() => handlerAddToCart()}>Agregar al carrito</button>
               <h3>Descripción:</h3>
               <p className={style.card__text}>{product?.description}</p>
             </div>
@@ -77,30 +94,8 @@ export default function Detail_Card() {
         </div>
       ) : (
         <h1>Cargando...</h1>
-      )}
+        )}
     </div>
+  </>
   );
 }
-
-/*  <div className={style.card__content}>
-            <h4 className={style.card_brand}>{product?.brand}</h4>
-            <h1 className={style.card__title}>{product?.title}</h1>
-            <h3>Descripción:</h3>
-            <p className={style.card__text}>{product?.description}</p>
-        <div className={style.card__image}>
-          <img width={400} height={400} src={product?.image} alt="image" />
-          </div>
-            </div>
-            <div className={style.cart}>
-              <h1>Carrito</h1>
-              <ul className={style.list_Cart}>
-              <li className={style.list}>Precio: ${price} </li>
-              <div className={style.count}>
-              <h3 className={style.list}>Cantidad:</h3>
-              <a className={style.btn_quantity} onClick={handleAdd}> + </a>
-              <h3 className={style.count_Number}>{count}</h3>
-              <a onClick={handleSubtract} className={style.btn_quantity}> - </a>
-              </div>
-              <li className={style.list}>Total: {price} </li>
-              </ul>
-              <button className={style.btn_addCart}>Agregar al carrito</button> */

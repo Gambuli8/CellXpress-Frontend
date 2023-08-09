@@ -1,7 +1,11 @@
+
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom";
 import style from "./navBar.module.css";
 import Searchbar from "../SearchBar/SearchBar";
 import { useAuth } from "../../context/authContext"
+import Carrito from "../Carrito/Carrito";
 
 export default function Navbar({
   handleSubmit,
@@ -54,6 +58,9 @@ export default function Navbar({
         <button className={style.btn} onClick={logout}>Desconectar</button> 
         </div>}
       </div>
+        <div className={style.link}>
+          <Carrito />
+        </div>
     </nav>
   );
 }
