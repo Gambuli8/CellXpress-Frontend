@@ -44,7 +44,6 @@ export default function Navbar({
         <NavLink to="/newproduct" className={style.link}>
           Crear Producto
         </NavLink>
-
         {!user &&  <NavLink to="/register" className={style.link}>
           Registrarse
         </NavLink>}
