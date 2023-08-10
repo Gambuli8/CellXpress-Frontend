@@ -7,10 +7,16 @@ import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
  
 const Register = () => {
-  const { signup, loginGoogle,user } = useAuth()
+  const { signup, loginGoogle, user } = useAuth()
   const navigate = useNavigate()
 
   const dispatch = useDispatch();
+  const [userFire, setUserFire] = useState({
+    name:"",
+    phone:"",
+    email:"",
+    password:""
+  })
   const [input, setInput] = useState({
     name: "",
     phone: "",
@@ -60,12 +66,24 @@ const Register = () => {
       });
     }
   };
-  const registerWithGoogle = async () => {
+  const registerWithGoogle = async (e) => {
     try {
+      e.preventDefault()
+      setErrors({})
       await loginGoogle()
       navigate("/home")
+      dispatch(postUser(user));
+      setUserFire({
+        name: user.displayName,
+        phone:user.phoneNumber,
+        email:user.email,
+        password:user.accessToken,
+        UID: user.uid
+      })
+      console.log(user)
     } catch (error) {
-      console.log(error.message)
+      setErrors(error.message)
+      alert(error.message)
     }
   };
   console.log(user)

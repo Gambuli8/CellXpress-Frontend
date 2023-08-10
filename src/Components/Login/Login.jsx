@@ -39,7 +39,8 @@ function Login() {
         await login(input.email, input.password)
         navigate("/home")
       } catch (error) { 
-        console.log(error.message)
+        setErrors(error.message)
+        alert(error.message)
         }
       }
   };

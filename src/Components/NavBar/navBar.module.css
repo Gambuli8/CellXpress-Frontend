@@ -22,8 +22,13 @@
 }
 .btn{
   color: white;
+  height: 30px;
   font-size: 15px;
   margin-inline: 1rem;
   text-decoration: none;
   background-color: #001d4a;
+}
+.user{
+  display:flex;
+
 }

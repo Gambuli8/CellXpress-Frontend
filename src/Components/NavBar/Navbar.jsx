@@ -50,9 +50,9 @@ export default function Navbar({
         { !user?
         <NavLink to="/login" className={style.link}>
           Ingresar
-        </NavLink>: <div>
+        </NavLink>: <div className={style.user} >
           <p>{user.displayName}</p>
-          <button onClick={logout} className={style.link}>Cerrar sesión</button>
+          <button onClick={logout} className={style.btn}>Cerrar sesión</button>
         </div> }
       </div>
         <div className={style.link}>
