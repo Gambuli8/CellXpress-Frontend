@@ -4,10 +4,13 @@
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useCart from "../Hooks/useCart";
 const Card_Phone = (props) => {
 
+  const {addToCart} = useCart();
+
   const handlerAddToCart = () => {
-    props.addToCart(props);
+    addToCart(props);
     Swal.fire({
       title: "Producto agregado al carrito",
       icon: "success",
@@ -36,7 +39,7 @@ const Card_Phone = (props) => {
         </div>
         <div className={style.card_footer}>
           <span className={style.text_title}>${props.price}</span>
-          <div className={style.card_button} onClick={handlerAddToCart}>
+          <div className={style.card_button} onClick={() => handlerAddToCart()}>
             <img className={style.svg_icon} src="https://res.cloudinary.com/djqwbu0my/image/upload/v1691159692/Pngtree_shopping_cart_icon_3582761_vd41rl.png" alt="" />
         </div>
       </div>

@@ -13,7 +13,7 @@ export const CartProvider = ({ children }) => {
       };
     
       const addToCart = (product) => {
-        const productIndex = cart.findIndex((p) => p.id === product._id);
+        const productIndex = cart.findIndex((p) => p.id === product._id || p.id === product.id);
     
         if (productIndex >= 0 ) {
           const newCart = structuredClone(cart);
