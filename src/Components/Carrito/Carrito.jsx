@@ -1,13 +1,31 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
-import { useId } from 'react'
+import { useId, useState } from 'react'
 import style from './Carrito.module.css'
 import useCart from '../Hooks/useCart'
 import swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
 
-function CartItem (product) {
-  const { removeFromCart } = useCart()
+function CartItem ( product ) {
+  const { removeFromCart, addToCart } = useCart()
+
+  const [price, setPrice] = useState(product?.price);
+  const [count, setCount] = useState(1);
+  const handleAdd = () => {
+    // agregar varias veces el mismo producto al carrito, que se sume el precio y la cantidad de ese producto en el carrito y se guarde en el localstorage
+    setCount(count + product?.quantity);
+    setPrice(price + product?.price);
+  };
+
+
+
+  const handleSubtract = () => {
+    if (count <= 1) {
+      return;
+    }
+    setCount(count - 1);
+    setPrice(price - product?.price);
+  };
   return (
     <li>
       <img width={200} height={200} src={product.image} alt={product.title} />
@@ -16,11 +34,11 @@ function CartItem (product) {
       </div>
       <footer>
         <small>
-          <button>-</button>
-          <span>{product.quantity}</span>
-          <button>+</button>
+          <button onClick={handleSubtract}>-</button>
+          <span>{count}</span>
+          <button onClick={handleAdd}>+</button>
         </small>
-        <strong>${product.price * product.quantity}</strong>
+        <strong>${price}</strong>
       </footer>
       <button onClick={() => removeFromCart(product)}>eliminar producto</button>
     </li>
@@ -71,7 +89,8 @@ export default function Carrito() {
           {cart.map(product => (
             <CartItem 
             key={product._id}
-            addToCart={() => addToCart(product)} 
+            addToCart={() => addToCart(product)}
+
             {...product} 
             />
           ))}
