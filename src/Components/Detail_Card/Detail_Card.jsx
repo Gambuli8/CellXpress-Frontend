@@ -47,9 +47,9 @@ export default function Detail_Card() {
             Atras
           </a>
           <div className={style.card}>
-            <div className={style.card__image}>
+            <div className={style.card_image}>
               <img
-                className={style.card__image}
+                className={style.image}
                 src={product?.image}
                 alt="image"
                 />
