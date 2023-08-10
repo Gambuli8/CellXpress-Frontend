@@ -30,11 +30,6 @@ const Cards_Phone = ({ Product }) => {
           addToCart={addToCart}
           removeFromCart={removeFromCart}
           isProductInCart={isProductInCart}
-          // button={
-          //   isProductInCart 
-          //   ? <div className={style.card_button} onClick={() => removeFromCart(product)}>Eliminar</div>
-          //   : <div className={style.card_button} onClick={() => addToCart(product)}>Agregar</div>
-          // }
         />
        );
        })}
