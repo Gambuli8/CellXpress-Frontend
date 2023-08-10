@@ -64,15 +64,6 @@ const Register = () => {
     try {
       await loginGoogle()
       navigate("/home")
-      if (user){
-        dispatch(postUser(user));
-        setInput({
-          name: user.displayName,
-          phone: user.phoneNumber,
-          email: user.email,
-          password: user.uid,
-        })
-      }
     } catch (error) {
       console.log(error.message)
     }

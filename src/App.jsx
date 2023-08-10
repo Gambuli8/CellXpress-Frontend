@@ -14,8 +14,9 @@ import Login from "./Components/Login/Login";
 import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
 import "./App.css";
 // axios.defaults.baseURL =  "http://localhost:3002"
- axios.defaults.baseURL = "https://cellxpress.onrender.com";
+axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
+
   return (
     <>
       <CartProvider>

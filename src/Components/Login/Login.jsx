@@ -64,11 +64,11 @@ function Login() {
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>
-        Volver
+        Back
       </a>
       <div className={style.container}>
         <form className={style.inputContainer} onSubmit={handleSubmit}>
-          <h2>Iniciar Sesion</h2>
+          <h2>Sign In</h2>
           <label className={style.label}>Email</label>
           <input
             className={style.input}
@@ -80,7 +80,7 @@ function Login() {
           {errors.emailAcces && (
             <p className={style.error}>{errors.emailAcces}</p>
           )}
-          <label className={style.label}>Contraseña</label>
+          <label className={style.label}>Password</label>
           <input
             className={style.input}
             placeholder="Contraseña"
@@ -91,10 +91,10 @@ function Login() {
           {errors.passwordAcces && (
             <p className={style.error}>{errors.passwordAcces}</p>
           )}
-          <button className={style.button}>Iniciar</button>
+          <button className={style.button}>Login</button>
           <p>-------------0-------------</p>
           <button className={style.button} onClick={loginWithGoogle}>
-            Iniciar con Google
+            Login With Google
           </button>
         </form>
       </div>
