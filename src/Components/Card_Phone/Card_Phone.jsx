@@ -10,10 +10,10 @@ import { useAuth } from "../../context/authContext";
 const Card_Phone = (props) => {
   const { user }= useAuth()
 
-  const {addToCart} = useCart();
+  // const {addToCart} = useCart();
 
   const handlerAddToCart = () => {
-    addToCart(props);
+    props.addToCart(props);
     Swal.fire({
       title: "Producto agregado al carrito",
       icon: "success",
@@ -43,11 +43,10 @@ const Card_Phone = (props) => {
         <div className={style.card_footer}>
           <span className={style.text_title}>${props.price}</span>
           <div className={style.card_button} onClick={() => handlerAddToCart()}>
-          {user &&  <div className={style.card_button} onClick={handlerAddToCart}>  
             <img className={style.svg_icon} src="https://res.cloudinary.com/djqwbu0my/image/upload/v1691159692/Pngtree_shopping_cart_icon_3582761_vd41rl.png" alt="" />
-        </div> }
       </div>
     </div>
+  </div>
     </>
   );
 };
