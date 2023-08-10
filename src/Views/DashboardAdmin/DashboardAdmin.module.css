@@ -1,0 +1,31 @@
+.dashContainer {
+  background-color: #1f6e8c;
+}
+
+.containerDos {
+  display: flex;
+}
+
+.containerUsers {
+  background-color: #0e2954;
+  width: 70%;
+  margin-left: 2rem;
+  max-height: calc(100vh - 112px);
+  overflow-y: auto;
+}
+
+.tituloUsers {
+  text-align: center;
+  color: white;
+}
+
+.listContainer {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: aliceblue;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  margin-inline: 1rem;
+  border-radius: 1rem;
+}

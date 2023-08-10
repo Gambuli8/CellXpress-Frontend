@@ -1,0 +1,21 @@
+.sidebar {
+  width: 14rem;
+  background-color: #0e2954;
+  height: calc(100vh - 112px);
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.listDash {
+  list-style: none;
+  padding: 1rem 2rem;
+}
+
+.itemDash {
+  margin-bottom: 1rem;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
