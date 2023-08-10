@@ -4,6 +4,7 @@
 import { NavLink } from "react-router-dom";
 import style from "./navBar.module.css";
 import Searchbar from "../SearchBar/SearchBar";
+import { useAuth } from "../../context/authContext"
 import Carrito from "../Carrito/Carrito";
 
 export default function Navbar({
@@ -11,6 +12,7 @@ export default function Navbar({
   handlerChanges,
   handleReloadProducts,
 }) {
+  const { user, logout } = useAuth()
   return (
     <nav className={style.navContainer}>
       <div>
@@ -48,9 +50,6 @@ export default function Navbar({
         </NavLink>
         <NavLink to="/login" className={style.link}>
           Ingresar
-        </NavLink>
-        <NavLink to="/admin" className={style.link}>
-          Dashboard
         </NavLink>
       </div>
         <div className={style.link}>

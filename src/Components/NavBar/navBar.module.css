@@ -20,3 +20,10 @@
   margin-left: 2rem;
   color: white;
 }
+.btn{
+  color: white;
+  font-size: 15px;
+  margin-inline: 1rem;
+  text-decoration: none;
+  background-color: #001d4a;
+}
