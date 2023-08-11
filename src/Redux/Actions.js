@@ -8,6 +8,8 @@ import {
   ORDERPHONE,
   POST_PRODUCT,
   LOGIN_USER,
+  RAMFILTERS,
+  PIXELESFILTERS,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -121,6 +123,65 @@ export const getfilters = (info) => {
     }
   };
 };
+
+export const getfiltersram = (info) => {
+  
+  return async (dispatch) => {
+    try {
+      const response = (
+        await axios.get(
+          `http://localhost:3002/products/filter?brand=&ram=${info}&cameraInches=`
+           
+          )
+        
+      ).data.products;
+      console.log("PRODUCTOSSSSSS", response)
+      if (response.length === 0) {
+        Swal.fire({
+          text: "Producto no encontrado",
+          icon: "error",
+          confirmButtonText: "ok",
+        });
+      }
+      dispatch({
+        type: RAMFILTERS,
+        payload: response,
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+export const getfilterspixeles = (info) => {
+  console.log("33333333333333333", info)
+  return async (dispatch) => {
+    try {
+      const response = (
+        await axios.get(
+          `http://localhost:3002/products/filter?brand=&ram=&cameraInches=${info}`
+           
+          )
+        
+      ).data.products;
+      console.log("PRODUCTOSSSSSS", response)
+      if (response.length === 0) {
+        Swal.fire({
+          text: "Producto no encontrado",
+          icon: "error",
+          confirmButtonText: "ok",
+        });
+      }
+      dispatch({
+        type: PIXELESFILTERS,
+        payload: response,
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
+
 
 export function orderPhone(order) {
   return function (dispatch) {
