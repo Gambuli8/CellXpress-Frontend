@@ -6,3 +6,5 @@ export const GETFILTERS = "GETFILTERS";
 export const ORDERPHONE = "ORDERPHONE";
 export const POST_PRODUCT = "POST_PRODUCT";
 export const LOGIN_USER = "LOGIN_USER";
+export const RAMFILTERS = "RAMFILTERS"
+export const PIXELESFILTERS = "PIXELESFILTERS"

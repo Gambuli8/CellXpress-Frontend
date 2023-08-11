@@ -7,6 +7,8 @@ import {
   POST_PRODUCT,
   POST_USER,
   LOGIN_USER,
+  RAMFILTERS,
+  PIXELESFILTERS
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -42,6 +44,16 @@ const rootReducer = (state = inicialState, action) => {
       };
 
     case GETFILTERS:
+      return {
+        ...state,
+        allProduct: action.payload,
+      };
+      case RAMFILTERS:
+      return {
+        ...state,
+        allProduct: action.payload,
+      };
+      case PIXELESFILTERS:
       return {
         ...state,
         allProduct: action.payload,
