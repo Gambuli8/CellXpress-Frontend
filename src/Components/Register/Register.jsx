@@ -36,7 +36,7 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setErrors("")
     const validationErrors = validate(input);
@@ -44,7 +44,7 @@ const Register = () => {
     if (Object.keys(validationErrors).length === 0) {
 
       try {
-        await signup(input.email, input.password)
+        signup(input.email, input.password)
         navigate("/home")
       } catch (error) {
         if (error.message === "auth/email-already-in-use") {
@@ -62,9 +62,9 @@ const Register = () => {
     }
   };
   if(user)console.log(user)
-  const fireDb = async ()=>{
-    dispatch(postUser(user));
-     await setUserFire({
+  const fireDb = ()=>{
+     dispatch(postUser(user));
+      setUserFire({
         name: user.displayName,
         phone: user.PhoneNumber,
         email: user.email,
@@ -81,7 +81,6 @@ const Register = () => {
       await loginGoogle()
     } catch (error) {
       setErrors(error.message)
-      alert(error.message)
     }
   };
   return (
@@ -131,18 +130,20 @@ const Register = () => {
           <button type="submit" className={style.button}>
             Submit
           </button>
-          <p>-------------0-------------</p>
+          </form>
+
+          <div className={style.inputContainer}>
           <button
             type="button"
             className={style.button}
             onClick={registerWithGoogle}>
             Login With Google
           </button>
-          {user && <div>
+          {user && <div >
             <p>Bienvenido {user.displayName}</p>
             <button className={style.button} onClick={fireDb}>Submit Login Google</button>
             </div>}
-        </form>
+              </div>
       </div>
     </div>
   );
