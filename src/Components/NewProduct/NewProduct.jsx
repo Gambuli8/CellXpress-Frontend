@@ -3,6 +3,7 @@ import { postProduct } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
 import { validate } from "../Validate/Validate";
 import style from "./NewProduct.module.css";
+import useLocalStorage from "../Hooks/useLocalStorage";
 
 const NewProduct = () => {
   //if (user.admin) {
@@ -10,7 +11,7 @@ const NewProduct = () => {
   const [imageURL, setImageURL] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
-  const [input, setInput] = useState({
+  const [input, setInput] = useLocalStorage("input",{
     title: "",
     price: "",
     description: "",
@@ -71,7 +72,6 @@ const NewProduct = () => {
       }
     }
   };
-
   //cloudinary
   const handleImageChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -93,7 +93,6 @@ const NewProduct = () => {
             body: formData,
           }
         );
-
         if (response.ok) {
           console.log(response);
           const data = await response.json();

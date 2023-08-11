@@ -3,11 +3,13 @@ import style from "./Login.module.css";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../Hooks/useLocalStorage.js";
+
 
 function Login() {
   const {login, loginGoogle, user} = useAuth();
   const navigate = useNavigate()
-  const [input, setInput] = useState({
+  const [input, setInput] = useLocalStorage("input",{
     email: "",
     password: "",
   });
@@ -76,6 +78,7 @@ function Login() {
             type="email"
             name="email"
             onChange={handleChange}
+            value={input.email}
           />
           {errors.emailAcces && (
             <p className={style.error}>{errors.emailAcces}</p>
@@ -87,6 +90,7 @@ function Login() {
             type="password"
             name="password"
             onChange={handleChange}
+            value={input.password}
           />
           {errors.passwordAcces && (
             <p className={style.error}>{errors.passwordAcces}</p>
