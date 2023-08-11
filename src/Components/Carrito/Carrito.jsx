@@ -7,41 +7,64 @@ import swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
 
 function CartItem ( product ) {
-  const { removeFromCart, addToCart } = useCart()
 
-  const [price, setPrice] = useState(product?.price);
-  const [count, setCount] = useState(1);
+
+  const { removeFromCart, cart, saveCart } = useCart()
+  
+  //estados para el precio y la cantidad de productos en el carrito
+  const [price, setPrice] = useState(JSON.parse(localStorage.getItem('carrito')).find((item) => item.id === product.id).price);
+  const [count, setCount] = useState(JSON.parse(localStorage.getItem('carrito')).find((item) => item.id === product.id).quantity);
+
+  // funciones de suma y resta de la cantidad de productos en el carrito dependiendo del stock
   const handleAdd = () => {
-    // agregar varias veces el mismo producto al carrito, que se sume el precio y la cantidad de ese producto en el carrito y se guarde en el localstorage
-    setCount(count + product?.quantity);
-    setPrice(price + product?.price);
-  };
-
-
+    if (count < product?.count) {
+      setCount(count + 1)
+      setPrice(price + product.price)
+      cart.find((item) => item.id === product.id).quantity = count + 1
+      cart.find((item) => item.id === product.id).price = price + product.price
+      saveCart(...cart, product)
+    } else {
+      swal.fire('No hay más stock de este producto')
+    }
+  }
 
   const handleSubtract = () => {
-    if (count <= 1) {
-      return;
+    if (count > 1) {
+      setCount(count - 1)
+      setPrice(price - product.price)
+      cart.find((item) => item.id === product.id).quantity = count - 1
+      cart.find((item) => item.id === product.id).price = price - product.price
+      saveCart(...cart, product)
+    } else {
+      swal.fire('No puedes tener menos de 1 producto en el carrito')
     }
-    setCount(count - 1);
-    setPrice(price - product?.price);
-  };
+  }
+
+  //funcion para mostrar el producto en el carrito
+  const handleShow = () => {
+      return (
+        <li>
+          <img width={200} height={200} src={product.image} alt={product.title} />
+          <div>
+            <strong>{product.title}</strong>
+          </div>
+          <footer>
+            <small>
+              <button onClick={handleSubtract}>-</button>
+              <span>{count}</span>
+              <button onClick={handleAdd}>+</button>
+            </small>
+            <strong>${price}</strong>
+          </footer>
+          <button onClick={() => removeFromCart(product)}>eliminar producto</button>
+        </li>
+      )
+  }
+  
   return (
-    <li>
-      <img width={200} height={200} src={product.image} alt={product.title} />
-      <div>
-        <strong>{product.title}</strong> - <span>${product.price}</span>
-      </div>
-      <footer>
-        <small>
-          <button onClick={handleSubtract}>-</button>
-          <span>{count}</span>
-          <button onClick={handleAdd}>+</button>
-        </small>
-        <strong>${price}</strong>
-      </footer>
-      <button onClick={() => removeFromCart(product)}>eliminar producto</button>
-    </li>
+    <>
+      {handleShow()}
+    </>
   )
 }
 
@@ -90,7 +113,7 @@ export default function Carrito() {
             <CartItem 
             key={product._id}
             addToCart={() => addToCart(product)}
-
+            count={product.quantity}
             {...product} 
             />
           ))}
