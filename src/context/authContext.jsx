@@ -17,18 +17,18 @@ export const AuthProvider = ({ children }) => {
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
 
-   const signup = async (email, password) => {
-      await createUserWithEmailAndPassword(auth, email, password)
+   const signup =  (email, password) => {
+       createUserWithEmailAndPassword(auth, email, password)
    }
-   const login = async (email, password) => {
-      await signInWithEmailAndPassword(auth, email, password)
+   const login = (email, password) => {
+      signInWithEmailAndPassword(auth, email, password)
    }
-   const logout = async () => {
-      await signOut(auth)
+   const logout =  () => {
+       signOut(auth)
    }
-   const loginGoogle = async ()=>{
+   const loginGoogle =  ()=>{
        const provgoogle = new GoogleAuthProvider();
-      return await signInWithPopup(auth, provgoogle)
+      return signInWithPopup(auth, provgoogle)
    }
    useEffect(() => {
           onAuthStateChanged(auth, currentuser => {

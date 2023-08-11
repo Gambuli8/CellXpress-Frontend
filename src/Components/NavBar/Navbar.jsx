@@ -44,13 +44,16 @@ export default function Navbar({
         <NavLink to="/newproduct" className={style.link}>
           Crear Producto
         </NavLink>
-
-        <NavLink to="/register" className={style.link}>
+        {!user &&  <NavLink to="/register" className={style.link}>
           Registrarse
-        </NavLink>
+        </NavLink>}
+        { !user?
         <NavLink to="/login" className={style.link}>
           Ingresar
-        </NavLink>
+        </NavLink>: <div className={style.user} >
+          <p>{user.displayName}</p>
+          <button onClick={logout} className={style.btn}>Log Out</button>
+        </div> }
       </div>
         <div className={style.link}>
           <Carrito />

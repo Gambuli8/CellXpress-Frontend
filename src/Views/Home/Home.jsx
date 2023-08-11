@@ -9,6 +9,8 @@ import { getProduct, getProductsByName } from "../../Redux/Actions";
 import style from "./home.module.css";
 import Filters from "../../Components/Filters/Filters";
 import Paginado from "../../Components/Paginado/Paginado";
+import { useAuth } from "../../context/authContext"
+import { postUser } from "../../Redux/Actions";
 
 const Home = () => {
   const allProduct = useSelector((state) => state.allProduct);
@@ -22,7 +24,6 @@ const Home = () => {
   const indexLastPhone = currentPag * cantPerPage;
   const indexFirstPhone = indexLastPhone - cantPerPage;
   const currentPhone = filtered.slice(indexFirstPhone, indexLastPhone);
- 
 
   const paginado = (pageNumber) => {
     setCurrentPag(pageNumber);

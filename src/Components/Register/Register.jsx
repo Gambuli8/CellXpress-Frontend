@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../Redux/Actions";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
- 
+
 const Register = () => {
-  const { signup, loginGoogle,user } = useAuth()
+  const { signup, loginGoogle, user } = useAuth()
   const navigate = useNavigate()
 
   const dispatch = useDispatch();
+
+  const [userFire, setUserFire] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    password: "",
+  })
+  console.log(userFire.email,userFire.name, user)
   const [input, setInput] = useState({
     name: "",
     phone: "",
@@ -34,7 +42,7 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setErrors("")
     const validationErrors = validate(input);
@@ -42,14 +50,13 @@ const Register = () => {
     if (Object.keys(validationErrors).length === 0) {
 
       try {
-        await signup(input.email, input.password)
+        signup(input.email, input.password)
         navigate("/home")
       } catch (error) {
         if (error.message === "auth/email-already-in-use") {
           alert("email ya registrado")
         }
       }
-
 
       dispatch(postUser(input));
       setInput({
@@ -60,24 +67,42 @@ const Register = () => {
       });
     }
   };
-  const registerWithGoogle = async () => {
+  const fireDb = (user) => {
+    if(user!== null){ 
+    setUserFire({
+      name: user.displayName,
+      phone: user.PhoneNumber,
+      email: user.email,
+      password: user.accessToken,
+    });
+    console.log(userFire)
+    dispatch(postUser(userFire));
+    navigate("/home")}
+  }
+
+  const registerWithGoogle = async (e) => {
     try {
+      e.preventDefault()
+      setErrors({})
       await loginGoogle()
-      navigate("/home")
-      if (user){
-        dispatch(postUser(user));
-        setInput({
-          name: user.displayName,
-          phone: user.phoneNumber,
-          email: user.email,
-          password: user.uid,
-        })
-      }
     } catch (error) {
-      console.log(error.message)
+      setErrors(error.message)
     }
   };
-  console.log(user)
+
+  /*useEffect((user) => {
+    if (user !== null) {
+      setUserFire({
+        name: user.displayName,
+        phone: user.PhoneNumber,
+        email: user.email,
+        password: user.accessToken,
+        uid: user.uid
+      })
+      dispatch(postUser(userFire));
+    }
+  }, [user])*/
+
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>
@@ -100,7 +125,7 @@ const Register = () => {
             className={style.input}
             onChange={handleChange}
             value={input.lastname}
-            type="text"
+            type="number"
             name="phone"
           />
           {errors.lastname && <p className={style.error}>{errors.lastname}</p>}
@@ -125,14 +150,20 @@ const Register = () => {
           <button type="submit" className={style.button}>
             Submit
           </button>
-          <p>-------------0-------------</p>
+        </form>
+
+        <div className={style.inputContainer}>
           <button
             type="button"
             className={style.button}
             onClick={registerWithGoogle}>
             Login With Google
           </button>
-        </form>
+          {user && <div >
+            <p>Bienvenido {user.displayName}</p>
+            <button className={style.button} onClick={fireDb}>Submit Login Google</button>
+          </div>}
+        </div>
       </div>
     </div>
   );
