@@ -7,7 +7,9 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAy3VziLjO976iMg2H7Wly7CVrGJJHOCPg",
-  authDomain: "cellxpress-872a5.firebaseapp.com",
+  // authDomain: "cellxpress-872a5.firebaseapp.com",
+  // authDomain: "http://127.0.0.1:5173",
+  authDomain: "http://localhost:3002/",
   projectId: "cellxpress-872a5",
   storageBucket: "cellxpress-872a5.appspot.com",
   messagingSenderId: "173102662327",
