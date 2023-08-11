@@ -11,12 +11,8 @@ const Register = () => {
   const navigate = useNavigate()
 
   const dispatch = useDispatch();
-  const [userFire, setUserFire] = useState({
-    name:"",
-    phone:"",
-    email:"",
-    password:""
-  })
+  
+  const [userFire, setUserFire]= useState()
   const [input, setInput] = useState({
     name: "",
     phone: "",
@@ -56,7 +52,6 @@ const Register = () => {
         }
       }
 
-
       dispatch(postUser(input));
       setInput({
         name: "",
@@ -66,27 +61,29 @@ const Register = () => {
       });
     }
   };
+  if(user)console.log(user)
+  const fireDb = async ()=>{
+    dispatch(postUser(user));
+     await setUserFire({
+        name: user.displayName,
+        phone: user.PhoneNumber,
+        email: user.email,
+        password: user.accessToken,
+        UID:user.uid
+      });
+      /*navigate("/home")*/
+  }
+
   const registerWithGoogle = async (e) => {
     try {
       e.preventDefault()
       setErrors({})
       await loginGoogle()
-      navigate("/home")
-      dispatch(postUser(user));
-      setUserFire({
-        name: user.displayName,
-        phone:user.phoneNumber,
-        email:user.email,
-        password:user.accessToken,
-        UID: user.uid
-      })
-      console.log(user)
     } catch (error) {
       setErrors(error.message)
       alert(error.message)
     }
   };
-  console.log(user)
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>
@@ -141,6 +138,10 @@ const Register = () => {
             onClick={registerWithGoogle}>
             Login With Google
           </button>
+          {user && <div>
+            <p>Bienvenido {user.displayName}</p>
+            <button className={style.button} onClick={fireDb}>Submit Login Google</button>
+            </div>}
         </form>
       </div>
     </div>
