@@ -9,17 +9,22 @@ import { Link } from 'react-router-dom'
 function CartItem ( product ) {
 
 
-  const { removeFromCart, addToCart } = useCart()
+  const { removeFromCart, cart, saveCart } = useCart()
   
-  const [price, setPrice] = useState(product?.price);
-  const [count, setCount] = useState(1);
+  //estados para el precio y la cantidad de productos en el carrito
+  const [price, setPrice] = useState(JSON.parse(localStorage.getItem('carrito')).find((item) => item.id === product.id).price);
+  const [count, setCount] = useState(JSON.parse(localStorage.getItem('carrito')).find((item) => item.id === product.id).quantity);
 
-  // sumar y restar cantidad de productos en el carrito dependiendo del stock
+  // funciones de suma y resta de la cantidad de productos en el carrito dependiendo del stock
   const handleAdd = () => {
     if (count < product?.count) {
       setCount(count + 1)
       setPrice(price + product.price)
-      addToCart()
+      cart.find((item) => item.id === product.id).quantity = count + 1
+      cart.find((item) => item.id === product.id).price = price + product.price
+      saveCart(...cart, product)
+    } else {
+      swal.fire('No hay más stock de este producto')
     }
   }
 
@@ -27,19 +32,21 @@ function CartItem ( product ) {
     if (count > 1) {
       setCount(count - 1)
       setPrice(price - product.price)
-      removeFromCart(count - 1)
+      cart.find((item) => item.id === product.id).quantity = count - 1
+      cart.find((item) => item.id === product.id).price = price - product.price
+      saveCart(...cart, product)
+    } else {
+      swal.fire('No puedes tener menos de 1 producto en el carrito')
     }
   }
 
-  // mostrar solo una vez el producto en el carrito
-
+  //funcion para mostrar el producto en el carrito
   const handleShow = () => {
-    if (product.quantity === 1) {
       return (
         <li>
           <img width={200} height={200} src={product.image} alt={product.title} />
           <div>
-            <strong>{product.title}</strong> - <span>${product.price}</span>
+            <strong>{product.title}</strong>
           </div>
           <footer>
             <small>
@@ -52,9 +59,6 @@ function CartItem ( product ) {
           <button onClick={() => removeFromCart(product)}>eliminar producto</button>
         </li>
       )
-    } else if (product.quantity > 1) {
-      return null
-    }
   }
   
   return (
@@ -109,7 +113,7 @@ export default function Carrito() {
             <CartItem 
             key={product._id}
             addToCart={() => addToCart(product)}
-
+            count={product.quantity}
             {...product} 
             />
           ))}
