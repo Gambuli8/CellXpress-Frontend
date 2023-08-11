@@ -64,21 +64,12 @@ export default function Detail_Card() {
                 <p className={style.price_Number}>${product?.price}</p>
               </div>
               <div className={style.countContainer}>
-                <div className={style.card__counter}>
-                  {/* <button onClick={handleSubtract} className={style.card__btn}>
-                    -
-                  </button> */}
-                  <div className={style.card__counter_score}>{product.quantity}</div>
-                  {/* <button onClick={handleAdd} className={style.card__btn}>
-                    +
-                  </button> */}
-                </div>
                 <li className={style.totalPrice}>Total: ${product.price} </li>
               </div>
               <button className={style.btn_addCart} onClick={() => handlerAddToCart()}>Agregar al carrito</button>
-              <div className={style.raiting}>
+              {/* <div className={style.raiting}>
                 <h3 className={style.raiting__text}>Calificación:</h3>
-                <p className={style.raiting__stars}>{product?.rating[0].rate}</p>
+                <p className={style.raiting__stars}>{product?.rating[0]?.rate}</p>
                 <div className={style.stars}>
           {starRating.map((_, index) => {
             return (
@@ -91,7 +82,7 @@ export default function Detail_Card() {
             );
           })}
         </div>
-              </div>
+              </div> */}
               <h3>Descripción:</h3>
               <p className={style.card__text}>{product?.description}</p>
             </div>
