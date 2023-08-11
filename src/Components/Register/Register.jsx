@@ -1,18 +1,24 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../Redux/Actions";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
- 
+
 const Register = () => {
   const { signup, loginGoogle, user } = useAuth()
   const navigate = useNavigate()
 
   const dispatch = useDispatch();
-  
-  const [userFire, setUserFire]= useState()
+
+  const [userFire, setUserFire] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    password: "",
+  })
+  console.log(userFire.email,userFire.name, user)
   const [input, setInput] = useState({
     name: "",
     phone: "",
@@ -61,17 +67,17 @@ const Register = () => {
       });
     }
   };
-  if(user)console.log(user)
-  const fireDb = ()=>{
-     dispatch(postUser(user));
-      setUserFire({
-        name: user.displayName,
-        phone: user.PhoneNumber,
-        email: user.email,
-        password: user.accessToken,
-        UID:user.uid
-      });
-      /*navigate("/home")*/
+  const fireDb = (user) => {
+    if(user!== null){ 
+    setUserFire({
+      name: user.displayName,
+      phone: user.PhoneNumber,
+      email: user.email,
+      password: user.accessToken,
+    });
+    console.log(userFire)
+    dispatch(postUser(userFire));
+    navigate("/home")}
   }
 
   const registerWithGoogle = async (e) => {
@@ -84,18 +90,18 @@ const Register = () => {
     }
   };
 
-  useEffect(() => {
-    if(user!==null){
+  /*useEffect((user) => {
+    if (user !== null) {
       setUserFire({
         name: user.displayName,
         phone: user.PhoneNumber,
         email: user.email,
         password: user.accessToken,
-        uid:user.uid
+        uid: user.uid
       })
-      dispatch(postUser(userFire)); 
+      dispatch(postUser(userFire));
     }
-      },[user])
+  }, [user])*/
 
   return (
     <div className={style.contenedor}>
@@ -119,7 +125,7 @@ const Register = () => {
             className={style.input}
             onChange={handleChange}
             value={input.lastname}
-            type="text"
+            type="number"
             name="phone"
           />
           {errors.lastname && <p className={style.error}>{errors.lastname}</p>}
@@ -144,9 +150,9 @@ const Register = () => {
           <button type="submit" className={style.button}>
             Submit
           </button>
-          </form>
+        </form>
 
-          <div className={style.inputContainer}>
+        <div className={style.inputContainer}>
           <button
             type="button"
             className={style.button}
@@ -156,8 +162,8 @@ const Register = () => {
           {user && <div >
             <p>Bienvenido {user.displayName}</p>
             <button className={style.button} onClick={fireDb}>Submit Login Google</button>
-            </div>}
-              </div>
+          </div>}
+        </div>
       </div>
     </div>
   );

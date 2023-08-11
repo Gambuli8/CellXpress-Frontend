@@ -86,10 +86,11 @@ export const getProductsByName = (name) => {
   };
 };
 
-export const postUser = (user,userFire) => {
+export const postUser = (user) => {
+  console.log("usuario", user)
   return async (dispatch) => {
     try {
-      const response = await axios.post("/", user );
+      const response = await axios.post("https://cellxpress.onrender.com/", user );
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       return response;
