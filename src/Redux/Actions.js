@@ -25,13 +25,12 @@ export function getProduct() {
         payload: response,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 }
 
 export const postProduct = (products) => {
-  console.log("productsssss", products);
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -48,13 +47,12 @@ export const getUsers = () => {
   return async (dispatch) => {
     try {
       const response = (await axios.get("/")).data;
-      console.log("actionsssss", response);
       dispatch({
         type: GET_USERS,
         payload: response,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 };
@@ -81,7 +79,7 @@ export const getProductsByName = (name) => {
         payload: response,
       });
     } catch (error) {
-      alert(error);
+      alert(error.message);
     }
   };
 };
@@ -105,7 +103,7 @@ export const getfilters = (info) => {
     try {
       const response = (
         await axios.get(
-          `products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
+          `/products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
         )
       ).data.products;
       if (response.length === 0) {
@@ -120,23 +118,17 @@ export const getfilters = (info) => {
         payload: response,
       });
     } catch (error) {
-      alert(error);
+      alert(error.message);
     }
   };
 };
 
 export const getfiltersram = (info) => {
-  
   return async (dispatch) => {
     try {
       const response = (
-        await axios.get(
-          `http://localhost:3002/products/filter?brand=&ram=${info}&cameraInches=`
-           
-          )
-        
+        await axios.get(`/products/filter?brand=&ram=${info}&cameraInches=`)
       ).data.products;
-      console.log("PRODUCTOSSSSSS", response)
       if (response.length === 0) {
         Swal.fire({
           text: "Producto no encontrado",
@@ -149,22 +141,16 @@ export const getfiltersram = (info) => {
         payload: response,
       });
     } catch (error) {
-      alert(error);
+      console.log(error.message);
     }
   };
 };
 export const getfilterspixeles = (info) => {
-  console.log("33333333333333333", info)
   return async (dispatch) => {
     try {
       const response = (
-        await axios.get(
-          `http://localhost:3002/products/filter?brand=&ram=&cameraInches=${info}`
-           
-          )
-        
+        await axios.get(`/products/filter?brand=&ram=&cameraInches=${info}`)
       ).data.products;
-      console.log("PRODUCTOSSSSSS", response)
       if (response.length === 0) {
         Swal.fire({
           text: "Producto no encontrado",
@@ -177,12 +163,10 @@ export const getfilterspixeles = (info) => {
         payload: response,
       });
     } catch (error) {
-      alert(error);
+      alert(error.message);
     }
   };
 };
-
-
 
 export function orderPhone(order) {
   return function (dispatch) {
@@ -195,7 +179,7 @@ export function orderPhone(order) {
 export const loginUser = (userlog) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:3002/users", userlog);
+      const response = await axios.post("/users", userlog);
       dispatch({ type: LOGIN_USER, payload: response.data });
       alert(`Bienvenido de nuevo a CELLXPRESS`);
       return response;
