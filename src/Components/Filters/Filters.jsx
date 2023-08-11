@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import {getfilters, orderPhone} from "../../Redux/Actions/"
+import {getfilters, orderPhone, getfiltersram, getfilterspixeles} from "../../Redux/Actions/"
 import { useState } from "react";
 import style from "./Filters.module.css"
 
@@ -11,28 +11,35 @@ const dispatch = useDispatch()
   const [input, setInput] = useState({
     brand: "",
     minPrice: "",
-    maxPrice: ""
-    
+    maxPrice: "",
+    ram: ""
+   
+
   })
-
-
+ 
   const handleSubmit = (event) => {
     event.preventDefault()
    dispatch(getfilters(input))
   }
-
   const handleChange = (event) => {
     setInput({
       ...input,
       [event.target.name]: event.target.value
     })
-   
-    
   }
-
   const orderPhones = (event) => {
     dispatch(orderPhone(event.target.value)) 
     }
+
+    const handleSubmitRam = (event) => {
+      event.preventDefault()
+     dispatch(getfiltersram(event.target.value))
+ }
+ const handleSubmitPixeles = (event) => {
+  event.preventDefault()
+ dispatch(getfilterspixeles(event.target.value))
+}
+
   return (
     <div className={style.container}>
     <form onSubmit={handleSubmit}> 
@@ -70,7 +77,41 @@ const dispatch = useDispatch()
        <option value="menorprecio">Menor Precio</option>
         </select>
    </div>
-
+   <div className={style.filtercontainer}>
+<div>
+  
+<select onChange={handleSubmitRam}  >
+<option defaultChecked value="">
+              Seleccione Ram
+            </option>
+            <option value="2 GB DE RAM">2 Gb </option>
+            <option value="4 GB DE RAM">4 Gb </option>
+            <option value="6 GB DE RAM">6 Gb </option>
+            <option value="8 GB DE RAM">8 Gb</option>
+            <option value="12 GB DE RAM">12 Gb </option>
+            <option value="16 GB DE RAM">16 Gb </option>
+          </select>
+</div>
+<div>
+<select onChange={handleSubmitPixeles}
+            
+          >
+<option defaultChecked value="">
+              Seleccione Resolucion
+            </option>
+            <option value="2 MP">2 Mp</option>
+            <option value="5 MP">5 Mp </option>
+            <option value="8 MP">8 Mp </option>
+            <option value="12 MP">12 Mp </option>
+            <option value="16 MP">16 Mp </option>
+            <option value="20 MP">20 Mp </option>
+            <option value="32 MP">32 Mp </option>
+            <option value="48 MP">48 Mp </option>
+            <option value="64 MP">64 Mp </option>
+            <option value="108 MP">108 Mp </option>
+          </select>
+</div>
+</div>
     </form>
     </div>
   );

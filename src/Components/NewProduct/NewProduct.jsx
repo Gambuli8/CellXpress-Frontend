@@ -119,31 +119,11 @@ const NewProduct = () => {
         />
       );
     }
-    // Si no hay imagen seleccionada, mostrar un mensaje alternativo
+  
     return <p>Selecciona una imagen</p>;
   };
 
-  // const CloudImage = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const selectedFiles = e.target.files;
-  //     const data = new FormData();
-  //     data.append("file", selectedFiles[0]);
-  //     data.append("upload_preset", "Activities");
-  //     const res = await fetch(
-  //       "https://api.cloudinary.com/v1_1/djqwbu0my/image/upload",
-  //       {
-  //         method: "POST",
-  //         body: data,
-  //       }
-  //     );
-  //     const file = await res.json();
-  //     setImage(file.secure_url);
-  //     console.log(file.secure_url);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
 
   return (
     <div className={style.back}>
@@ -183,11 +163,11 @@ const NewProduct = () => {
             <option defaultChecked value="">
               Seleccione Ram
             </option>
-            <option value="2 GB DE RAM"> 2 Gb </option>
-            <option value="4 GB DE RAM"> 4 Gb </option>
-            <option value="6 GB DE RAM"> 6 Gb </option>
-            <option value="8 GB DE RAM"> 8 Gb </option>
-            <option value="12 GB DE RAM"> 12 Gb </option>
+            <option value="2 GB DE RAM">2 Gb </option>
+            <option value="4 GB DE RAM">4 Gb </option>
+            <option value="6 GB DE RAM">6 Gb </option>
+            <option value="8 GB DE RAM">8 Gb</option>
+            <option value="12 GB DE RAM">12 Gb </option>
             <option value="16 GB DE RAM">16 Gb </option>
           </select>
 
@@ -204,10 +184,10 @@ const NewProduct = () => {
             <option value="3.5 PULGADAS"> 3.5 Pulgadas</option>
             <option value="4 PULGADAS"> 4 Pulgadas </option>
             <option value="4.7 PULGADAS"> 4.7 Pulgadas </option>
-            <option value="5.5 PULGADAS">5.5 Pulgadas </option>
-            <option value="	6.1 PULGADAS"> 6.1 Pulgadas </option>
-            <option value="6.5 PULGADAS">6.5 Pulgadas </option>
-            <option value="6.2 PULGADAS">6.2 Pulgadas </option>
+            <option value="5.5 PULGADAS"> 5.5 Pulgadas </option>
+            <option value="6.1 PULGADAS"> 6.1 Pulgadas </option>
+            <option value="6.5 PULGADAS"> 6.5 Pulgadas </option>
+            <option value="6.2 PULGADAS"> 6.2 Pulgadas </option>
           </select>
 
           <label className={style.label}>Resolucion Camara</label>
@@ -220,16 +200,16 @@ const NewProduct = () => {
             <option defaultChecked value="">
               Seleccione Resolucion
             </option>
-            <option value=" 2 MP"> 2 Mp</option>
-            <option value=" 5 MP"> 5 Mp </option>
-            <option value=" 8 MP"> 8 Mp </option>
-            <option value=" 12 MP">12 Mp </option>
-            <option value=" 16 MP"> 16 Mp </option>
-            <option value=" 20 MP">20 Mp </option>
-            <option value=" 32 MP">32 Mp </option>
-            <option value=" 48 MP">48 Mp </option>
-            <option value=" 64 MP">64 Mp </option>
-            <option value=" 108 MP">108 Mp </option>
+            <option value="2 MP"> 2 Mp</option>
+            <option value="5 MP"> 5 Mp </option>
+            <option value="8 MP"> 8 Mp </option>
+            <option value="12 MP"> 12 Mp </option>
+            <option value="16 MP"> 16 Mp </option>
+            <option value="20 MP"> 20 Mp </option>
+            <option value="32 MP"> 32 Mp </option>
+            <option value="48 MP"> 48 Mp </option>
+            <option value="64 MP"> 64 Mp </option>
+            <option value="108 MP"> 108 Mp </option>
           </select>
 
           <label className={style.label}>Descripción</label>
