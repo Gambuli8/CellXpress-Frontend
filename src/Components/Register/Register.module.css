@@ -45,7 +45,7 @@
 .button{
     font-size: large;
     width: 90%;
-    height: 30px;
+    height: auto;
     border-radius: 15px 0 15px 0;
     margin: 15px; 
     background-color: #001d4a;
