@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import style from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../Redux/Actions";
@@ -84,6 +84,20 @@ const Register = () => {
       alert(error.message)
     }
   };
+
+  useEffect(() => {
+    if(user!==null){
+      setUserFire({
+        name: user.displayName,
+        phone: user.PhoneNumber,
+        email: user.email,
+        password: user.accessToken,
+        uid:user.uid
+      })
+      dispatch(postUser(userFire)); 
+    }
+      },[user])
+
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>
