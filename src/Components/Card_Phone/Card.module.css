@@ -1,5 +1,5 @@
 .card {
-  width: 250px;
+  width: 14rem;
   height: 494px;
   padding: 0.8em;
   background: #0e2954;
@@ -10,7 +10,7 @@
   text-decoration: none;
   border-radius: 0.5rem;
   transition: 0.3s ease-in-out;
-  margin: 15px;
+  margin: 2rem;
   color: white;
 }
 
@@ -98,7 +98,7 @@
 
 .card_button:hover {
   border: 1px solid rgb(3, 6, 58);
-  background-color: rgb(3, 6, 58);
+  background-color: white;
 }
 
 .card_button:hover .svg_icon {

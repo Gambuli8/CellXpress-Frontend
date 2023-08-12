@@ -1,21 +1,24 @@
 .contenedorCards {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  background-color: #84a7a154;
+  border-radius: 15px;
+  margin: 2rem;
+  width: 80%;
 }
 
 .card_button {
   border: 1px solid #252525;
   display: flex;
-  padding: .3em;
+  padding: 0.3em;
   cursor: pointer;
   border-radius: 50px;
-  transition: .3s ease-in-out;
- }
+  transition: 0.3s ease-in-out;
+}
 
- .card_button:hover {
+.card_button:hover {
   border: 1px solid rgb(3, 6, 58);
   background-color: rgb(3, 6, 58);
- }
+}

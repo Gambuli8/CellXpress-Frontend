@@ -1,6 +1,14 @@
+.aboutUsContainer {
+  background-color: #1f6e8c;
+}
+
 .tituloAbout {
   text-align: center;
   font-size: 50px;
+  margin-top: 0px;
+  padding-top: 50px;
+  color: white;
+  text-shadow: 5px 5px 10px black;
 }
 
 .quienesSomos {
@@ -13,11 +21,19 @@
 .subTitulo {
   text-align: center;
   font-size: 30px;
+  font-weight: 900;
+  color: white;
 }
 
 .parrafo {
   font-size: 20px;
   text-align: center;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 2rem;
+  box-shadow: 8px 8px 10px black;
+  color: white;
+  background-color: #0e2954;
 }
 
 .bloqueDos {
@@ -31,7 +47,7 @@
 }
 
 .parrafoDos {
-  font-size: 20px;
+  font-size: 22px;
   width: 50%;
   text-align: center;
 }
@@ -63,7 +79,7 @@
   margin-bottom: 20px;
 }
 
-.btn_back{
+.btn_back {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: white;
@@ -72,7 +88,7 @@
   margin-top: 4em;
   margin-left: 1.2em;
   border: none;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   position: absolute;
@@ -83,7 +99,7 @@
   text-decoration: none;
 }
 
-.btn_back:hover{
+.btn_back:hover {
   transform: scale(1.1);
   cursor: pointer;
   transition: all 0.3s ease-in-out;

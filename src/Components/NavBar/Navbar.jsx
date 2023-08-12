@@ -50,10 +50,10 @@ export default function Navbar({
         <NavLink to="/admin" className={style.link}>
           Dashboard
         </NavLink>
-      </div>
         <div className={style.link}>
           <Carrito />
         </div>
+      </div>
     </nav>
   );
 }

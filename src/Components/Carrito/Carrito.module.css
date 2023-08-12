@@ -1,46 +1,45 @@
-
-.cart{
-    display: none;
-    position: absolute;
-    top: 55px;
-    right: 10px;
-    width: 250px;
-    background-color: white;
-    color: black;
-    padding: 10px;
-    overflow: auto;
-    border-radius: 20px;
+.cart {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 10px;
+  width: 250px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  overflow: auto;
+  border-radius: 20px;
 }
 
-.cart img{
-    aspect-ratio: 16/9;
+.cart img {
+  aspect-ratio: 16/9;
 }
 
-.cart_button{
-    align-items: center;
-    border-radius: 9999px;
-    cursor: pointer;
-    display: flex;
-    height: 40px;
-    justify-content: center;
-    width: 40px;
-    right: 15px;
-    position: absolute;
-    top: 8px;
-    z-index: 9999;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    list-style: none;
-    margin-top: 13px;
-    margin-left: 0;
+.cart_button {
+  align-items: center;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+  right: 15px;
+  position: absolute;
+  top: 8px;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  list-style: none;
+  margin-top: 13px;
+  margin-left: 0;
 }
 
-.cart_button:hover{
-    scale: 1.1;
+.cart_button:hover {
+  scale: 1.1;
 }
 
-.cart_button ~ input:checked ~ .cart{
-    display: block;
-    height: 70vh;
-    z-index: 1;
+.cart_button ~ input:checked ~ .cart {
+  display: block;
+  height: 70vh;
+  z-index: 1;
 }

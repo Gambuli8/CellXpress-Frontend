@@ -9,8 +9,15 @@
 }
 
 .buttonPag {
-  background-color: #88ace0;
+  background-color: #0e2954;
   color: aliceblue;
   border: none;
   border-radius: 2px;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-inline: 0.4rem;
+}
+
+.buttonPag:hover {
+  transform: scale(1.2);
 }

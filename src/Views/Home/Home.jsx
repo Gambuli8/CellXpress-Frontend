@@ -21,7 +21,6 @@ const Home = () => {
   const indexLastPhone = currentPag * cantPerPage;
   const indexFirstPhone = indexLastPhone - cantPerPage;
   const currentPhone = filtered.slice(indexFirstPhone, indexLastPhone);
- 
 
   const paginado = (pageNumber) => {
     setCurrentPag(pageNumber);
@@ -61,13 +60,18 @@ const Home = () => {
         handlerChanges={handleChange}
         handleReloadProducts={handleReloadProducts}
       />
+      <section className={style.heroSection}>
+        <h2 className={style.bienvenidoHome}>Bienvenido a CellXpress</h2>
+      </section>
       <Filters />
+      <div className={style.containerCardsHome}>
+        <Cards_Phone Product={currentPhone} />
+      </div>
       <Paginado
         cantPerPage={cantPerPage}
         allProducts={filtered.length}
         Paginado={paginado}
       />
-      <Cards_Phone Product={currentPhone} />
       <Footer />
     </div>
   );
