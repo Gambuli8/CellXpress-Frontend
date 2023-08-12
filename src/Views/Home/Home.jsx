@@ -9,7 +9,7 @@ import { getProduct, getProductsByName } from "../../Redux/Actions";
 import style from "./home.module.css";
 import Filters from "../../Components/Filters/Filters";
 import Paginado from "../../Components/Paginado/Paginado";
-import { useAuth } from "../../context/authContext"
+import { useAuth } from "../../context/authContext";
 import { postUser } from "../../Redux/Actions";
 
 const Home = () => {
@@ -29,7 +29,7 @@ const Home = () => {
     setCurrentPag(pageNumber);
   };
   //Fin paginado
-
+  console.log("productssss home", allProduct);
   useEffect(() => {
     if (!allProduct.length) {
       dispatch(getProduct());
