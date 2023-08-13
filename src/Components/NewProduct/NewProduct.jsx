@@ -6,6 +6,7 @@ import style from "./NewProduct.module.css";
 
 const NewProduct = () => {
   //if (user.admin) {
+  //
 
   const [imageURL, setImageURL] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -119,11 +120,7 @@ const NewProduct = () => {
         />
       );
     }
-  
-    return <p>Selecciona una imagen</p>;
   };
-
-
 
   return (
     <div className={style.back}>

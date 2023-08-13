@@ -1,109 +1,111 @@
-.container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: auto;
-    margin: 10px;
-
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  margin: 10px;
 }
-.inputContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;  
-    border-radius: 50px 0 50px 0;
-    border: 2px solid  #001d4a;
-    padding: 20px;
-    box-shadow: 5px 5px 15px #001d4a;
-    width: 300px;
-    transition: 2s;
-    margin: 15px;
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px 0 50px 0;
+  border: 2px solid #001d4a;
+  padding: 20px;
+  box-shadow: 5px 5px 15px #001d4a;
+  width: 300px;
+  transition: 2s;
+  background-color: #0e2954;
+  margin: 20px;
 }
-.inputContainer:hover{
-    border-radius: 0 50px 0 50px;
+.inputContainer:hover {
+  border-radius: 0 50px 0 50px;
 }
-.inputContainer h2{
-    color: #001d4a;
+.inputContainer h2 {
+  color: #fff;
 }
-.label{
-    font-size: large;
-    color: #001d4a;
-    text-align: center;
-    width: 90%;
-    margin: 5px;
+.label {
+  font-size: large;
+  color: #fff;
+  text-align: center;
+  width: 90%;
+  margin: 5px;
 }
-.input{
-    border: none;
-    border-radius: 15px 0 15px 0;
-    height: 30px;
-    text-align: center;
-    width: 90%;
-    margin: 5px;
-    box-shadow: 3px 3px 10px #001d4a;
-    transition: 2s;
+.input {
+  border: none;
+  border-radius: 15px 0 15px 0;
+  height: 30px;
+  text-align: center;
+  width: 90%;
+  margin: 5px;
+  box-shadow: 3px 3px 10px #001d4a;
+  transition: 2s;
 }
-.input:focus{
-    border-radius: 0 15px 0 15px;
+.input:focus {
+  border-radius: 0 15px 0 15px;
 }
-.button{
-    font-size: large;
-    width: 90%;
-    height: 30px;
-    border-radius: 15px 0 15px 0;
-    margin: 15px; 
-    background-color: #001d4a;
-    color: white;
-    transition: 1s;
+.button {
+  font-size: large;
+  width: 90%;
+  height: 30px;
+  border-radius: 15px 0 15px 0;
+  margin: 15px;
+  background-color: black;
+  color: white;
+  transition: 1s;
 }
-.button:hover{
-    box-shadow: 5px 5px 15px #001d4a;
-    background-color: #004ec2;
-    cursor: pointer;
-    border-radius: 0 15px 0 15px;
+.button:hover {
+  box-shadow: 5px 5px 15px #001d4a;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 0 15px 0 15px;
+  color: black;
 }
-.error{
-    color: red;
+.error {
+  color: red;
 }
-.titulo{
-    font-size: 25px;
+.titulo {
+  font-size: 25px;
 }
-.img{
-    max-width: 200px;
-    max-height: 300px;
-    border-radius: 30px;
+.img {
+  max-width: 200px;
+  max-height: 300px;
+  border-radius: 30px;
 }
-.descripcion{
-    width: 90%;
-    height: 60px;
-    border-radius: 15px 0 15px 0;
-    text-align: center;
-    transition: 1s;
+.descripcion {
+  width: 90%;
+  height: 60px;
+  border-radius: 15px 0 15px 0;
+  text-align: center;
+  transition: 1s;
 }
-.descripcion:focus{
-    border-radius: 0 15px 0 15px;
+.descripcion:focus {
+  border-radius: 0 15px 0 15px;
 }
-.back{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+.back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #1f6e8c;
+  min-height: 100vh;
 }
-.buttonBack{
-    font-size: large;
-    width: 10%;
-    text-align: center;
-    height: 30px;
-    border-radius: 15px 0 15px 0;
-    margin: 15px; 
-    background-color: #001d4a;
-    color: white;
-    transition: 1s;
+.buttonBack {
+  font-size: large;
+  width: 10%;
+  text-align: center;
+  height: 30px;
+  border-radius: 15px 0 15px 0;
+  margin: 15px;
+  background-color: #001d4a;
+  color: white;
+  transition: 1s;
 }
-.buttonBack:hover{
-    box-shadow: 5px 5px 15px #001d4a;
-    background-color: #004ec2;
-    cursor: pointer;
-    border-radius: 0 15px 0 15px;
+.buttonBack:hover {
+  box-shadow: 5px 5px 15px #001d4a;
+  background-color: #004ec2;
+  cursor: pointer;
+  border-radius: 0 15px 0 15px;
 }
