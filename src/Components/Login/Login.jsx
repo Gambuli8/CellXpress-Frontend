@@ -7,15 +7,9 @@ import useLocalStorage from "../Hooks/useLocalStorage.js";
 
 
 function Login() {
-<<<<<<< HEAD
-  const {login, loginGoogle, user} = useAuth();
-  const navigate = useNavigate()
-  const [input, setInput] = useLocalStorage("input",{
-=======
   const { login, loginGoogle, user } = useAuth();
   const navigate = useNavigate();
   const [input, setInput] = useState({
->>>>>>> 44bb8badcd48a068bde787b9d72a584fbe7e7863
     email: "",
     password: "",
   });
