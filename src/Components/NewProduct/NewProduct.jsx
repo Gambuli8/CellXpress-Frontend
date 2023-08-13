@@ -9,14 +9,15 @@ const NewProduct = () => {
   //if (user.admin) {
 
   const [imageURL, setImageURL] = useState(null);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
+ 
   const [input, setInput] = useLocalStorage("input",{
     title: "",
     price: "",
     description: "",
     brand: "",
-    image: "",
     count: "",
     rating: [],
     screenSize: "",
@@ -41,7 +42,7 @@ const NewProduct = () => {
   };
   //! Envio de inputs
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const validationErrors = validate(input);
     console.log("inputs antes de handleimageupload", input);
     if (Object.keys(validationErrors).length === 0) {
@@ -122,7 +123,12 @@ const NewProduct = () => {
     return <p>Selecciona una imagen</p>;
   };
 
-
+const handleEnviar = ()=>{
+  handleImageUpload()
+  setTimeout(() => {
+    handleSubmit()
+  }, 10000);
+}
 
   return (
     <div className={style.back}>
@@ -141,6 +147,9 @@ const NewProduct = () => {
             value={input.title}
             required
           />
+          
+            
+          
 
           <label className={style.label}>Precio</label>
           <input
@@ -250,9 +259,7 @@ const NewProduct = () => {
             accept="image/*"
             required
           />
-          <button className={style.button} onClick={handleImageUpload}>
-            Subir imagen
-          </button>
+         
           <label className={style.label}>Stock</label>
           <input
             className={style.input}
@@ -271,6 +278,10 @@ const NewProduct = () => {
             Crear
           </button>
         </form>
+
+        <button  onClick={handleEnviar}>
+            Subir imagen
+          </button>
         <div className={style.inputContainer}>
           <h2 className={style.titulo}>{input.title}</h2>
           {previewImage()}
@@ -285,6 +296,7 @@ const NewProduct = () => {
         </div>
         <div className={style.inputContainer}>
           <p className={style.label}> {input.description} </p>
+          <p className={style.label}> {input.imageURL} </p>
         </div>
       </div>
     </div>

@@ -32,6 +32,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
+ 
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);

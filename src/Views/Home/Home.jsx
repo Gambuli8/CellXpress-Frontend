@@ -14,6 +14,7 @@ import { postUser } from "../../Redux/Actions";
 
 const Home = () => {
   const allProduct = useSelector((state) => state.allProduct);
+ 
   const allProductsByName = useSelector((state) => state.allProductsByName);
   const [filtered, setFiltered] = useState([]);
   //Paginado
