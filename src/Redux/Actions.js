@@ -7,7 +7,10 @@ import {
   GETFILTERS,
   ORDERPHONE,
   POST_PRODUCT,
+  POST_ORDER,
   LOGIN_USER,
+  RAMFILTERS,
+  PIXELESFILTERS,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -23,13 +26,12 @@ export function getProduct() {
         payload: response,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 }
 
 export const postProduct = (products) => {
-  console.log("productsssss", products);
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -46,13 +48,12 @@ export const getUsers = () => {
   return async (dispatch) => {
     try {
       const response = (await axios.get("/")).data;
-      console.log("actionsssss", response);
       dispatch({
         type: GET_USERS,
         payload: response,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 };
@@ -79,15 +80,19 @@ export const getProductsByName = (name) => {
         payload: response,
       });
     } catch (error) {
-      alert(error);
+      alert(error.message);
     }
   };
 };
 
 export const postUser = (user) => {
+  console.log("usuario", user);
   return async (dispatch) => {
     try {
-      const response = await axios.post("/users", user);
+      const response = await axios.post(
+        "https://cellxpress.onrender.com/",
+        user
+      );
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       return response;
@@ -102,7 +107,7 @@ export const getfilters = (info) => {
     try {
       const response = (
         await axios.get(
-          `products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
+          `/products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
         )
       ).data.products;
       if (response.length === 0) {
@@ -117,7 +122,52 @@ export const getfilters = (info) => {
         payload: response,
       });
     } catch (error) {
-      alert(error);
+      alert(error.message);
+    }
+  };
+};
+
+export const getfiltersram = (info) => {
+  return async (dispatch) => {
+    try {
+      const response = (
+        await axios.get(`/products/filter?brand=&ram=${info}&cameraInches=`)
+      ).data.products;
+      if (response.length === 0) {
+        Swal.fire({
+          text: "Producto no encontrado",
+          icon: "error",
+          confirmButtonText: "ok",
+        });
+      }
+      dispatch({
+        type: RAMFILTERS,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+export const getfilterspixeles = (info) => {
+  return async (dispatch) => {
+    try {
+      const response = (
+        await axios.get(`/products/filter?brand=&ram=&cameraInches=${info}`)
+      ).data.products;
+      if (response.length === 0) {
+        Swal.fire({
+          text: "Producto no encontrado",
+          icon: "error",
+          confirmButtonText: "ok",
+        });
+      }
+      dispatch({
+        type: PIXELESFILTERS,
+        payload: response,
+      });
+    } catch (error) {
+      alert(error.message);
     }
   };
 };
@@ -133,9 +183,25 @@ export function orderPhone(order) {
 export const loginUser = (userlog) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:3002/users", userlog);
+      const response = await axios.post("/users", userlog);
       dispatch({ type: LOGIN_USER, payload: response.data });
       alert(`Bienvenido de nuevo a CELLXPRESS`);
+      return response;
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+};
+
+export const postOrder = (order) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3002/order/add-to-cart",
+        order
+      );
+      alert(`Gracias por tu compra`);
+      dispatch({ type: POST_ORDER, payload: response.data });
       return response;
     } catch (error) {
       alert(error.message);

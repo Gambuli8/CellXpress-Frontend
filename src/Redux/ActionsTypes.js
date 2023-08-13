@@ -5,4 +5,7 @@ export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 export const GETFILTERS = "GETFILTERS";
 export const ORDERPHONE = "ORDERPHONE";
 export const POST_PRODUCT = "POST_PRODUCT";
+export const POST_ORDER = "POST_ORDER";
 export const LOGIN_USER = "LOGIN_USER";
+export const RAMFILTERS = "RAMFILTERS";
+export const PIXELESFILTERS = "PIXELESFILTERS";

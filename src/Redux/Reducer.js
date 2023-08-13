@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-fallthrough */
 import {
   GET_ALL_PRODUCTS,
   GET_USERS,
@@ -5,8 +7,11 @@ import {
   ORDERPHONE,
   GETFILTERS,
   POST_PRODUCT,
+  POST_ORDER,
   POST_USER,
   LOGIN_USER,
+  RAMFILTERS,
+  PIXELESFILTERS,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -42,6 +47,16 @@ const rootReducer = (state = inicialState, action) => {
       };
 
     case GETFILTERS:
+      return {
+        ...state,
+        allProduct: action.payload,
+      };
+    case RAMFILTERS:
+      return {
+        ...state,
+        allProduct: action.payload,
+      };
+    case PIXELESFILTERS:
       return {
         ...state,
         allProduct: action.payload,
@@ -100,6 +115,11 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         user: action.payload,
       };
+    // case POST_ORDER:
+    // return {
+    //   ...state,
+    //   order: action.payload,
+    // };
   }
   return state;
 };

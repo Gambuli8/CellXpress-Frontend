@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import style from './detail.module.css'
 import useCart from '../Hooks/useCart'
+import FormCart from '../FormCarrito/formCart'
 
 export default function detailCarrito() {
   const { cart } = useCart()
@@ -30,7 +31,7 @@ export default function detailCarrito() {
         </div>
       </div>
       <div className={style.containerForm}>
-        fomulario de compra
+        {FormCart()}
       </div>
     </div>
   </>

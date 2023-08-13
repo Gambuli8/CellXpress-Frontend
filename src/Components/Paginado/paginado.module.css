@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
+  font-size: 20px;
 }
 
 .paginado {
@@ -12,7 +14,7 @@
   background-color: #fff;
   color: #0e2954;
   border: none;
-  border-radius: 2px;
+  border-radius: 50%;
   cursor: pointer;
   transition: 0.5s;
   margin-inline: 0.4rem;

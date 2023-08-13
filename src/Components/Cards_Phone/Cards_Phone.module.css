@@ -1,12 +1,17 @@
 .contenedorCards {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 1rem;
+  justify-items: center;
   align-items: center;
-  flex-wrap: wrap;
-  background-color: #1f6e8c;
-  border-radius: 15px;
-  margin: 2rem;
-  width: 80%;
+  padding: 1rem;
+  margin: 50px;
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 2rem;
+  background-color: #0e2954;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 .card_button {

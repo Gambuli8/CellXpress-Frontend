@@ -14,13 +14,14 @@
     url(https://images.unsplash.com/photo-1649859398731-d3c4ebca53fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
   height: calc(100vh - 80px);
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   color: white;
-  font-size: 45px;
+  flex-direction: column;
 }
 
 .bienvenidoHome {
   text-align: center;
   text-shadow: 2px 2px 5px white;
+  font-size: 45px;
 }

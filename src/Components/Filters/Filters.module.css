@@ -12,3 +12,9 @@
 .select {
   margin-right: 10px;
 }
+.filtercontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+}
