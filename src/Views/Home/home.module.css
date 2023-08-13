@@ -1,5 +1,6 @@
 .container {
-  background-color: #1f6e8c;
+  /* background-color: #2a1f2d; */
+  background-color: #2e8a99;
   min-height: calc(100vh - 112px);
 }
 .containerCardsHome {

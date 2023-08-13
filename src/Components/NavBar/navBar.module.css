@@ -8,6 +8,10 @@
   margin-right: 0px;
 }
 
+.titleLogo {
+  text-decoration: none;
+}
+
 .linkContainer {
   display: flex;
   justify-content: center;
@@ -16,13 +20,31 @@
 
 .link {
   text-decoration: none;
-  color: white;
+  color: #fff;
   font-size: 20px;
   margin-inline: 1.2rem;
+  font-weight: 600;
+  --clippy: polygon(0 0, 0 0, 0 100%, 0% 100%);
+}
+
+.link:hover {
+  --clippy: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.link::after {
+  content: "";
+  display: block;
+  background: white;
+  width: 100%;
+  margin-top: 3px;
+  height: 3px;
+  clip-path: var(--clippy);
+  transition: clip-path 0.3s;
 }
 
 .logo {
   font-size: 40px;
   margin-left: 2rem;
-  color: white;
+  color: #fff;
+  font-weight: bold;
 }

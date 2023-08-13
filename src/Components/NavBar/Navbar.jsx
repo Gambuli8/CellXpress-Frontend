@@ -14,7 +14,7 @@ export default function Navbar({
       <div>
         <NavLink
           to="/home"
-          className={style.link}
+          className={style.titleLogo}
           onClick={handleReloadProducts}
         >
           <h1 className={style.logo}>CellXpress</h1>

@@ -9,13 +9,14 @@
 }
 
 .buttonPag {
-  background-color: #0e2954;
-  color: aliceblue;
+  background-color: #fff;
+  color: #0e2954;
   border: none;
   border-radius: 2px;
   cursor: pointer;
   transition: 0.5s;
   margin-inline: 0.4rem;
+  font-weight: 900;
 }
 
 .buttonPag:hover {
