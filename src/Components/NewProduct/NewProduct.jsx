@@ -3,6 +3,7 @@ import { postProduct } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
 import { validate } from "../Validate/Validate";
 import style from "./NewProduct.module.css";
+import useLocalStorage from "../Hooks/useLocalStorage";
 
 const NewProduct = () => {
   //if (user.admin) {

@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const allProduct = useSelector((state) => state.allProduct);
+ 
   const allProductsByName = useSelector((state) => state.allProductsByName);
   const [filtered, setFiltered] = useState([]);
   //Paginado
