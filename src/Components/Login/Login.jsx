@@ -7,9 +7,15 @@ import useLocalStorage from "../Hooks/useLocalStorage.js";
 
 
 function Login() {
+<<<<<<< HEAD
   const {login, loginGoogle, user} = useAuth();
   const navigate = useNavigate()
   const [input, setInput] = useLocalStorage("input",{
+=======
+  const { login, loginGoogle, user } = useAuth();
+  const navigate = useNavigate();
+  const [input, setInput] = useState({
+>>>>>>> 44bb8badcd48a068bde787b9d72a584fbe7e7863
     email: "",
     password: "",
   });
@@ -32,37 +38,36 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrors("")
+    setErrors("");
     const validationErrors = validate(input);
 
     if (Object.keys(validationErrors).length === 0) {
-
       try {
-        await login(input.email, input.password)
-        navigate("/home")
-      } catch (error) { 
-        setErrors(error.message)
-        alert(error.message)
-        }
+        await login(input.email, input.password);
+        navigate("/home");
+      } catch (error) {
+        setErrors(error.message);
+        alert(error.message);
       }
+    }
   };
-  const loginWithGoogle = async() =>{
+  const loginWithGoogle = async () => {
     try {
-      await loginGoogle()
-      navigate("/home")
-      if (user){
+      await loginGoogle();
+      navigate("/home");
+      if (user) {
         dispatch(postUser(user));
         setInput({
           name: user.displayName,
           phone: user.phoneNumber,
           email: user.email,
           password: user.uid,
-        })
+        });
       }
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
 
   return (
     <div className={style.contenedor}>
@@ -97,7 +102,7 @@ function Login() {
             <p className={style.error}>{errors.passwordAcces}</p>
           )}
           <button className={style.button}>Login</button>
-          <p>-------------0-------------</p>
+          <p className={style.label}>-------------O-------------</p>
           <button className={style.button} onClick={loginWithGoogle}>
             Login With Google
           </button>

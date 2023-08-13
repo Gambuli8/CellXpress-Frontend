@@ -7,17 +7,17 @@ import useLocalStorage from "../Hooks/useLocalStorage";
 
 const NewProduct = () => {
   //if (user.admin) {
+  //
 
   const [imageURL, setImageURL] = useState(null);
-
   const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
- 
-  const [input, setInput] = useLocalStorage("input",{
+  const [input, setInput] = useState({
     title: "",
     price: "",
     description: "",
     brand: "",
+    image: "",
     count: "",
     rating: [],
     screenSize: "",
@@ -42,7 +42,7 @@ const NewProduct = () => {
   };
   //! Envio de inputs
   const handleSubmit = async (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     const validationErrors = validate(input);
     console.log("inputs antes de handleimageupload", input);
     if (Object.keys(validationErrors).length === 0) {
@@ -73,6 +73,7 @@ const NewProduct = () => {
       }
     }
   };
+
   //cloudinary
   const handleImageChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -94,6 +95,7 @@ const NewProduct = () => {
             body: formData,
           }
         );
+
         if (response.ok) {
           console.log(response);
           const data = await response.json();
@@ -119,16 +121,7 @@ const NewProduct = () => {
         />
       );
     }
-  
-    return <p>Selecciona una imagen</p>;
   };
-
-const handleEnviar = ()=>{
-  handleImageUpload()
-  setTimeout(() => {
-    handleSubmit()
-  }, 10000);
-}
 
   return (
     <div className={style.back}>
@@ -147,9 +140,6 @@ const handleEnviar = ()=>{
             value={input.title}
             required
           />
-          
-            
-          
 
           <label className={style.label}>Precio</label>
           <input
@@ -259,7 +249,9 @@ const handleEnviar = ()=>{
             accept="image/*"
             required
           />
-         
+          <button className={style.button} onClick={handleImageUpload}>
+            Subir imagen
+          </button>
           <label className={style.label}>Stock</label>
           <input
             className={style.input}
@@ -278,10 +270,6 @@ const handleEnviar = ()=>{
             Crear
           </button>
         </form>
-
-        <button  onClick={handleEnviar}>
-            Subir imagen
-          </button>
         <div className={style.inputContainer}>
           <h2 className={style.titulo}>{input.title}</h2>
           {previewImage()}
@@ -296,7 +284,6 @@ const handleEnviar = ()=>{
         </div>
         <div className={style.inputContainer}>
           <p className={style.label}> {input.description} </p>
-          <p className={style.label}> {input.imageURL} </p>
         </div>
       </div>
     </div>
