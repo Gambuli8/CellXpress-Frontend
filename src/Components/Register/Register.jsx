@@ -7,8 +7,8 @@ import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const { signup, loginGoogle, user } = useAuth()
-  const navigate = useNavigate()
+  const { signup, loginGoogle, user } = useAuth();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -17,8 +17,8 @@ const Register = () => {
     phone: "",
     email: "",
     password: "",
-  })
-  console.log(userFire.email,userFire.name, user)
+  });
+  console.log(userFire.email, userFire.name, user);
   const [input, setInput] = useState({
     name: "",
     phone: "",
@@ -44,17 +44,16 @@ const Register = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setErrors("")
+    setErrors("");
     const validationErrors = validate(input);
 
     if (Object.keys(validationErrors).length === 0) {
-
       try {
-        signup(input.email, input.password)
-        navigate("/home")
+        signup(input.email, input.password);
+        navigate("/home");
       } catch (error) {
         if (error.message === "auth/email-already-in-use") {
-          alert("email ya registrado")
+          alert("email ya registrado");
         }
       }
 
@@ -68,25 +67,26 @@ const Register = () => {
     }
   };
   const fireDb = (user) => {
-    if(user!== null){ 
-    setUserFire({
-      name: user.displayName,
-      phone: user.PhoneNumber,
-      email: user.email,
-      password: user.accessToken,
-    });
-    console.log(userFire)
-    dispatch(postUser(userFire));
-    navigate("/home")}
-  }
+    if (user !== null) {
+      setUserFire({
+        name: user.displayName,
+        phone: user.PhoneNumber,
+        email: user.email,
+        password: user.accessToken,
+      });
+      console.log(userFire);
+      dispatch(postUser(userFire));
+      navigate("/home");
+    }
+  };
 
   const registerWithGoogle = async (e) => {
     try {
-      e.preventDefault()
-      setErrors({})
-      await loginGoogle()
+      e.preventDefault();
+      setErrors({});
+      await loginGoogle();
     } catch (error) {
-      setErrors(error.message)
+      setErrors(error.message);
     }
   };
 
@@ -156,13 +156,18 @@ const Register = () => {
           <button
             type="button"
             className={style.button}
-            onClick={registerWithGoogle}>
+            onClick={registerWithGoogle}
+          >
             Login With Google
           </button>
-          {user && <div >
-            <p>Bienvenido {user.displayName}</p>
-            <button className={style.button} onClick={fireDb}>Submit Login Google</button>
-          </div>}
+          {user && (
+            <div>
+              <p>Bienvenido {user.displayName}</p>
+              <button className={style.button} onClick={fireDb}>
+                Submit Login Google
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

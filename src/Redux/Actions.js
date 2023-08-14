@@ -32,6 +32,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
+ 
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -103,7 +104,6 @@ export const postUser = (user) => {
 };
 
 export const getfilters = (info) => {
-  console.log("infouuu", info);
   return async (dispatch) => {
     try {
       const response = (
