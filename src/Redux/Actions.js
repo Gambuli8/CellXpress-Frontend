@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Swal from "sweetalert2";
 import {
   GET_ALL_PRODUCTS,
@@ -193,18 +194,15 @@ export const loginUser = (userlog) => {
   };
 };
 
-export const postOrder = (order) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3002/order/add-to-cart",
-        order
-      );
-      alert(`Gracias por tu compra`);
-      dispatch({ type: POST_ORDER, payload: response.data });
-      return response;
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-};
+// export const postOrder = (order) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.post("/order/add-to-cart", order);
+//       alert(`Gracias por tu compra`);
+//       dispatch({ type: POST_ORDER, payload: response.data });
+//       return response;
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+// };
