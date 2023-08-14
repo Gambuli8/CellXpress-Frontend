@@ -67,7 +67,11 @@ const Register = () => {
     }
   };
   const fireDb = (user) => {
-    if (user !== null) {
+    dispatch(postUser(userFire));
+    navigate("/home");
+  }
+  useEffect(() => {
+    if (user) {
       setUserFire({
         name: user.displayName,
         phone: user.PhoneNumber,
@@ -75,10 +79,8 @@ const Register = () => {
         password: user.accessToken,
       });
       console.log(userFire);
-      dispatch(postUser(userFire));
-      navigate("/home");
     }
-  };
+  }, [user])
 
   const registerWithGoogle = async (e) => {
     try {
@@ -174,3 +176,5 @@ const Register = () => {
   );
 };
 export default Register;
+
+
