@@ -27,6 +27,7 @@ export const CartProvider = ({ children }) => {
             quantity: 1,
           },
         ]);
+
       };
       saveCart(cart);
     

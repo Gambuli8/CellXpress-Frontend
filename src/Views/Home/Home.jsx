@@ -11,9 +11,11 @@ import Filters from "../../Components/Filters/Filters";
 import Paginado from "../../Components/Paginado/Paginado";
 import { useAuth } from "../../context/authContext";
 import { postUser } from "../../Redux/Actions";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const allProduct = useSelector((state) => state.allProduct);
+ 
   const allProductsByName = useSelector((state) => state.allProductsByName);
   const [filtered, setFiltered] = useState([]);
   //Paginado
@@ -63,13 +65,18 @@ const Home = () => {
         handlerChanges={handleChange}
         handleReloadProducts={handleReloadProducts}
       />
-      <Filters />
+      <section className={style.heroSection}>
+        <h2 className={style.bienvenidoHome}>Bienvenido a CellXpress</h2>
+        <Filters />
+      </section>
+      <div className={style.containerCardsHome}>
+        <Cards_Phone Product={currentPhone} />
+      </div>
       <Paginado
         cantPerPage={cantPerPage}
         allProducts={filtered.length}
         Paginado={paginado}
       />
-      <Cards_Phone Product={currentPhone} />
       <Footer />
     </div>
   );

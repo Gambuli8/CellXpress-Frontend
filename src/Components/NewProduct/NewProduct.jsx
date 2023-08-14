@@ -3,6 +3,7 @@ import { postProduct } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
 import { validate } from "../Validate/Validate";
 import style from "./NewProduct.module.css";
+import useLocalStorage from "../Hooks/useLocalStorage";
 
 const NewProduct = () => {
   //if (user.admin) {
@@ -120,31 +121,7 @@ const NewProduct = () => {
         />
       );
     }
-    // Si no hay imagen seleccionada, mostrar un mensaje alternativo
-    return <p>Selecciona una imagen</p>;
   };
-
-  // const CloudImage = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const selectedFiles = e.target.files;
-  //     const data = new FormData();
-  //     data.append("file", selectedFiles[0]);
-  //     data.append("upload_preset", "Activities");
-  //     const res = await fetch(
-  //       "https://api.cloudinary.com/v1_1/djqwbu0my/image/upload",
-  //       {
-  //         method: "POST",
-  //         body: data,
-  //       }
-  //     );
-  //     const file = await res.json();
-  //     setImage(file.secure_url);
-  //     console.log(file.secure_url);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <div className={style.back}>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Swal from "sweetalert2";
 import {
   GET_ALL_PRODUCTS,
@@ -32,6 +33,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
+ 
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -107,7 +109,7 @@ export const getfilters = (info) => {
     try {
       const response = (
         await axios.get(
-          `/products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
+          `/products/filter?brand=${info.brand}&minPrice=${info.minPrice}&maxPrice=${info.maxPrice}&ram=${info.ram}&cameraInches=${info.camera}&screenSize=`
         )
       ).data.products;
       if (response.length === 0) {
@@ -193,18 +195,15 @@ export const loginUser = (userlog) => {
   };
 };
 
-export const postOrder = (order) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3002/order/add-to-cart",
-        order
-      );
-      alert(`Gracias por tu compra`);
-      dispatch({ type: POST_ORDER, payload: response.data });
-      return response;
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-};
+// export const postOrder = (order) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.post("/order/add-to-cart", order);
+//       alert(`Gracias por tu compra`);
+//       dispatch({ type: POST_ORDER, payload: response.data });
+//       return response;
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+// };
