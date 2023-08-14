@@ -52,7 +52,7 @@ const Card_Phone = (props) => {
         </div>
         <div className={style.card_footer}>
           <span className={style.text_title}>${props.price}</span>
-          {!user ? (
+          {user ? (
             cart.find((item) => item.id === props.id)
               ? (
               <div className={style.card_button} onClick={() => handlerAddToCart2()}>
