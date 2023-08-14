@@ -33,6 +33,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
+ 
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -104,11 +105,14 @@ export const postUser = (user) => {
 };
 
 export const getfilters = (info) => {
+  console.log("88888888888888888888888",info)
   return async (dispatch) => {
     try {
       const response = (
         await axios.get(
-          `/products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
+        
+          `/products/filter?brand=${info.brand}&minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
+         
         )
       ).data.products;
       if (response.length === 0) {
