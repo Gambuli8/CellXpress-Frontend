@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
@@ -8,9 +9,18 @@ import useCart from "../Hooks/useCart";
 import { useAuth } from "../../context/authContext";
 
 const Card_Phone = (props) => {
-  const { user }= useAuth()
+  const { user } = useAuth();
 
-  // const {addToCart} = useCart();
+  const {cart} = useCart();
+
+  const handlerAddToCart2 = () => {
+    Swal.fire({
+      title: "ya tienes este producto en el carrito",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  };
 
   const handlerAddToCart = () => {
     props.addToCart(props);
@@ -21,7 +31,7 @@ const Card_Phone = (props) => {
       timer: 1000,
     });
   };
- 
+
   return (
     <>
       <div className={style.card}>
@@ -36,20 +46,42 @@ const Card_Phone = (props) => {
 
           <div className={style.btn}>
             <Link className={style.link} to={`/detailCard/${props.id}`}>
-             <button className={style.btn}>Ver más</button> 
+              <button className={style.btn}>Ver más</button>
             </Link>
           </div>
         </div>
         <div className={style.card_footer}>
           <span className={style.text_title}>${props.price}</span>
-          <div className={style.card_button} onClick={() => handlerAddToCart()}>
-            <img className={style.svg_icon} src="https://res.cloudinary.com/djqwbu0my/image/upload/v1691159692/Pngtree_shopping_cart_icon_3582761_vd41rl.png" alt="" />
+          {user ? (
+            cart.find((item) => item.id === props.id)
+              ? (
+              <div className={style.card_button} onClick={() => handlerAddToCart2()}>
+              <img
+                className={style.svg_icon1}
+                src="https://res.cloudinary.com/djqwbu0my/image/upload/v1691159692/Pngtree_shopping_cart_icon_3582761_vd41rl.png"
+                alt=""
+                />
+            </div>
+            ) : (
+              <div className={style.card_button} onClick={() => handlerAddToCart()}>
+              <img
+                className={style.svg_icon}
+                src="https://res.cloudinary.com/djqwbu0my/image/upload/v1691159692/Pngtree_shopping_cart_icon_3582761_vd41rl.png"
+                alt=""
+                />
+            </div>
+            )
+          ) : (
+            <Link to="/login" className={style.parrafo_login}>
+              <div className={style.btn_login}>
+               <p className={style.parrafo_login}>iniciar para comprar</p>
+              </div>
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
-  </div>
     </>
   );
 };
-
 
 export default Card_Phone;

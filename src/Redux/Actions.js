@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Swal from "sweetalert2";
 import {
   GET_ALL_PRODUCTS,
@@ -7,6 +8,7 @@ import {
   GETFILTERS,
   ORDERPHONE,
   POST_PRODUCT,
+  POST_ORDER,
   LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
@@ -31,6 +33,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
+ 
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -85,10 +88,13 @@ export const getProductsByName = (name) => {
 };
 
 export const postUser = (user) => {
-  console.log("usuario", user)
+  console.log("usuario", user);
   return async (dispatch) => {
     try {
-      const response = await axios.post("https://cellxpress.onrender.com/", user );
+      const response = await axios.post(
+        "https://cellxpress.onrender.com/",
+        user
+      );
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       return response;
@@ -103,7 +109,7 @@ export const getfilters = (info) => {
     try {
       const response = (
         await axios.get(
-          `/products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
+          `/products/filter?brand=${info.brand}&minPrice=${info.minPrice}&maxPrice=${info.maxPrice}&ram=${info.ram}&cameraInches=${info.camera}&screenSize=`
         )
       ).data.products;
       if (response.length === 0) {
@@ -188,3 +194,16 @@ export const loginUser = (userlog) => {
     }
   };
 };
+
+// export const postOrder = (order) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.post("/order/add-to-cart", order);
+//       alert(`Gracias por tu compra`);
+//       dispatch({ type: POST_ORDER, payload: response.data });
+//       return response;
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+// };
