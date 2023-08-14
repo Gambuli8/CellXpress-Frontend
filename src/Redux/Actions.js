@@ -103,11 +103,12 @@ export const postUser = (user) => {
 };
 
 export const getfilters = (info) => {
+  console.log("infouuu", info);
   return async (dispatch) => {
     try {
       const response = (
         await axios.get(
-          `/products/brand/${info.brand}?minPrice=${info.minPrice}&maxPrice=${info.maxPrice}`
+          `/products/filter?brand=${info.brand}&minPrice=${info.minPrice}&maxPrice=${info.maxPrice}&ram=${info.ram}&cameraInches=${info.camera}&screenSize=`
         )
       ).data.products;
       if (response.length === 0) {
