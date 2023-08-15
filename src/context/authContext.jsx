@@ -17,14 +17,19 @@ export const AuthProvider = ({ children }) => {
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
 
-   const signup =  (email, password) => {
-       createUserWithEmailAndPassword(auth, email, password)
+   const signup =  async (email, password) => {
+      await createUserWithEmailAndPassword(auth, email, password)
    }
-   const login = (email, password) => {
-      signInWithEmailAndPassword(auth, email, password)
+   const login = async (email, password) => {
+      try{
+         await signInWithEmailAndPassword(auth, email, password)
+      }catch(error){
+         console.log(error.message)
+         alert(error.message)
+      }
    }
-   const logout =  () => {
-       signOut(auth)
+   const logout =  async () => {
+      await signOut(auth)
    }
    const loginGoogle =  ()=>{
        const provgoogle = new GoogleAuthProvider();
