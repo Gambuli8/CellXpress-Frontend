@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const allProduct = useSelector((state) => state.allProduct);
- 
+
   const allProductsByName = useSelector((state) => state.allProductsByName);
   const [filtered, setFiltered] = useState([]);
   //Paginado
@@ -67,8 +67,10 @@ const Home = () => {
       />
       <section className={style.heroSection}>
         <h2 className={style.bienvenidoHome}>Bienvenido a CellXpress</h2>
-        <Filters />
       </section>
+
+      <Filters />
+
       <div className={style.containerCardsHome}>
         <Cards_Phone Product={currentPhone} />
       </div>

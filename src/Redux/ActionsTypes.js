@@ -9,3 +9,4 @@ export const POST_ORDER = "POST_ORDER";
 export const LOGIN_USER = "LOGIN_USER";
 export const RAMFILTERS = "RAMFILTERS";
 export const PIXELESFILTERS = "PIXELESFILTERS";
+export const GET_ORDER_BUY = "GET_ORDER_BUY";

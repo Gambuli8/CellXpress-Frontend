@@ -12,6 +12,7 @@ import {
   LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
+  GET_ORDER_BUY,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -33,7 +34,6 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
- 
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -191,6 +191,23 @@ export const loginUser = (userlog) => {
       return response;
     } catch (error) {
       alert(error.message);
+    }
+  };
+};
+
+//funcion para traer todas las ordenes de compras
+
+export const orderBuy = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/order/all/`);
+      console.log("response ORderrrr", response);
+      dispatch({
+        type: GET_ORDER_BUY,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("errorrr", error);
     }
   };
 };

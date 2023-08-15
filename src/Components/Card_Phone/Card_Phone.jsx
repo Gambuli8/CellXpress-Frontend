@@ -5,6 +5,9 @@
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useCart from "../Hooks/useCart";
+import { useAuth } from "../../context/authContext";
+
 const Card_Phone = (props) => {
   const { user } = useAuth();
 
@@ -85,4 +88,5 @@ const Card_Phone = (props) => {
     </>
   );
 };
+
 export default Card_Phone;

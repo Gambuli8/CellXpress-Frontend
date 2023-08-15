@@ -12,6 +12,7 @@ import {
   LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
+  GET_ORDER_BUY,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -20,6 +21,7 @@ let inicialState = {
   user: {},
   allProductsByName: [],
   viewProducts: [],
+  orderBuy: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -114,6 +116,12 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+
+    case GET_ORDER_BUY:
+      return {
+        ...state,
+        orderBuy: action.payload,
       };
     // case POST_ORDER:
     // return {
