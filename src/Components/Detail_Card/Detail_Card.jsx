@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import useCart from "../Hooks/useCart";
 import Swal from "sweetalert2";
 import Navbar from "../NavBar/Navbar";
+import { getProduct } from "../../Redux/Actions";
+import { useDispatch } from "react-redux";
 
 export default function Detail_Card() {
   /*estado de productos */
@@ -29,10 +31,12 @@ export default function Detail_Card() {
   const allProduct = useSelector((state) => state.allProduct);
   const { id } = useParams();
 
+  const dispatch = useDispatch();
+
   /* funcion para buscar el producto por id */
   useEffect(() => {
-    setProduct(allProduct.find((p) => p?._id == id));
-    // setProduct(producttrue);
+    dispatch(getProduct())
+    setProduct(allProduct.find((p) => p?._id == id))
   }, [allProduct, id]);
 
   const starRating = Array(5).fill(0);

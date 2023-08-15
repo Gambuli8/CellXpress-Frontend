@@ -9,6 +9,7 @@ import {
   ORDERPHONE,
   POST_PRODUCT,
   POST_ORDER,
+  POST_USERID,
   LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
@@ -33,7 +34,6 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
- 
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -90,6 +90,7 @@ export const getProductsByName = (name) => {
 export const postUser = (user) => {
   console.log("usuario", user);
   return async (dispatch) => {
+    console.log("hola");
     try {
       const response = await axios.post(
         "https://cellxpress.onrender.com/",
@@ -97,9 +98,36 @@ export const postUser = (user) => {
       );
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
-      return response;
     } catch (error) {
       alert(error.message);
+    }
+  };
+};
+
+export const postInfo = (info) => {
+  return async (dispatch) => {
+    try {
+      console.log(info);
+      const response = await axios.post(
+        "http://localhost:3002/order/add-to-cart",
+        info
+      );
+      dispatch({ type: POST_ORDER, payload: response.data });
+    } catch (error) {
+      console.log(error.message.data);
+    }
+  };
+};
+
+export const postUserId = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3002/order/checkout/?userId=${userId}`
+      );
+      dispatch({ type: POST_USERID, payload: response.data });
+    } catch (error) {
+      console.log(error.message.data);
     }
   };
 };

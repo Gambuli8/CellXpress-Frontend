@@ -1,13 +1,46 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import style from "./Carrito.module.css";
 import useCart from "../Hooks/useCart";
 import swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { postInfo, postUserId, postUser } from "../../Redux/Actions";
+import { useDispatch, useSelector } from "react-redux";
+// import {useAuth} from '../../context/authContext';
 
 function CartItem(product) {
+
+  const user = useSelector((state) => state.user);
+  const userId = useSelector((state) => state.userId);
+  const allUsers = useSelector((state) => state.allUsers);
   const { removeFromCart, cart, saveCart } = useCart();
+  // const { user } = useAuth();
+  
+  //mandar info de compra a la base de datos
+  const [input, setInput] = useState({
+    productId: product.id,
+    quantity: product.quantity,
+    userId: user._id || "64db9c57481b4ce4cbf87379",
+  });
+
+  console.log(user._id);
+  console.log(input);
+
+  
+  
+  const dispatch = useDispatch();
+  
+  const handleBuy = () => {
+    dispatch(postInfo(input));
+    dispatch(postUserId(input.userId));
+  };
+
+  useEffect(() => {
+    handleBuy();
+  }, [input]);
+
 
   //estados para el precio y la cantidad de productos en el carrito
   const [price, setPrice] = useState(

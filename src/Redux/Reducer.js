@@ -8,6 +8,7 @@ import {
   GETFILTERS,
   POST_PRODUCT,
   POST_ORDER,
+  POST_USERID,
   POST_USER,
   LOGIN_USER,
   RAMFILTERS,
@@ -20,6 +21,8 @@ let inicialState = {
   user: {},
   allProductsByName: [],
   viewProducts: [],
+  order: [],
+  userId: {},
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -115,11 +118,16 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         user: action.payload,
       };
-    // case POST_ORDER:
-    // return {
-    //   ...state,
-    //   order: action.payload,
-    // };
+    case POST_ORDER:
+      return {
+        ...state,
+        order: action.payload,
+      };
+    case POST_USERID:
+      return {
+        ...state,
+        userId: action.payload,
+      };
   }
   return state;
 };
