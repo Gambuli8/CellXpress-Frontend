@@ -13,6 +13,7 @@ import {
   LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
+  DELETE_PRODUCT_CART,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -113,6 +114,19 @@ export const postInfo = (info) => {
         info
       );
       dispatch({ type: POST_ORDER, payload: response.data });
+    } catch (error) {
+      console.log(error.message.data);
+    }
+  };
+};
+
+export const deleteProduct = (productId, userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3002/order/remove-from-cart/${userId}/${productId}`
+      );
+      dispatch({ type: DELETE_PRODUCT_CART, payload: response.data });
     } catch (error) {
       console.log(error.message.data);
     }

@@ -12,6 +12,7 @@ import {
   POST_USER,
   RAMFILTERS,
   PIXELESFILTERS,
+  DELETE_PRODUCT_CART,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -121,6 +122,11 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         userId: action.payload,
+      };
+    case DELETE_PRODUCT_CART:
+      return {
+        ...state,
+        order: action.payload,
       };
   }
   return state;

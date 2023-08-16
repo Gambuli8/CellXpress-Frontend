@@ -5,41 +5,39 @@ import { useEffect, useId, useState } from "react";
 import style from "./Carrito.module.css";
 import useCart from "../Hooks/useCart";
 import swal from "sweetalert2";
-import { Link } from "react-router-dom";
-import { postInfo, postUserId, postUser } from "../../Redux/Actions";
+import { Link, useLocation } from "react-router-dom";
+import { postInfo, postUserId, deleteProduct } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
-// import {useAuth} from '../../context/authContext';
 
 function CartItem(product) {
 
-  const user = useSelector((state) => state.user);
-  const userId = useSelector((state) => state.userId);
-  const allUsers = useSelector((state) => state.allUsers);
   const { removeFromCart, cart, saveCart } = useCart();
-  // const { user } = useAuth();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const {pathname} = useLocation();
   
   //mandar info de compra a la base de datos
-  const [input, setInput] = useState({
+   const [input, setInput] = useState({
     productId: product.id,
     quantity: product.quantity,
-    userId: user._id || "64db9c57481b4ce4cbf87379",
+    userId: "64db9da28c489854683a09f8",
   });
-
-  console.log(user._id);
   console.log(input);
 
-  
-  
-  const dispatch = useDispatch();
+  console.log(cart);
   
   const handleBuy = () => {
     dispatch(postInfo(input));
-    dispatch(postUserId(input.userId));
   };
 
+  const handleDeleteProduct = () => {
+    removeFromCart(product);
+    dispatch(deleteProduct(input.productId, input.userId));
+  };
+  
   useEffect(() => {
     handleBuy();
-  }, [input]);
+  }, [cart]);
 
 
   //estados para el precio y la cantidad de productos en el carrito
@@ -95,7 +93,7 @@ function CartItem(product) {
           </small>
           <strong>${price}</strong>
         </footer>
-        <button onClick={() => removeFromCart(product)}>
+        <button onClick={() => handleDeleteProduct(product)}>
           eliminar producto
         </button>
       </li>
@@ -108,6 +106,13 @@ function CartItem(product) {
 export default function Carrito() {
   const cartCheckId = useId();
   const { cart, ClearCart, addToCart } = useCart();
+
+  const dispatch = useDispatch();
+
+  const handleUserId = () => {
+    dispatch(postUserId("64db9da28c489854683a09f8"));
+  };
+  
 
   const handleClearCart = () => {
     swal
@@ -176,7 +181,7 @@ export default function Carrito() {
         ) : null}
         {cart.length > 0 ? (
           <Link to="/carrito">
-            <button>
+            <button onClick={() => handleUserId()}>
               <strong>Realizar compra</strong>
             </button>
           </Link>
