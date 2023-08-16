@@ -99,7 +99,7 @@ export const postUser = (user) => {
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data.message);
     }
   };
 };

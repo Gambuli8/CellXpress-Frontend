@@ -10,7 +10,6 @@ import {
   POST_ORDER,
   POST_USERID,
   POST_USER,
-  LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
 } from "./ActionsTypes";
@@ -27,11 +26,6 @@ let inicialState = {
 
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
-    case LOGIN_USER:
-      return {
-        ...state,
-        userlog: action.payload,
-      };
     case GET_ALL_PRODUCTS:
       return {
         ...state,
