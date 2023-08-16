@@ -49,12 +49,11 @@ const Register = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
+        setErrors({})
         signup(input.email, input.password);
         navigate("/home");
       } catch (error) {
-        if (error.message === "auth/email-already-in-use") {
-          alert("email ya registrado");
-        }
+        console.log(error)
       }
 
       dispatch(postUser(input));
@@ -67,7 +66,11 @@ const Register = () => {
     }
   };
   const fireDb = (user) => {
-    if (user !== null) {
+    dispatch(postUser(userFire));
+    navigate("/home");
+  }
+  useEffect(() => {
+    if (user) {
       setUserFire({
         name: user.displayName,
         phone: user.PhoneNumber,
@@ -75,10 +78,8 @@ const Register = () => {
         password: user.accessToken,
       });
       console.log(userFire);
-      dispatch(postUser(userFire));
-      navigate("/home");
     }
-  };
+  }, [user])
 
   const registerWithGoogle = async (e) => {
     try {
@@ -86,7 +87,7 @@ const Register = () => {
       setErrors({});
       await loginGoogle();
     } catch (error) {
-      setErrors(error.message);
+      console.log(error)
     }
   };
 
@@ -174,3 +175,5 @@ const Register = () => {
   );
 };
 export default Register;
+
+
