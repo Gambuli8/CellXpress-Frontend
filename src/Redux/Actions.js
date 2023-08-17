@@ -8,10 +8,11 @@ import {
   GETFILTERS,
   ORDERPHONE,
   POST_PRODUCT,
+  PUT_PRODUCT,
   POST_ORDER,
-  LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
+  GET_ORDER_BUY,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -33,7 +34,6 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
- 
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -42,6 +42,23 @@ export const postProduct = (products) => {
       return response;
     } catch (error) {
       alert(error.message);
+    }
+  };
+};
+
+export const putProduct = (products) => {
+  console.log("777",products)
+
+  return async (dispatch) => {
+    try {
+       const response = await axios.put(`/products/${products._id}` /*products.isDeactivated*/);
+console.log("8888",response)
+      dispatch({ type: PUT_PRODUCT, payload: response.data });
+      alert(`${products.title} Agregado correctamente`);
+      return response;
+    } catch (error) {
+      console.log(error)
+      /*alert(error.message)*/;
     }
   };
 };
@@ -99,7 +116,7 @@ export const postUser = (user) => {
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       return response;
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data.message)
     }
   };
 };
@@ -207,6 +224,23 @@ export const calificar = (info) => {
     // } catch (error) {
     //   alert(error.message);
     // }
+  };
+};
+
+//funcion para traer todas las ordenes de compras
+
+export const orderBuy = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/order/all/`);
+      console.log("response ORderrrr", response);
+      dispatch({
+        type: GET_ORDER_BUY,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("errorrr", error);
+    }
   };
 };
 

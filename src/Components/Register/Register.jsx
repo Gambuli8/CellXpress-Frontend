@@ -50,12 +50,11 @@ const Register = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
+        setErrors({})
         signup(input.email, input.password);
         navigate("/home");
       } catch (error) {
-        if (error.message === "auth/email-already-in-use") {
-          alert("email ya registrado");
-        }
+        console.log(error)
       }
 
       dispatch(postUser(input));
@@ -89,7 +88,7 @@ const Register = () => {
       setErrors({});
       await loginGoogle();
     } catch (error) {
-      setErrors(error.message);
+      console.log(error)
     }
   };
 

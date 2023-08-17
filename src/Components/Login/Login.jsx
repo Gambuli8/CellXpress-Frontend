@@ -36,17 +36,12 @@ function Login() {
     const validationErrors = validate(input);
 
     if (Object.keys(validationErrors).length === 0) {
-      try {
         await login(input.email, input.password);
         navigate("/home");
-      } catch (error) {
-        setErrors(error.message);
-        alert(error.message);
-      }
     }
   };
   const loginWithGoogle = async () => {
-    try {
+    
       await loginGoogle();
       navigate("/home");
       if (user) {
@@ -58,9 +53,7 @@ function Login() {
           password: user.uid,
         });
       }
-    } catch (error) {
-      console.log(error.message);
-    }
+    
   };
 
   return (
