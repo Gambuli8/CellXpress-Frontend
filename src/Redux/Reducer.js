@@ -13,6 +13,8 @@ import {
   RAMFILTERS,
   PIXELESFILTERS,
   DELETE_PRODUCT_CART,
+  GET_ORDER_BUY,
+  PUT_PRODUCT,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -23,6 +25,7 @@ let inicialState = {
   viewProducts: [],
   order: [],
   userId: {},
+  orderBuy: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -41,7 +44,7 @@ const rootReducer = (state = inicialState, action) => {
     case GET_PRODUCTS_BY_NAME:
       return {
         ...state,
-        allProductsByName: action.payload,
+        allProduct: action.payload,
       };
 
     case GETFILTERS:
@@ -108,6 +111,13 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         product: action.payload,
       };
+
+    case PUT_PRODUCT:
+      return {
+        ...state,
+        allProduct: action.payload,
+      };
+
     case POST_USER:
       return {
         ...state,
@@ -127,6 +137,11 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         order: action.payload,
+      };
+    case GET_ORDER_BUY:
+      return {
+        ...state,
+        orderBuy: action.payload,
       };
   }
   return state;

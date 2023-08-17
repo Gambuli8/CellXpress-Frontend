@@ -1,7 +1,7 @@
 .sidebar {
   width: 14rem;
   background-color: #0e2954;
-  height: calc(100vh - 112px);
+  height: calc(100vh - 150px);
   border-right: 1px solid black;
   border-top: 1px solid black;
 }
