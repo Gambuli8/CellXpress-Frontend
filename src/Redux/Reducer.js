@@ -40,7 +40,7 @@ const rootReducer = (state = inicialState, action) => {
     case GET_PRODUCTS_BY_NAME:
       return {
         ...state,
-        allProductsByName: action.payload,
+        allProduct: action.payload,
       };
 
     case GETFILTERS:
@@ -108,11 +108,11 @@ const rootReducer = (state = inicialState, action) => {
         product: action.payload,
       };
 
-      case PUT_PRODUCT:
-        return {
-          ...state,
-          allProduct: action.payload,
-        };
+    case PUT_PRODUCT:
+      return {
+        ...state,
+        allProduct: action.payload,
+      };
 
     case POST_USER:
       return {
