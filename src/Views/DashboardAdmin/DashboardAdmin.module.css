@@ -10,7 +10,7 @@
   background-color: #0e2954;
   width: 70%;
   margin-left: 2rem;
-  max-height: calc(100vh - 112px);
+  max-height: calc(100vh - 150px);
   overflow-y: auto;
 }
 

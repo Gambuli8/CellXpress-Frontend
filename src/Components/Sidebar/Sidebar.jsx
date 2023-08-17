@@ -1,24 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
 import style from "./Sidebar.module.css";
 
-const Sidebar = ({ handleReloadUsers }) => {
+const Sidebar = ({ onTabChange }) => {
   return (
     <div className={style.sidebar}>
       <ul className={style.listDash}>
         <li className={style.itemDash}>
-          <a href="/home" className={style.link}>
-            Inicio
-          </a>
+          <button onClick={() => onTabChange("users")}>Usuarios</button>
         </li>
         <li className={style.itemDash}>
-          <Link to="/newproduct" className={style.link}>
-            Crear Producto
-          </Link>
+          <button onClick={() => onTabChange("products")}>Productos</button>
         </li>
         <li className={style.itemDash}>
-          <NavLink onClick={handleReloadUsers} className={style.link}>
-            Usuarios
-          </NavLink>
+          <button onClick={() => onTabChange("order")}>
+            Ordenes de compra
+          </button>
         </li>
       </ul>
     </div>
