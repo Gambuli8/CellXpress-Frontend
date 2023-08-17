@@ -8,7 +8,7 @@ import DashUser from "./DashUsers/DashUsers";
 import DashProduct from "./DashProducts/DashProducts";
 import DashOrder from "./DashOrders/DashOrders";
 export default function DashboardAdmin() {
-  const [activeTab, setActiveTab] = useState("users");
+  const [activeTab, setActiveTab] = useState(" ");
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };

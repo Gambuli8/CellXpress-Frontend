@@ -8,6 +8,7 @@ import {
   GETFILTERS,
   ORDERPHONE,
   POST_PRODUCT,
+  PUT_PRODUCT,
   POST_ORDER,
   RAMFILTERS,
   PIXELESFILTERS,
@@ -22,6 +23,7 @@ export function getProduct() {
   return async function (dispatch) {
     try {
       const response = (await axios.get("/products")).data;
+      console.log("6666", response);
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response,
@@ -41,6 +43,33 @@ export const postProduct = (products) => {
       return response;
     } catch (error) {
       alert(error.message);
+    }
+  };
+};
+
+export const putProduct = (products) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`/products/${products.id}`, {
+        isDeactivated: products.isDeactivated,
+      });
+      console.log("8888", response);
+      if (products.isDeactivated) {
+        Swal.fire({
+          text: `${products.title} desactivado Correctamente`,
+          icon: "error",
+        });
+      } else {
+        Swal.fire({
+          text: `${products.title} Activado Correctamente`,
+          icon: "success",
+        });
+      }
+
+      dispatch(getProduct());
+    } catch (error) {
+      console.log(error);
+      /*alert(error.message)*/
     }
   };
 };
@@ -98,7 +127,7 @@ export const postUser = (user) => {
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       return response;
     } catch (error) {
-      alert(error.response.data.message)
+      alert(error.response.data.message);
     }
   };
 };

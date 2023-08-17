@@ -12,6 +12,7 @@ import {
   RAMFILTERS,
   PIXELESFILTERS,
   GET_ORDER_BUY,
+  PUT_PRODUCT,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -106,6 +107,13 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         product: action.payload,
       };
+
+      case PUT_PRODUCT:
+        return {
+          ...state,
+          allProduct: action.payload,
+        };
+
     case POST_USER:
       return {
         ...state,
