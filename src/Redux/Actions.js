@@ -196,7 +196,6 @@ export const loginUser = (userlog) => {
 };
 
 //funcion para traer todas las ordenes de compras
-
 export const orderBuy = () => {
   return async (dispatch) => {
     try {
@@ -204,7 +203,7 @@ export const orderBuy = () => {
       console.log("response ORderrrr", response);
       dispatch({
         type: GET_ORDER_BUY,
-        payload: response,
+        payload: response.data,
       });
     } catch (error) {
       console.log("errorrr", error);

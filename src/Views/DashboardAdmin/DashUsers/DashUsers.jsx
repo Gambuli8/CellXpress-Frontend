@@ -1,6 +1,7 @@
-import React from "react";
-import { Space, Table, Tag } from "antd";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { Space, Table, Tag, Checkbox } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../../../Redux/Actions";
 
 const columns = [
   {
@@ -32,14 +33,18 @@ const columns = [
     key: "action",
     render: (_, record) => (
       <Space size="middle">
-        <a>Desbanear</a>
-        <a>Banear</a>
+        <Checkbox>Banear</Checkbox>
       </Space>
     ),
   },
 ];
 
 const DashUser = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
   const data = useSelector((state) => state.allUsers);
   console.log("dataasas", data);
   return (
