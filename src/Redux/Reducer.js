@@ -11,6 +11,8 @@ import {
   POST_USER,
   RAMFILTERS,
   PIXELESFILTERS,
+  GET_ORDER_BUY,
+  PUT_PRODUCT,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -19,6 +21,7 @@ let inicialState = {
   user: {},
   allProductsByName: [],
   viewProducts: [],
+  orderBuy: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -37,7 +40,7 @@ const rootReducer = (state = inicialState, action) => {
     case GET_PRODUCTS_BY_NAME:
       return {
         ...state,
-        allProductsByName: action.payload,
+        allProduct: action.payload,
       };
 
     case GETFILTERS:
@@ -104,10 +107,23 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         product: action.payload,
       };
+
+    case PUT_PRODUCT:
+      return {
+        ...state,
+        allProduct: action.payload,
+      };
+
     case POST_USER:
       return {
         ...state,
         user: action.payload,
+      };
+
+    case GET_ORDER_BUY:
+      return {
+        ...state,
+        orderBuy: action.payload,
       };
     // case POST_ORDER:
     // return {
