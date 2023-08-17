@@ -58,7 +58,7 @@ export const validate = (name, value) => {
                 error = "campo obligatorio";
             }
             break;
-        case "emailAcces":
+        case "email":
             if (!value.trim()) {
                 error = "El email es obligatorio";
             } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
@@ -66,7 +66,7 @@ export const validate = (name, value) => {
                     "Debe registrar un email valido";
             }
             break;
-        case "passwordAcces":
+        case "password":
             if (!value.trim()) {
                 error = "El password es obligatorio";
             } else if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20}/.test(value)) {

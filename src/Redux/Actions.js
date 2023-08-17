@@ -9,7 +9,6 @@ import {
   ORDERPHONE,
   POST_PRODUCT,
   POST_ORDER,
-  LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
   GET_ORDER_BUY,
@@ -99,7 +98,7 @@ export const postUser = (user) => {
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       return response;
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data.message)
     }
   };
 };

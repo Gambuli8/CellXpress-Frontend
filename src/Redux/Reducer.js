@@ -9,7 +9,6 @@ import {
   POST_PRODUCT,
   POST_ORDER,
   POST_USER,
-  LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
   GET_ORDER_BUY,
@@ -26,11 +25,6 @@ let inicialState = {
 
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
-    case LOGIN_USER:
-      return {
-        ...state,
-        userlog: action.payload,
-      };
     case GET_ALL_PRODUCTS:
       return {
         ...state,
