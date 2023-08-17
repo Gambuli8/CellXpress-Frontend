@@ -8,6 +8,7 @@ import {
   GETFILTERS,
   ORDERPHONE,
   POST_PRODUCT,
+  PUT_PRODUCT,
   POST_ORDER,
   RAMFILTERS,
   PIXELESFILTERS,
@@ -41,6 +42,23 @@ export const postProduct = (products) => {
       return response;
     } catch (error) {
       alert(error.message);
+    }
+  };
+};
+
+export const putProduct = (products) => {
+  console.log("777",products)
+
+  return async (dispatch) => {
+    try {
+       const response = await axios.put(`/products/${products._id}` /*products.isDeactivated*/);
+console.log("8888",response)
+      dispatch({ type: PUT_PRODUCT, payload: response.data });
+      alert(`${products.title} Agregado correctamente`);
+      return response;
+    } catch (error) {
+      console.log(error)
+      /*alert(error.message)*/;
     }
   };
 };
