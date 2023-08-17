@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import useCart from "../Hooks/useCart";
 import Swal from "sweetalert2";
 import Navbar from "../NavBar/Navbar";
+import StarRating from "../StarRating/StarRating";
+
 
 export default function Detail_Card() {
   /*estado de productos */
@@ -34,8 +36,6 @@ export default function Detail_Card() {
     setProduct(allProduct.find((p) => p?._id == id));
     // setProduct(producttrue);
   }, [allProduct, id]);
-
-  const starRating = Array(5).fill(0);
 
   return (
     <>
@@ -67,22 +67,10 @@ export default function Detail_Card() {
                 <li className={style.totalPrice}>Total: ${product.price} </li>
               </div>
               <button className={style.btn_addCart} onClick={() => handlerAddToCart()}>Agregar al carrito</button>
-              {/* <div className={style.raiting}>
-                <h3 className={style.raiting__text}>Calificación:</h3>
-                <p className={style.raiting__stars}>{product?.rating[0]?.rate}</p>
-                <div className={style.stars}>
-          {starRating.map((_, index) => {
-            return (
-              <img 
-              style={{transition: "color 200ms", width: '20px', height:'20px', outline: 'none', margin: '0 2px', padding: '0', fontSize: '1.2rem', color: ''}}
-              src="https://res.cloudinary.com/djqwbu0my/image/upload/v1690138662/star-vacia_zygqve.svg" 
-              alt='estrella rating' 
-              key={index}
-              />
-            );
-          })}
-        </div>
-              </div> */}
+              <div>
+      <StarRating/>
+      </div>
+             
               <h3>Descripción:</h3>
               <p className={style.card__text}>{product?.description}</p>
             </div>

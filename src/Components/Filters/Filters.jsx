@@ -29,14 +29,6 @@ const Filters = () => {
     dispatch(orderPhone(event.target.value));
   };
 
-  //     const handleSubmitRam = (event) => {
-  //       event.preventDefault()
-  //      dispatch(getfiltersram(event.target.value))
-  //  }
-  //  const handleSubmitPixeles = (event) => {
-  //   event.preventDefault()
-  //  dispatch(getfilterspixeles(event.target.value))
-  // }
 
   return (
     <div className={style.container}>
