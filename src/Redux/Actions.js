@@ -87,7 +87,6 @@ export const getUsers = () => {
     }
   };
 };
-
 export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {

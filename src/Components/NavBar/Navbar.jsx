@@ -54,7 +54,7 @@ export default function Navbar({
           </NavLink>
         ) : (
           <div className={style.user}>
-            <p>{user.email}</p>
+            <NavLink to="/user">Perfil</NavLink>
             <button onClick={logout} className={style.btn}>
               Log Out
             </button>
