@@ -30,13 +30,9 @@ export default function Navbar({
         />
       </div>
       <div className={style.linkContainer}>
-        <NavLink
-          to="/home"
-          className={style.link}
-          onClick={handleReloadProducts}
-        >
+        <a href="/home" className={style.link} onClick={handleReloadProducts}>
           Inicio
-        </NavLink>
+        </a>
         <NavLink to="/aboutus" className={style.link}>
           Sobre Nosotros
         </NavLink>
