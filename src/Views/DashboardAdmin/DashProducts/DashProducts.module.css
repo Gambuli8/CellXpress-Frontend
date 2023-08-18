@@ -1,0 +1,10 @@
+.listContainer {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: aliceblue;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  margin-inline: 1rem;
+  border-radius: 1rem;
+}

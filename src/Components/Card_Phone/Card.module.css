@@ -1,106 +1,198 @@
-
 .card {
-    width: 250px;
-    height: 494px;
-    padding: .8em;
-    background: #88ace0;
-    position: relative;
-    overflow: visible;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    list-style: none;
-    text-decoration: none;
-    border-radius: .5rem;
-    transition: .3s ease-in-out;
-   }
-   
-   .card_img {
-    background-color: #ffcaa6;
-    height: 40%;
-    width: 100%;
-    border-radius: .5rem;
-    transition: .3s ease;
-   }
-   .image{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: .5rem;
-   }
-   
-   .card_info {
-    padding-top: 10%;
-    list-style: none;
-   }
-   
-   .svg_icon {
-    width: 30px;
-    height: 30px;
-   }
+  width: 14rem;
+  height: 494px;
+  padding: 0.8em;
+  background: #1f6e8c;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  list-style: none;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: 0.3s ease-in-out;
+  margin: 2rem;
+  color: white;
+}
 
-   .btn{
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: .2s ease-in-out;
-   }
-   
-   .card_footer {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 10px;
-    border-top: 1px solid #ddd;
-    list-style: none;
-   }
-   
-   /*Text*/
-   .text_title {
-    font-weight: 900;
-    font-size: 1.2em;
-    line-height: 1.5;
-    list-style: none;
-   }
-   
-   .text_body {
-    font-size: .9em;
-    padding-bottom: 10px;
-    list-style: none;
-   }
-   
-   /*Button*/
-   .card_button {
-    border: 1px solid #252525;
-    display: flex;
-    padding: .3em;
-    cursor: pointer;
-    border-radius: 50px;
-    transition: .3s ease-in-out;
-   }
-   
-   /*Hover*/
+.card_img {
+  background-color: #ffcaa6;
+  height: 40%;
+  width: 100%;
+  border-radius: 0.5rem;
+  transition: 0.3s ease;
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
 
-   .btn:hover{
-    transform: scale(1.05);
-    filter: brightness(1.2);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-                0 10px 10px rgba(0,0,0,0.22); 
-   }
+.card_info {
+  padding-top: 10%;
+  list-style: none;
+  text-align: center;
+}
 
-   .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-                0 10px 10px rgba(0,0,0,0.22);
-   }
-   
-   .card_button:hover {
-    border: 1px solid rgb(3, 6, 58);
-    background-color: rgb(3, 6, 58);
-   }
+.btn_login {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  color: white;
+  text-decoration: none;
+}
 
-    .card_button:hover .svg_icon {
-     fill: #fff;
-    }
-   
+.btn_login:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+.parrafo_login {
+  list-style: none;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.svg_icon {
+  width: 50px;
+  height: 50px;
+}
+
+.svg_icon1 {
+  width: 50px;
+  height: 50px;
+  opacity: 0.5;
+}
+
+.btn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  color: white;
+}
+
+.card_footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  list-style: none;
+}
+
+/*Text*/
+.text_title {
+  font-weight: 900;
+  font-size: 1.2em;
+  line-height: 1.5;
+  list-style: none;
+}
+
+.text_body {
+  font-size: 0.9em;
+  padding-bottom: 10px;
+  list-style: none;
+}
+
+/*Button*/
+.card_button {
+  display: flex;
+  padding: 0.3em;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: none;
+  background: none;
+}
+
+/*Hover*/
+
+.card_img {
+  background-color: white;
+  height: 40%;
+  width: 100%;
+  border-radius: 0.5rem;
+  transition: 0.3s ease;
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.card_info {
+  padding-top: 10%;
+  list-style: none;
+  text-align: center;
+}
+
+.btn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.card_footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  list-style: none;
+}
+
+/*Text*/
+.text_title {
+  font-weight: 900;
+  font-size: 1.2em;
+  line-height: 1.5;
+  list-style: none;
+}
+
+.text_body {
+  font-size: 0.9em;
+  padding-bottom: 10px;
+  list-style: none;
+}
+
+/*Button*/
+.card_button {
+  display: flex;
+  padding: 0.3em;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+/*Hover*/
+
+.card_button:hover {
+  transform: scale(1.1);
+  filter: brightness(1.8);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card_button:hover .svg_icon {
+  fill: #fff;
+}

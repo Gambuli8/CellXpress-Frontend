@@ -1,19 +1,23 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom";
 import style from "./navBar.module.css";
 import Searchbar from "../SearchBar/SearchBar";
-import { useState } from "react";
+import { useAuth } from "../../context/authContext";
+import Carrito from "../Carrito/Carrito";
 
 export default function Navbar({
   handleSubmit,
   handlerChanges,
   handleReloadProducts,
 }) {
+  const { user, logout } = useAuth();
   return (
     <nav className={style.navContainer}>
       <div>
         <NavLink
           to="/home"
-          className={style.link}
+          className={style.titleLogo}
           onClick={handleReloadProducts}
         >
           <h1 className={style.logo}>CellXpress</h1>
@@ -26,18 +30,35 @@ export default function Navbar({
         />
       </div>
       <div className={style.linkContainer}>
-        <NavLink
-          to="/home"
-          className={style.link}
-          onClick={handleReloadProducts}
-        >
+        <a href="/home" className={style.link} onClick={handleReloadProducts}>
           Inicio
-        </NavLink>
+        </a>
         <NavLink to="/aboutus" className={style.link}>
           Sobre Nosotros
         </NavLink>
-        <NavLink className={style.link}>Registrarse</NavLink>
-        <NavLink className={style.link}>Ingresar</NavLink>
+        <NavLink to="/newproduct" className={style.link}>
+          Crear Producto
+        </NavLink>
+        {!user && (
+          <NavLink to="/register" className={style.link}>
+            Registrarse
+          </NavLink>
+        )}
+        {!user ? (
+          <NavLink to="/login" className={style.link}>
+            Ingresar
+          </NavLink>
+        ) : (
+          <div className={style.user}>
+            <p>{user.email}</p>
+            <button onClick={logout} className={style.btn}>
+              Log Out
+            </button>
+          </div>
+        )}
+        <div className={style.link}>
+          <Carrito />
+        </div>
       </div>
     </nav>
   );

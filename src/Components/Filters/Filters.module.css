@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+.containerMarca {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.select {
+  margin-right: 10px;
+}
+.filtercontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+}

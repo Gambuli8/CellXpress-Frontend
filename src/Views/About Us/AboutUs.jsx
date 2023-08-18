@@ -2,7 +2,10 @@ import style from "./aboutUs.module.css";
 
 export default function AboutUs() {
   return (
-    <div>
+    <div className={style.aboutUsContainer}>
+      <a href="/home">
+        <button className={style.btn_back}>Atras</button>
+      </a>
       <h1 className={style.tituloAbout}>Sobre nosotros</h1>
       <section className={style.quienesSomos}>
         <div className={style.bloqueUno}>
@@ -169,4 +172,5 @@ export default function AboutUs() {
       </section>
     </div>
   );
+  //
 }
