@@ -10,7 +10,7 @@ const Cards_Phone = ({ Product }) => {
     return cart.some((item) => item.id === product.id);
   };
 
-  console.log(Product);
+  // console.log(Product);
   return (
     <div className={style.contenedorCards}>
       {Product.map((product) => {

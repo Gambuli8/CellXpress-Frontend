@@ -30,6 +30,7 @@ const Card_Phone = (props) => {
       showConfirmButton: false,
       timer: 1000,
     });
+
   };
 
   return (

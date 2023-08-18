@@ -34,7 +34,7 @@ const Home = () => {
     setCurrentPag(pageNumber);
   };
   //Fin paginado
-  console.log("productssss home", allProduct);
+  // console.log("productssss home", allProduct);
   useEffect(() => {
     if (!allProduct.length) {
       dispatch(getProduct());
