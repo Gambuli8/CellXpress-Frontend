@@ -7,6 +7,7 @@ import {
   ORDERPHONE,
   GETFILTERS,
   POST_PRODUCT,
+  PUT_USER,
   POST_ORDER,
   POST_USER,
   RAMFILTERS,
@@ -113,6 +114,11 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allProduct: action.payload,
       };
+      case PUT_USER:
+        return {
+          ...state,
+          allUsers: action.payload,
+        };
 
     case POST_USER:
       return {

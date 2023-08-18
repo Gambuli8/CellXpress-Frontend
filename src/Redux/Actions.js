@@ -8,6 +8,7 @@ import {
   GETFILTERS,
   ORDERPHONE,
   POST_PRODUCT,
+  PUT_USER,
   PUT_PRODUCT,
   POST_ORDER,
   RAMFILTERS,
@@ -56,7 +57,7 @@ export const putProduct = (products) => {
       console.log("8888", response);
       if (products.isDeactivated) {
         Swal.fire({
-          text: `${products.title} desactivado Correctamente`,
+          text: `${products.title} Desactivado Correctamente`,
           icon: "error",
         });
       } else {
@@ -73,6 +74,7 @@ export const putProduct = (products) => {
     }
   };
 };
+
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -131,6 +133,37 @@ export const postUser = (user) => {
     }
   };
 };
+
+
+//PUT USER PARA BANEAR
+export const putUser = (user) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`/users/${user.id}`, {
+        isActive: user.isActive,
+        email:user.name
+      });
+      console.log("8888", response);
+      if ( user.isActive) {
+        Swal.fire({
+          text: `${user.name} Activado Correctamente`,
+          icon: "success",
+        });
+      } else {
+        Swal.fire({
+          text: `${user.name} Desactivado Correctamente`,
+          icon: "error",
+        });
+      }
+
+      dispatch(getUsers());
+    } catch (error) {
+      console.log(error);
+      /*alert(error.message)*/
+    }
+  };
+};
+
 
 export const getfilters = (info) => {
   return async (dispatch) => {
