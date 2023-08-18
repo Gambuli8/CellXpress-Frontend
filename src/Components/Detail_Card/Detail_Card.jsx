@@ -10,22 +10,43 @@ import Swal from "sweetalert2";
 import Navbar from "../NavBar/Navbar";
 import { getProduct } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
+import { postOrder } from "../../Redux/Actions";
 
-export default function Detail_Card() {
+export default function Detail_Card(productId) {
   /*estado de productos */
   const [product, setProduct] = useState({});
   
   const { addToCart } = useCart();
 
-  const handlerAddToCart = () => {
-    addToCart(product);
-    Swal.fire({
-      title: "Producto agregado al carrito",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 1000,
-    });
+  const handlerAddToCart = async (productId) => {
+    try {
+      const order = {
+        userId: "64dc1c53286db5b8000b7e30",
+        productId: productId,
+        quantity: 1,
+      };
+  
+      const response = await dispatch(postOrder(order));
+  
+      Swal.fire({
+        title: "Producto agregado al carrito",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+  
+      console.log(response); // Puedes hacer algo con la respuesta si lo necesitas
+    } catch (error) {
+      console.error("Error al agregar al carrito:", error);
+      Swal.fire({
+        title: "Error al agregar al carrito",
+        text: error.message,
+        icon: "error",
+      });
+    }
   };
+  
+
 
   /* estado de redux */
   const allProduct = useSelector((state) => state.allProduct);
@@ -70,7 +91,7 @@ export default function Detail_Card() {
               <div className={style.countContainer}>
                 <li className={style.totalPrice}>Total: ${product.price} </li>
               </div>
-              <button className={style.btn_addCart} onClick={() => handlerAddToCart()}>Agregar al carrito</button>
+              <button className={style.btn_addCart} onClick={() => handlerAddToCart(product._id)}>Agregar al carrito</button>
               {/* <div className={style.raiting}>
                 <h3 className={style.raiting__text}>Calificación:</h3>
                 <p className={style.raiting__stars}>{product?.rating[0]?.rate}</p>

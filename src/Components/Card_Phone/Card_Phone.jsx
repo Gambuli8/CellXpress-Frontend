@@ -7,9 +7,12 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCart from "../Hooks/useCart";
 import { useAuth } from "../../context/authContext";
+import { postOrder } from "../../Redux/Actions";
+import { useDispatch } from "react-redux";
 
 const Card_Phone = (props) => {
   const { user } = useAuth();
+  const dispatch = useDispatch(); // Agrega el dispatcher para usar en postOrder
 
   const {cart} = useCart();
 
@@ -22,15 +25,34 @@ const Card_Phone = (props) => {
     });
   };
 
-  const handlerAddToCart = () => {
-    props.addToCart(props);
-    Swal.fire({
-      title: "Producto agregado al carrito",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 1000,
-    });
+  const handlerAddToCart = async (productId) => {
+    try {
+      const order = {
+        userId: "64dc1c53286db5b8000b7e30",
+        productId: productId,
+        quantity: 1,
+      };
+  
+      const response = await dispatch(postOrder(order));
+  
+      Swal.fire({
+        title: "Producto agregado al carrito",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+  
+      console.log(response); // Puedes hacer algo con la respuesta si lo necesitas
+    } catch (error) {
+      console.error("Error al agregar al carrito:", error);
+      Swal.fire({
+        title: "Error al agregar al carrito",
+        text: error.message,
+        icon: "error",
+      });
+    }
   };
+  
 
   return (
     <>
@@ -63,7 +85,7 @@ const Card_Phone = (props) => {
                 />
             </div>
             ) : (
-              <div className={style.card_button} onClick={() => handlerAddToCart()}>
+              <div className={style.card_button} onClick={() => handlerAddToCart(props.id)}>
               <img
                 className={style.svg_icon}
                 src="https://res.cloudinary.com/djqwbu0my/image/upload/v1691159692/Pngtree_shopping_cart_icon_3582761_vd41rl.png"
