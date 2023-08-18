@@ -14,6 +14,7 @@ import {
   PIXELESFILTERS,
   GET_ORDER_BUY,
   PUT_PRODUCT,
+  GET_PRODUCT_BY_ID,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -124,6 +125,12 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+
+    case GET_PRODUCT_BY_ID:
+      return {
+        ...state,
+        allProduct: action.payload,
       };
 
     case GET_ORDER_BUY:

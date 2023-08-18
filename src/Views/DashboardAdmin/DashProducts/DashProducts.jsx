@@ -10,7 +10,9 @@ const DashProduct = () => {
       title: "Title",
       dataIndex: "title",
       key: "title",
-      render: (text) => <a>{text}</a>,
+      render: (text, record) => (
+        <a href={`/editproduct/${record._id}`}>{text}</a>
+      ),
     },
     {
       title: "Stock",

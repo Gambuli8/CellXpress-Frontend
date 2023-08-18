@@ -68,9 +68,7 @@ const Home = () => {
         handlerChanges={handleChange}
         handleReloadProducts={handleReloadProducts}
       />
-      <section className={style.heroSection}>
-        <h2 className={style.bienvenidoHome}>Bienvenido a CellXpress</h2>
-      </section>
+      <section className={style.heroSection}></section>
 
       <Filters />
 
