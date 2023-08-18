@@ -1,11 +1,8 @@
 import React from "react";
 import { Space, Table, Tag, Checkbox } from "antd";
-import {getProduct, putProduct} from "../../../Redux/Actions"
+import { getProduct, putProduct } from "../../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect,useState } from "react";
-
-
-
+import { useEffect, useState } from "react";
 
 const DashProduct = () => {
   const columns = [
@@ -13,67 +10,71 @@ const DashProduct = () => {
       title: "Title",
       dataIndex: "title",
       key: "title",
-      render: (text) => <a>{text}</a>,
+      render: (text, record) => (
+        <a href={`/editproduct/${record._id}`}>{text}</a>
+      ),
     },
     {
       title: "Stock",
       dataIndex: "count",
       key: "count",
     },
-  
+
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-
-  {/* <Checkbox name="saraza" value={data._id} onChange={()=> handleChange(record._id, record.isDeactivated)}>Desactivar Producto</Checkbox> */}
-  <Checkbox
+          {/* <Checkbox name="saraza" value={data._id} onChange={()=> handleChange(record._id, record.isDeactivated)}>Desactivar Producto</Checkbox> */}
+          <Checkbox
             name={`checkbox_${record._id}`}
-            
-            // checked={record.isDeactivated}
-            onChange={()=> setInputBanProduct({_id:record._id , isDeactivated:!record.isDeactivated})}
-           
-            onClick={handleChange}
+            checked={record.isDeactivated}
+            onChange={handleChange(record)}
           >
             Desactivar Producto
           </Checkbox>
         </Space>
       ),
     },
-  ]
+  ];
   const data = useSelector((state) => state.allProduct);
 
-  const [inputBanProduct,setInputBanProduct]=useState({
-    _id:"",
-    isDeactivated:null
+  console.log("55555", data);
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  // const handleCheckboxChange = (event) => {
+  //   setIsChecked(event.target.checked);
+  // };
+
+  const [inputBanProduct, setInputBanProduct] = useState({
+    _id: "",
+    isDeactivated: null,
   });
-  console.log("holaquehace",inputBanProduct)
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProduct());
-  },[getProduct]);
-  
-  const handleChange =()=>{
-    // console.log(isDeactivated)
-    dispatch(putProduct(inputBanProduct)); 
-     
-    }
-      
-  const handleBannerProduct =(event)=>{
-    event.preventDefault();
-    
-    
-    
-  }
+  }, [dispatch]);
+
+  const handleChange = (record) => (event) => {
+    const { checked } = event.target;
+    dispatch(
+      putProduct({
+        id: record._id,
+        isDeactivated: checked,
+        title: record.title,
+      })
+    );
+  };
   return (
     <Table
       columns={columns}
       dataSource={data}
       bordered
+      rowKey="_id"
       title={() => "Productos"}
     />
   );
-  }
+};
 
 export default DashProduct;

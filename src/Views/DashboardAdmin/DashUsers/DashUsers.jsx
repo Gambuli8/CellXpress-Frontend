@@ -1,7 +1,10 @@
-import React from "react";
-import { Space, Table, Tag } from "antd";
-import { useSelector } from "react-redux";
+import React  from "react";
+import { Space, Table, Tag, Checkbox } from "antd";
+import { getUsers , putUser} from "../../../Redux/Actions";
+import { useDispatch, useSelector } from "react-redux";
+import  { useEffect,useState } from "react";
 
+const DashUser = () => {
 const columns = [
   {
     title: "Name",
@@ -32,24 +35,58 @@ const columns = [
     key: "action",
     render: (_, record) => (
       <Space size="middle">
-        <a>Desbanear</a>
-        <a>Banear</a>
+        <Checkbox
+        name={`checkbox_${record._id}`}
+        checked={record.isActive}
+        onChange={handleChange(record)}
+        >
+            El usuario tildado esta activo, destilda para desactivarlo
+        </Checkbox>
       </Space>
     ),
   },
 ];
 
-const DashUser = () => {
   const data = useSelector((state) => state.allUsers);
+
   console.log("dataasas", data);
-  return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      bordered
-      title={() => "Usuarios"}
-    />
+
+  const [isChecked, setIsChecked] = useState(true);
+
+ const [inputBanUser, setInputBanUser] = useState({
+    _id: "",
+    isActive: null,
+  });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
+
+const handleChange = (record) => (event) => {
+  const { checked } = event.target;
+  dispatch(
+    putUser({
+      id: record._id,
+      isActive: checked,
+      name: record.name,
+    })
   );
+};
+return (
+  <Table
+  columns={columns}
+  dataSource={data.map((user) => ({
+    ...user,
+    isActive: user.isActive || false // Set default value to false
+  }))}
+  bordered
+  rowKey="_id"
+  title={() => "Usuarios"}
+  />
+);
 };
 
 export default DashUser;
+
+

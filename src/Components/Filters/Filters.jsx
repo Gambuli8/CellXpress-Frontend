@@ -29,8 +29,6 @@ const Filters = () => {
     dispatch(orderPhone(event.target.value));
   };
 
-<<<<<<< HEAD
-=======
   const clearFilters = () => {
     setInput({
       brand: "",
@@ -50,7 +48,6 @@ const Filters = () => {
   //   event.preventDefault()
   //  dispatch(getfilterspixeles(event.target.value))
   // }
->>>>>>> 8f2e396036de3de81e994d907bd1e652c2c7091d
 
   return (
     <div className={style.container}>

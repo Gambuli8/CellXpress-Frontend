@@ -27,6 +27,9 @@ const Home = () => {
   const indexFirstPhone = indexLastPhone - cantPerPage;
   const currentPhone = filtered.slice(indexFirstPhone, indexLastPhone);
 
+  const allProductFiltered = allProduct.filter(
+    (product) => product.isDeactivated === false
+  );
   const paginado = (pageNumber) => {
     setCurrentPag(pageNumber);
   };
@@ -37,7 +40,7 @@ const Home = () => {
       dispatch(getProduct());
     }
 
-    setFiltered(allProduct);
+    setFiltered(allProductFiltered);
   }, [dispatch, allProduct]);
 
   useEffect(() => {
@@ -65,9 +68,7 @@ const Home = () => {
         handlerChanges={handleChange}
         handleReloadProducts={handleReloadProducts}
       />
-      <section className={style.heroSection}>
-        <h2 className={style.bienvenidoHome}>Bienvenido a CellXpress</h2>
-      </section>
+      <section className={style.heroSection}></section>
 
       <Filters />
 

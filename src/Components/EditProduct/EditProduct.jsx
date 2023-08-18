@@ -1,81 +1,62 @@
-import React, { useState } from "react";
-import { postProduct } from "../../Redux/Actions";
-import { useDispatch } from "react-redux";
-import { validate } from "../Validate/Validate";
-import style from "./NewProduct.module.css";
-import useLocalStorage from "../Hooks/useLocalStorage";
+import { useParams } from "react-router-dom";
+import style from "./editProduct.module.css";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductById, putEditProduct } from "../../Redux/Actions";
 
-const NewProduct = () => {
-  //if (user.admin) {
-  //
+export default function editProduct() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
+  const product = useSelector((state) => state.allProduct);
   const [imageURL, setImageURL] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  const dispatch = useDispatch();
-  const [input, setInput] = useLocalStorage("input",{
+
+  const [input, setInput] = useState({
+    _id: "",
     title: "",
-    price: "",
-    description: "",
     brand: "",
+    price: null,
+    description: "",
     image: "",
-    count: "",
-    rating: [],
+    ram: "",
     screenSize: "",
     cameraInches: "",
-    ram: "",
+    count: null,
   });
-  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    dispatch(getProductById(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    setInput(product);
+  }, [product]);
 
   const handleChange = (event) => {
-    //? Manejo del input
-    const { name, value } = event.target;
-    const error = validate(name, value);
-    setInput((prevInput) => ({
-      ...prevInput,
-      [name]: value,
-    }));
-    setErrors((prevErrors) => ({
-      //? Manejo de errores
-      ...prevErrors,
-      [name]: error,
-    }));
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
   };
-  
-  //! Envio de inputs
-  const handleSubmit = async (event) => {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const validationErrors = validate(input);
-    console.log("inputs antes de handleimageupload", input);
-    if (Object.keys(validationErrors).length === 0) {
-      try {
-        console.log("imageURL despues handleimageupload", imageURL);
-        dispatch(postProduct({ ...input, image: imageURL }));
-        setInput({
-          title: "",
-          price: "",
-          description: "",
-          brand: "",
-          image: "",
-          screenSize: "",
-          cameraInches: "",
-          ram: "",
-          rating: [
-            {
-              rate: 0,
-              count: 0,
-            },
-          ],
-          count: "",
-        });
-        setImageURL(null);
-        setSelectedImage(null);
-      } catch (error) {
-        console.error("Error al enviar el form");
-      }
+    dispatch(putEditProduct({ ...input, image: imageURL }));
+  };
+
+  const previewImage = () => {
+    if (selectedImage) {
+      return (
+        <img
+          src={URL.createObjectURL(selectedImage)}
+          alt={input.title}
+          className={style.img}
+        />
+      );
     }
   };
 
-  //cloudinary
   const handleImageChange = async (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -93,6 +74,7 @@ const NewProduct = () => {
             body: formData,
           }
         );
+
         if (response.ok) {
           const data = await response.json();
           setImageURL(data.secure_url);
@@ -105,27 +87,15 @@ const NewProduct = () => {
     }
   };
 
-  const previewImage = () => {
-    if (selectedImage) {
-      return (
-        <img
-          src={URL.createObjectURL(selectedImage)}
-          alt={input.title}
-          className={style.img}
-        />
-      );
-    }
-  };
-
   return (
     <div className={style.back}>
-      <a href="/home" className={style.buttonBack}>
+      <a href="/admin" className={style.buttonBack}>
         Volver
       </a>
       <div className={style.container}>
         <form className={style.inputContainer} onSubmit={handleSubmit}>
-          <h2 className={style.titulo}>Añadir Producto</h2>
-          <label className={style.label}>Titulo</label>
+          <h1 className={style.titulo}>Editar Producto</h1>
+          <label className={style.label}>{product.title}</label>
           <input
             className={style.input}
             type="text"
@@ -151,6 +121,7 @@ const NewProduct = () => {
             name="ram"
             onChange={handleChange}
             required
+            value={input.ram}
           >
             <option defaultChecked value="">
               Seleccione Ram
@@ -169,6 +140,7 @@ const NewProduct = () => {
             name="screenSize"
             onChange={handleChange}
             required
+            value={input.screenSize}
           >
             <option defaultChecked value="">
               Seleccione Tamaño
@@ -177,7 +149,7 @@ const NewProduct = () => {
             <option value="4 PULGADAS"> 4 Pulgadas </option>
             <option value="4.7 PULGADAS"> 4.7 Pulgadas </option>
             <option value="5.5 PULGADAS">5.5 Pulgadas </option>
-            <option value="	6.1 PULGADAS"> 6.1 Pulgadas </option>
+            <option value="6.1 PULGADAS"> 6.1 Pulgadas </option>
             <option value="6.5 PULGADAS">6.5 Pulgadas </option>
             <option value="6.2 PULGADAS">6.2 Pulgadas </option>
           </select>
@@ -188,10 +160,9 @@ const NewProduct = () => {
             name="cameraInches"
             onChange={handleChange}
             required
+            value={input.cameraInches}
           >
-            <option defaultChecked value="">
-              Seleccione Resolucion
-            </option>
+            <option>Seleccione Resolucion</option>
             <option value="2 MP"> 2 Mp</option>
             <option value="5 MP"> 5 Mp </option>
             <option value="8 MP"> 8 Mp </option>
@@ -220,6 +191,7 @@ const NewProduct = () => {
             name="brand"
             onChange={handleChange}
             required
+            value={input.brand}
           >
             <option defaultChecked value="">
               Seleccione Marca
@@ -235,6 +207,14 @@ const NewProduct = () => {
           </select>
 
           <label className={style.label}>Imagen</label>
+          <img
+            className={style.img}
+            src={input.image}
+            name="image"
+            onChange={handleChange}
+            accept="image/*"
+            required
+          />
           <input
             className={style.input}
             type="file"
@@ -256,9 +236,9 @@ const NewProduct = () => {
           <button
             className={style.button}
             type="submit"
-            disabled={!selectedImage}
+            //   disabled={!selectedImage}
           >
-            Crear
+            Actualizar Producto
           </button>
         </form>
         <div className={style.inputContainer}>
@@ -279,7 +259,4 @@ const NewProduct = () => {
       </div>
     </div>
   );
-  //}
-};
-
-export default NewProduct;
+}
