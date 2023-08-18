@@ -7,12 +7,14 @@ import {
   ORDERPHONE,
   GETFILTERS,
   POST_PRODUCT,
+  PUT_USER,
   POST_ORDER,
   POST_USER,
   RAMFILTERS,
   PIXELESFILTERS,
   GET_ORDER_BUY,
   PUT_PRODUCT,
+  GET_PRODUCT_BY_ID,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -113,11 +115,22 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allProduct: action.payload,
       };
+      case PUT_USER:
+        return {
+          ...state,
+          allUsers: action.payload,
+        };
 
     case POST_USER:
       return {
         ...state,
         user: action.payload,
+      };
+
+    case GET_PRODUCT_BY_ID:
+      return {
+        ...state,
+        allProduct: action.payload,
       };
 
     case GET_ORDER_BUY:

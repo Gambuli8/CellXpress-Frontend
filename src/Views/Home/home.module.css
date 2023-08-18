@@ -12,12 +12,13 @@
 .heroSection {
   background: linear-gradient(rgba(0, 0, 0, 0.658), rgba(0, 0, 0, 0.651)),
     url(https://images.unsplash.com/photo-1649859398731-d3c4ebca53fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
-  height: calc(100vh - 80px);
+  height: calc(50vh - 80px);
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: white;
   flex-direction: column;
+  background-position: center;
 }
 
 .bienvenidoHome {
