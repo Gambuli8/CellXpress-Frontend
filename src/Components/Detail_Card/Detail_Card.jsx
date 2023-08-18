@@ -8,12 +8,9 @@ import { useSelector } from "react-redux";
 import useCart from "../Hooks/useCart";
 import Swal from "sweetalert2";
 import Navbar from "../NavBar/Navbar";
-<<<<<<< HEAD
 import StarRating from "../StarRating/StarRating";
 
-=======
 import { useAuth } from "../../context/authContext";
->>>>>>> b993929aa6670202b09f6fdc89e8ccdc6a02e87b
 
 export default function Detail_Card() {
   const { user } = useAuth();
@@ -56,7 +53,6 @@ export default function Detail_Card() {
               <div className={style.card_image}>
                 <img className={style.image} src={product?.image} alt="image" />
               </div>
-<<<<<<< HEAD
               <div className={style.countContainer}>
                 <li className={style.totalPrice}>Total: ${product.price} </li>
               </div>
@@ -67,7 +63,6 @@ export default function Detail_Card() {
              
               <h3>Descripción:</h3>
               <p className={style.card__text}>{product?.description}</p>
-=======
               <div className={style.cardInfo}>
                 <h4 className={style.card__brand}>
                   {product?.brand.toUpperCase()}
@@ -96,26 +91,10 @@ export default function Detail_Card() {
                     </div>
                   </Link>
                 )}
-                {/* <div className={style.raiting}>
-                <h3 className={style.raiting__text}>Calificación:</h3>
-                <p className={style.raiting__stars}>{product?.rating[0]?.rate}</p>
-                <div className={style.stars}>
-          {starRating.map((_, index) => {
-            return (
-              <img 
-              style={{transition: "color 200ms", width: '20px', height:'20px', outline: 'none', margin: '0 2px', padding: '0', fontSize: '1.2rem', color: ''}}
-              src="https://res.cloudinary.com/djqwbu0my/image/upload/v1690138662/star-vacia_zygqve.svg" 
-              alt='estrella rating' 
-              key={index}
-              />
-            );
-          })}
-        </div>
-              </div> */}
+              
                 <h3>Descripción:</h3>
                 <p className={style.card__text}>{product?.description}</p>
               </div>
->>>>>>> b993929aa6670202b09f6fdc89e8ccdc6a02e87b
             </div>
           </div>
         ) : (
