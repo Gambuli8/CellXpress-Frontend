@@ -7,6 +7,7 @@ import AboutUs from "./Views/About Us/AboutUs";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import Register from "./Components/Register/Register";
 import DetailCarrito from "./Components/detailCarrito/detailCarrito";
+import EditProduct from "./Components/EditProduct/EditProduct";
 import "./App.css";
 import { CartProvider } from "./Components/Context/CartContext";
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
@@ -16,7 +17,6 @@ import "./App.css";
 // axios.defaults.baseURL =  "http://localhost:3002"
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
-
   return (
     <>
       <CartProvider>
@@ -31,11 +31,12 @@ function App() {
             <Route path="/carrito" element={<DetailCarrito />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<DashboardAdmin />} />
+            <Route path="/editproduct/:id" element={<EditProduct />} />
           </Routes>
         </div>
       </CartProvider>
     </>
   );
-};
+}
 
 export default App;

@@ -13,6 +13,7 @@ import {
   RAMFILTERS,
   PIXELESFILTERS,
   GET_ORDER_BUY,
+  GET_PRODUCT_BY_ID,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -23,7 +24,7 @@ export function getProduct() {
   return async function (dispatch) {
     try {
       const response = (await axios.get("/products")).data;
-      console.log("6666", response);
+
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response,
@@ -48,12 +49,12 @@ export const postProduct = (products) => {
 };
 
 export const putProduct = (products) => {
+  console.log("5555555555555555 Productsss de editProduct", products);
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products.id}`, {
         isDeactivated: products.isDeactivated,
       });
-      console.log("8888", response);
       if (products.isDeactivated) {
         Swal.fire({
           text: `${products.title} desactivado Correctamente`,
@@ -68,6 +69,32 @@ export const putProduct = (products) => {
 
       dispatch(getProduct());
     } catch (error) {
+      console.log(error);
+      /*alert(error.message)*/
+    }
+  };
+};
+
+export const putEditProduct = (products) => {
+  console.log("5555555555555555 Productsss de editProduct", products);
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`/products/${products._id}`, products);
+      if (response) {
+        Swal.fire({
+          text: `${products.title} Actualizado Correctamente`,
+          icon: "success",
+        });
+      }
+      dispatch(getProduct());
+    } catch (error) {
+      if (error) {
+        Swal.fire({
+          text: `${products.title} No se pudo actualizar`,
+          icon: "error",
+        });
+      }
+
       console.log(error);
       /*alert(error.message)*/
     }
@@ -93,7 +120,7 @@ export const getProductsByName = (name) => {
     try {
       const response = (await axios.get(`/products/search?keyword=${name}`))
         .data.products;
-      console.log(response);
+
       if (response.length === 0) {
         Swal.fire({
           text: "No se encontro el producto",
@@ -235,6 +262,20 @@ export const orderBuy = () => {
       });
     } catch (error) {
       console.log("errorrr", error);
+    }
+  };
+};
+
+export const getProductById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/products/${id}`)).data.product;
+      dispatch({
+        type: GET_PRODUCT_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("errorur", error);
     }
   };
 };

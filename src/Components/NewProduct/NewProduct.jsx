@@ -75,18 +75,15 @@ const NewProduct = () => {
   };
 
   //cloudinary
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       setSelectedImage(selectedFile);
-    }
-  };
 
-  const handleImageUpload = async () => {
-    if (selectedImage) {
       const formData = new FormData();
-      formData.append("file", selectedImage);
+      formData.append("file", selectedFile);
       formData.append("upload_preset", "Activities");
+
       try {
         const response = await fetch(
           "https://api.cloudinary.com/v1_1/djqwbu0my/image/upload",
@@ -97,11 +94,8 @@ const NewProduct = () => {
         );
 
         if (response.ok) {
-          console.log(response);
           const data = await response.json();
-          console.log("dataaaa", data.secure_url);
           setImageURL(data.secure_url);
-          console.log("Se subio perri", data.secure_url);
         } else {
           console.error("Error al cargar la imagen");
         }
@@ -198,16 +192,16 @@ const NewProduct = () => {
             <option defaultChecked value="">
               Seleccione Resolucion
             </option>
-            <option value=" 2 MP"> 2 Mp</option>
-            <option value=" 5 MP"> 5 Mp </option>
-            <option value=" 8 MP"> 8 Mp </option>
-            <option value=" 12 MP">12 Mp </option>
-            <option value=" 16 MP"> 16 Mp </option>
-            <option value=" 20 MP">20 Mp </option>
-            <option value=" 32 MP">32 Mp </option>
-            <option value=" 48 MP">48 Mp </option>
-            <option value=" 64 MP">64 Mp </option>
-            <option value=" 108 MP">108 Mp </option>
+            <option value="2 MP"> 2 Mp</option>
+            <option value="5 MP"> 5 Mp </option>
+            <option value="8 MP"> 8 Mp </option>
+            <option value="12 MP">12 Mp </option>
+            <option value="16 MP"> 16 Mp </option>
+            <option value="20 MP">20 Mp </option>
+            <option value="32 MP">32 Mp </option>
+            <option value="48 MP">48 Mp </option>
+            <option value="64 MP">64 Mp </option>
+            <option value="108 MP">108 Mp </option>
           </select>
 
           <label className={style.label}>Descripción</label>
@@ -249,9 +243,6 @@ const NewProduct = () => {
             accept="image/*"
             required
           />
-          <button className={style.button} onClick={handleImageUpload}>
-            Subir imagen
-          </button>
           <label className={style.label}>Stock</label>
           <input
             className={style.input}

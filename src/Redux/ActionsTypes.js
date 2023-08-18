@@ -10,3 +10,4 @@ export const POST_ORDER = "POST_ORDER";
 export const RAMFILTERS = "RAMFILTERS";
 export const PIXELESFILTERS = "PIXELESFILTERS";
 export const GET_ORDER_BUY = "GET_ORDER_BUY";
+export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
