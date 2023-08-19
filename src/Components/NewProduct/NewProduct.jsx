@@ -12,7 +12,7 @@ const NewProduct = () => {
   const [imageURL, setImageURL] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
-  const [input, setInput] = useState({
+  const [input, setInput] = useLocalStorage("input",{
     title: "",
     price: "",
     description: "",
@@ -40,6 +40,7 @@ const NewProduct = () => {
       [name]: error,
     }));
   };
+  
   //! Envio de inputs
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -92,7 +93,6 @@ const NewProduct = () => {
             body: formData,
           }
         );
-
         if (response.ok) {
           const data = await response.json();
           setImageURL(data.secure_url);

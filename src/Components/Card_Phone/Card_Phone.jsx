@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCart from "../Hooks/useCart";
 import { useAuth } from "../../context/authContext";
+import StarRating from "../StarRating/StarRating";
 
 const Card_Phone = (props) => {
   const { user } = useAuth();
@@ -38,6 +39,9 @@ const Card_Phone = (props) => {
         <div className={style.card_img}>
           <img className={style.image} src={props.image} />
         </div>
+      <div>
+      <StarRating/>
+      </div>
         <div className={style.card_info}>
           {/* <p className={style.text_title}>{props.rating[0].rate}</p> */}
           <p className={style.text_title}>{props.brand.toUpperCase()}</p>

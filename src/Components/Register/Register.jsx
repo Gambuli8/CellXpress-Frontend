@@ -5,6 +5,7 @@ import { postUser } from "../../Redux/Actions";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../Hooks/useLocalStorage.js";
 
 const Register = () => {
   const { signup, loginGoogle, user } = useAuth();
