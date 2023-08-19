@@ -15,6 +15,7 @@ import {
   GET_ORDER_BUY,
   PUT_PRODUCT,
   GET_PRODUCT_BY_ID,
+
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -120,6 +121,7 @@ const rootReducer = (state = inicialState, action) => {
           ...state,
           allUsers: action.payload,
         };
+      
 
     case POST_USER:
       return {

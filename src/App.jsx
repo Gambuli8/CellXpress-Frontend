@@ -10,12 +10,11 @@ import DetailCarrito from "./Components/detailCarrito/detailCarrito";
 import EditProduct from "./Components/EditProduct/EditProduct";
 import "./App.css";
 import { CartProvider } from "./Components/Context/CartContext";
-axios.defaults.baseURL = "https://cellxpress.onrender.com";
 import Login from "./Components/Login/Login";
 import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
 import "./App.css";
-// axios.defaults.baseURL =  "http://localhost:3002"
-axios.defaults.baseURL = "https://cellxpress.onrender.com";
+axios.defaults.baseURL =  "http://localhost:3002"
+// axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
   return (
     <>
