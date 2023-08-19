@@ -62,7 +62,7 @@ export default function Detail_Card() {
       </div>
              
               <h3>Descripción:</h3>
-              <p className={style.card__text}>{product?.description}</p>
+              {/* <p className={style.card__text}>{product?.description}</p> */}
               <div className={style.cardInfo}>
                 <h4 className={style.card__brand}>
                   {product?.brand.toUpperCase()}
