@@ -282,6 +282,21 @@ export const loginUser = (userlog) => {
     }
   };
 };
+// funcion  para calificar los Productos
+export const calificar = (info) => {
+  console.log("PruebasssssssssUsuariossss", info);
+  return async (dispatch) => {
+    // try {
+    //   const response = await axios.post(
+    //     "https://cellxpress.onrender.com/",
+        
+    //   );
+      
+    // } catch (error) {
+    //   alert(error.message);
+    // }
+  };
+};
 
 //funcion para traer todas las ordenes de compras
 export const orderBuy = () => {
