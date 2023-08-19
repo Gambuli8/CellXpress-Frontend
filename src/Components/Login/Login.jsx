@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 function Login() {
   const { login, loginGoogle, user } = useAuth();
   const navigate = useNavigate();
-  const [input, setInput] = useState({
+  const [input, setInput] = useLocalStorage("input",{
     email: "",
     password: "",
   });
