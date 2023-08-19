@@ -51,7 +51,13 @@ export default function Detail_Card() {
             </a>
             <div className={style.card}>
               <div className={style.card_image}>
-                <img className={style.image} src={product?.image} alt="image" />
+                <img
+                  className={style.image}
+                  src={product?.image}
+                  alt="image"
+                  width="800px"
+                  height="700px"
+                />
               </div>
               <div className={style.countContainer}>
                 <li className={style.totalPrice}>Total: ${product.price} </li>
