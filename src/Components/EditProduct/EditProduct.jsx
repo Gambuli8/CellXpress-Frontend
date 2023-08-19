@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById, putEditProduct } from "../../Redux/Actions";
 
-export default function editProduct() {
+export default function EditProduct() {
   const { id } = useParams();
   const dispatch = useDispatch();
 

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./Login.module.css";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../Hooks/useLocalStorage.js";
-
+import { getUsers } from "../../Redux/Actions";
+import { useSelector, useDispatch } from "react-redux";
 
 function Login() {
   const { login, loginGoogle, user } = useAuth();
@@ -30,30 +31,34 @@ function Login() {
     }));
   };
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors("");
     const validationErrors = validate(input);
 
     if (Object.keys(validationErrors).length === 0) {
-        await login(input.email, input.password);
-        navigate("/home");
+      await login(input.email, input.password);
+      navigate("/home");
     }
   };
   const loginWithGoogle = async () => {
-    
-      await loginGoogle();
-      navigate("/home");
-      if (user) {
-        dispatch(postUser(user));
-        setInput({
-          name: user.displayName,
-          phone: user.phoneNumber,
-          email: user.email,
-          password: user.uid,
-        });
-      }
-    
+    await loginGoogle();
+    navigate("/home");
+    if (user) {
+      dispatch(postUser(user));
+      setInput({
+        name: user.displayName,
+        phone: user.phoneNumber,
+        email: user.email,
+        password: user.uid,
+      });
+    }
   };
 
   return (
