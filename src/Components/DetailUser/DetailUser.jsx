@@ -1,7 +1,9 @@
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
+
 import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import { getOrderById, editPutUser, getUserById } from "../../Redux/Actions";
 
@@ -17,12 +19,12 @@ const DetailUser = () => {
     phone: "",
     id: id,
   });
-  //perfectoooooooooooooooo
 
   window.addEventListener('popstate', function (e) {
     window.location.assign("http://localhost:5173/home");
     window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
   });
+
 
 
   useEffect(() => {
@@ -43,6 +45,7 @@ const DetailUser = () => {
   };
 
   const handleSubmit = () => {
+
    dispatch(editPutUser(input));
      
   };
@@ -51,6 +54,8 @@ const DetailUser = () => {
       <a className={style.btn_back} href="/home">
               Atras
             </a>
+
+
 
       <div className={style.containerProbando}>
         <div className={style.containerEditUser}>
@@ -117,8 +122,7 @@ const DetailUser = () => {
           })}
         </div>
       </div>
-    
-     
+
     </div>
   );
 };

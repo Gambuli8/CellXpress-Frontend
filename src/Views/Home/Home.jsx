@@ -10,7 +10,7 @@ import style from "./home.module.css";
 import Filters from "../../Components/Filters/Filters";
 import Paginado from "../../Components/Paginado/Paginado";
 import { useAuth } from "../../context/authContext";
-import { postUser } from "../../Redux/Actions";
+import { postUser, getUsers } from "../../Redux/Actions";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {

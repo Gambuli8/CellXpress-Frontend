@@ -5,13 +5,29 @@ import style from "./navBar.module.css";
 import Searchbar from "../SearchBar/SearchBar";
 import { useAuth } from "../../context/authContext";
 import Carrito from "../Carrito/Carrito";
+import { useEffect } from "react";
+import { getUsers } from "../../Redux/Actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbar({
   handleSubmit,
   handlerChanges,
   handleReloadProducts,
 }) {
+  const dispatch = useDispatch();
   const { user, logout } = useAuth();
+  const allUseres = useSelector((state) => state.allUsers);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [user]);
+
+  const userParam =
+    user && allUseres.find((userParam) => userParam.email === user.email);
+
+  console.log("3333333333", userParam);
+  console.log("1111111111", user);
+  console.log("222222222", allUseres);
   return (
     <nav className={style.navContainer}>
       <div>
@@ -50,7 +66,9 @@ export default function Navbar({
           </NavLink>
         ) : (
           <div className={style.user}>
-            <p>{user.email}</p>
+              {userParam && (
+              <NavLink to={`/user/${userParam._id}`}>{userParam.name}</NavLink>
+            )}
             <button onClick={logout} className={style.btn}>
               Log Out
             </button>
