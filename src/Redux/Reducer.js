@@ -9,6 +9,7 @@ import {
   POST_PRODUCT,
   PUT_USER,
   POST_ORDER,
+  ALL_DELETE_CART,
   POST_USERID,
   POST_USER,
   RAMFILTERS,
@@ -21,7 +22,7 @@ import {
 let inicialState = {
   allProduct: [],
   allUsers: [],
-  user: {},
+  user: [],
   allProductsByName: [],
   viewProducts: [],
   order: [],
@@ -118,11 +119,11 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allProduct: action.payload,
       };
-      case PUT_USER:
-        return {
-          ...state,
-          allUsers: action.payload,
-        };
+    case PUT_USER:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
 
     case POST_USER:
       return {
@@ -130,6 +131,11 @@ const rootReducer = (state = inicialState, action) => {
         user: action.payload,
       };
     case POST_ORDER:
+      return {
+        ...state,
+        order: action.payload,
+      };
+    case ALL_DELETE_CART:
       return {
         ...state,
         order: action.payload,

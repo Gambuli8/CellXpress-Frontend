@@ -12,5 +12,6 @@ export const POST_USERID = "POST_USERID";
 export const LOGIN_USER = "LOGIN_USER";
 export const RAMFILTERS = "RAMFILTERS";
 export const PIXELESFILTERS = "PIXELESFILTERS";
+export const ALL_DELETE_CART = "ALL_DELETE_CART";
 export const DELETE_PRODUCT_CART = "DELETE_PRODUCT_CART";
 export const GET_ORDER_BUY = "GET_ORDER_BUY";

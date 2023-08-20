@@ -5,17 +5,17 @@ import { useEffect, useId, useState } from "react";
 import style from "./Carrito.module.css";
 import useCart from "../Hooks/useCart";
 import swal from "sweetalert2";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postInfo, postUserId, deleteProduct } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function CartItem(product) {
 
   const { removeFromCart, cart, saveCart } = useCart();
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const {pathname} = useLocation();
   
+  console.log(product);
   //mandar info de compra a la base de datos
    const [input, setInput] = useState({
     productId: product.id,

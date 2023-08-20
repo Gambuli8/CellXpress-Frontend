@@ -10,6 +10,7 @@ import {
   POST_PRODUCT,
   PUT_USER,
   PUT_PRODUCT,
+  ALL_DELETE_CART,
   POST_ORDER,
   POST_USERID,
   LOGIN_USER,
@@ -187,6 +188,19 @@ export const deleteProduct = (productId, userId) => {
         `http://localhost:3002/order/remove-from-cart/${userId}/${productId}`
       );
       dispatch({ type: DELETE_PRODUCT_CART, payload: response.data });
+    } catch (error) {
+      console.log(error.message.data);
+    }
+  };
+};
+
+export const allDelete = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3002/order/empty-cart/${userId}`
+      );
+      dispatch({ type: ALL_DELETE_CART, payload: response.data });
     } catch (error) {
       console.log(error.message.data);
     }
