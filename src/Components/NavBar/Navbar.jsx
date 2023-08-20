@@ -12,6 +12,7 @@ export default function Navbar({
   handleReloadProducts,
 }) {
   const { user, logout } = useAuth();
+
   return (
     <nav className={style.navContainer}>
       <div>
