@@ -7,16 +7,30 @@ import { useEffect, useState } from "react";
 import DashUser from "./DashUsers/DashUsers";
 import DashProduct from "./DashProducts/DashProducts";
 import DashOrder from "./DashOrders/DashOrders";
+import { useAuth } from "../../context/authContext"
+
 export default function DashboardAdmin() {
+  const { user, logout } = useAuth();
+  const allUser = useSelector((state)=> state.allUsers)
+  const adminUsers = user && allUser.find((adminUser) => adminUser.email === user.email);
+const dispatch =useDispatch()
+useEffect(()=>{
+  dispatch(getUsers())
+},[])
+
   const [activeTab, setActiveTab] = useState(" ");
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
+  switch (adminUsers?.admin) {
+    case true:
   return (
+  
     <div className={style.dashContainer}>
       <Navbar />
       <h2>Admin</h2>
+     
       <div className={style.containerDos}>
         <div>
           <Sidebar onTabChange={handleTabChange} />
@@ -27,6 +41,11 @@ export default function DashboardAdmin() {
           {activeTab === "order" && <DashOrder />}
         </div>
       </div>
+     
     </div>
+    
   );
+  default:
+      return <h1> You are not an administrator authorized </h1>;
+  }
 }

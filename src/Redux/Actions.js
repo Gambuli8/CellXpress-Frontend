@@ -299,7 +299,7 @@ export const loginUser = (userlog) => {
 };
 // funcion  para calificar los Productos
 export const calificar = (info) => {
-  console.log("PruebasssssssssUsuariossss", info);
+  
   return async (dispatch) => {
     // try {
     //   const response = await axios.post(
