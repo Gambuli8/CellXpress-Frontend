@@ -5,6 +5,7 @@ import { postUser } from "../../Redux/Actions";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../Hooks/useLocalStorage.js";
 
 const Register = () => {
   const { signup, loginGoogle, user } = useAuth();
@@ -49,11 +50,11 @@ const Register = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        setErrors({})
+        setErrors({});
         signup(input.email, input.password);
-        navigate("/home");
+        navigate("/login");
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
 
       dispatch(postUser(input));
@@ -67,8 +68,8 @@ const Register = () => {
   };
   const fireDb = (user) => {
     dispatch(postUser(userFire));
-    navigate("/home");
-  }
+    navigate("/login");
+  };
   useEffect(() => {
     if (user) {
       setUserFire({
@@ -79,7 +80,7 @@ const Register = () => {
       });
       console.log(userFire);
     }
-  }, [user])
+  }, [user]);
 
   const registerWithGoogle = async (e) => {
     try {
@@ -87,7 +88,7 @@ const Register = () => {
       setErrors({});
       await loginGoogle();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -175,5 +176,3 @@ const Register = () => {
   );
 };
 export default Register;
-
-

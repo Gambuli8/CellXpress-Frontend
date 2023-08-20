@@ -15,6 +15,8 @@ import {
   PIXELESFILTERS,
   GET_ORDER_BUY,
   GET_PRODUCT_BY_ID,
+  GET_ORDER_BY_ID,
+  GET_USER_BY_ID,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -102,7 +104,6 @@ export const putEditProduct = (products) => {
   };
 };
 
-
 export const getUsers = () => {
   return async (dispatch) => {
     try {
@@ -116,7 +117,6 @@ export const getUsers = () => {
     }
   };
 };
-
 export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
@@ -154,6 +154,7 @@ export const postUser = (user) => {
       );
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
+      console.log(response);
       return response;
     } catch (error) {
       alert(error.response.data.message);
@@ -161,17 +162,15 @@ export const postUser = (user) => {
   };
 };
 
-
 //PUT USER PARA BANEAR
 export const putUser = (user) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(`/users/${user.id}`, {
         isActive: user.isActive,
-        email:user.name
       });
       console.log("8888", response);
-      if ( user.isActive) {
+      if (user.isActive) {
         Swal.fire({
           text: `${user.name} Activado Correctamente`,
           icon: "success",
@@ -191,6 +190,22 @@ export const putUser = (user) => {
   };
 };
 
+//PUT PARA EDITAR USUARIO (SOLO NOMBRE Y TELEFONO)
+export const editPutUser = (user) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`/users/${user.id}`, {
+        name: user.name,
+        phone: user.phone,
+      });
+      console.log("8888", response);
+      dispatch(getUsers());
+    } catch (error) {
+      console.log(error);
+      /*alert(error.message)*/
+    }
+  };
+};
 
 export const getfilters = (info) => {
   return async (dispatch) => {
@@ -282,13 +297,28 @@ export const loginUser = (userlog) => {
     }
   };
 };
+// funcion  para calificar los Productos
+export const calificar = (info) => {
+  console.log("PruebasssssssssUsuariossss", info);
+  return async (dispatch) => {
+    // try {
+    //   const response = await axios.post(
+    //     "https://cellxpress.onrender.com/",
+        
+    //   );
+      
+    // } catch (error) {
+    //   alert(error.message);
+    // }
+  };
+};
 
 //funcion para traer todas las ordenes de compras
 export const orderBuy = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/order/all/`);
-      console.log("response ORderrrr", response);
+
       dispatch({
         type: GET_ORDER_BUY,
         payload: response.data,
@@ -309,6 +339,36 @@ export const getProductById = (id) => {
       });
     } catch (error) {
       console.log("errorur", error);
+    }
+  };
+};
+
+export const getOrderById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/order/orders/user/${id}`)).data;
+      dispatch({
+        type: GET_ORDER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+//get user by ID
+
+export const getUserById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/users/${id}`)).data;
+      dispatch({
+        type: GET_USER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
     }
   };
 };
