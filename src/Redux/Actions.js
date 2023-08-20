@@ -397,6 +397,20 @@ export const getOrderById = (id) => {
   };
 };
 
+export const getPendingOrderById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/order/orders/user/${id}`)).data;
+      dispatch({
+        type: GET_ORDER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
 //get user by ID
 
 export const getUserById = (id) => {

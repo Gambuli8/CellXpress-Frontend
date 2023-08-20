@@ -11,17 +11,29 @@ import Navbar from "../NavBar/Navbar";
 import { getProduct } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
 import { postOrder } from "../../Redux/Actions";
+import { useAuth } from "../../context/authContext";
+import { getUsers } from "../../Redux/Actions";
 
 export default function Detail_Card(productId) {
   /*estado de productos */
   const [product, setProduct] = useState({});
   
   const { addToCart } = useCart();
+  const dispatch = useDispatch();
+  const user = useAuth().user;
+  const allUsers = useSelector((state) => state.allUsers);
 
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [user, dispatch]);
+
+  const userParam =
+  user && allUsers.find((userParam) => userParam.email === user.email);
+  
   const handlerAddToCart = async (productId) => {
     try {
       const order = {
-        userId: "64dc1c53286db5b8000b7e30",
+        userId: userParam._id,
         productId: productId,
         quantity: 1,
       };
@@ -51,8 +63,6 @@ export default function Detail_Card(productId) {
   /* estado de redux */
   const allProduct = useSelector((state) => state.allProduct);
   const { id } = useParams();
-
-  const dispatch = useDispatch();
 
   /* funcion para buscar el producto por id */
   useEffect(() => {

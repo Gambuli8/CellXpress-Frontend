@@ -3,16 +3,27 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import style from "./Card.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCart from "../Hooks/useCart";
 import { useAuth } from "../../context/authContext";
-import { postOrder } from "../../Redux/Actions";
-import { useDispatch } from "react-redux";
+import { postOrder, getUsers } from "../../Redux/Actions";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Card_Phone = (props) => {
-  const { user } = useAuth();
   const dispatch = useDispatch(); // Agrega el dispatcher para usar en postOrder
+  const user = useAuth().user;
+  const allUsers = useSelector((state) => state.allUsers);
+  
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [user, dispatch]);
+
+  const userParam =
+  user && allUsers.find((userParam) => userParam.email === user.email);
+
 
   const {cart} = useCart();
 
@@ -28,7 +39,7 @@ const Card_Phone = (props) => {
   const handlerAddToCart = async (productId) => {
     try {
       const order = {
-        userId: "64dc1c53286db5b8000b7e30",
+        userId: userParam._id,
         productId: productId,
         quantity: 1,
       };
