@@ -1,7 +1,7 @@
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getOrderById, editPutUser, getUserById } from "../../Redux/Actions";
 
@@ -17,6 +17,13 @@ const DetailUser = () => {
     phone: "",
     id: id,
   });
+  //perfectoooooooooooooooo
+
+  window.addEventListener('popstate', function (e) {
+    window.location.assign("http://localhost:5173/home");
+    window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
+  });
+
 
   useEffect(() => {
     dispatch(getOrderById(id));
@@ -36,12 +43,15 @@ const DetailUser = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(editPutUser(input));
+   dispatch(editPutUser(input));
+     
   };
-
-  console.log(input);
   return (
     <div>
+      <a className={style.btn_back} href="/home">
+              Atras
+            </a>
+
       <div className={style.containerProbando}>
         <div className={style.containerEditUser}>
           <div>
@@ -53,6 +63,7 @@ const DetailUser = () => {
               }
               alt=""
             />
+
           </div>
           <form onSubmit={handleSubmit} className={style.formEditUser}>
             <label>Su usuario</label>
@@ -106,6 +117,8 @@ const DetailUser = () => {
           })}
         </div>
       </div>
+    
+     
     </div>
   );
 };

@@ -4,11 +4,9 @@ import style from "./StartRating.module.css"
 import { useDispatch } from 'react-redux'
 import {calificar} from "../../Redux/Actions"
 
-
 const StarRating = () => {
 const dispatch = useDispatch()
 const [rating, setRating ] = useState()
-
 
 useEffect(()=>{
   dispatch(calificar(rating))

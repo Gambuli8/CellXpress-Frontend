@@ -40,6 +40,11 @@ export default function Detail_Card() {
     // setProduct(producttrue);
   }, [allProduct, id]);
 
+  window.addEventListener('popstate', function (e) {
+    window.location.assign("http://localhost:5173/home");
+    window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
+  });
+
   return (
     <>
       <Navbar />

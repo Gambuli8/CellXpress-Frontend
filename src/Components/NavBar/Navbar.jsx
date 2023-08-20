@@ -25,9 +25,6 @@ export default function Navbar({
   const userParam =
     user && allUseres.find((userParam) => userParam.email === user.email);
 
-  console.log("3333333333", userParam);
-  console.log("1111111111", user);
-  console.log("222222222", allUseres);
   return (
     <nav className={style.navContainer}>
       <div>
