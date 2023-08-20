@@ -15,8 +15,8 @@ import Login from "./Components/Login/Login";
 import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
 import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
-// axios.defaults.baseURL =  "http://localhost:3002"
-axios.defaults.baseURL = "https://cellxpress.onrender.com";
+axios.defaults.baseURL = "http://localhost:3002";
+// axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
   return (
     <>
@@ -33,7 +33,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<DashboardAdmin />} />
             <Route path="/editproduct/:id" element={<EditProduct />} />
-            <Route path="/user" element={<DetailUser />} />
+            <Route path="/user/:id" element={<DetailUser />} />
           </Routes>
         </div>
       </CartProvider>
