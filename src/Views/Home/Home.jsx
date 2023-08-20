@@ -43,6 +43,8 @@ const Home = () => {
 
     setFiltered(allProductFiltered);
   }, [dispatch, allProduct]);
+  
+
 
   useEffect(() => {
     setFiltered(allProductsByName);

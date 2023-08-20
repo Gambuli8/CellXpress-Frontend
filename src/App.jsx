@@ -17,7 +17,7 @@ import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
  axios.defaults.baseURL = "http://localhost:3002";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
-axios.defaults.baseURL = "https://cellxpress.onrender.com";
+//axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
   return (
 

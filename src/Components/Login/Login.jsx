@@ -95,10 +95,11 @@ function Login() {
           )}
           <button className={style.button}>Login</button>
           <p className={style.label}>-------------O-------------</p>
-          <button className={style.button} onClick={loginWithGoogle}>
+          
+        </form>
+        <button className={style.button} onClick={loginWithGoogle}>
             Login With Google
           </button>
-        </form>
       </div>
     </div>
   );
