@@ -17,6 +17,9 @@ import {
   DELETE_PRODUCT_CART,
   GET_ORDER_BUY,
   PUT_PRODUCT,
+  GET_PRODUCT_BY_ID,
+  GET_ORDER_BY_ID,
+  GET_USER_BY_ID,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -28,6 +31,7 @@ let inicialState = {
   order: [],
   userId: {},
   orderBuy: [],
+  orderById: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -47,6 +51,12 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         allProduct: action.payload,
+      };
+
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+        allUsers: action.payload,
       };
 
     case GETFILTERS:
@@ -107,13 +117,11 @@ const rootReducer = (state = inicialState, action) => {
           }),
         };
       }
-
     case POST_PRODUCT:
       return {
         ...state,
         product: action.payload,
       };
-
     case PUT_PRODUCT:
       return {
         ...state,
@@ -124,7 +132,6 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allUsers: action.payload,
       };
-
     case POST_USER:
       return {
         ...state,
@@ -150,10 +157,20 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         order: action.payload,
       };
+    case GET_PRODUCT_BY_ID:
+      return {
+        ...state,
+        allProduct: action.payload,
+      };
     case GET_ORDER_BUY:
       return {
         ...state,
         orderBuy: action.payload,
+      };
+    case GET_ORDER_BY_ID:
+      return {
+        ...state,
+        orderById: action.payload,
       };
   }
   return state;

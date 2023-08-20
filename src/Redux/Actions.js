@@ -18,6 +18,9 @@ import {
   PIXELESFILTERS,
   DELETE_PRODUCT_CART,
   GET_ORDER_BUY,
+  GET_PRODUCT_BY_ID,
+  GET_ORDER_BY_ID,
+  GET_USER_BY_ID,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -28,7 +31,7 @@ export function getProduct() {
   return async function (dispatch) {
     try {
       const response = (await axios.get("/products")).data;
-      console.log("6666", response);
+
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response,
@@ -53,12 +56,12 @@ export const postProduct = (products) => {
 };
 
 export const putProduct = (products) => {
+  console.log("5555555555555555 Productsss de editProduct", products);
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products.id}`, {
         isDeactivated: products.isDeactivated,
       });
-      console.log("8888", response);
       if (products.isDeactivated) {
         Swal.fire({
           text: `${products.title} Desactivado Correctamente`,
@@ -78,6 +81,30 @@ export const putProduct = (products) => {
     }
   };
 };
+export const putEditProduct = (products) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`/products/${products._id}`, products);
+      if (response) {
+        Swal.fire({
+          text: `${products.title} Actualizado Correctamente`,
+          icon: "success",
+        });
+      }
+      dispatch(getProduct());
+    } catch (error) {
+      if (error) {
+        Swal.fire({
+          text: `${products.title} No se pudo actualizar`,
+          icon: "error",
+        });
+      }
+
+      console.log(error);
+      /*alert(error.message)*/
+    }
+  };
+};
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -92,13 +119,12 @@ export const getUsers = () => {
     }
   };
 };
-
 export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
       const response = (await axios.get(`/products/search?keyword=${name}`))
         .data.products;
-      console.log(response);
+
       if (response.length === 0) {
         Swal.fire({
           text: "No se encontro el producto",
@@ -123,7 +149,6 @@ export const getProductsByName = (name) => {
 export const postUser = (user) => {
   console.log("usuario", user);
   return async (dispatch) => {
-    console.log("hola");
     try {
       const response = await axios.post(
         "https://cellxpress.onrender.com/",
@@ -131,6 +156,7 @@ export const postUser = (user) => {
       );
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
+      return response;
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -160,7 +186,6 @@ export const putUser = (user) => {
         isActive: user.isActive,
         email: user.name,
       });
-      console.log("8888", response);
       if (user.isActive) {
         Swal.fire({
           text: `${user.name} Activado Correctamente`,
@@ -216,6 +241,22 @@ export const postUserId = (userId) => {
       dispatch({ type: POST_USERID, payload: response.data });
     } catch (error) {
       console.log(error.message.data);
+    }
+  };
+};
+//PUT PARA EDITAR USUARIO (SOLO NOMBRE Y TELEFONO)
+export const editPutUser = (user) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`/users/${user.id}`, {
+        name: user.name,
+        phone: user.phone,
+      });
+      console.log("8888", response);
+      dispatch(getUsers());
+    } catch (error) {
+      console.log(error);
+      /*alert(error.message)*/
     }
   };
 };
@@ -310,19 +351,75 @@ export const loginUser = (userlog) => {
     }
   };
 };
+// funcion  para calificar los Productos
+export const calificar = (info) => {
+  return async (dispatch) => {
+    // try {
+    //   const response = await axios.post(
+    //     "https://cellxpress.onrender.com/",
+    //   );
+    // } catch (error) {
+    //   alert(error.message);
+    // }
+  };
+};
 
 //funcion para traer todas las ordenes de compras
 export const orderBuy = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/order/all/`);
-      console.log("response ORderrrr", response);
+
       dispatch({
         type: GET_ORDER_BUY,
         payload: response.data,
       });
     } catch (error) {
       console.log("errorrr", error);
+    }
+  };
+};
+
+export const getProductById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/products/${id}`)).data.product;
+      dispatch({
+        type: GET_PRODUCT_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("errorur", error);
+    }
+  };
+};
+
+export const getOrderById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/order/orders/user/${id}`)).data;
+      dispatch({
+        type: GET_ORDER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+//get user by ID
+
+export const getUserById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/users/${id}`)).data;
+      dispatch({
+        type: GET_USER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
     }
   };
 };
