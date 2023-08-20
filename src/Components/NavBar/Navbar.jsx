@@ -63,7 +63,9 @@ export default function Navbar({
           </NavLink>
         ) : (
           <div className={style.user}>
-            <NavLink to={`/user/${userParam._id}`}>{userParam.name}</NavLink>
+              {userParam && (
+              <NavLink to={`/user/${userParam._id}`}>{userParam.name}</NavLink>
+            )}
             <button onClick={logout} className={style.btn}>
               Log Out
             </button>
