@@ -1,0 +1,45 @@
+.label {
+  background-color: red;
+}
+
+.containerEditUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 30%;
+  margin-bottom: 2rem;
+}
+
+.formEditUser {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn {
+  margin: 1rem;
+}
+
+.containerOrdenesCompras {
+}
+
+.ordenCompra {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.ordenDetail {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.quantity {
+  background-color: blue;
+}

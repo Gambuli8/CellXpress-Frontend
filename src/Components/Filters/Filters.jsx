@@ -29,6 +29,17 @@ const Filters = () => {
     dispatch(orderPhone(event.target.value));
   };
 
+  const clearFilters = () => {
+    setInput({
+      brand: "",
+      minPrice: "",
+      maxPrice: "",
+      ram: "",
+      camera: "",
+      screenSize: "",
+    });
+    console.log(input);
+  };
   //     const handleSubmitRam = (event) => {
   //       event.preventDefault()
   //      dispatch(getfiltersram(event.target.value))
@@ -47,6 +58,7 @@ const Filters = () => {
               className={style.select}
               name="brand"
               onChange={handleChange}
+              value={input.brand}
             >
               <option defaultChecked value="">
                 Marca
@@ -79,6 +91,7 @@ const Filters = () => {
             />
           </div>
           <button>Buscar</button>
+          <button onClick={clearFilters}>Limpiar Filtros</button>
         </div>
 
         <div className={style.container}>
@@ -94,7 +107,7 @@ const Filters = () => {
         </div>
         <div className={style.filtercontainer}>
           <div>
-            <select onChange={handleChange} name="ram">
+            <select onChange={handleChange} name="ram" value={input.ram}>
               <option defaultChecked value="">
                 Seleccione Ram
               </option>
@@ -107,7 +120,7 @@ const Filters = () => {
             </select>
           </div>
           <div>
-            <select onChange={handleChange} name="camera">
+            <select onChange={handleChange} name="camera" value={input.camera}>
               <option defaultChecked value="">
                 Seleccione Resolucion
               </option>

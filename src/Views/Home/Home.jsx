@@ -10,12 +10,13 @@ import style from "./home.module.css";
 import Filters from "../../Components/Filters/Filters";
 import Paginado from "../../Components/Paginado/Paginado";
 import { useAuth } from "../../context/authContext";
-import { postUser } from "../../Redux/Actions";
+import { postUser, getUsers } from "../../Redux/Actions";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+
   const allProduct = useSelector((state) => state.allProduct);
- 
+
   const allProductsByName = useSelector((state) => state.allProductsByName);
   const [filtered, setFiltered] = useState([]);
   //Paginado
@@ -27,22 +28,27 @@ const Home = () => {
   const indexFirstPhone = indexLastPhone - cantPerPage;
   const currentPhone = filtered.slice(indexFirstPhone, indexLastPhone);
 
+  const allProductFiltered = allProduct.filter(
+    (product) => product.isDeactivated === false
+  );
   const paginado = (pageNumber) => {
     setCurrentPag(pageNumber);
   };
   //Fin paginado
-
+ 
   useEffect(() => {
     if (!allProduct.length) {
       dispatch(getProduct());
     }
 
-    setFiltered(allProduct);
+    setFiltered(allProductFiltered);
   }, [dispatch, allProduct]);
 
   useEffect(() => {
     setFiltered(allProductsByName);
   }, [allProductsByName]);
+//probando getUsers
+
 
   const handleChange = (event) => {
     setSearch(event.target.value.toLowerCase());
@@ -65,10 +71,10 @@ const Home = () => {
         handlerChanges={handleChange}
         handleReloadProducts={handleReloadProducts}
       />
-      <section className={style.heroSection}>
-        <h2 className={style.bienvenidoHome}>Bienvenido a CellXpress</h2>
-        <Filters />
-      </section>
+      <section className={style.heroSection}></section>
+
+      <Filters />
+
       <div className={style.containerCardsHome}>
         <Cards_Phone Product={currentPhone} />
       </div>

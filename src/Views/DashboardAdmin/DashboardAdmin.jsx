@@ -3,47 +3,49 @@ import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/NavBar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../Redux/Actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import DashUser from "./DashUsers/DashUsers";
+import DashProduct from "./DashProducts/DashProducts";
+import DashOrder from "./DashOrders/DashOrders";
+import { useAuth } from "../../context/authContext"
+
 export default function DashboardAdmin() {
-  const allUsers = useSelector((state) => state.allUsers);
-  const dispatch = useDispatch();
-  console.log("all users", allUsers);
+  const { user, logout } = useAuth();
+  const allUser = useSelector((state)=> state.allUsers)
+  const adminUsers = user && allUser.find((adminUser) => adminUser.email === user.email);
+const dispatch =useDispatch()
+useEffect(()=>{
+  dispatch(getUsers())
+},[])
 
-  useEffect(() => {
-    dispatch(getUsers());
-  }, []);
-
-  const handleReloadUsers = () => {
-    dispatch(getUsers());
+  const [activeTab, setActiveTab] = useState(" ");
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
   };
 
-  console.log("este es el nameeee", allUsers);
-
+  switch (adminUsers?.admin) {
+    case true:
   return (
+  
     <div className={style.dashContainer}>
       <Navbar />
       <h2>Admin</h2>
+     
       <div className={style.containerDos}>
         <div>
-          <Sidebar handleReloadUsers={handleReloadUsers} />
+          <Sidebar onTabChange={handleTabChange} />
         </div>
         <div className={style.containerUsers}>
-          <h2 className={style.tituloUsers}>Usuarios</h2>
-          <div>
-            {allUsers.map((user, index) => (
-              <ul className={style.listContainer}>
-                <li key={index} className={style.itemList}>
-                  {user.name}
-                </li>
-                <li key={index} className={style.itemList}>
-                  {user.email}
-                </li>
-                🚝🛺
-              </ul>
-            ))}
-          </div>
+          {activeTab === "users" && <DashUser />}
+          {activeTab === "products" && <DashProduct />}
+          {activeTab === "order" && <DashOrder />}
         </div>
       </div>
+     
     </div>
+    
   );
+  default:
+      return <h1> You are not an administrator authorized </h1>;
+  }
 }
