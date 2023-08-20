@@ -40,6 +40,11 @@ export default function Detail_Card() {
     // setProduct(producttrue);
   }, [allProduct, id]);
 
+  window.addEventListener('popstate', function (e) {
+    //window.location.assign("http://localhost:5173/home");
+     window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
+  });
+
   return (
     <>
       <Navbar />
@@ -68,7 +73,7 @@ export default function Detail_Card() {
       </div>
              
               <h3>Descripción:</h3>
-              <p className={style.card__text}>{product?.description}</p>
+              {/* <p className={style.card__text}>{product?.description}</p> */}
               <div className={style.cardInfo}>
                 <h4 className={style.card__brand}>
                   {product?.brand.toUpperCase()}
