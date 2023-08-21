@@ -171,10 +171,7 @@ export const postInfo = (info) => {
   return async (dispatch) => {
     try {
       console.log(info);
-      const response = await axios.post(
-        "http://localhost:3002/order/add-to-cart",
-        info
-      );
+      const response = await axios.post("/order/add-to-cart", info);
       dispatch({ type: POST_ORDER, payload: response.data });
     } catch (error) {
       console.log(error.message.data);
@@ -213,7 +210,7 @@ export const deleteProduct = (productId, userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3002/order/remove-from-cart/${userId}/${productId}`
+        `/order/remove-from-cart/${userId}/${productId}`
       );
       dispatch({ type: DELETE_PRODUCT_CART, payload: response.data });
     } catch (error) {
@@ -239,7 +236,7 @@ export const postUserId = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/order/checkout",
+        "/order/checkout",
         { userId } // Enviar userId en el cuerpo
       );
       dispatch({ type: POST_USERID, payload: response.data });
@@ -418,9 +415,8 @@ export const getOrderById = (id) => {
 export const getPendingOrderById = (id) => {
   return async (dispatch) => {
     try {
-      const response = (
-        await axios.get(`http://localhost:3002/order/pendingOrders/user/${id}`)
-      ).data;
+      const response = (await axios.get(`/order/pendingOrders/user/${id}`))
+        .data;
       dispatch({
         type: GET_PENDING_ORDER_BY_ID,
         payload: response,
@@ -450,10 +446,7 @@ export const getUserById = (id) => {
 export const postOrder = (order) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3002/order/add-to-cart",
-        order
-      );
+      const response = await axios.post("/order/add-to-cart", order);
       alert(`Gracias por tu compra`);
       dispatch({ type: POST_ORDER, payload: response.data });
       return response;
@@ -467,7 +460,7 @@ export const updateCartItemQuantity = (userId, productId, quantity) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
-        `http://localhost:3002/order/update-cart/${userId}/${productId}`,
+        `/order/update-cart/${userId}/${productId}`,
         { quantity }
       );
       dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });
