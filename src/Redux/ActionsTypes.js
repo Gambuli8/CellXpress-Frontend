@@ -17,3 +17,4 @@ export const GET_ORDER_BUY = "GET_ORDER_BUY";
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 export const GET_ORDER_BY_ID = "GET_ORDER_BY_ID";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const GET_PENDING_ORDER_BY_ID = "GET_PENDING_ORDER_BY_ID"

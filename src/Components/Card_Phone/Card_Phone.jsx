@@ -53,7 +53,6 @@ const Card_Phone = (props) => {
         timer: 1000,
       });
   
-      console.log(response); // Puedes hacer algo con la respuesta si lo necesitas
     } catch (error) {
       console.error("Error al agregar al carrito:", error);
       Swal.fire({

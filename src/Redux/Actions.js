@@ -20,6 +20,7 @@ import {
   GET_PRODUCT_BY_ID,
   GET_ORDER_BY_ID,
   GET_USER_BY_ID,
+  GET_PENDING_ORDER_BY_ID
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -223,12 +224,15 @@ export const postUserId = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `http://localhost:3002/order/checkout/?userId=${userId}`
+        "http://localhost:3002/order/checkout",
+        { userId } // Enviar userId en el cuerpo
       );
       dispatch({ type: POST_USERID, payload: response.data });
     } catch (error) {
       console.log(error.message.data);
-    }}}
+    }
+  };
+};
 
 //PUT PARA EDITAR USUARIO (SOLO NOMBRE Y TELEFONO)
 export const editPutUser = (user) => {
@@ -400,11 +404,12 @@ export const getOrderById = (id) => {
 export const getPendingOrderById = (id) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`/order/orders/user/${id}`)).data;
+      const response = (await axios.get(`http://localhost:3002/order/pendingOrders/user/${id}`)).data;
       dispatch({
-        type: GET_ORDER_BY_ID,
+        type: GET_PENDING_ORDER_BY_ID,
         payload: response,
       });
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
