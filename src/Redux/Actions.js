@@ -10,6 +10,7 @@ import {
   POST_PRODUCT,
   PUT_USER,
   PUT_PRODUCT,
+  SUCCESS_ORDER,
   POST_ORDER,
   POST_USERID,
   LOGIN_USER,
@@ -83,9 +84,7 @@ export const putProduct = (products) => {
     }
   };
 };
-
 export const putEditProduct = (products) => {
-  console.log("5555555555555555 Productsss de editProduct", products);
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products._id}`, products);
@@ -153,7 +152,6 @@ export const getProductsByName = (name) => {
 export const postUser = (user) => {
   console.log("usuario", user);
   return async (dispatch) => {
-    console.log("hola");
     try {
       const response = await axios.post(
         "https://cellxpress.onrender.com/",
@@ -187,8 +185,8 @@ export const putUser = (user) => {
     try {
       const response = await axios.put(`/users/${user.id}`, {
         isActive: user.isActive,
+        email: user.name,
       });
-      console.log("8888", response);
       if (user.isActive) {
         Swal.fire({
           text: `${user.name} Activado Correctamente`,
@@ -221,6 +219,19 @@ export const deleteProduct = (productId, userId) => {
     }
   };
 };
+
+// export const allDelete = (userId) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.delete(
+//         `http://localhost:3002/order/empty-cart/${userId}`
+//       );
+//       dispatch({ type: ALL_DELETE_CART, payload: response.data });
+//     } catch (error) {
+//       console.log(error.message.data);
+//     }
+//   };
+// };
 
 export const postUserId = (userId) => {
   return async (dispatch) => {
@@ -458,3 +469,4 @@ export const updateCartItemQuantity =
       dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
     }
   };
+

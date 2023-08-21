@@ -35,7 +35,6 @@ const Home = () => {
     setCurrentPag(pageNumber);
   };
   //Fin paginado
- 
   useEffect(() => {
     if (!allProduct.length) {
       dispatch(getProduct());

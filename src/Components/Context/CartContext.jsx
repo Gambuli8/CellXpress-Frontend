@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-
   const order = useSelector(state => state.order);
     const [cart, setCart] = useState(
         order || []
