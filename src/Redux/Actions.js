@@ -11,7 +11,6 @@ import {
   PUT_USER,
   PUT_PRODUCT,
   SUCCESS_ORDER,
-  ALL_DELETE_CART,
   POST_ORDER,
   POST_USERID,
   LOGIN_USER,
@@ -221,25 +220,25 @@ export const deleteProduct = (productId, userId) => {
   };
 };
 
-export const allDelete = (userId) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:3002/order/empty-cart/${userId}`
-      );
-      dispatch({ type: ALL_DELETE_CART, payload: response.data });
-    } catch (error) {
-      console.log(error.message.data);
-    }
-  };
-};
+// export const allDelete = (userId) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.delete(
+//         `http://localhost:3002/order/empty-cart/${userId}`
+//       );
+//       dispatch({ type: ALL_DELETE_CART, payload: response.data });
+//     } catch (error) {
+//       console.log(error.message.data);
+//     }
+//   };
+// };
 
 export const postUserId = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
         "http://localhost:3002/order/checkout",
-        { userId } // Enviar userId en el cuerpo
+        userId // Enviar userId en el cuerpo
       );
       dispatch({ type: POST_USERID, payload: response.data });
       return response; // Retorna la respuesta completa

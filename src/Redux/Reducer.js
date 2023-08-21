@@ -9,7 +9,6 @@ import {
   POST_PRODUCT,
   PUT_USER,
   POST_ORDER,
-  SUCCESS_ORDER,
   ALL_DELETE_CART,
   POST_USERID,
   POST_USER,
@@ -141,11 +140,6 @@ const rootReducer = (state = inicialState, action) => {
         user: action.payload,
       };
     case POST_ORDER:
-      return {
-        ...state,
-        order: action.payload,
-      };
-    case ALL_DELETE_CART:
       return {
         ...state,
         order: action.payload,
