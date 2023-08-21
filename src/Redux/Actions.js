@@ -10,6 +10,7 @@ import {
   POST_PRODUCT,
   PUT_USER,
   PUT_PRODUCT,
+  SUCCESS_ORDER,
   POST_ORDER,
   POST_USERID,
   LOGIN_USER,
@@ -22,7 +23,7 @@ import {
   GET_USER_BY_ID,
   GET_PENDING_ORDER_BY_ID,
   CART_UPDATE_QUANTITY_SUCCESS,
-  CART_UPDATE_QUANTITY_FAILURE
+  CART_UPDATE_QUANTITY_FAILURE,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -84,9 +85,7 @@ export const putProduct = (products) => {
     }
   };
 };
-
 export const putEditProduct = (products) => {
-  
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products._id}`, products);
@@ -154,7 +153,6 @@ export const getProductsByName = (name) => {
 export const postUser = (user) => {
   console.log("usuario", user);
   return async (dispatch) => {
-    console.log("hola");
     try {
       const response = await axios.post(
         "/",
@@ -174,13 +172,13 @@ export const postInfo = (info) => {
   return async (dispatch) => {
     try {
       console.log(info);
-      const response = await axios.post(
-        "/order/add-to-cart",
-        info
-      );
+      const response = await axios.post("/order/add-to-cart", info);
       dispatch({ type: POST_ORDER, payload: response.data });
     } catch (error) {
-      console.log(error.message.data);}}}
+      console.log(error.message.data);
+    }
+  };
+};
 
 //PUT USER PARA BANEAR
 export const putUser = (user) => {
@@ -188,8 +186,8 @@ export const putUser = (user) => {
     try {
       const response = await axios.put(`/users/${user.id}`, {
         isActive: user.isActive,
+        email: user.name,
       });
-      console.log("8888", response);
       if (user.isActive) {
         Swal.fire({
           text: `${user.name} Activado Correctamente`,
@@ -214,7 +212,7 @@ export const deleteProduct = (productId, userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3002/order/remove-from-cart/${userId}/${productId}`
+        `/order/remove-from-cart/${userId}/${productId}`
       );
       dispatch({ type: DELETE_PRODUCT_CART, payload: response.data });
     } catch (error) {
@@ -223,11 +221,24 @@ export const deleteProduct = (productId, userId) => {
   };
 };
 
+// export const allDelete = (userId) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.delete(
+//         `http://localhost:3002/order/empty-cart/${userId}`
+//       );
+//       dispatch({ type: ALL_DELETE_CART, payload: response.data });
+//     } catch (error) {
+//       console.log(error.message.data);
+//     }
+//   };
+// };
+
 export const postUserId = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/order/checkout",
+        "/order/checkout",
         { userId } // Enviar userId en el cuerpo
       );
       dispatch({ type: POST_USERID, payload: response.data });
@@ -238,8 +249,6 @@ export const postUserId = (userId) => {
     }
   };
 };
-
-
 
 //PUT PARA EDITAR USUARIO (SOLO NOMBRE Y TELEFONO)
 export const editPutUser = (user) => {
@@ -350,14 +359,11 @@ export const loginUser = (userlog) => {
 };
 // funcion  para calificar los Productos
 export const calificar = (info) => {
-  
   return async (dispatch) => {
     // try {
     //   const response = await axios.post(
     //     "https://cellxpress.onrender.com/",
-        
     //   );
-      
     // } catch (error) {
     //   alert(error.message);
     // }
@@ -411,7 +417,8 @@ export const getOrderById = (id) => {
 export const getPendingOrderById = (id) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`/order/pendingOrders/user/${id}`)).data;
+      const response = (await axios.get(`/order/pendingOrders/user/${id}`))
+        .data;
       dispatch({
         type: GET_PENDING_ORDER_BY_ID,
         payload: response,
@@ -451,11 +458,16 @@ export const postOrder = (order) => {
   };
 };
 
-export const updateCartItemQuantity = (userId, productId, quantity) => async (dispatch) => {
-  try {
-    const response = await axios.put(`/order/update-cart/${userId}/${productId}`, { quantity });
-    dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });
-  } catch (error) {
-    dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
-  }
-};
+export const updateCartItemQuantity =
+  (userId, productId, quantity) => async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `/order/update-cart/${userId}/${productId}`,
+        { quantity }
+      );
+      dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
+    }
+  };
+

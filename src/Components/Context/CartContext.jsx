@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
+import { useSelector } from "react-redux";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  const order = useSelector(state => state.order);
     const [cart, setCart] = useState(
-        JSON.parse(localStorage.getItem("carrito")) || []
+        order || []
       );
     
       const saveCart = () => {

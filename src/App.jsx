@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Landing from "./Views/Landing/Landing";
@@ -19,8 +20,8 @@ axios.defaults.baseURL = "http://localhost:3002";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 //axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
-  return (
 
+  return (
     <>
       <CartProvider>
         <div className="App">
