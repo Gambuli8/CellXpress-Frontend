@@ -178,6 +178,7 @@ export const postInfo = (info) => {
     }
   };
 };
+
 //PUT USER PARA BANEAR
 export const putUser = (user) => {
   return async (dispatch) => {
@@ -456,8 +457,8 @@ export const postOrder = (order) => {
   };
 };
 
-export const updateCartItemQuantity = (userId, productId, quantity) => {
-  return async (dispatch) => {
+export const updateCartItemQuantity =
+  (userId, productId, quantity) => async (dispatch) => {
     try {
       const response = await axios.put(
         `/order/update-cart/${userId}/${productId}`,
@@ -468,4 +469,4 @@ export const updateCartItemQuantity = (userId, productId, quantity) => {
       dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
     }
   };
-};
+

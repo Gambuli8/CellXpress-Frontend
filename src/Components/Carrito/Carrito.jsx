@@ -5,7 +5,7 @@ import { useEffect, useId, useState } from "react";
 import style from "./Carrito.module.css";
 import useCart from "../Hooks/useCart";
 import swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { postInfo, postUserId, deleteProduct, getUsers } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContext";

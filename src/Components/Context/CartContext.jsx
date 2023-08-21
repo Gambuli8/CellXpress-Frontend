@@ -6,10 +6,8 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const order = useSelector(state => state.order);
-
-  console.log(order);
     const [cart, setCart] = useState(
-         order || []
+        order || []
       );
     
       const saveCart = () => {

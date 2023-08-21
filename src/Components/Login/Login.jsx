@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
+
 import { useEffect, useState } from "react";
 import style from "./Login.module.css";
 import { validate } from "../Validate/Validate";
