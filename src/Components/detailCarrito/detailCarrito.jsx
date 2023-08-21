@@ -2,9 +2,42 @@
 import style from './detail.module.css'
 import useCart from '../Hooks/useCart'
 import FormCart from '../FormCarrito/formCart'
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUsers, getPendingOrderById, postUserId } from "../../Redux/Actions";
+import { useAuth } from "../../context/authContext";
 
-export default function detailCarrito() {
-  const { cart } = useCart()
+  export default function DetailCarrito() {
+    const { cart } = useCart();
+    const dispatch = useDispatch();
+    const user = useAuth().user;
+    const allUsers = useSelector((state) => state.allUsers);
+    const pendingOrderById = useSelector((state) => state.pendingOrderById);
+  
+    useEffect(() => {
+      dispatch(getUsers());
+    }, [user, dispatch]);
+  
+    const userParam =
+      user && allUsers.find((userParam) => userParam.email === user.email);
+  
+    useEffect(() => {
+      if (userParam) {
+        dispatch(getPendingOrderById(userParam._id));
+      }
+    }, [userParam, dispatch]);
+  
+    const handlePostUserId = async () => {
+      if (userParam) {
+        try {
+          await dispatch(postUserId(userParam._id));
+          // hacer algo luego de que el postUserId se complete
+        } catch (error) {
+          console.error("Error posting userId:", error);
+        }
+      }
+    };
+
   return (
     <>
       <a className={style.btn_back} href="/home">
@@ -13,16 +46,29 @@ export default function detailCarrito() {
     <div className={style.container}>
       <div className={style.containerCart}>
         <h1>Carrito</h1>
-        <ul className={style.ul}>
-          {cart.map((product) => (
-            <li className={style.li} key={product.id}>
-              <img width={150} height={150} src={product.image} alt={product.title} />
-              <div className={style.info}>
-              <h3 className={style.h3}>{product.brand}</h3>
-                <strong>{product.title}</strong>
-                <p className={style.p}>Cantidad: {product.quantity}</p>
-              </div>
-                <p className={style.price}>Precio: ${product.price}</p>
+        <ul>
+          {pendingOrderById.map((order) => (
+            <li key={order._id}>
+              {/* Render the pending order details here */}
+              <p>Orden creada en: {order.createdAt}</p>
+              <ul>
+                {order.products.map((item) => (
+                  <li key={item.product._id}>
+                    {/* Render each product in the pending order */}
+                    <img
+                      width={100}
+                      height={100}
+                      src={item.product.image}
+                      alt={item.product.title}
+                    />
+                    <p>Producto: {item.product.title}</p>
+                    <p>Cantidad: {item.quantity}</p>
+                    <p>Precio: ${item.product.price}</p>
+                  </li>
+                ))}
+              </ul>
+              <p>Total: ${order.total}</p>
+              <p>Estado: {order.status}</p>
             </li>
           ))}
         </ul>
