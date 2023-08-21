@@ -10,9 +10,9 @@ import { postInfo, postUserId, deleteProduct, getUsers } from "../../Redux/Actio
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContext";
 
-
 function CartItem(product) {
 
+  //prueba
   const { removeFromCart, cart, saveCart } = useCart();
   const dispatch = useDispatch();
   const {pathname} = useLocation();
