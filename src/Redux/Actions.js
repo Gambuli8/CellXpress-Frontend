@@ -22,6 +22,7 @@ import {
   GET_PRODUCT_BY_ID,
   GET_ORDER_BY_ID,
   GET_USER_BY_ID,
+  GET_PENDING_ORDER_BY_ID,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -157,6 +158,7 @@ export const postUser = (user) => {
       );
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
+      console.log(response);
       return response;
     } catch (error) {
       alert(error.response.data.message);
@@ -178,7 +180,6 @@ export const postInfo = (info) => {
     }
   };
 };
-
 //PUT USER PARA BANEAR
 export const putUser = (user) => {
   return async (dispatch) => {
@@ -237,14 +238,18 @@ export const postUserId = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `http://localhost:3002/order/checkout/?userId=${userId}`
+        "http://localhost:3002/order/checkout",
+        { userId } // Enviar userId en el cuerpo
       );
       dispatch({ type: POST_USERID, payload: response.data });
+      return response; // Retorna la respuesta completa
     } catch (error) {
-      console.log(error.message.data);
+      console.log(error);
+      throw error; // Lanza el error nuevamente para que pueda ser manejado por el componente
     }
   };
 };
+
 //PUT PARA EDITAR USUARIO (SOLO NOMBRE Y TELEFONO)
 export const editPutUser = (user) => {
   return async (dispatch) => {
@@ -409,6 +414,22 @@ export const getOrderById = (id) => {
   };
 };
 
+export const getPendingOrderById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (
+        await axios.get(`http://localhost:3002/order/pendingOrders/user/${id}`)
+      ).data;
+      dispatch({
+        type: GET_PENDING_ORDER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
 //get user by ID
 
 export const getUserById = (id) => {
@@ -425,16 +446,18 @@ export const getUserById = (id) => {
   };
 };
 
-export const successOrder = (info, id) => {
+export const postOrder = (order) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `http://localhost:3002/order/success/${id}`,
-        info
+        "http://localhost:3002/order/add-to-cart",
+        order
       );
-      dispatch({ type: SUCCESS_ORDER, payload: response.data });
+      alert(`Gracias por tu compra`);
+      dispatch({ type: POST_ORDER, payload: response.data });
+      return response;
     } catch (error) {
-      console.error(error);
+      alert(error.message);
     }
   };
 };

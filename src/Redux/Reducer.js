@@ -21,6 +21,7 @@ import {
   GET_PRODUCT_BY_ID,
   GET_ORDER_BY_ID,
   GET_USER_BY_ID,
+  GET_PENDING_ORDER_BY_ID,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -33,7 +34,7 @@ let inicialState = {
   userId: {},
   orderBuy: [],
   orderById: [],
-  successOrder: [],
+  pendingOrderById: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -174,10 +175,10 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         orderById: action.payload,
       };
-    case SUCCESS_ORDER:
+    case GET_PENDING_ORDER_BY_ID:
       return {
         ...state,
-        successOrder: action.payload,
+        pendingOrderById: action.payload,
       };
   }
   return state;
