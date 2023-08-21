@@ -20,7 +20,9 @@ import {
   GET_PRODUCT_BY_ID,
   GET_ORDER_BY_ID,
   GET_USER_BY_ID,
-  GET_PENDING_ORDER_BY_ID
+  GET_PENDING_ORDER_BY_ID,
+  CART_UPDATE_QUANTITY_SUCCESS,
+  CART_UPDATE_QUANTITY_FAILURE
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -448,3 +450,11 @@ export const postOrder = (order) => {
   };
 };
 
+export const updateCartItemQuantity = (userId, productId, quantity) => async (dispatch) => {
+  try {
+    const response = await axios.put(`http://localhost:3002/order/update-cart/${userId}/${productId}`, { quantity });
+    dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
+  }
+};
