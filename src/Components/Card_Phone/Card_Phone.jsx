@@ -31,8 +31,19 @@ const Card_Phone = (props) => {
       showConfirmButton: false,
       timer: 1000,
     });
-
   };
+
+  const stockCount = () => {
+    if(props.count > 0){
+      handlerAddToCart()
+    } else{
+      Swal.fire({
+        title: "Sin stock",
+        icon: "error",
+        timer: 1000,
+      })
+    }
+  }
 
   return (
     <>
@@ -72,7 +83,7 @@ const Card_Phone = (props) => {
             ) : (
               <div
                 className={style.card_button}
-                onClick={() => handlerAddToCart()}
+                onClick={() => stockCount()}
               >
                 <img
                   className={style.svg_icon}
