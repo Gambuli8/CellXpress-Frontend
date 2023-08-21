@@ -228,11 +228,15 @@ export const postUserId = (userId) => {
         { userId } // Enviar userId en el cuerpo
       );
       dispatch({ type: POST_USERID, payload: response.data });
+      return response; // Retorna la respuesta completa
     } catch (error) {
-      console.log(error.message.data);
+      console.log(error);
+      throw error; // Lanza el error nuevamente para que pueda ser manejado por el componente
     }
   };
 };
+
+
 
 //PUT PARA EDITAR USUARIO (SOLO NOMBRE Y TELEFONO)
 export const editPutUser = (user) => {
@@ -409,7 +413,6 @@ export const getPendingOrderById = (id) => {
         type: GET_PENDING_ORDER_BY_ID,
         payload: response,
       });
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
