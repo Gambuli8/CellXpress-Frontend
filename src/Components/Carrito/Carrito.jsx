@@ -9,10 +9,10 @@ import { Link, useLocation } from "react-router-dom";
 import { postInfo, postUserId, deleteProduct, getUsers } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContext";
-import { useLocation } from "react-router-dom";
 
 function CartItem(product) {
 
+  //prueba
   const { removeFromCart, cart, saveCart } = useCart();
   const dispatch = useDispatch();
   const {pathname} = useLocation();
