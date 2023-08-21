@@ -240,7 +240,7 @@ export const postUserId = (userId) => {
     try {
       const response = await axios.post(
         "http://localhost:3002/order/checkout",
-        userId // Enviar userId en el cuerpo
+        { userId } // Enviar userId en el cuerpo
       );
       dispatch({ type: POST_USERID, payload: response.data });
       return response; // Retorna la respuesta completa
@@ -463,9 +463,16 @@ export const postOrder = (order) => {
   };
 };
 
-//     const response = await axios.put(`http://localhost:3002/order/update-cart/${userId}/${productId}`, { quantity });
-//     dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });
-//   } catch (error) {
-//     dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
-//   }
-// };
+export const updateCartItemQuantity = (userId, productId, quantity) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3002/order/update-cart/${userId}/${productId}`,
+        { quantity }
+      );
+      dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
+    }
+  };
+};

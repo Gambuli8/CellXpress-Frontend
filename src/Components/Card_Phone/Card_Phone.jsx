@@ -3,7 +3,7 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import style from "./Card.module.css";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCart from "../Hooks/useCart";
 import { useAuth } from "../../context/authContext";
