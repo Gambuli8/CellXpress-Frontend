@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 import style from './detail.module.css'
 import useCart from '../Hooks/useCart'
