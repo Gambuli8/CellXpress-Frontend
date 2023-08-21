@@ -236,7 +236,8 @@ export const postUserId = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `http://localhost:3002/order/checkout/?userId=${userId}`
+        `http://localhost:3002/order/checkout/`,
+        userId
       );
       dispatch({ type: POST_USERID, payload: response.data });
     } catch (error) {
