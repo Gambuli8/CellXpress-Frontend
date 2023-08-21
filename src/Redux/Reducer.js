@@ -9,14 +9,17 @@ import {
   POST_PRODUCT,
   PUT_USER,
   POST_ORDER,
+  POST_USERID,
   POST_USER,
   RAMFILTERS,
   PIXELESFILTERS,
+  DELETE_PRODUCT_CART,
   GET_ORDER_BUY,
   PUT_PRODUCT,
   GET_PRODUCT_BY_ID,
   GET_ORDER_BY_ID,
   GET_USER_BY_ID,
+  GET_PENDING_ORDER_BY_ID
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -25,8 +28,11 @@ let inicialState = {
   user: {},
   allProductsByName: [],
   viewProducts: [],
+  order: [],
+  userId: {},
   orderBuy: [],
   orderById: [],
+  pendingOrderById: []
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -135,6 +141,21 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         user: action.payload,
       };
+    case POST_ORDER:
+      return {
+        ...state,
+        order: action.payload,
+      };
+    case POST_USERID:
+      return {
+        ...state,
+        userId: action.payload,
+      };
+    case DELETE_PRODUCT_CART:
+      return {
+        ...state,
+        order: action.payload,
+      };
 
     case GET_PRODUCT_BY_ID:
       return {
@@ -153,6 +174,12 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         orderById: action.payload,
       };
+   case GET_PENDING_ORDER_BY_ID:
+      return {
+        ...state,
+        pendingOrderById: action.payload,
+      };   
+      
     // case POST_ORDER:
     // return {
     //   ...state,

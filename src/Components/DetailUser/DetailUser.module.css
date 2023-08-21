@@ -1,5 +1,15 @@
 .label {
-  background-color: red;
+  color: white;
+  text-decoration: none;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  flex-direction: column;
+  background-color: #001d4a;
 }
 
 .containerEditUser {
@@ -8,8 +18,10 @@
   align-items: center;
   flex-direction: column;
   border: 1px solid black;
-  width: 30%;
-  margin-bottom: 2rem;
+  margin: 2rem;
+  width: 20%;
+  background-color: #1f6e8c;
+  border-radius: 30px;
 }
 
 .formEditUser {
@@ -19,27 +31,49 @@
   flex-direction: column;
 }
 
-.btn {
+.btn_back {
   margin: 1rem;
 }
 
-.containerOrdenesCompras {
+.input{
+  text-align: center;
+  border-radius: 30px;
 }
 
+.img{
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.containerOrdenesCompras {
+  display: flex;
+  flex-direction: column;
+  background-color: #1f6e8c;
+  border-radius: 30px;
+  width: 90%;
+}
 .ordenCompra {
+  background-color: #001d4a;
   border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  margin:10px;
+  border-radius: 30px;
 }
 .ordenDetail {
+  border-radius: 30px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
   width: 100%;
 }
-
-.quantity {
-  background-color: blue;
+.containerProduct{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
 }
