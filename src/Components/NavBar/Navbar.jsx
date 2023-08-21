@@ -16,6 +16,15 @@ export default function Navbar({
 }) {
   const dispatch = useDispatch();
   const { user, logout } = useAuth();
+  const allUseres = useSelector((state) => state.allUsers);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [user]);
+
+  const userParam =
+    user && allUseres.find((userParam) => userParam.email === user.email);
+
   return (
     <nav className={style.navContainer}>
       <div>

@@ -14,6 +14,7 @@ import { postUser, getUsers } from "../../Redux/Actions";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+
   const allProduct = useSelector((state) => state.allProduct);
 
   const allProductsByName = useSelector((state) => state.allProductsByName);
@@ -34,7 +35,7 @@ const Home = () => {
     setCurrentPag(pageNumber);
   };
   //Fin paginado
-  console.log("productssss home", allProduct);
+ 
   useEffect(() => {
     if (!allProduct.length) {
       dispatch(getProduct());
@@ -46,6 +47,8 @@ const Home = () => {
   useEffect(() => {
     setFiltered(allProductsByName);
   }, [allProductsByName]);
+//probando getUsers
+
 
   const handleChange = (event) => {
     setSearch(event.target.value.toLowerCase());
