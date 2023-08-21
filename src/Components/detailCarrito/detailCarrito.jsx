@@ -12,6 +12,7 @@ export default function DetailAndFormCart() {
   const dispatch = useDispatch();
   const user = useAuth().user;
   const allUsers = useSelector((state) => state.allUsers);
+  const order = useSelector((state) => state.order);
   const pendingOrderById = useSelector((state) => state.pendingOrderById);
   const [localQuantities, setLocalQuantities] = useState({});
   const [confirmed, setConfirmed] = useState(false);
@@ -111,7 +112,7 @@ export default function DetailAndFormCart() {
             ))}
           </ul>
           <div className={style.totalPrice}>
-            <h2>Total ${cart.reduce((acc, el) => acc + el.price * el.quantity, 0)}</h2>
+            <h2>Total ${order.reduce((acc, el) => acc + el.price * el.quantity, 0)}</h2>
           </div>
           <button onClick={handleConfirm} disabled={confirmed}>
             Confirmar

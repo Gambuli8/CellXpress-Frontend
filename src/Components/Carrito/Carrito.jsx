@@ -31,7 +31,7 @@ function CartItem(product) {
    const [input, setInput] = useState({
     productId: product.id,
     quantity: product.quantity,
-    userId: userParam._id,
+    userId: userParam?._id,
   });
   console.log(input);
 
