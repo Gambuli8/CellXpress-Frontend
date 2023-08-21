@@ -13,6 +13,7 @@ import { CartProvider } from "./Components/Context/CartContext";
 //axios.defaults.baseURL = "https://cellxpress.onrender.com";
 import Login from "./Components/Login/Login";
 import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
+import OrderBuy from "./Components/OrderBuy/OrderBuy";
 import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
  axios.defaults.baseURL = "http://localhost:3002";
@@ -36,6 +37,7 @@ function App() {
             {/* <Route path="/admin" element={<DashboardAdmin />} /> */}
             <Route path="/editproduct/:id" element={<EditProduct />} />
             <Route path="/user/:id" element={<DetailUser />} />
+            <Route path="/admin/:id" element={<OrderBuy />} />
             <Route path="/admin" element={<ProtectedRoute><DashboardAdmin /></ProtectedRoute>}/>
           </Routes>
         </div>

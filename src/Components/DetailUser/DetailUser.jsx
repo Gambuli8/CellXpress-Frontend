@@ -1,7 +1,6 @@
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
-import StarRating from "../StarRating/StarRating"
 
 import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
 
@@ -58,6 +57,7 @@ const DetailUser = () => {
   const handleSubmit = () => {
 
    dispatch(editPutUser(input));
+   console.log(allOrderByID.products)
      
   };
   return (
@@ -119,7 +119,6 @@ const DetailUser = () => {
                         <li className={style.label}>{e.product.title}</li>
                         <li className={style.label}>{e.product.brand}</li>
                         <li className={style.label}>${elemento.total}</li>
-                        <StarRating/>
                         <li className={style.label}>{e.quantity}</li>
                       </ul>
                     );

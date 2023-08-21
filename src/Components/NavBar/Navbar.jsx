@@ -24,7 +24,6 @@ export default function Navbar({
 
   const userParam =
     user && allUseres.find((userParam) => userParam.email === user.email);
-
   return (
     <nav className={style.navContainer}>
       <div>
@@ -48,9 +47,6 @@ export default function Navbar({
         </a>
         <NavLink to="/aboutus" className={style.link}>
           Sobre Nosotros
-        </NavLink>
-        <NavLink to="/newproduct" className={style.link}>
-          Crear Producto
         </NavLink>
         {!user && (
           <NavLink to="/register" className={style.link}>
