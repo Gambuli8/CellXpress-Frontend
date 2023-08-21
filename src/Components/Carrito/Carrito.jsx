@@ -6,25 +6,36 @@ import style from "./Carrito.module.css";
 import useCart from "../Hooks/useCart";
 import swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import { postInfo, postUserId, deleteProduct } from "../../Redux/Actions";
+import { postInfo, postUserId, deleteProduct, getUsers } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "../../context/authContext";
 
 function CartItem(product) {
 
   const { removeFromCart, cart, saveCart } = useCart();
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const user = useAuth().user;
+
+  const allUsers = useSelector((state) => state.allUsers);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [user, dispatch]);
+
+  const userParam =
+  user && allUsers.find((userParam) => userParam.email === user.email);
   
-  console.log(product);
+
   //mandar info de compra a la base de datos
    const [input, setInput] = useState({
     productId: product.id,
     quantity: product.quantity,
-    userId: "64db9da28c489854683a09f8",
+    userId: userParam?._id,
   });
-  console.log(input);
+  // console.log(input);
 
-  console.log(cart);
+  // console.log(cart);
   
   const handleBuy = () => {
     dispatch(postInfo(input));
@@ -108,9 +119,19 @@ export default function Carrito() {
   const { cart, ClearCart, addToCart } = useCart();
 
   const dispatch = useDispatch();
+  const user = useAuth().user;
+
+  const allUsers = useSelector((state) => state.allUsers);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [user, dispatch]);
+
+  const userParam =
+  user && allUsers.find((userParam) => userParam.email === user.email);
 
   const handleUserId = () => {
-    dispatch(postUserId("64db9da28c489854683a09f8"));
+    dispatch(postUserId(userParam?._id));
   };
   
 

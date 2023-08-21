@@ -9,6 +9,7 @@ import {
   POST_PRODUCT,
   PUT_USER,
   POST_ORDER,
+  SUCCESS_ORDER,
   ALL_DELETE_CART,
   POST_USERID,
   POST_USER,
@@ -32,6 +33,7 @@ let inicialState = {
   userId: {},
   orderBuy: [],
   orderById: [],
+  successOrder: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -171,6 +173,11 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         orderById: action.payload,
+      };
+    case SUCCESS_ORDER:
+      return {
+        ...state,
+        successOrder: action.payload,
       };
   }
   return state;

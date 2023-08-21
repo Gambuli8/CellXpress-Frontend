@@ -10,6 +10,7 @@ import {
   POST_PRODUCT,
   PUT_USER,
   PUT_PRODUCT,
+  SUCCESS_ORDER,
   ALL_DELETE_CART,
   POST_ORDER,
   POST_USERID,
@@ -236,8 +237,7 @@ export const postUserId = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `http://localhost:3002/order/checkout/`,
-        userId
+        `http://localhost:3002/order/checkout/?userId=${userId}`
       );
       dispatch({ type: POST_USERID, payload: response.data });
     } catch (error) {
@@ -425,15 +425,16 @@ export const getUserById = (id) => {
   };
 };
 
-// export const postOrder = (order) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post("/order/add-to-cart", order);
-//       alert(`Gracias por tu compra`);
-//       dispatch({ type: POST_ORDER, payload: response.data });
-//       return response;
-//     } catch (error) {
-//       alert(error.message);
-//     }
-//   };
-// };
+export const successOrder = (info, id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3002/order/success/${id}`,
+        info
+      );
+      dispatch({ type: SUCCESS_ORDER, payload: response.data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
