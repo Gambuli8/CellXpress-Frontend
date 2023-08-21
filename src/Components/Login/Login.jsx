@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import style from "./Login.module.css";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../Hooks/useLocalStorage.js";
-import { getUsers } from "../../Redux/Actions";
+import { getUsers, postUser } from "../../Redux/Actions";
 import { useSelector, useDispatch } from "react-redux";
 
 function Login() {
