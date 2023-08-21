@@ -63,6 +63,10 @@ function Login() {
     }
   };
 
+  const handleReloadProducts = () => {
+    dispatch(getProduct()); // O la acción para cargar los productos
+    setCurrentPag(1);
+  };
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>
@@ -95,7 +99,7 @@ function Login() {
           {errors.passwordAcces && (
             <p className={style.error}>{errors.passwordAcces}</p>
           )}
-          <button className={style.button}>Login
+          <button className={style.button} onClick={handleReloadProducts}>Login 
           </button>
           <p className={style.label}>-------------O-------------</p>
           
