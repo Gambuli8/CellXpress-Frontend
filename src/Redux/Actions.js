@@ -45,6 +45,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
+
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -58,7 +59,7 @@ export const postProduct = (products) => {
 };
 
 export const putProduct = (products) => {
-  console.log("5555555555555555 Productsss de editProduct", products);
+
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products.id}`, {
@@ -85,7 +86,7 @@ export const putProduct = (products) => {
 };
 
 export const putEditProduct = (products) => {
-  console.log("5555555555555555 Productsss de editProduct", products);
+  
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products._id}`, products);
@@ -156,7 +157,7 @@ export const postUser = (user) => {
     console.log("hola");
     try {
       const response = await axios.post(
-        "https://cellxpress.onrender.com/",
+        "/",
         user
       );
       dispatch({ type: POST_USER, payload: response.data });
@@ -174,7 +175,7 @@ export const postInfo = (info) => {
     try {
       console.log(info);
       const response = await axios.post(
-        "http://localhost:3002/order/add-to-cart",
+        "/order/add-to-cart",
         info
       );
       dispatch({ type: POST_ORDER, payload: response.data });
@@ -410,7 +411,7 @@ export const getOrderById = (id) => {
 export const getPendingOrderById = (id) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`http://localhost:3002/order/pendingOrders/user/${id}`)).data;
+      const response = (await axios.get(`/order/pendingOrders/user/${id}`)).data;
       dispatch({
         type: GET_PENDING_ORDER_BY_ID,
         payload: response,
@@ -440,7 +441,7 @@ export const getUserById = (id) => {
 export const postOrder = (order) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:3002/order/add-to-cart", order);
+      const response = await axios.post("/order/add-to-cart", order);
       alert(`Gracias por tu compra`);
       dispatch({ type: POST_ORDER, payload: response.data });
       return response;
@@ -452,7 +453,7 @@ export const postOrder = (order) => {
 
 export const updateCartItemQuantity = (userId, productId, quantity) => async (dispatch) => {
   try {
-    const response = await axios.put(`http://localhost:3002/order/update-cart/${userId}/${productId}`, { quantity });
+    const response = await axios.put(`/order/update-cart/${userId}/${productId}`, { quantity });
     dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });

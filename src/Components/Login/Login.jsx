@@ -44,12 +44,12 @@ function Login() {
 
     if (Object.keys(validationErrors).length === 0) {
       await login(input.email, input.password);
-      navigate("/home");
+     navigate("/home");
     }
   };
   const loginWithGoogle = async () => {
     await loginGoogle();
-    navigate("/home");
+     navigate("/home");
     if (user) {
       dispatch(postUser(user));
       setInput({
@@ -93,7 +93,8 @@ function Login() {
           {errors.passwordAcces && (
             <p className={style.error}>{errors.passwordAcces}</p>
           )}
-          <button className={style.button}>Login</button>
+          <button className={style.button}>Login
+          </button>
           <p className={style.label}>-------------O-------------</p>
           
         </form>

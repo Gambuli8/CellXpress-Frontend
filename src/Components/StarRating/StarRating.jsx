@@ -26,10 +26,12 @@ useEffect(()=>{
                 name='rating' 
                 value={ratingValue}
                 onClick={()=>setRating(ratingValue)}
+                 
                 />
                 <FaStar  className={style.star} 
                 color={ratingValue <= rating ? "#ffc107" : "#00FFFF"}
                 />
+
                 </label>
             )
             
