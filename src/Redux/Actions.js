@@ -46,7 +46,6 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
-
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -60,7 +59,6 @@ export const postProduct = (products) => {
 };
 
 export const putProduct = (products) => {
-
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products.id}`, {
@@ -154,10 +152,7 @@ export const postUser = (user) => {
   console.log("usuario", user);
   return async (dispatch) => {
     try {
-      const response = await axios.post(
-        "/",
-        user
-      );
+      const response = await axios.post("/", user);
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       console.log(response);
@@ -449,7 +444,6 @@ export const postOrder = (order) => {
   return async (dispatch) => {
     try {
       const response = await axios.post("/order/add-to-cart", order);
-      alert(`Gracias por tu compra`);
       dispatch({ type: POST_ORDER, payload: response.data });
       return response;
     } catch (error) {

@@ -5,10 +5,9 @@ import useCart from '../Hooks/useCart';
 import { getUsers, getPendingOrderById, postUserId, updateCartItemQuantity } from '../../Redux/Actions';
 import { useAuth } from '../../context/authContext';
 import style from './detail.module.css';
-import formStyle from './formCart.module.css';
 
 export default function DetailAndFormCart() {
-  const { cart } = useCart();
+  const { cart, setCart } = useCart();
   const dispatch = useDispatch();
   const user = useAuth().user;
   const allUsers = useSelector((state) => state.allUsers);
@@ -28,6 +27,8 @@ export default function DetailAndFormCart() {
       dispatch(getPendingOrderById(userParam._id));
     }
   }, [userParam, dispatch]);
+
+  console.log(pendingOrderById);
 
   const handleIncrement = (productId) => {
     setLocalQuantities((prevQuantities) => ({
@@ -88,38 +89,41 @@ export default function DetailAndFormCart() {
       <div className={style.container}>
         <div className={style.containerCart}>
           <h1>Carrito</h1>
-          <ul>
+          <ul className={style.ul}>
             {pendingOrderById.map((order) => (
-              <li key={order._id}>
+              <li key={order._id} className={style.li}>
                 {/* Render the pending order details here */}
-                <p>Orden creada en: {order.createdAt}</p>
-                <ul>
+                <ul className={style.ul1}>
                   {order.products.map((item) => (
-                    <li key={item.product._id}>
+                    <li className={style.li1} key={item.product._id}>
                       {/* Render each product in the pending order */}
                       <img width={100} height={100} src={item.product.image} alt={item.product.title} />
                       <p>Producto: {item.product.title}</p>
-                      <p>Cantidad: {localQuantities[item.product._id] || item.quantity}</p>
-                      <p>Precio: ${item.product.price}</p>
-                      <button onClick={() => handleIncrement(item.product._id)}>+</button>
-                      <button onClick={() => handleDecrement(item.product._id)}>-</button>
+                      <p className={style.price}>Precio p/u: ${item.product.price}</p>
+                      <div className={style.cantidad}>
+                      <button className={style.btncount} onClick={() => handleIncrement(item.product._id)}>+</button>
+                      <p>{localQuantities[item.product._id] || item.quantity}</p>
+                      <button className={style.btncount} onClick={() => handleDecrement(item.product._id)}>-</button>
+                      </div>
                     </li>
                   ))}
                 </ul>
-                <p>Total: ${order.total}</p>
-                <p>Estado: {order.status}</p>
+                <div className={style.compra}>
+                <div className={style.totalPrice}>
+                <p>Total: ${order.total }</p>
+                </div>
+                <div className={style.btnCompra}>
+                <button className={style.btn} onClick={handleConfirm} disabled={confirmed}>
+                  Confirmar
+                </button>
+                <button className={style.btn} onClick={handlePayment} disabled={!confirmed}>
+                  Ir a pagar
+                </button>
+                </div>
+                </div>
               </li>
             ))}
           </ul>
-          <div className={style.totalPrice}>
-            <h2>Total ${order.reduce((acc, el) => acc + el.price * el.quantity, 0)}</h2>
-          </div>
-          <button onClick={handleConfirm} disabled={confirmed}>
-            Confirmar
-          </button>
-          <button onClick={handlePayment} disabled={!confirmed}>
-            Ir a pagar
-          </button>
         </div>
       </div>
     </>

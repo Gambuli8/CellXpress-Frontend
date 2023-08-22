@@ -6,15 +6,15 @@ import style from "./Carrito.module.css";
 import useCart from "../Hooks/useCart";
 import swal from "sweetalert2";
 import { Link, useLocation } from "react-router-dom";
-import { postInfo, postUserId, deleteProduct, getUsers } from "../../Redux/Actions";
+import { postInfo, postUserId, deleteProduct, getUsers, getPendingOrderById } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 function CartItem(product) {
 
   const { removeFromCart, cart, saveCart } = useCart();
   const dispatch = useDispatch();
-  const {pathname} = useLocation();
   const user = useAuth().user;
 
   const allUsers = useSelector((state) => state.allUsers);
@@ -115,12 +115,17 @@ function CartItem(product) {
 
 export default function Carrito() {
   const cartCheckId = useId();
-  const { cart, ClearCart, addToCart } = useCart();
+  const { cart, ClearCart, addToCart, } = useCart();
 
   const dispatch = useDispatch();
   const user = useAuth().user;
+  // const navigate = useNavigate();
+  // const {pathname} = useLocation();
+
+  const navigate = useNavigate();
 
   const allUsers = useSelector((state) => state.allUsers);
+  const pendingOrderById = useSelector((state) => state.pendingOrderById);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -129,10 +134,20 @@ export default function Carrito() {
   const userParam =
   user && allUsers.find((userParam) => userParam.email === user.email);
 
+  useEffect(() => {
+    if (userParam) {
+      dispatch(getPendingOrderById(userParam._id));
+    }
+  }, [userParam, dispatch]);
+
   const handleUserId = () => {
     dispatch(postUserId(userParam?._id));
   };
   
+  // const handlerRut = () => {
+  //   if(pathname('/carrito') )
+  //   navigate('/carrito');
+  // }
 
   const handleClearCart = () => {
     swal
@@ -159,9 +174,23 @@ export default function Carrito() {
       });
   };
 
+  const handlerRut = () => {
+    // if(pendingOrderById[0]?.products){
+    //   swal.fire({
+    //     title: "Carrito Vacio",
+    //     text: "Agregue al carrito para poder comprar",
+    //     icon: "warning",
+    //   })
+    // } else {
+      navigate('/carrito');
+    // } 
+  }
+
+  // console.log(pendingOrderById[0].products[0]);
+
   return (
     <>
-      <label htmlFor={cartCheckId} className={style.cart_button}>
+      <label onClick={handlerRut} htmlFor={cartCheckId} className={style.cart_button}>
         <span className={style.cart_icon}>
           <svg
             width="30px"
@@ -184,22 +213,22 @@ export default function Carrito() {
 
       <aside className={style.cart}>
         <ul>
-          {cart.length === 0 && <p>El carrito está vacío</p>}
-          {cart.map((product) => (
+          {pendingOrderById.length === 0 && <p>El carrito está vacío</p>}
+          {pendingOrderById.map((product) => (
             <CartItem
               key={product._id}
               addToCart={() => addToCart(product)}
               count={product.quantity}
               {...product}
             />
-          ))}
+          ))} 
         </ul>
-        {cart.length > 0 ? (
+        {pendingOrderById.length > 0 ? (
           <button onClick={() => handleClearCart()}>
             <strong>clear cart</strong>
           </button>
         ) : null}
-        {cart.length > 0 ? (
+        {pendingOrderById.length > 0 ? (
           <Link to="/carrito">
             <button onClick={() => handleUserId()}>
               <strong>Realizar compra</strong>
