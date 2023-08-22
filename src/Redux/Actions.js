@@ -46,6 +46,7 @@ export function getProduct() {
 }
 
 export const postProduct = (products) => {
+
   return async (dispatch) => {
     try {
       const response = await axios.post("/products", products);
@@ -59,7 +60,7 @@ export const postProduct = (products) => {
 };
 
 export const putProduct = (products) => {
-  console.log("5555555555555555 Productsss de editProduct", products);
+
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products.id}`, {
@@ -154,7 +155,7 @@ export const postUser = (user) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "https://cellxpress.onrender.com/",
+        "/",
         user
       );
       dispatch({ type: POST_USER, payload: response.data });

@@ -1,6 +1,7 @@
 import style from "./aboutUs.module.css";
 
 export default function AboutUs() {
+ 
   return (
     <div className={style.aboutUsContainer}>
       <a href="/home">

@@ -8,17 +8,21 @@ import DashUser from "./DashUsers/DashUsers";
 import DashProduct from "./DashProducts/DashProducts";
 import DashOrder from "./DashOrders/DashOrders";
 import { useAuth } from "../../context/authContext"
+import NewProduct from "../../Components/NewProduct/NewProduct";
 
 export default function DashboardAdmin() {
   const { user, logout } = useAuth();
+  
   const allUser = useSelector((state)=> state.allUsers)
+
   const adminUsers = user && allUser.find((adminUser) => adminUser.email === user.email);
+
 const dispatch =useDispatch()
 useEffect(()=>{
   dispatch(getUsers())
 },[])
 
-  const [activeTab, setActiveTab] = useState(" ");
+  const [activeTab, setActiveTab] = useState("users");
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -39,6 +43,7 @@ useEffect(()=>{
           {activeTab === "users" && <DashUser />}
           {activeTab === "products" && <DashProduct />}
           {activeTab === "order" && <DashOrder />}
+          {activeTab === "newproduct" && <NewProduct />}
         </div>
       </div>
      

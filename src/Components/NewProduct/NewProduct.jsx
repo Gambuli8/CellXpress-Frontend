@@ -119,9 +119,7 @@ const NewProduct = () => {
 
   return (
     <div className={style.back}>
-      <a href="/home" className={style.buttonBack}>
-        Volver
-      </a>
+      
       <div className={style.container}>
         <form className={style.inputContainer} onSubmit={handleSubmit}>
           <h2 className={style.titulo}>Añadir Producto</h2>

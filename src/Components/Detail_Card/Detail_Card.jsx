@@ -66,11 +66,14 @@ export default function Detail_Card(productId) {
 
   /* funcion para buscar el producto por id */
   useEffect(() => {
-    dispatch(getProduct())
+    if(!allProduct){
+      dispatch(getProduct())
+    }
+   
     setProduct(allProduct.find((p) => p?._id == id))
-  }, [allProduct, id]);
+  }, [ dispatch, allProduct, id]);
 
-  const starRating = Array(5).fill(0);
+  
 
   return (
     <>
