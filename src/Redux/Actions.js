@@ -33,7 +33,9 @@ import axios from "axios";
 export function getProduct() {
   return async function (dispatch) {
     try {
-      const response = (await axios.get("/products")).data;
+      const response = (
+        await axios.get("https://cellxpress.onrender.com/products")
+      ).data;
 
       dispatch({
         type: GET_ALL_PRODUCTS,
@@ -48,7 +50,10 @@ export function getProduct() {
 export const postProduct = (products) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("/products", products);
+      const response = await axios.post(
+        "https://cellxpress.onrender.com/products",
+        products
+      );
       dispatch({ type: POST_PRODUCT, payload: response.data });
       alert(`${products.title} Agregado correctamente`);
       return response;
@@ -61,9 +66,12 @@ export const postProduct = (products) => {
 export const putProduct = (products) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`/products/${products.id}`, {
-        isDeactivated: products.isDeactivated,
-      });
+      const response = await axios.put(
+        `https://cellxpress.onrender.com/products/${products.id}`,
+        {
+          isDeactivated: products.isDeactivated,
+        }
+      );
       if (products.isDeactivated) {
         Swal.fire({
           text: `${products.title} Desactivado Correctamente`,
@@ -86,7 +94,10 @@ export const putProduct = (products) => {
 export const putEditProduct = (products) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`/products/${products._id}`, products);
+      const response = await axios.put(
+        `https://cellxpress.onrender.com/products/${products._id}`,
+        products
+      );
       if (response) {
         Swal.fire({
           text: `${products.title} Actualizado Correctamente`,
@@ -124,8 +135,11 @@ export const getUsers = () => {
 export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`/products/search?keyword=${name}`))
-        .data.products;
+      const response = (
+        await axios.get(
+          `https://cellxpress.onrender.com/products/search?keyword=${name}`
+        )
+      ).data.products;
 
       if (response.length === 0) {
         Swal.fire({
@@ -152,7 +166,10 @@ export const postUser = (user) => {
   console.log("usuario", user);
   return async (dispatch) => {
     try {
-      const response = await axios.post("/", user);
+      const response = await axios.post(
+        "https://cellxpress.onrender.com/",
+        user
+      );
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       console.log(response);
@@ -167,7 +184,10 @@ export const postInfo = (info) => {
   return async (dispatch) => {
     try {
       console.log(info);
-      const response = await axios.post("/order/add-to-cart", info);
+      const response = await axios.post(
+        "https://cellxpress.onrender.com/order/add-to-cart",
+        info
+      );
       dispatch({ type: POST_ORDER, payload: response.data });
     } catch (error) {
       console.log(error.message.data);
@@ -179,10 +199,13 @@ export const postInfo = (info) => {
 export const putUser = (user) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`/users/${user.id}`, {
-        isActive: user.isActive,
-        email: user.name,
-      });
+      const response = await axios.put(
+        `https://cellxpress.onrender.com/users/${user.id}`,
+        {
+          isActive: user.isActive,
+          email: user.name,
+        }
+      );
       if (user.isActive) {
         Swal.fire({
           text: `${user.name} Activado Correctamente`,
@@ -207,7 +230,7 @@ export const deleteProduct = (productId, userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(
-        `/order/remove-from-cart/${userId}/${productId}`
+        `https://cellxpress.onrender.com/order/remove-from-cart/${userId}/${productId}`
       );
       dispatch({ type: DELETE_PRODUCT_CART, payload: response.data });
     } catch (error) {
@@ -232,8 +255,9 @@ export const deleteProduct = (productId, userId) => {
 export const postUserId = (userId) => {
   return async (dispatch) => {
     try {
+      console.log("entra", userId);
       const response = await axios.post(
-        "/order/checkout",
+        "https://cellxpress.onrender.com/order/checkout",
         { userId } // Enviar userId en el cuerpo
       );
       dispatch({ type: POST_USERID, payload: response.data });
@@ -249,10 +273,13 @@ export const postUserId = (userId) => {
 export const editPutUser = (user) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`/users/${user.id}`, {
-        name: user.name,
-        phone: user.phone,
-      });
+      const response = await axios.put(
+        `https://cellxpress.onrender.com/users/${user.id}`,
+        {
+          name: user.name,
+          phone: user.phone,
+        }
+      );
       console.log("8888", response);
       dispatch(getUsers());
     } catch (error) {
@@ -267,7 +294,7 @@ export const getfilters = (info) => {
     try {
       const response = (
         await axios.get(
-          `/products/filter?brand=${info.brand}&minPrice=${info.minPrice}&maxPrice=${info.maxPrice}&ram=${info.ram}&cameraInches=${info.camera}&screenSize=`
+          `https://cellxpress.onrender.com/products/filter?brand=${info.brand}&minPrice=${info.minPrice}&maxPrice=${info.maxPrice}&ram=${info.ram}&cameraInches=${info.camera}&screenSize=`
         )
       ).data.products;
       if (response.length === 0) {
@@ -291,7 +318,9 @@ export const getfiltersram = (info) => {
   return async (dispatch) => {
     try {
       const response = (
-        await axios.get(`/products/filter?brand=&ram=${info}&cameraInches=`)
+        await axios.get(
+          `https://cellxpress.onrender.com/products/filter?brand=&ram=${info}&cameraInches=`
+        )
       ).data.products;
       if (response.length === 0) {
         Swal.fire({
@@ -313,7 +342,9 @@ export const getfilterspixeles = (info) => {
   return async (dispatch) => {
     try {
       const response = (
-        await axios.get(`/products/filter?brand=&ram=&cameraInches=${info}`)
+        await axios.get(
+          `https://cellxpress.onrender.com/products/filter?brand=&ram=&cameraInches=${info}`
+        )
       ).data.products;
       if (response.length === 0) {
         Swal.fire({
@@ -343,7 +374,10 @@ export function orderPhone(order) {
 export const loginUser = (userlog) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("/users", userlog);
+      const response = await axios.post(
+        "https://cellxpress.onrender.com/users",
+        userlog
+      );
       dispatch({ type: LOGIN_USER, payload: response.data });
       alert(`Bienvenido de nuevo a CELLXPRESS`);
       return response;
@@ -369,7 +403,9 @@ export const calificar = (info) => {
 export const orderBuy = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/order/all/`);
+      const response = await axios.get(
+        `https://cellxpress.onrender.com/order/all/`
+      );
 
       dispatch({
         type: GET_ORDER_BUY,
@@ -384,7 +420,9 @@ export const orderBuy = () => {
 export const getProductById = (id) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`/products/${id}`)).data.product;
+      const response = (
+        await axios.get(`https://cellxpress.onrender.com/products/${id}`)
+      ).data.product;
       dispatch({
         type: GET_PRODUCT_BY_ID,
         payload: response,
@@ -398,7 +436,11 @@ export const getProductById = (id) => {
 export const getOrderById = (id) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`/order/orders/user/${id}`)).data;
+      const response = (
+        await axios.get(
+          `https://cellxpress.onrender.com/order/orders/user/${id}`
+        )
+      ).data;
       dispatch({
         type: GET_ORDER_BY_ID,
         payload: response,
@@ -412,8 +454,11 @@ export const getOrderById = (id) => {
 export const getPendingOrderById = (id) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`/order/pendingOrders/user/${id}`))
-        .data;
+      const response = (
+        await axios.get(
+          `https://cellxpress.onrender.com/order/pendingOrders/user/${id}`
+        )
+      ).data;
       dispatch({
         type: GET_PENDING_ORDER_BY_ID,
         payload: response,
@@ -429,7 +474,9 @@ export const getPendingOrderById = (id) => {
 export const getUserById = (id) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`/users/${id}`)).data;
+      const response = (
+        await axios.get(`https://cellxpress.onrender.com/users/${id}`)
+      ).data;
       dispatch({
         type: GET_USER_BY_ID,
         payload: response,
@@ -443,7 +490,10 @@ export const getUserById = (id) => {
 export const postOrder = (order) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("/order/add-to-cart", order);
+      const response = await axios.post(
+        "https://cellxpress.onrender.com/order/add-to-cart",
+        order
+      );
       dispatch({ type: POST_ORDER, payload: response.data });
       return response;
     } catch (error) {
@@ -456,7 +506,7 @@ export const updateCartItemQuantity =
   (userId, productId, quantity) => async (dispatch) => {
     try {
       const response = await axios.put(
-        `/order/update-cart/${userId}/${productId}`,
+        `https://cellxpress.onrender.com/order/update-cart/${userId}/${productId}`,
         { quantity }
       );
       dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });

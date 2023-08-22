@@ -28,8 +28,6 @@ export default function DetailAndFormCart() {
     }
   }, [userParam, dispatch]);
 
-  console.log(pendingOrderById);
-
   const handleIncrement = (productId) => {
     setLocalQuantities((prevQuantities) => ({
       ...prevQuantities,
