@@ -6,15 +6,15 @@ import style from "./Carrito.module.css";
 import useCart from "../Hooks/useCart";
 import swal from "sweetalert2";
 import { Link, useLocation } from "react-router-dom";
-import { postInfo, postUserId, deleteProduct, getUsers } from "../../Redux/Actions";
+import { postInfo, postUserId, deleteProduct, getUsers, getPendingOrderById } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 function CartItem(product) {
 
   const { removeFromCart, cart, saveCart } = useCart();
   const dispatch = useDispatch();
-  const {pathname} = useLocation();
   const user = useAuth().user;
 
   const allUsers = useSelector((state) => state.allUsers);
@@ -115,12 +115,37 @@ function CartItem(product) {
 
 export default function Carrito() {
   const cartCheckId = useId();
-  const { cart, ClearCart, addToCart } = useCart();
+  const { cart, ClearCart, addToCart, setCart } = useCart();
 
   const dispatch = useDispatch();
   const user = useAuth().user;
+  // const navigate = useNavigate();
+  // const {pathname} = useLocation();
 
   const allUsers = useSelector((state) => state.allUsers);
+  const pendingOrderById = useSelector((state) => state.pendingOrderById);
+
+  const renderProduct = () => {
+    {pendingOrderById.map((order) => (
+      <li key={order._id} className={style.li}>
+        {/* Render the pending order details here */}
+        <ul className={style.ul1}>
+          {order.products.map((item) => (
+            <li className={style.li1} key={item.product._id}>
+              {console.log(item)}
+              {/* Render each product in the pending order */}
+              <img width={100} height={100} src={item.product.image} alt={item.product.title} />
+              <p>Producto: {item.product.title}</p>
+              <p className={style.price}>Precio: ${item.product.price}</p>
+            </li>
+          ))}
+           </ul>
+           </li>
+           ))}
+  }
+
+  const ggg = setCart(renderProduct);
+  console.log(ggg);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -129,10 +154,20 @@ export default function Carrito() {
   const userParam =
   user && allUsers.find((userParam) => userParam.email === user.email);
 
+  useEffect(() => {
+    if (userParam) {
+      dispatch(getPendingOrderById(userParam._id));
+    }
+  }, [userParam, dispatch]);
+
   const handleUserId = () => {
     dispatch(postUserId(userParam?._id));
   };
   
+  // const handlerRut = () => {
+  //   if(pathname('/carrito') )
+  //   navigate('/carrito');
+  // }
 
   const handleClearCart = () => {
     swal
@@ -184,17 +219,17 @@ export default function Carrito() {
 
       <aside className={style.cart}>
         <ul>
-          {cart.length === 0 && <p>El carrito está vacío</p>}
-          {cart.map((product) => (
+          {/* {cart.length === 0 && <p>El carrito está vacío</p>} */}
+          {/* {cart.map((product) => (
             <CartItem
               key={product._id}
               addToCart={() => addToCart(product)}
               count={product.quantity}
               {...product}
             />
-          ))}
+          ))} */}
         </ul>
-        {cart.length > 0 ? (
+        {/* {cart.length > 0 ? (
           <button onClick={() => handleClearCart()}>
             <strong>clear cart</strong>
           </button>
@@ -205,7 +240,7 @@ export default function Carrito() {
               <strong>Realizar compra</strong>
             </button>
           </Link>
-        ) : null}
+        ) : null} */}
       </aside>
     </>
   );

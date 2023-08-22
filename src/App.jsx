@@ -21,7 +21,7 @@ import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
   window.addEventListener('popstate', function (e) {
-     window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
+    //  window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
   });
 
   return (
