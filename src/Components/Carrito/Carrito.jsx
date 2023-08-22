@@ -115,37 +115,17 @@ function CartItem(product) {
 
 export default function Carrito() {
   const cartCheckId = useId();
-  const { cart, ClearCart, addToCart, setCart } = useCart();
+  const { cart, ClearCart, addToCart, } = useCart();
 
   const dispatch = useDispatch();
   const user = useAuth().user;
   // const navigate = useNavigate();
   // const {pathname} = useLocation();
 
+  const navigate = useNavigate();
+
   const allUsers = useSelector((state) => state.allUsers);
   const pendingOrderById = useSelector((state) => state.pendingOrderById);
-
-  const renderProduct = () => {
-    {pendingOrderById.map((order) => (
-      <li key={order._id} className={style.li}>
-        {/* Render the pending order details here */}
-        <ul className={style.ul1}>
-          {order.products.map((item) => (
-            <li className={style.li1} key={item.product._id}>
-              {console.log(item)}
-              {/* Render each product in the pending order */}
-              <img width={100} height={100} src={item.product.image} alt={item.product.title} />
-              <p>Producto: {item.product.title}</p>
-              <p className={style.price}>Precio: ${item.product.price}</p>
-            </li>
-          ))}
-           </ul>
-           </li>
-           ))}
-  }
-
-  const ggg = setCart(renderProduct);
-  console.log(ggg);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -194,9 +174,23 @@ export default function Carrito() {
       });
   };
 
+  const handlerRut = () => {
+    // if(pendingOrderById[0]?.products){
+    //   swal.fire({
+    //     title: "Carrito Vacio",
+    //     text: "Agregue al carrito para poder comprar",
+    //     icon: "warning",
+    //   })
+    // } else {
+      navigate('/carrito');
+    // } 
+  }
+
+  // console.log(pendingOrderById[0].products[0]);
+
   return (
     <>
-      <label htmlFor={cartCheckId} className={style.cart_button}>
+      <label onClick={handlerRut} htmlFor={cartCheckId} className={style.cart_button}>
         <span className={style.cart_icon}>
           <svg
             width="30px"
@@ -219,28 +213,28 @@ export default function Carrito() {
 
       <aside className={style.cart}>
         <ul>
-          {/* {cart.length === 0 && <p>El carrito está vacío</p>} */}
-          {/* {cart.map((product) => (
+          {pendingOrderById.length === 0 && <p>El carrito está vacío</p>}
+          {pendingOrderById.map((product) => (
             <CartItem
               key={product._id}
               addToCart={() => addToCart(product)}
               count={product.quantity}
               {...product}
             />
-          ))} */}
+          ))} 
         </ul>
-        {/* {cart.length > 0 ? (
+        {pendingOrderById.length > 0 ? (
           <button onClick={() => handleClearCart()}>
             <strong>clear cart</strong>
           </button>
         ) : null}
-        {cart.length > 0 ? (
+        {pendingOrderById.length > 0 ? (
           <Link to="/carrito">
             <button onClick={() => handleUserId()}>
               <strong>Realizar compra</strong>
             </button>
           </Link>
-        ) : null} */}
+        ) : null}
       </aside>
     </>
   );

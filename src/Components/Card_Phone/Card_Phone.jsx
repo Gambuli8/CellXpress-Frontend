@@ -25,7 +25,7 @@ const Card_Phone = (props) => {
   user && allUsers.find((userParam) => userParam.email === user.email);
 
 
-  const {cart} = useCart();
+  const {cart, addToCart, saveCart} = useCart();
 
   const handlerAddToCart2 = () => {
     Swal.fire({

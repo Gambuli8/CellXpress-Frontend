@@ -28,6 +28,8 @@ export default function DetailAndFormCart() {
     }
   }, [userParam, dispatch]);
 
+  console.log(pendingOrderById);
+
   const handleIncrement = (productId) => {
     setLocalQuantities((prevQuantities) => ({
       ...prevQuantities,
@@ -94,11 +96,10 @@ export default function DetailAndFormCart() {
                 <ul className={style.ul1}>
                   {order.products.map((item) => (
                     <li className={style.li1} key={item.product._id}>
-                      {setCart(order.products[0].product)}
                       {/* Render each product in the pending order */}
                       <img width={100} height={100} src={item.product.image} alt={item.product.title} />
                       <p>Producto: {item.product.title}</p>
-                      <p className={style.price}>Precio: ${item.product.price}</p>
+                      <p className={style.price}>Precio p/u: ${item.product.price}</p>
                       <div className={style.cantidad}>
                       <button className={style.btncount} onClick={() => handleIncrement(item.product._id)}>+</button>
                       <p>{localQuantities[item.product._id] || item.quantity}</p>
@@ -109,7 +110,7 @@ export default function DetailAndFormCart() {
                 </ul>
                 <div className={style.compra}>
                 <div className={style.totalPrice}>
-                <p>Total: ${order.total}</p>
+                <p>Total: ${order.total }</p>
                 </div>
                 <div className={style.btnCompra}>
                 <button className={style.btn} onClick={handleConfirm} disabled={confirmed}>
@@ -123,7 +124,7 @@ export default function DetailAndFormCart() {
               </li>
             ))}
           </ul>
-          </div>
+        </div>
       </div>
     </>
   );
