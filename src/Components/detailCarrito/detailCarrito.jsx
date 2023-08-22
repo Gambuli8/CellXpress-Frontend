@@ -9,7 +9,7 @@ import formStyle from './formCart.module.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function DetailAndFormCart() {
-  const { cart } = useCart();
+  const { cart, setCart } = useCart();
   const dispatch = useDispatch();
   const user = useAuth().user;
   const allUsers = useSelector((state) => state.allUsers);

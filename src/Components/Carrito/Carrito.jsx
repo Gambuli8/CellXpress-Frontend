@@ -6,7 +6,7 @@ import style from "./Carrito.module.css";
 import useCart from "../Hooks/useCart";
 import swal from "sweetalert2";
 import { Link, useLocation } from "react-router-dom";
-import { postInfo, postUserId, deleteProduct, getUsers } from "../../Redux/Actions";
+import { postInfo, postUserId, deleteProduct, getUsers, getPendingOrderById } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,6 @@ function CartItem(product) {
 
   const { removeFromCart, cart, saveCart } = useCart();
   const dispatch = useDispatch();
-  const {pathname} = useLocation();
   const user = useAuth().user;
 
   const allUsers = useSelector((state) => state.allUsers);
@@ -55,12 +54,12 @@ function CartItem(product) {
   const [price, setPrice] = useState(
     JSON.parse(localStorage.getItem("carrito")).find(
       (item) => item.id === product.id
-    ).price
+    )?.price
   );
   const [count, setCount] = useState(
     JSON.parse(localStorage.getItem("carrito")).find(
       (item) => item.id === product.id
-    ).quantity
+    )?.quantity
   );
 
   // funciones de suma y resta de la cantidad de productos en el carrito dependiendo del stock
@@ -120,6 +119,8 @@ export default function Carrito() {
 
   const dispatch = useDispatch();
   const user = useAuth().user;
+  // const navigate = useNavigate();
+  // const {pathname} = useLocation();
 
   const navigate = useNavigate();
 
@@ -133,10 +134,20 @@ export default function Carrito() {
   const userParam =
   user && allUsers.find((userParam) => userParam.email === user.email);
 
+  useEffect(() => {
+    if (userParam) {
+      dispatch(getPendingOrderById(userParam._id));
+    }
+  }, [userParam, dispatch]);
+
   const handleUserId = () => {
     dispatch(postUserId(userParam?._id));
   };
   
+  // const handlerRut = () => {
+  //   if(pathname('/carrito') )
+  //   navigate('/carrito');
+  // }
 
   const handleClearCart = () => {
     swal
@@ -210,7 +221,7 @@ export default function Carrito() {
               count={product.quantity}
               {...product}
             />
-          ))}
+          ))} 
         </ul>
         {pendingOrderById.length > 0 ? (
           <button onClick={() => handleClearCart()}>
