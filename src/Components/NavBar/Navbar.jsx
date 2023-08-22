@@ -24,6 +24,7 @@ export default function Navbar({
 
   const userParam =
     user && allUseres.find((userParam) => userParam.email === user.email);
+
   return (
     <nav className={style.navContainer}>
       <div>
@@ -41,13 +42,25 @@ export default function Navbar({
           handlerChanges={handlerChanges}
         />
       </div>
+
       <div className={style.linkContainer}>
+        {userParam?.admin && (
+          <a
+            href="/admin"
+            className={style.link}
+            onClick={handleReloadProducts}
+          >
+            Administrador
+          </a>
+        )}
+
         <a href="/home" className={style.link} onClick={handleReloadProducts}>
           Inicio
         </a>
         <NavLink to="/aboutus" className={style.link}>
           Sobre Nosotros
         </NavLink>
+
         {!user && (
           <NavLink to="/register" className={style.link}>
             Registrarse
@@ -59,7 +72,7 @@ export default function Navbar({
           </NavLink>
         ) : (
           <div className={style.user}>
-              {userParam && (
+            {userParam && (
               <NavLink to={`/user/${userParam._id}`}>{userParam.name}</NavLink>
             )}
             <button onClick={logout} className={style.btn}>

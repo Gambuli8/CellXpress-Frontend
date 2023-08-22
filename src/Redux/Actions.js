@@ -10,13 +10,20 @@ import {
   POST_PRODUCT,
   PUT_USER,
   PUT_PRODUCT,
+  SUCCESS_ORDER,
   POST_ORDER,
+  POST_USERID,
+  LOGIN_USER,
   RAMFILTERS,
   PIXELESFILTERS,
+  DELETE_PRODUCT_CART,
   GET_ORDER_BUY,
   GET_PRODUCT_BY_ID,
   GET_ORDER_BY_ID,
   GET_USER_BY_ID,
+  GET_PENDING_ORDER_BY_ID,
+  CART_UPDATE_QUANTITY_SUCCESS,
+  CART_UPDATE_QUANTITY_FAILURE,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -52,7 +59,6 @@ export const postProduct = (products) => {
 };
 
 export const putProduct = (products) => {
-  console.log("5555555555555555 Productsss de editProduct", products);
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products.id}`, {
@@ -77,9 +83,7 @@ export const putProduct = (products) => {
     }
   };
 };
-
 export const putEditProduct = (products) => {
-  console.log("5555555555555555 Productsss de editProduct", products);
   return async (dispatch) => {
     try {
       const response = await axios.put(`/products/${products._id}`, products);
@@ -148,10 +152,7 @@ export const postUser = (user) => {
   console.log("usuario", user);
   return async (dispatch) => {
     try {
-      const response = await axios.post(
-        "https://cellxpress.onrender.com/",
-        user
-      );
+      const response = await axios.post("/", user);
       dispatch({ type: POST_USER, payload: response.data });
       alert(`${user.name} Bienvenido  a CELLXPRESS`);
       console.log(response);
@@ -162,14 +163,26 @@ export const postUser = (user) => {
   };
 };
 
+export const postInfo = (info) => {
+  return async (dispatch) => {
+    try {
+      console.log(info);
+      const response = await axios.post("/order/add-to-cart", info);
+      dispatch({ type: POST_ORDER, payload: response.data });
+    } catch (error) {
+      console.log(error.message.data);
+    }
+  };
+};
+
 //PUT USER PARA BANEAR
 export const putUser = (user) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(`/users/${user.id}`, {
         isActive: user.isActive,
+        email: user.name,
       });
-      console.log("8888", response);
       if (user.isActive) {
         Swal.fire({
           text: `${user.name} Activado Correctamente`,
@@ -186,6 +199,48 @@ export const putUser = (user) => {
     } catch (error) {
       console.log(error);
       /*alert(error.message)*/
+    }
+  };
+};
+
+export const deleteProduct = (productId, userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `/order/remove-from-cart/${userId}/${productId}`
+      );
+      dispatch({ type: DELETE_PRODUCT_CART, payload: response.data });
+    } catch (error) {
+      console.log(error.message.data);
+    }
+  };
+};
+
+// export const allDelete = (userId) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.delete(
+//         `http://localhost:3002/order/empty-cart/${userId}`
+//       );
+//       dispatch({ type: ALL_DELETE_CART, payload: response.data });
+//     } catch (error) {
+//       console.log(error.message.data);
+//     }
+//   };
+// };
+
+export const postUserId = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "/order/checkout",
+        { userId } // Enviar userId en el cuerpo
+      );
+      dispatch({ type: POST_USERID, payload: response.data });
+      return response; // Retorna la respuesta completa
+    } catch (error) {
+      console.log(error);
+      throw error; // Lanza el error nuevamente para que pueda ser manejado por el componente
     }
   };
 };
@@ -299,14 +354,11 @@ export const loginUser = (userlog) => {
 };
 // funcion  para calificar los Productos
 export const calificar = (info) => {
-  
   return async (dispatch) => {
     // try {
     //   const response = await axios.post(
     //     "https://cellxpress.onrender.com/",
-        
     //   );
-      
     // } catch (error) {
     //   alert(error.message);
     // }
@@ -357,6 +409,21 @@ export const getOrderById = (id) => {
   };
 };
 
+export const getPendingOrderById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/order/pendingOrders/user/${id}`))
+        .data;
+      dispatch({
+        type: GET_PENDING_ORDER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
 //get user by ID
 
 export const getUserById = (id) => {
@@ -373,15 +440,29 @@ export const getUserById = (id) => {
   };
 };
 
-// export const postOrder = (order) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post("/order/add-to-cart", order);
-//       alert(`Gracias por tu compra`);
-//       dispatch({ type: POST_ORDER, payload: response.data });
-//       return response;
-//     } catch (error) {
-//       alert(error.message);
-//     }
-//   };
-// };
+export const postOrder = (order) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("/order/add-to-cart", order);
+      dispatch({ type: POST_ORDER, payload: response.data });
+      return response;
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+};
+
+export const updateCartItemQuantity =
+  (userId, productId, quantity) => async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `/order/update-cart/${userId}/${productId}`,
+        { quantity }
+      );
+      dispatch({ type: CART_UPDATE_QUANTITY_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
+    }
+  };
+
+//hola

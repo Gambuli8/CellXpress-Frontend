@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 100%;
     height: 100%;
 }
@@ -10,43 +11,47 @@
 .containerCart{
     display: flex;
     flex-direction: column;
-    border-right: 2px solid #000000;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
-    padding-left: 20px;
-    overflow: auto;
-    margin: 0px;
-    background-color: #0E2954;
+    min-height: 100vh;
+    max-height: 100%;
+    background-color: #2e8a99;
 }
-.ul{
+
+.cantidad{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 20px;
+    height: 30px;
+}
+
+.btncount{
+    height: 30px;
+}
+
+.ul1{
     list-style: none;
-    margin: 0;
-    padding-left: 0;
-    width: 100%;
-   max-height: 100%;
+    display: grid;
+    width: 700px;
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    gap: 16px;
+    /* border: 1px solid black; */
+    background-color: white;
+    box-shadow: 1px 1px 5px 5px rgba(0,0,0,0.75);
+}
+
+.li1{
+    list-style: none;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: auto;
-    padding-top: 250px;
-}
-
-.ul::-webkit-scrollbar{
-    width: 15px;
-}
-
-.ul::-webkit-scrollbar-thumb{
-    background-color: #1F6E8C;
-    border-radius: 20px;
-    border: 5px solid #0E2954;
-}
-
-.ul::-webkit-scrollbar-track{
-    background-color: #0E2954;
-    border-radius: 20px;
+    text-align: center;
 }
 
 .li{
@@ -55,9 +60,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 250px;
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 .p{
@@ -78,49 +80,67 @@
 }
 
 .price{
-    margin: 0;
-    margin-top: 40px;
-    padding: 0;
-    font-size: 20px;
-    background-color: green;
+    margin: 10px;
+    font-size: 18px;
+    /* background-color: green; */
     border-radius: 10px;
-    width: 140px;
+    width: 130px;
     text-align: center;
     display:flex;
     justify-content: center;
     align-items: center;
 }
 
-.containerForm{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    background-color: #1F6E8C;
-}
-
-.info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin-left: 15px;
-}
-
 .totalPrice{
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: green;
-    width: 200px;
-    height: 50px;
+    width: 150px;
+    height: 60px;
+    font-size: 23px;
     border-radius: 10px;
     margin: 10px;
+}
+
+.compra{
+    margin-left: 100px;
+    padding: 3.5px;
+    width: 300px;
+    min-height: 80vh;
+    max-height: 100%;
+    background-color: white;
+    box-shadow: 1px 1px 5px 5px rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.btnCompra{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.btn{
+    margin: 10px;
+    cursor: pointer;
+    outline: none !important ;
+    box-shadow:none!important;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #1f6e8c;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn:hover{
+    transition: all 0.5s;
+    transform: scale(1.1);
 }
 
 .btn_back{
@@ -149,3 +169,19 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
+
+
+/* .ul::-webkit-scrollbar{
+    width: 15px;
+}
+
+.ul::-webkit-scrollbar-thumb{
+    background-color: #1F6E8C;
+    border-radius: 20px;
+    border: 5px solid #0E2954;
+}
+
+.ul::-webkit-scrollbar-track{
+    background-color: #0E2954;
+    border-radius: 20px;
+} */

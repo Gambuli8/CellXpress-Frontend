@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
+
 import { useEffect, useState } from "react";
 import style from "./Login.module.css";
 import { validate } from "../Validate/Validate";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../Hooks/useLocalStorage.js";
-import { getUsers } from "../../Redux/Actions";
+import { getUsers, postUser } from "../../Redux/Actions";
 import { useSelector, useDispatch } from "react-redux";
 
 function Login() {
@@ -37,6 +39,11 @@ function Login() {
     dispatch(getUsers());
   });
 
+  const handleReloadProducts = () => {
+    dispatch(getProduct()); // O la acción para cargar los productos
+      
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors("");
@@ -44,12 +51,13 @@ function Login() {
 
     if (Object.keys(validationErrors).length === 0) {
       await login(input.email, input.password);
-      navigate("/home");
+      window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
+     
     }
   };
   const loginWithGoogle = async () => {
     await loginGoogle();
-    navigate("/home");
+    window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
     if (user) {
       dispatch(postUser(user));
       setInput({
@@ -61,6 +69,7 @@ function Login() {
     }
   };
 
+ 
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>
@@ -93,12 +102,14 @@ function Login() {
           {errors.passwordAcces && (
             <p className={style.error}>{errors.passwordAcces}</p>
           )}
-          <button className={style.button}>Login</button>
+          <button className={style.button} onClick={handleReloadProducts}>Login 
+          </button>
           <p className={style.label}>-------------O-------------</p>
-          <button className={style.button} onClick={loginWithGoogle}>
+          
+        </form>
+        <button className={style.button} onClick={loginWithGoogle}>
             Login With Google
           </button>
-        </form>
       </div>
     </div>
   );

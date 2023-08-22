@@ -41,6 +41,11 @@ export const AuthProvider = ({ children }) => {
          setLoading(false);
       })
    }, [])
+   const userActive = () => {
+      if(user){
+         
+      }
+   }
 
    return (
       <AuthContext.Provider

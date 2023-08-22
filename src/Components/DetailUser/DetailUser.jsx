@@ -1,6 +1,8 @@
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
+import StarRating from "../StarRating/StarRating"
+
 import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getOrderById, editPutUser, getUserById } from "../../Redux/Actions";
@@ -18,20 +20,7 @@ const DetailUser = () => {
     phone: "",
     id: id,
   });
-  //perfectoooooooooooooooo
-
-  window.addEventListener('popstate', function (e) {
-    //window.location.assign("http://localhost:5173/home");
-     window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
-  });
-
-
-  window.addEventListener('popstate', function (e) {
-    window.location.assign("http://localhost:5173/home");
-    window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
-  });
-
-
+  
 
   useEffect(() => {
     dispatch(getOrderById(id));
@@ -115,6 +104,7 @@ const DetailUser = () => {
                         <li className={style.label}>{e.product.title}</li>
                         <li className={style.label}>{e.product.brand}</li>
                         <li className={style.label}>${elemento.total}</li>
+                        <StarRating/>
                         <li className={style.label}>{e.quantity}</li>
                       </ul>
                     );
