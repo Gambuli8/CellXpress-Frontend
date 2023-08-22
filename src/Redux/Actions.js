@@ -515,5 +515,3 @@ export const updateCartItemQuantity =
       dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
     }
   };
-
-//hola
