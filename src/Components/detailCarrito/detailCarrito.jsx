@@ -6,6 +6,7 @@ import { getUsers, getPendingOrderById, postUserId, updateCartItemQuantity } fro
 import { useAuth } from '../../context/authContext';
 import style from './detail.module.css';
 import formStyle from './formCart.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function DetailAndFormCart() {
   const { cart } = useCart();
@@ -16,6 +17,7 @@ export default function DetailAndFormCart() {
   const pendingOrderById = useSelector((state) => state.pendingOrderById);
   const [localQuantities, setLocalQuantities] = useState({});
   const [confirmed, setConfirmed] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUsers());
