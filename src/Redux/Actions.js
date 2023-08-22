@@ -122,7 +122,8 @@ export const putEditProduct = (products) => {
 export const getUsers = () => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get("/")).data;
+      const response = (await axios.get("https://cellxpress.onrender.com/"))
+        .data;
       dispatch({
         type: GET_USERS,
         payload: response,
