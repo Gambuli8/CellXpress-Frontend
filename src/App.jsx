@@ -15,8 +15,7 @@ import Login from "./Components/Login/Login";
 import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
 import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
-axios.defaults.baseURL = "https://pf-cell-xpress-frontend.vercel.app"
-
+axios.defaults.baseURL = "https://localhost:3002"
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 //BACK
 axios.defaults.baseURL = "https://cellxpress.onrender.com";
