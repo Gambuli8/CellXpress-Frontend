@@ -34,7 +34,7 @@
   margin-left: 0;
 }
 
-.cart_button:hover {
+/* .cart_button:hover {
   scale: 1.1;
 }
 
@@ -42,7 +42,7 @@
   display: block;
   height: 70vh;
   z-index: 1;
-}
+} */
 
 .svg {
   background-color: white;
