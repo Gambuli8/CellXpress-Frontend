@@ -51,13 +51,13 @@ function Login() {
 
     if (Object.keys(validationErrors).length === 0) {
       await login(input.email, input.password);
-      window.location.assign("http://localhost:5173/home");
+      window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
      
     }
   };
   const loginWithGoogle = async () => {
     await loginGoogle();
-    window.location.assign("http://localhost:5173/home");
+    window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
     if (user) {
       dispatch(postUser(user));
       setInput({
