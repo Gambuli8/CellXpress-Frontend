@@ -12,7 +12,6 @@ import { useAuth } from "../../context/authContext";
 
 function CartItem(product) {
 
-  //prueba
   const { removeFromCart, cart, saveCart } = useCart();
   const dispatch = useDispatch();
   const {pathname} = useLocation();
