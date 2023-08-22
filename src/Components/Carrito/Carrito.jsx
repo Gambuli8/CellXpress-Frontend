@@ -54,12 +54,12 @@ function CartItem(product) {
   const [price, setPrice] = useState(
     JSON.parse(localStorage.getItem("carrito")).find(
       (item) => item.id === product.id
-    ).price
+    )?.price
   );
   const [count, setCount] = useState(
     JSON.parse(localStorage.getItem("carrito")).find(
       (item) => item.id === product.id
-    ).quantity
+    )?.quantity
   );
 
   // funciones de suma y resta de la cantidad de productos en el carrito dependiendo del stock
