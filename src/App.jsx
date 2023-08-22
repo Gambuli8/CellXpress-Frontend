@@ -17,9 +17,10 @@ import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
 //axios.defaults.baseURL = "http://localhost:3002";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
-axios.defaults.baseURL = "https://cellxpress.onrender.com";
 axios.defaults.baseURL = "https://pf-cell-xpress-frontend.vercel.app/"
+//axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
+
   window.addEventListener('popstate', function (e) {
     //window.location.assign("http://localhost:5173/home");
      window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
