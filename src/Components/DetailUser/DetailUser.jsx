@@ -4,9 +4,6 @@ import { useAuth } from "../../context/authContext";
 import StarRating from "../StarRating/StarRating"
 
 import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
-
-
-
 import { useState, useEffect } from "react";
 import { getOrderById, editPutUser, getUserById } from "../../Redux/Actions";
 import TextArea from "rc-textarea";
@@ -24,14 +21,6 @@ const DetailUser = () => {
     id: id,
   });
   
- 
-
-  window.addEventListener('popstate', function (e) {
-    window.location.assign("http://localhost:5173/home");
-    window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
-  });
-
-
 
   useEffect(() => {
     dispatch(getOrderById(id));

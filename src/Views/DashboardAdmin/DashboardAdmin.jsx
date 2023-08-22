@@ -22,7 +22,7 @@ useEffect(()=>{
   dispatch(getUsers())
 },[])
 
-  const [activeTab, setActiveTab] = useState(" ");
+  const [activeTab, setActiveTab] = useState("users");
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };

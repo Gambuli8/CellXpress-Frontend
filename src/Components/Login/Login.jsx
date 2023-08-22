@@ -39,6 +39,11 @@ function Login() {
     dispatch(getUsers());
   });
 
+  const handleReloadProducts = () => {
+    dispatch(getProduct()); // O la acción para cargar los productos
+      
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors("");
@@ -46,12 +51,13 @@ function Login() {
 
     if (Object.keys(validationErrors).length === 0) {
       await login(input.email, input.password);
-     navigate("/home");
+      window.location.assign("http://localhost:5173/home");
+     
     }
   };
   const loginWithGoogle = async () => {
     await loginGoogle();
-     navigate("/home");
+    window.location.assign("http://localhost:5173/home");
     if (user) {
       dispatch(postUser(user));
       setInput({
@@ -63,10 +69,7 @@ function Login() {
     }
   };
 
-  const handleReloadProducts = () => {
-    dispatch(getProduct()); // O la acción para cargar los productos
-    setCurrentPag(1);
-  };
+ 
   return (
     <div className={style.contenedor}>
       <a href="/home" className={style.back}>
