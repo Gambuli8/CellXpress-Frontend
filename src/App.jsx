@@ -15,14 +15,14 @@ import Login from "./Components/Login/Login";
 import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
 import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
-axios.defaults.baseURL = "https://localhost:3002"
+// axios.defaults.baseURL = "http://localhost:3002"
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 //BACK
-axios.defaults.baseURL = "https://cellxpress.onrender.com";
+// axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
-  window.addEventListener('popstate', function (e) {
-     window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
-  });
+  // window.addEventListener('popstate', function (e) {
+  //   //  window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
+  // });
 
   return (
     <>
