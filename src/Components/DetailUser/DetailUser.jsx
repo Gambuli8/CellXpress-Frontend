@@ -10,24 +10,28 @@ import {
   editPutUser,
   getUserById,
   postCalificar,
+  star,
+  resetStar,
 } from "../../Redux/Actions";
-import Comentary from "../Comentary/Comentary";
 
 const DetailUser = () => {
-  const star = useSelector((state) => state.star);
+  const stars = useSelector((state) => state.star);
+  console.log("2222222222222222", stars);
 
   const { id } = useParams();
   const { user } = useAuth();
 
-  //* Estado para calificaciones y comentarios por producto
-  const [productRating, setProductRating] = useState({});
+  const [calificar, setcalificar] = useState({
+    productId: "",
+    nickname: "",
+    num: null,
+    comment: "",
+  });
 
-  // const [calificar, setcalificar] = useState({
-  //   productId: "",
-  //   nickname: "",
-  //   comment: "",
-  //   num: "",
-  // });
+  console.log("/////////////////////////////////", calificar);
+  //  useEffect(()=>{
+  //   setcalificar(calificar)
+  //  },[stars])
 
   const dispatch = useDispatch();
   const allOrderByID = useSelector((state) => state.orderById);
@@ -47,6 +51,13 @@ const DetailUser = () => {
     });
   }, [dispatch, id]);
 
+  useEffect(() => {
+    setcalificar((prevCalificar) => ({
+      ...prevCalificar,
+      num: stars,
+    }));
+  }, [stars]);
+
   const handleChange = (event) => {
     setInput({
       ...input,
@@ -58,81 +69,33 @@ const DetailUser = () => {
     dispatch(editPutUser(input));
     console.log(allOrderByID.products);
   };
-
-  // const onChangeCalificar = (eve) => {
-  //   eve.preventDefault();
-  //   setcalificar({
-  //     ...calificar,
-  //     [eve.target.name]: eve.target.value,
-  //   });
-  // };
-
-  // const onChangeCalificar = (eve) => {
-  //   eve.preventDefault();
-  //   const { name, value } = eve.target;
-  //   setcalificar((prevCalificar) => ({
-  //     ...prevCalificar,
-  //     [name]: value,
-  //   }));
-  // };
-  // useEffect(() => {
-  //   if (star) {
-  //     setcalificar({ num: star });
-  //   }
-  // }, [star]);
-
-  //!funcion para actualizar la calificacion por producto
-  const handleStar = (productId, star) => {
-    console.log("star handle star", star);
-    setProductRating((prevRatings) => ({
-      ...prevRatings,
-      [productId]: {
-        ...prevRatings[productId],
-        star: star,
-      },
-    }));
+  const handleSubmitCalificar = (event) => {
+    if (stars.length === 0) {
+      alert("Debes Calificar  las estrellitas");
+      return;
+    } else
+      setTimeout(() => {
+        dispatch(postCalificar(calificar));
+      }, 1000);
+    setTimeout(() => {
+      dispatch(resetStar());
+      setcalificar({
+        productId: "",
+        nickname: "",
+        num: null,
+        comment: "",
+      });
+    }, 2000);
   };
 
-  console.log("prrrroductrating", productRating);
-  //!funcion para actualizar el comentario por producto
-
-  const handleSetComment = (productId, comment) => {
-    setProductRating((prevRatings) => ({
-      ...prevRatings,
-      [productId]: {
-        ...prevRatings[productId],
-        comment: comment,
-      },
-    }));
+  const onChangeCalificar = (eve) => {
+    eve.preventDefault();
+    setcalificar({
+      ...calificar,
+      [eve.target.name]: eve.target.value,
+    });
   };
 
-  // const handleSubmitCalificar = (event) => {
-  //   event.preventDefault();
-  //   const updatedCalificar = {
-  //     ...calificar,
-  //     num: star,
-  //   };
-
-  //   console.log("updateCalificarrrrr", updatedCalificar);
-  //   dispatch(postCalificar(updatedCalificar));
-  // };
-
-  const handleSubmitCalificar = (productId) => {
-    const prRating = productRating[productId];
-    console.log("prrrrating", productRating);
-    if (prRating?.star > 0) {
-      const updateCalificar = {
-        productId: productId,
-        nickname: prRating.nickname,
-        comment: prRating.comment,
-        num: prRating.star,
-      };
-      console.log("updateCalificar", updateCalificar);
-      dispatch(postCalificar(updateCalificar));
-    } else {
-      console.log("Seleccione una calificacion antes de enviar");
-    }
-  };
   return (
     <div className={style.container}>
       <a className={style.btn_back} href="/home">
@@ -184,13 +147,14 @@ const DetailUser = () => {
                     <ul
                       key={e._id}
                       className={style.containerProduct}
-                      // onClick={() =>
-                      //   setcalificar({
-                      //     productId: e.product._id,
-                      //     nickname: elemento.userId,
-                      //     num: star,
-                      //   })
-                      // }
+                      onClick={() =>
+                        setcalificar({
+                          productId: e.product._id,
+                          nickname: elemento.userId,
+                          num: stars,
+                          comment: calificar.comment,
+                        })
+                      }
                     >
                       {/* {console.log("PRUEBASSSSSSSSSSSSSSSSSSSSS",e._id)} */}
                       <img
@@ -203,24 +167,12 @@ const DetailUser = () => {
                       <li className={style.label}>{e.product.brand}</li>
                       <li className={style.label}>${elemento.total}</li>
                       <div>
-                        <StarRating
-                          value={productRating[e.product._id]?.star || 0}
-                          onChange={(newStar) =>
-                            handleStar(e.product._id, newStar)
-                          }
-                        />
-                        {productRating[e.product._id]?.star && (
-                          <textarea
-                            name="comment"
-                            value={productRating[e.product._id]?.comment || ""}
-                            onChange={(event) =>
-                              handleSetComment(
-                                e.product._id,
-                                event.target.value
-                              )
-                            }
-                          ></textarea>
-                        )}
+                        <StarRating />
+
+                        <textarea
+                          name="comment"
+                          onChange={onChangeCalificar}
+                        ></textarea>
                       </div>
                       <li className={style.label}>{e.quantity}</li>
 

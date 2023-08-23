@@ -24,7 +24,8 @@ import {
   GET_PENDING_ORDER_BY_ID,
   CART_UPDATE_QUANTITY_SUCCESS,
   CART_UPDATE_QUANTITY_FAILURE,
-  STAR
+  STAR,
+  RESET_STAR,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -182,7 +183,6 @@ export const putUser = (user) => {
     try {
       const response = await axios.put(`/users/${user.id}`, {
         isActive: user.isActive,
-        
       });
       if (user.isActive) {
         Swal.fire({
@@ -355,9 +355,7 @@ export const loginUser = (userlog) => {
 };
 // funcion  para calificar los Productos
 export const calificar = (info) => {
-  return async (dispatch) => {
-   
-  };
+  return async (dispatch) => {};
 };
 
 //funcion para traer todas las ordenes de compras
@@ -460,33 +458,38 @@ export const updateCartItemQuantity =
     }
   };
 
-  export function star(order){
-    return  function (dispatch){
-       return dispatch ({
-           type: STAR, 
-           payload:order
-
-       })
-    }
-  }
-
-
-  export const postCalificar = (user) => {
-    console.log("9999999999999999999999999999",user )
-    return async (dispatch) => {
-      try {
-        const response = await axios.post(`/rating/reviews/${user.productId}`, {
-           comment:  user.comment,
-          num: user.num,
-          nickname: user.nickname
-          
-        });
-        console.log("probando", response)
-      } catch (error) {
-        console.log(error);
-        /*alert(error.message)*/
-      }
-    };
+export function star(order) {
+  return function (dispatch) {
+    return dispatch({
+      type: STAR,
+      payload: order,
+    });
   };
+}
+
+export function resetStar() {
+  return function (dispatch) {
+    return dispatch({
+      type: RESET_STAR,
+    });
+  };
+}
+
+export const postCalificar = (user) => {
+  console.log("**********************", user);
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`/rating/reviews/${user.productId}`, {
+        comment: user.comment,
+        num: user.num,
+        nickname: user.nickname,
+      });
+      console.log("probando", response);
+    } catch (error) {
+      console.log(error);
+      /*alert(error.message)*/
+    }
+  };
+};
 
 //hola

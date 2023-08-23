@@ -21,7 +21,8 @@ import {
   GET_ORDER_BY_ID,
   GET_USER_BY_ID,
   GET_PENDING_ORDER_BY_ID,
-  STAR
+  STAR,
+  RESET_STAR,
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -35,7 +36,7 @@ let inicialState = {
   orderBuy: [],
   orderById: [],
   pendingOrderById: [],
-  star:[]
+  star: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -73,13 +74,13 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allProduct: action.payload,
       };
-      
+
     case PIXELESFILTERS:
       return {
         ...state,
         allProduct: action.payload,
       };
-      case STAR:
+    case STAR:
       return {
         ...state,
         star: action.payload,
@@ -181,6 +182,12 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         pendingOrderById: action.payload,
+      };
+
+    case RESET_STAR:
+      return {
+        ...state,
+        star: [],
       };
   }
   return state;
