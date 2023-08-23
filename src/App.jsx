@@ -16,7 +16,7 @@ import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
 import OrderBuy from "./Components/OrderBuy/OrderBuy";
 import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
-//axios.defaults.baseURL = "https://localhost:3002";
+axios.defaults.baseURL = "https://localhost:3002";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 //BACK
 axios.defaults.baseURL = "https://cellxpress.onrender.com";

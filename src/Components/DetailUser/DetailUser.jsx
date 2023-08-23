@@ -1,3 +1,5 @@
+
+
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
@@ -10,17 +12,17 @@ import {
   editPutUser,
   getUserById,
   postCalificar,
-  star,
   resetStar,
   getReviewsUser,
 } from "../../Redux/Actions";
 
 const DetailUser = () => {
   const allOrderByID = useSelector((state) => state.orderById);
+
+  console.log("555555555555555555555555555555",allOrderByID)
   const reviewsUser = useSelector((state) => state.getreviewsuser);
   const allUsuariosByID = useSelector((state) => state.allUsers);
   const usuario = allUsuariosByID.name;
-  const userid = allUsuariosByID._id;
   const stars = useSelector((state) => state.star);
 
   const { id } = useParams();
@@ -32,7 +34,6 @@ const DetailUser = () => {
     num: [],
     comment: "",
   });
-
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
@@ -89,6 +90,8 @@ const DetailUser = () => {
           comment: "",
         });
       }, 2000);
+
+      dispatch(getUserById())
     }
   };
 
@@ -140,13 +143,16 @@ const DetailUser = () => {
         </form>
       </div>
       {/* //! Ordenes de compras ------------------------------------------------------- */}
-      <h2>Ordenes de compras</h2>
+      <h2>Ordenes de compras Calificadas</h2>
       <div className={style.containerOrdenesCompras}>
         {allOrderByID.map((elemento) => {
           return (
             <div key={elemento._id} className={style.ordenCompra}>
               <div className={style.ordenDetail}>
                 {elemento.products.map((e) => {
+                 if(e.product.rating.length >0){
+
+
                   return (
                     <ul
                       key={e._id}
@@ -160,9 +166,7 @@ const DetailUser = () => {
                           nickname: usuario,
                         })
                       }
-                    >
-                      {/* {console.log("PRUEBASSSSSSSSSSSSSSSSSSSSS",e._id)} */}
-                      <img
+                    ><img
                         src={e.product.image}
                         alt={e.product.title}
                         width="80px"
@@ -171,26 +175,53 @@ const DetailUser = () => {
                       <li className={style.label}>{e.product.title}</li>
                       <li className={style.label}>{e.product.brand}</li>
                       <li className={style.label}>${elemento.total}</li>
-                      <div>
-                        <StarRating />
-                        <textarea
-                          name="comment"
-                          onChange={onChangeCalificar}
-                        ></textarea>
-                      </div>
+                      <div></div>
                       <li className={style.label}>{e.quantity}</li>
-
-                      <button
-                        onClick={() => handleSubmitCalificar(e.product._id)}
-                      >
-                        Enviar
-                      </button>
-                    </ul>
-                  );
-                })}
+                  </ul>
+                  )} 
+                  else{
+                    return (
+                      <ul
+                        key={e._id}
+                        className={style.containerProduct}
+                        onClick={() =>
+                          setcalificar({
+                            ...calificar,
+                            productId: e.product._id,
+                            num: stars,
+                            comment: calificar.comment,
+                            nickname: usuario,
+                          })
+                        }
+                      ><img
+                          src={e.product.image}
+                          alt={e.product.title}
+                          width="80px"
+                          height="80px"
+                        />
+                        <li className={style.label}>{e.product.title}</li>
+                        <li className={style.label}>{e.product.brand}</li>
+                        <li className={style.label}>${elemento.total}</li>
+                        <div>
+                          <StarRating />
+                          <textarea
+                            name="comment"
+                            onChange={onChangeCalificar}
+                          ></textarea>
+                        </div>
+                        <li className={style.label}>{e.quantity}</li>
+  
+                        <button
+                          onClick={() => handleSubmitCalificar(e.product._id)}
+                        >
+                          Enviar
+                        </button>
+                      </ul>
+                    )} })}
               </div>
             </div>
-          );
+          )
+
         })}
       </div>
     </div>

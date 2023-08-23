@@ -10,6 +10,7 @@
   width: 100%;
   flex-direction: column;
   background-color: #001d4a;
+
 }
 
 .containerEditUser {
@@ -47,7 +48,7 @@
 
 .containerOrdenesCompras {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   background-color: #1f6e8c;
   border-radius: 30px;
   width: 90%;

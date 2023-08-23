@@ -573,9 +573,9 @@ export const getReviewsUser = (id) => {
   return async (dispatch) => {
     try {
       const response = (
-        await axios.get(`https://localhost:3002/rating/reviews-by-user/${id}`)
-      ).data.num;
-      console.log("++++++++++++++++++++++++", response);
+        await axios.get(`/products/reviews-by-user/${id}`)
+      ).data;
+      
       dispatch({
         type: GET_REVIEW_USER,
         payload: response,

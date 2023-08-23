@@ -6,9 +6,6 @@ import { star } from "../../Redux/Actions";
 
 const StarRating = () => {
   const reviewsUser = useSelector((state)=> state.getreviewsuser)
-  const num = reviewsUser
-  console.log("///////////////////", reviewsUser)
-
   const dispatch = useDispatch();
   const [rating, setRating] = useState();
   useEffect(() => {
