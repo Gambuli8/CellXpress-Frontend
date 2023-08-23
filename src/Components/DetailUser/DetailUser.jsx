@@ -2,7 +2,6 @@ import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import StarRating from "../StarRating/StarRating"
-
 import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getOrderById, editPutUser, getUserById } from "../../Redux/Actions";
@@ -81,7 +80,7 @@ const DetailUser = () => {
               }
               onChange={handleChange}
             />
-            <button className={style.btn_back}>Editar usuario</button>
+            <button className={style.btn_edit}>Editar usuario</button>
           </form>
         </div>
           <h2>Ordenes de compras</h2>

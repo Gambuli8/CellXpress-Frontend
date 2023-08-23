@@ -46,7 +46,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             {/* <Route path="/admin" element={<DashboardAdmin />} /> */}
             <Route path="/editproduct/:id" element={<ProtectedRoute><EditProduct /></ProtectedRoute>} />
-            <Route path="/user/:id" element={<ProtectedRoute><DetailUser /></ProtectedRoute>} />
+            <Route path="/user/:id" element={<DetailUser />} />
             <Route path="/admin" element={<ProtectedRoute><DashboardAdmin /></ProtectedRoute>}/>
             <Route path="/banned" element={<Banned/>}/>
           </Routes>

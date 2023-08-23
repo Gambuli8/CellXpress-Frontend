@@ -1,9 +1,10 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 270px;
+  margin-top: 100px;
 }
 .containerMarca {
   display: flex;
@@ -28,31 +29,45 @@
   flex-direction: column;
 }
 .button {
-  font-size: large;
-  width: 90%;
-  height: auto;
-  border-radius: 15px 0 15px 0;
-  margin: 10px;
-  background-color: #001d4a;
-  color: white;
-  transition: 1s;
+    margin: 10px;
+    cursor: pointer;
+    outline: none !important ;
+    box-shadow:none!important;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #84A7A1;
+    border-radius: 10px;
+    border: none;
+    transition: all 0.2s;
 }
-.button:hover {
-  box-shadow: 5px 5px 15px #001d4a;
-  background-color: white;
-  cursor: pointer;
-  border-radius: 0 15px 0 15px;
-  color: black;
+
+.button:hover{
+  transform: scale(1.1);
 }
+
 .input {
   border: none;
   border-radius: 15px 0 15px 0;
   height: 30px;
   text-align: center;
-  width: 90%;
+  width: 40%;
   margin: 5px;
   box-shadow: 3px 3px 10px #001d4a;
   transition: 2s;
+}
+.inputs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .input:focus {
   border-radius: 0 15px 0 15px;
