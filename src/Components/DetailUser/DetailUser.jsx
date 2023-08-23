@@ -24,7 +24,7 @@ const DetailUser = () => {
   const [calificar, setcalificar] = useState({
     productId: "",
     nickname: "",
-    num: null,
+    num: [],
     comment: "",
   });
 
@@ -70,22 +70,23 @@ const DetailUser = () => {
     console.log(allOrderByID.products);
   };
   const handleSubmitCalificar = (event) => {
-    if (stars.length === 0) {
+    if (!stars || stars.length === 0) {
       alert("Debes Calificar  las estrellitas");
       return;
-    } else
+    } else {
       setTimeout(() => {
         dispatch(postCalificar(calificar));
       }, 1000);
-    setTimeout(() => {
-      dispatch(resetStar());
-      setcalificar({
-        productId: "",
-        nickname: "",
-        num: null,
-        comment: "",
-      });
-    }, 2000);
+      setTimeout(() => {
+        dispatch(resetStar());
+        setcalificar({
+          productId: "",
+          nickname: "",
+          num: null,
+          comment: "",
+        });
+      }, 2000);
+    }
   };
 
   const onChangeCalificar = (eve) => {
