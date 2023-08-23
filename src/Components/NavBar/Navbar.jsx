@@ -31,7 +31,7 @@ export default function Navbar({
     {
       key: '1',
       label: (
-        <a rel="noopener noreferrer" href={`/user/${userParam?._id}`}>
+        <a className={style.perfil} rel="noopener noreferrer" href={`/user/${userParam?._id}`}>
           Perfil
         </a>
       ),
@@ -39,7 +39,7 @@ export default function Navbar({
     {
       key: '2',
       label: (
-        <button onClick={logout}>Log out</button>
+        <button className={style.btn_logout} onClick={logout}>Log out</button>
       ),
       icon: <SmileOutlined />,
       disabled: true,
@@ -57,7 +57,8 @@ export default function Navbar({
           className={style.titleLogo}
           onClick={handleReloadProducts}
         >
-          <h1 className={style.logo}>CellXpress</h1>
+          {/* <h1 className={style.logo}>CellXpress</h1> */}
+          <img className={style.logoimg} src="https://res.cloudinary.com/djqwbu0my/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1691088616/OIP_mzc6jr.jpg" alt="" />
         </NavLink>
       </div>
       <div>
@@ -94,7 +95,7 @@ export default function Navbar({
         <div className={style.user}>
           {userParam && (
 
-            <Dropdown
+            <Dropdown 
               menu={{
                 items,
               }}
