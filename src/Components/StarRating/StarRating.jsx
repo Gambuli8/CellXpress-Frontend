@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import style from "./StartRating.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { star } from "../../Redux/Actions";
 
 const StarRating = () => {
+  const reviewsUser = useSelector((state)=> state.getreviewsuser)
+  const num = reviewsUser
+  console.log("///////////////////", reviewsUser)
+
   const dispatch = useDispatch();
   const [rating, setRating] = useState();
   useEffect(() => {

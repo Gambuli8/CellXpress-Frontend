@@ -26,7 +26,8 @@ import {
   CART_UPDATE_QUANTITY_FAILURE,
   STAR,
   RESET_STAR,
-  GET_COMENTARIOS
+  GET_COMENTARIOS,
+  GET_REVIEW_USER
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -354,10 +355,7 @@ export const loginUser = (userlog) => {
     }
   };
 };
-// funcion  para calificar los Productos
-export const calificar = (info) => {
-  return async (dispatch) => {};
-};
+
 
 //funcion para traer todas las ordenes de compras
 export const orderBuy = () => {
@@ -477,7 +475,7 @@ export function resetStar() {
 }
 
 export const postCalificar = (user) => {
-  console.log("**********************", user);
+  
   return async (dispatch) => {
     try {
       const response = await axios.post(`/rating/reviews/${user.productId}`, {
@@ -485,10 +483,20 @@ export const postCalificar = (user) => {
         num: user.num,
         nickname: user.nickname,
       });
-      console.log("probando", response);
+      Swal.fire({
+        text: "Producto Calificado",
+        icon: "success",
+        confirmButtonText: "ok",
+      });
+     
     } catch (error) {
-      console.log(error);
-      /*alert(error.message)*/
+      
+      Swal.fire({
+        text: "Ya calificaste este Producto",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
+      
     }
   };
 };
@@ -511,4 +519,19 @@ export const getComentarios = (id) => {
   };
 };
 
-//hola
+//get 
+
+export const getReviewsUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/products/reviews-by-user/${id}`)).data
+      console.log("++++++++++++++++++++++++",response)
+      dispatch({
+        type: GET_REVIEW_USER,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};

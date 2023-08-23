@@ -12,9 +12,15 @@ import {
   postCalificar,
   star,
   resetStar,
+  getReviewsUser
 } from "../../Redux/Actions";
 
 const DetailUser = () => {
+  const allOrderByID = useSelector((state) => state.orderById);
+  const reviewsUser = useSelector((state)=> state.getreviewsuser)
+  const allUsuariosByID = useSelector((state) => state.allUsers);
+  const usuario = allUsuariosByID.name
+  const userid = allUsuariosByID._id
   const stars = useSelector((state) => state.star);
   
   const { id } = useParams();
@@ -22,14 +28,14 @@ const DetailUser = () => {
 
   const [calificar, setcalificar] = useState({
     productId: "",
-    nickname: "",
+    nickname: usuario,
     num: [],
     comment: "",
   });
-console.log("calificar", calificar)
+
   const dispatch = useDispatch();
-  const allOrderByID = useSelector((state) => state.orderById);
-  const allUsuariosByID = useSelector((state) => state.allUsers);
+ 
+
   
   
   const [input, setInput] = useState({
@@ -92,6 +98,9 @@ console.log("calificar", calificar)
       [eve.target.name]: eve.target.value,
     });
   };
+useEffect(() => {
+    dispatch(getReviewsUser(userid));
+  }, [userid]);
 
   return (
     <div className={style.container}>
@@ -146,10 +155,11 @@ console.log("calificar", calificar)
                       className={style.containerProduct}
                       onClick={() =>
                         setcalificar({
+                          ...calificar,
                           productId: e.product._id,
-                          nickname: allUsuariosByID.name,
                           num: stars,
                           comment: calificar.comment,
+                          nickname: usuario
                         })
                       }
                     >
