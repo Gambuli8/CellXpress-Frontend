@@ -27,6 +27,7 @@ import {
   STAR,
   RESET_STAR,
   GET_COMENTARIOS,
+  GET_REVIEW_USER,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -389,18 +390,6 @@ export const loginUser = (userlog) => {
     }
   };
 };
-// funcion  para calificar los Productos
-export const calificar = (info) => {
-  return async (dispatch) => {
-    // try {
-    //   const response = await axios.post(
-    //     "https://cellxpress.onrender.com/",
-    //   );
-    // } catch (error) {
-    //   alert(error.message);
-    // }
-  };
-};
 
 //funcion para traer todas las ordenes de compras
 export const orderBuy = () => {
@@ -536,7 +525,6 @@ export function resetStar() {
 }
 
 export const postCalificar = (user) => {
-  console.log("**********************", user);
   return async (dispatch) => {
     try {
       const response = await axios.post(`/rating/reviews/${user.productId}`, {
@@ -544,10 +532,17 @@ export const postCalificar = (user) => {
         num: user.num,
         nickname: user.nickname,
       });
-      console.log("probando", response);
+      Swal.fire({
+        text: "Producto Calificado",
+        icon: "success",
+        confirmButtonText: "ok",
+      });
     } catch (error) {
-      console.log(error);
-      /*alert(error.message)*/
+      Swal.fire({
+        text: "Ya calificaste este Producto",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     }
   };
 };
@@ -571,4 +566,22 @@ export const getComentarios = (id) => {
   };
 };
 
-//hola
+//get
+
+export const getReviewsUser = (id) => {
+  console.log(id);
+  return async (dispatch) => {
+    try {
+      const response = (
+        await axios.get(`https://localhost:3002/rating/reviews-by-user/${id}`)
+      ).data.num;
+      console.log("++++++++++++++++++++++++", response);
+      dispatch({
+        type: GET_REVIEW_USER,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
