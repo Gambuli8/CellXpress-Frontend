@@ -8,6 +8,8 @@ import Carrito from "../Carrito/Carrito";
 import { useEffect } from "react";
 import { getUsers } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
+import { DownOutlined, SmileOutlined } from '@ant-design/icons';
+import { Dropdown, Space } from 'antd';
 
 export default function Navbar({
   handleSubmit,
@@ -24,8 +26,28 @@ export default function Navbar({
 
   const userParam =
     user && allUseres.find((userParam) => userParam.email === user.email);
-  
 
+  const items = [
+    {
+      key: '1',
+      label: (
+        <a rel="noopener noreferrer" href={`/user/${userParam?._id}`}>
+          Perfil
+        </a>
+      ),
+    },
+    {
+      key: '2',
+      label: (
+        <button onClick={logout}>Log out</button>
+      ),
+      icon: <SmileOutlined />,
+      disabled: true,
+    },
+  ];
+
+
+  console.log(user)
 
   return (
     <nav className={style.navContainer}>
@@ -46,38 +68,46 @@ export default function Navbar({
       </div>
 
       <div className={style.linkContainer}>
-      {userParam?.admin &&
-       <a href="/admin" className={style.link} onClick={handleReloadProducts}>
-       Administrador
-     </a> 
-     }
-     
+        {userParam?.admin &&
+          <a href="/admin" className={style.link} onClick={handleReloadProducts}>
+            Administrador
+          </a>
+        }
+
         <a href="/home" className={style.link} onClick={handleReloadProducts}>
           Inicio
         </a>
         <NavLink to="/aboutus" className={style.link}>
           Sobre Nosotros
         </NavLink>
-        
+
         {!user && (
           <NavLink to="/register" className={style.link}>
             Registrarse
           </NavLink>
         )}
-        {!user ? (
+        {!user && (
           <NavLink to="/login" className={style.link}>
             Ingresar
           </NavLink>
-        ) : (
-          <div className={style.user}>
-              {userParam && (
-              <NavLink to={`/user/${userParam._id}`}>{userParam.name}</NavLink>
-            )}
-            <button onClick={logout} className={style.btn}>
-              Log Out
-            </button>
-          </div>
         )}
+        <div className={style.user}>
+          {userParam && (
+
+            <Dropdown
+              menu={{
+                items,
+              }}
+            >
+              <a onClick={(e) => e.preventDefault()}>
+                <Space>
+                  <img src={user.photoURL} alt={userParam.name} className={style.img} />
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
+          )}
+        </div>
         <div className={style.link}>
           <Carrito />
         </div>

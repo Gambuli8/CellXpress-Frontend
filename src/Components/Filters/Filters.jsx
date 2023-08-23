@@ -75,7 +75,7 @@ const Filters = () => {
           </div>
           <div>
             <input
-              className={style.select}
+              className={style.input}
               type="number"
               name="minPrice"
               onChange={handleChange}
@@ -83,19 +83,23 @@ const Filters = () => {
             />
 
             <input
-              className={style.select}
+              className={style.input}
               type="number"
               name="maxPrice"
               onChange={handleChange}
               placeholder="Precio Maximo"
             />
           </div>
-          <button>Buscar</button>
-          <button onClick={clearFilters}>Limpiar Filtros</button>
+          <button className={style.button} >Buscar</button>
+          <button 
+          onClick={clearFilters}
+          className={style.button}
+          >Limpiar Filtros</button>
         </div>
 
-        <div className={style.container}>
-          <select onChange={orderPhones}>
+        <div className={style.filtercontainer}>
+          <select onChange={orderPhones}
+          className={style.select}>
             <option defaultChecked value="asc">
               -
             </option>
@@ -107,8 +111,14 @@ const Filters = () => {
         </div>
         <div className={style.filtercontainer}>
           <div>
-            <select onChange={handleChange} name="ram" value={input.ram}>
-              <option defaultChecked value="">
+            <select 
+            onChange={handleChange}
+            className={style.select} 
+            name="ram" 
+            value={input.ram}
+            >
+              <option defaultChecked value=""
+              >
                 Seleccione Ram
               </option>
               <option value="2 GB DE RAM">2 Gb </option>
@@ -120,7 +130,12 @@ const Filters = () => {
             </select>
           </div>
           <div>
-            <select onChange={handleChange} name="camera" value={input.camera}>
+            <select 
+            onChange={handleChange} 
+            name="camera" 
+            value={input.camera}
+            className={style.select}
+            >
               <option defaultChecked value="">
                 Seleccione Resolucion
               </option>
