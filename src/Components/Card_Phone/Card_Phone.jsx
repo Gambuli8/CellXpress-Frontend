@@ -75,6 +75,7 @@ const Card_Phone = (props) => {
       })
     }
   }
+console.log("props.rating.rate", props.rating.review)
 
   return (
     <>
@@ -87,6 +88,7 @@ const Card_Phone = (props) => {
           <p className={style.text_title}>{props.brand.toUpperCase()}</p>
 
           <p className={style.text_body}>{props.title}</p>
+          <p className={style.text_body}>{props.rating.rate}</p>
 
           <div className={style.btn}>
             <Link className={style.link} to={`/detailCard/${props.id}`}>

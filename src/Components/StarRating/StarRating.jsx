@@ -2,14 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { FaStar } from 'react-icons/fa'
 import style from "./StartRating.module.css"
 import { useDispatch } from 'react-redux'
-import {calificar} from "../../Redux/Actions"
+import { star} from "../../Redux/Actions"
 
 const StarRating = () => {
+
 const dispatch = useDispatch()
 const [rating, setRating ] = useState()
 
+
 useEffect(()=>{
-  dispatch(calificar(rating))
+  dispatch(star(rating))
+  // setRating("")
+
 }, [rating])
 
   return (

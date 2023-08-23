@@ -24,6 +24,7 @@ import {
   GET_PENDING_ORDER_BY_ID,
   CART_UPDATE_QUANTITY_SUCCESS,
   CART_UPDATE_QUANTITY_FAILURE,
+  STAR
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -355,13 +356,7 @@ export const loginUser = (userlog) => {
 // funcion  para calificar los Productos
 export const calificar = (info) => {
   return async (dispatch) => {
-    // try {
-    //   const response = await axios.post(
-    //     "https://cellxpress.onrender.com/",
-    //   );
-    // } catch (error) {
-    //   alert(error.message);
-    // }
+   
   };
 };
 
@@ -464,5 +459,15 @@ export const updateCartItemQuantity =
       dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
     }
   };
+
+  export function star(order){
+    return  function (dispatch){
+       return dispatch ({
+           type: STAR, 
+           payload:order
+
+       })
+    }
+  }
 
 //hola

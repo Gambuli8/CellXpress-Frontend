@@ -1,7 +1,5 @@
 import StarRating from "../StarRating/StarRating"
 
-
-
 const Comentary =()=>{
     return (
         <div>
