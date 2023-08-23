@@ -23,6 +23,7 @@ import {
   GET_PENDING_ORDER_BY_ID,
   STAR,
   RESET_STAR,
+  GET_COMENTARIOS
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -37,6 +38,7 @@ let inicialState = {
   orderById: [],
   pendingOrderById: [],
   star: [],
+  comentarios:[]
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -80,11 +82,17 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allProduct: action.payload,
       };
+      
     case STAR:
       return {
         ...state,
         star: action.payload,
       };
+      case GET_COMENTARIOS:
+        return {
+          ...state,
+          comentarios: action.payload,
+        };
 
     case ORDERPHONE:
       if (action.payload === "asc") {

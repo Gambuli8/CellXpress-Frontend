@@ -24,6 +24,9 @@ import {
   GET_PENDING_ORDER_BY_ID,
   CART_UPDATE_QUANTITY_SUCCESS,
   CART_UPDATE_QUANTITY_FAILURE,
+  STAR,
+  RESET_STAR,
+  GET_COMENTARIOS,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -514,3 +517,58 @@ export const updateCartItemQuantity =
       dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
     }
   };
+
+export function star(order) {
+  return function (dispatch) {
+    return dispatch({
+      type: STAR,
+      payload: order,
+    });
+  };
+}
+
+export function resetStar() {
+  return function (dispatch) {
+    return dispatch({
+      type: RESET_STAR,
+    });
+  };
+}
+
+export const postCalificar = (user) => {
+  console.log("**********************", user);
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`/rating/reviews/${user.productId}`, {
+        comment: user.comment,
+        num: user.num,
+        nickname: user.nickname,
+      });
+      console.log("probando", response);
+    } catch (error) {
+      console.log(error);
+      /*alert(error.message)*/
+    }
+  };
+};
+
+//get comentarios
+
+export const getComentarios = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/products/${id}/reviews`)).data
+        .reviews;
+      console.log("999999999999999999999999999999999", response);
+
+      dispatch({
+        type: GET_COMENTARIOS,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+//hola
