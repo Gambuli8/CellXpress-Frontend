@@ -17,10 +17,7 @@ import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
 // axios.defaults.baseURL = "http://localhost:3002"
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
-import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../src/Redux/Actions";
-import { useEffect, useState } from "react";
-import { useAuth } from "./context/authContext";
+
 //BACK
 // axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
@@ -28,14 +25,7 @@ function App() {
   //   //  window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
   // });
 
-  const allUser = useSelector((state)=> state.allUsers)
-  const {user, loading}= useAuth();
-  const adminUsers = user && allUser.find((adminUser) => adminUser.email === user.email);
-
-const dispatch =useDispatch()
-useEffect(()=>{
-  dispatch(getUsers())
-},[])
+ 
 
 
 
@@ -44,8 +34,7 @@ useEffect(()=>{
     
     <>
        <CartProvider>
-        <div className="App">
-  { adminUsers?.isActive ? (         <Routes>
+        <div className="App">        <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/home" element={<Home />} />
             <Route path="/detailCard/:id" element={<Detail_Card />} />
@@ -58,7 +47,7 @@ useEffect(()=>{
             <Route path="/editproduct/:id" element={<EditProduct />} />
             <Route path="/user/:id" element={<DetailUser />} />
             <Route path="/admin" element={<ProtectedRoute><DashboardAdmin /></ProtectedRoute>}/>
-          </Routes>):(<h1>Por politicas de la pagina hemos Restringido su acceso</h1>)}
+          </Routes>
         </div> 
       </CartProvider>
     </>
