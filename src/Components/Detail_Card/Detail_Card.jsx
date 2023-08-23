@@ -136,7 +136,7 @@ export default function Detail_Card(productId) {
             }
         </div>
       ) : (
-        <h1>Cargando...</h1>
+        <h1 className={style.loading}>Cargando...</h1>
         )}
     </div>
 

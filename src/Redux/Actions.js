@@ -527,7 +527,7 @@ export function resetStar() {
 export const postCalificar = (user) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`/rating/reviews/${user.productId}`, {
+      const response = await axios.post(`https://cellxpress.onrender.com/rating/reviews/${user.productId}`, {
         comment: user.comment,
         num: user.num,
         nickname: user.nickname,
@@ -552,7 +552,7 @@ export const postCalificar = (user) => {
 export const getComentarios = (id) => {
   return async (dispatch) => {
     try {
-      const response = (await axios.get(`/products/${id}/reviews`)).data
+      const response = (await axios.get(`https://cellxpress.onrender.com/products/${id}/reviews`)).data
         .reviews;
       console.log("999999999999999999999999999999999", response);
 
@@ -573,7 +573,7 @@ export const getReviewsUser = (id) => {
   return async (dispatch) => {
     try {
       const response = (
-        await axios.get(`/products/reviews-by-user/${id}`)
+        await axios.get(`https://cellxpress.onrender.com/products/reviews-by-user/${id}`)
       ).data;
       
       dispatch({

@@ -39,7 +39,7 @@ const Card_Phone = (props) => {
   const handlerAddToCart = async (productId) => {
     try {
       const order = {
-        userId: userParam._id,
+        userId: userParam?._id,
         productId: productId,
         quantity: 1,
       };
@@ -54,10 +54,13 @@ const Card_Phone = (props) => {
       });
   
     } catch (error) {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 440d95e57e8ed8ece54e9ad5bd69d1c52a27f0e4
       Swal.fire({
-        title: "Error al agregar al carrito",
-        text: error.message,
+        title: "fuiste baneado",
+        text: 'hablar con el administrador para que te desbloquee',
         icon: "error",
       });
     }

@@ -5,6 +5,9 @@ import useCart from '../Hooks/useCart';
 import { getUsers, getPendingOrderById, postUserId, updateCartItemQuantity } from '../../Redux/Actions';
 import { useAuth } from '../../context/authContext';
 import style from './detail.module.css';
+import formStyle from './formCart.module.css';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../NavBar/Navbar';
 
 export default function DetailAndFormCart() {
   const { cart, setCart } = useCart();
@@ -15,6 +18,7 @@ export default function DetailAndFormCart() {
   const pendingOrderById = useSelector((state) => state.pendingOrderById);
   const [localQuantities, setLocalQuantities] = useState({});
   const [confirmed, setConfirmed] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUsers());
@@ -27,8 +31,6 @@ export default function DetailAndFormCart() {
       dispatch(getPendingOrderById(userParam._id));
     }
   }, [userParam, dispatch]);
-
-  console.log(pendingOrderById);
 
   const handleIncrement = (productId) => {
     setLocalQuantities((prevQuantities) => ({
@@ -86,9 +88,9 @@ export default function DetailAndFormCart() {
       <a className={style.btn_back} href="/home">
         Atras
       </a>
+          <Navbar/>
       <div className={style.container}>
         <div className={style.containerCart}>
-          <h1>Carrito</h1>
           <ul className={style.ul}>
             {pendingOrderById.map((order) => (
               <li key={order._id} className={style.li}>
