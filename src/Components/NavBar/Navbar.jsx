@@ -26,8 +26,6 @@ export default function Navbar({
 
   const userParam =
     user && allUseres.find((userParam) => userParam.email === user.email);
-<<<<<<< HEAD
-=======
 
   const items = [
     {
@@ -50,7 +48,6 @@ export default function Navbar({
 
 
   console.log(user)
->>>>>>> 440d95e57e8ed8ece54e9ad5bd69d1c52a27f0e4
 
   return (
     <nav className={style.navContainer}>
@@ -72,23 +69,11 @@ export default function Navbar({
       </div>
 
       <div className={style.linkContainer}>
-<<<<<<< HEAD
-        {userParam?.admin && (
-          <a
-            href="/admin"
-            className={style.link}
-            onClick={handleReloadProducts}
-          >
-            Administrador
-          </a>
-        )}
-=======
         {userParam?.admin &&
           <a href="/admin" className={style.link} onClick={handleReloadProducts}>
             Administrador
           </a>
         }
->>>>>>> 440d95e57e8ed8ece54e9ad5bd69d1c52a27f0e4
 
         <a href="/home" className={style.link} onClick={handleReloadProducts}>
           Inicio
@@ -106,18 +91,6 @@ export default function Navbar({
           <NavLink to="/login" className={style.link}>
             Ingresar
           </NavLink>
-<<<<<<< HEAD
-        ) : (
-          <div className={style.user}>
-            {userParam && (
-              <NavLink to={`/user/${userParam._id}`}>{userParam.name}</NavLink>
-            )}
-            <button onClick={logout} className={style.btn}>
-              Log Out
-            </button>
-          </div>
-=======
->>>>>>> 440d95e57e8ed8ece54e9ad5bd69d1c52a27f0e4
         )}
         <div className={style.user}>
           {userParam && (

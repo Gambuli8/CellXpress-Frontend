@@ -54,10 +54,7 @@ const Card_Phone = (props) => {
       });
   
     } catch (error) {
-<<<<<<< HEAD
       
-=======
->>>>>>> 440d95e57e8ed8ece54e9ad5bd69d1c52a27f0e4
       Swal.fire({
         title: "fuiste baneado",
         text: 'hablar con el administrador para que te desbloquee',

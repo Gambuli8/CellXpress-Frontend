@@ -3,14 +3,8 @@
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
-<<<<<<< HEAD
-import StarRating from "../StarRating/StarRating";
-
-import { useParams } from "react-router-dom";
-=======
 import StarRating from "../StarRating/StarRating"
 import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
->>>>>>> 440d95e57e8ed8ece54e9ad5bd69d1c52a27f0e4
 import { useState, useEffect } from "react";
 import {
   getOrderById,
@@ -111,7 +105,6 @@ const DetailUser = () => {
   return (
     <div className={style.container}>
       <a className={style.btn_back} href="/home">
-<<<<<<< HEAD
         Atras
       </a>
       <div className={style.containerEditUser}>
@@ -125,44 +118,6 @@ const DetailUser = () => {
             alt=""
             className={style.img}
           />
-=======
-              Atras
-            </a>
-        <div className={style.containerEditUser}>
-          <div>
-            <img
-              src={
-                user && user.photoURL
-                  ? user.photoURL
-                  : "https://cdn-icons-png.flaticon.com/128/2986/2986624.png"
-              }
-              alt=""
-              className={style.img}
-            />
-
-          </div>
-          <form onSubmit={handleSubmit} className={style.formEditUser}>
-            <label>Su usuario</label>
-            <input
-              type="text"
-              name="name"
-              className={style.input}
-              placeholder={allUsuariosByID.name}
-              onChange={handleChange}
-            />
-            <label>Su teléfono</label>
-            <input
-              type="number"
-              name="phone"
-              className={style.input}
-              placeholder={
-                allUsuariosByID.phone ? allUsuariosByID.phone : "ej: 3519887123"
-              }
-              onChange={handleChange}
-            />
-            <button className={style.btn_edit}>Editar usuario</button>
-          </form>
->>>>>>> 440d95e57e8ed8ece54e9ad5bd69d1c52a27f0e4
         </div>
         <form onSubmit={handleSubmit} className={style.formEditUser}>
           <label>Su usuario</label>
