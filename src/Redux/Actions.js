@@ -182,7 +182,7 @@ export const putUser = (user) => {
     try {
       const response = await axios.put(`/users/${user.id}`, {
         isActive: user.isActive,
-        email: user.name,
+        
       });
       if (user.isActive) {
         Swal.fire({
@@ -469,5 +469,24 @@ export const updateCartItemQuantity =
        })
     }
   }
+
+
+  export const postCalificar = (user) => {
+    console.log("9999999999999999999999999999",user )
+    return async (dispatch) => {
+      try {
+        const response = await axios.post(`/rating/reviews/${user.productId}`, {
+           comment:  user.comment,
+          num: user.num,
+          nickname: user.nickname
+          
+        });
+        console.log("probando", response)
+      } catch (error) {
+        console.log(error);
+        /*alert(error.message)*/
+      }
+    };
+  };
 
 //hola

@@ -1,21 +1,16 @@
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
+import StarRating from "../StarRating/StarRating"
+
 import { useParams,  } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getOrderById, editPutUser, getUserById} from "../../Redux/Actions";
-import { FaStar } from 'react-icons/fa'
+import { getOrderById, editPutUser, getUserById, postCalificar} from "../../Redux/Actions";
+import Comentary from "../Comentary/Comentary";
 
 const DetailUser = () => {
-  const [rating, setRating ] = useState()
 
-
-
-
-
-  // const star = useSelector((state) => state.star);
-  // console.log("startttttttttttttttttt",star )
- 
+  const star = useSelector((state) => state.star);
 
   const { id } = useParams();
   const { user } = useAuth();
@@ -26,21 +21,18 @@ const DetailUser = () => {
     comment: "",
     num: ""
   })
-   
+
+  console.log("nummmmmmmmmmmmmmmmmmm",calificar.num)
+  console.log("commentcommentcommentcommentcomment",calificar.comment)
 
   const dispatch = useDispatch();
-
   const allOrderByID = useSelector((state) => state.orderById);
-
   const allUsuariosByID = useSelector((state) => state.allUsers);
-
   const [input, setInput] = useState({
     name: "",
     phone: "",
     id: id,
   });
-
-
   useEffect(() => {
     dispatch(getOrderById(id));
     dispatch(getUserById(id));
@@ -65,22 +57,21 @@ const DetailUser = () => {
  };
  const handleSubmitCalificar = (event) => {
   event.preventDefault()
- console.log("999999999999888888888888", calificar)
- setcalificar({
-  productId:"",
-  nickname: "",
-  comment: "",
-  num: ""
-})
-
+  dispatch(postCalificar(calificar))
 };
-
 const onChangeCalificar= (eve)=>{
+  eve.preventDefault()
   setcalificar({
-    ...calificar,
+     ...calificar, 
     [eve.target.name]: eve.target.value,
   });
 }
+useEffect(()=>{ 
+if(star){ 
+  setcalificar({ num: star } )
+} 
+
+ },[star])
   return (
     <div className={style.container}>
       <a className={style.btn_back} href="/home">
@@ -125,23 +116,19 @@ const onChangeCalificar= (eve)=>{
       <div className={style.containerOrdenesCompras}>
         {allOrderByID.map((elemento) => {
           return (
-            <div key={elemento._id} className={style.ordenCompra}>
-      
-              
+            <div key={elemento._id} className={style.ordenCompra}> 
               <div className={style.ordenDetail}>
                 {elemento.products.map((e) => {
                   return (
                     
                     <ul key={e._id} className={style.containerProduct} onClick=
+                    
                     {()=>setcalificar({
                       productId: e.product._id,
                       nickname: elemento.userId,
-                      num:"",
-                      
-                    })}>
-                  
-                     
-                 
+                       num: star
+                        })}>
+                  {/* {console.log("PRUEBASSSSSSSSSSSSSSSSSSSSS",e._id)} */}
                       <img
                         src={e.product.image}
                         alt={e.product.title}
@@ -152,39 +139,16 @@ const onChangeCalificar= (eve)=>{
                       <li className={style.label}>{e.product.title}</li>
                       <li className={style.label}>{e.product.brand}</li>
                       <li className={style.label}>${elemento.total}</li>
-
-                      
                       <div>
-                      <div >
-      Calificacion
-        <br />
-        {[... Array(5)].map((star, i) =>{
-            const ratingValue = i +1;
-            return (
-                <label>
-                 <input 
-                className={style.input}
-                type="radio" 
-                name='rating' 
-                value={ratingValue}
-                onClick={()=>setRating(ratingValue)}
-                 
-                />
-                <FaStar  className={style.star} 
-                color={ratingValue <= rating ? "#ffc107" : "#00FFFF"}
-                />
-
-                </label>
-            )
-            
-        })}
-       
-    </div>
-    <textarea name="comment" onChange={onChangeCalificar} ></textarea>
-                      </div>
                       
+                      <Comentary calificar = {calificar}/>
+                      <StarRating />
+                      {/* {star && <textarea name="comment" onChange={onChangeCalificar} ></textarea>} */}
+                        
+                      </div>
                       <li className={style.label}>{e.quantity}</li>
-                      <button onClick={handleSubmitCalificar}>Enviar</button>
+                      
+                      <button  onClick={handleSubmitCalificar}>Enviar</button>
                     </ul>
                     
                   );

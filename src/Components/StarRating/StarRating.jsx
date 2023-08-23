@@ -8,12 +8,8 @@ const StarRating = () => {
 
 const dispatch = useDispatch()
 const [rating, setRating ] = useState()
-
-
 useEffect(()=>{
   dispatch(star(rating))
-  // setRating("")
-
 }, [rating])
 
   return (
@@ -30,18 +26,15 @@ useEffect(()=>{
                 name='rating' 
                 value={ratingValue}
                 onClick={()=>setRating(ratingValue)}
-                 
-                />
+                 />
                 <FaStar  className={style.star} 
                 color={ratingValue <= rating ? "#ffc107" : "#00FFFF"}
                 />
 
                 </label>
             )
-            
-        })}
-       
-    </div>
+            })}
+        </div>
     
   )
 }
