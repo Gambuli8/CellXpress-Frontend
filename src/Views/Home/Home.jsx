@@ -42,13 +42,13 @@ const Home = () => {
 
     setFiltered(allProductFiltered);
   }, [dispatch, allProduct]);
-  
+
 
 
   useEffect(() => {
     setFiltered(allProductsByName);
   }, [allProductsByName]);
-//probando getUsers
+  //probando getUsers
 
 
   const handleChange = (event) => {
@@ -72,12 +72,15 @@ const Home = () => {
         handlerChanges={handleChange}
         handleReloadProducts={handleReloadProducts}
       />
-      <section className={style.heroSection}></section>
+      
+      <div className={style.homeContainer} >
 
-      <Filters />
+        <Filters className={style.filters} />
 
-      <div className={style.containerCardsHome}>
-        <Cards_Phone Product={currentPhone} />
+        <div className={style.containerCardsHome}>
+          <Cards_Phone 
+          Product={currentPhone} />
+        </div>
       </div>
       <Paginado
         cantPerPage={cantPerPage}
