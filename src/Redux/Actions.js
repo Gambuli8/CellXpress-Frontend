@@ -204,7 +204,7 @@ export const putUser = (user) => {
         `https://cellxpress.onrender.com/users/${user.id}`,
         {
           isActive: user.isActive,
-          email: user.name,
+          
         }
       );
       if (user.isActive) {
