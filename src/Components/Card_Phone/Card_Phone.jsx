@@ -54,7 +54,7 @@ const Card_Phone = (props) => {
       });
   
     } catch (error) {
-      console.error("Error al agregar al carrito:", error);
+      
       Swal.fire({
         title: "Error al agregar al carrito",
         text: error.message,
@@ -75,7 +75,7 @@ const Card_Phone = (props) => {
       })
     }
   }
-console.log("props.rating.rate", props.rating.review)
+
 
   return (
     <>
@@ -88,7 +88,7 @@ console.log("props.rating.rate", props.rating.review)
           <p className={style.text_title}>{props.brand.toUpperCase()}</p>
 
           <p className={style.text_body}>{props.title}</p>
-          <p className={style.text_body}>{props.rating.rate}</p>
+          <p className={style.text_body}>{props.rate}</p>
 
           <div className={style.btn}>
             <Link className={style.link} to={`/detailCard/${props.id}`}>

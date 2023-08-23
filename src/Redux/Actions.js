@@ -26,6 +26,7 @@ import {
   CART_UPDATE_QUANTITY_FAILURE,
   STAR,
   RESET_STAR,
+  GET_COMENTARIOS
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -488,6 +489,24 @@ export const postCalificar = (user) => {
     } catch (error) {
       console.log(error);
       /*alert(error.message)*/
+    }
+  };
+};
+
+//get comentarios
+
+export const getComentarios = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`/products/${id}/reviews`)).data.reviews;
+      console.log("999999999999999999999999999999999", response)
+      
+      dispatch({
+        type: GET_COMENTARIOS,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
     }
   };
 };

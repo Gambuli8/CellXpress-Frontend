@@ -16,8 +16,7 @@ import {
 
 const DetailUser = () => {
   const stars = useSelector((state) => state.star);
-  console.log("2222222222222222", stars);
-
+  
   const { id } = useParams();
   const { user } = useAuth();
 
@@ -27,15 +26,12 @@ const DetailUser = () => {
     num: [],
     comment: "",
   });
-
-  console.log("/////////////////////////////////", calificar);
-  //  useEffect(()=>{
-  //   setcalificar(calificar)
-  //  },[stars])
-
+console.log("calificar", calificar)
   const dispatch = useDispatch();
   const allOrderByID = useSelector((state) => state.orderById);
   const allUsuariosByID = useSelector((state) => state.allUsers);
+  
+  
   const [input, setInput] = useState({
     name: "",
     phone: "",
@@ -151,7 +147,7 @@ const DetailUser = () => {
                       onClick={() =>
                         setcalificar({
                           productId: e.product._id,
-                          nickname: elemento.userId,
+                          nickname: allUsuariosByID.name,
                           num: stars,
                           comment: calificar.comment,
                         })
@@ -169,7 +165,6 @@ const DetailUser = () => {
                       <li className={style.label}>${elemento.total}</li>
                       <div>
                         <StarRating />
-
                         <textarea
                           name="comment"
                           onChange={onChangeCalificar}
