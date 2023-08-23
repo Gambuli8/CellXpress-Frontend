@@ -472,7 +472,7 @@ export const updateCartItemQuantity =
 
 
   export const postCalificar = (user) => {
-    console.log("9999999999999999999999999999",user )
+    console.log("**********************", user )
     return async (dispatch) => {
       try {
         const response = await axios.post(`/rating/reviews/${user.productId}`, {

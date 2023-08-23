@@ -5,25 +5,39 @@ import StarRating from "../StarRating/StarRating"
 
 import { useParams,  } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getOrderById, editPutUser, getUserById, postCalificar} from "../../Redux/Actions";
-import Comentary from "../Comentary/Comentary";
+import { getOrderById, editPutUser, getUserById, postCalificar, star} from "../../Redux/Actions";
+
 
 const DetailUser = () => {
 
-  const star = useSelector((state) => state.star);
+
+
+
+  const stars = useSelector((state) => state.star);
+console.log("2222222222222222", stars)
 
   const { id } = useParams();
   const { user } = useAuth();
 
+  
+
+ 
+
   const [calificar, setcalificar] = useState({
     productId:"",
     nickname: "",
-    comment: "",
-    num: ""
+    num: stars,
+    comment: ""
+    
   })
+  
+console.log("/////////////////////////////////",calificar )
+  //  useEffect(()=>{ 
+  //   setcalificar(calificar)
+  //  },[stars])
 
-  console.log("nummmmmmmmmmmmmmmmmmm",calificar.num)
-  console.log("commentcommentcommentcommentcomment",calificar.comment)
+
+
 
   const dispatch = useDispatch();
   const allOrderByID = useSelector((state) => state.orderById);
@@ -56,9 +70,19 @@ const DetailUser = () => {
    
  };
  const handleSubmitCalificar = (event) => {
-  event.preventDefault()
-  dispatch(postCalificar(calificar))
+  if(!stars){
+    alert("Debes Calificar  las estrellitas")
+    return
+  }else
+
+  setTimeout(()=>{
+    dispatch(postCalificar(calificar))
+  }, 3000)
+
+
+ 
 };
+
 const onChangeCalificar= (eve)=>{
   eve.preventDefault()
   setcalificar({
@@ -66,12 +90,7 @@ const onChangeCalificar= (eve)=>{
     [eve.target.name]: eve.target.value,
   });
 }
-useEffect(()=>{ 
-if(star){ 
-  setcalificar({ num: star } )
-} 
 
- },[star])
   return (
     <div className={style.container}>
       <a className={style.btn_back} href="/home">
@@ -121,13 +140,17 @@ if(star){
                 {elemento.products.map((e) => {
                   return (
                     
-                    <ul key={e._id} className={style.containerProduct} onClick=
-                    
+                    <ul key={e._id} className={style.containerProduct}  
+                                 
+                    onClick=
                     {()=>setcalificar({
                       productId: e.product._id,
                       nickname: elemento.userId,
-                       num: star
-                        })}>
+                       num: stars,
+                       comment: calificar.comment
+                      
+                        })  }>
+                          
                   {/* {console.log("PRUEBASSSSSSSSSSSSSSSSSSSSS",e._id)} */}
                       <img
                         src={e.product.image}
@@ -141,10 +164,11 @@ if(star){
                       <li className={style.label}>${elemento.total}</li>
                       <div>
                       
-                      <Comentary calificar = {calificar}/>
+                      
                       <StarRating />
-                      {/* {star && <textarea name="comment" onChange={onChangeCalificar} ></textarea>} */}
-                        
+                      
+                      
+                      <textarea  name="comment" onChange={onChangeCalificar}   ></textarea>
                       </div>
                       <li className={style.label}>{e.quantity}</li>
                       
