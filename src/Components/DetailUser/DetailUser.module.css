@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  min-height: 100vh;
   width: 100%;
   flex-direction: column;
   background-color: #001d4a;
