@@ -243,18 +243,7 @@ export const deleteProduct = (productId, userId) => {
   };
 };
 
-// export const allDelete = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.delete(
-//         `http://localhost:3002/order/empty-cart/${userId}`
-//       );
-//       dispatch({ type: ALL_DELETE_CART, payload: response.data });
-//     } catch (error) {
-//       console.log(error.message.data);
-//     }
-//   };
-// };
+
 
 export const postUserId = (userId) => {
   return async (dispatch) => {
@@ -585,3 +574,4 @@ export const getReviewsUser = (id) => {
     }
   };
 };
+//prueba

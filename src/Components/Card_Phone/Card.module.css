@@ -197,4 +197,20 @@
 
 .card_button:hover .svg_icon {
   fill: #fff;
+}.starRating {
+  font-size: 24px; 
+  background-color: transparent;
+  border:none
+
+}
+.starActive {
+  color: #f39c12; 
+  
+}.starActive:focus{
+  outline:red ;
+
+}
+
+.starInactive {
+  color: #ccc; 
 }

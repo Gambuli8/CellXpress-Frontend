@@ -138,11 +138,11 @@ const DetailUser = () => {
             }
             onChange={handleChange}
           />
-          <button className={style.btn_back}>Editar usuario</button>
+          <button className={style.btn_edit}>Editar usuario</button>
         </form>
       </div>
-      {/* //! Ordenes de compras ------------------------------------------------------- */}
-      <h2>Ordenes de compras Calificadas</h2>
+      
+      <h2 className={style.ordentitle}>Ordenes de compras</h2>
       <div className={style.containerOrdenesCompras}>
         {allOrderByID.map((elemento) => {
           return (

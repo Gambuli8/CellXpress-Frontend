@@ -75,7 +75,17 @@ const Card_Phone = (props) => {
       })
     }
   }
-
+  const StarRating = ({ value }) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className={i <= value ? style.starActive : style.starInactive}>
+          &#9733;
+        </span>
+      );
+    }
+    return <button className={style.starRating}>{stars}</button>;
+  };
 
   return (
     <>
@@ -88,7 +98,7 @@ const Card_Phone = (props) => {
           <p className={style.text_title}>{props.brand.toUpperCase()}</p>
 
           <p className={style.text_body}>{props.title}</p>
-          <p className={style.text_body}>{props.rate}</p>
+          <StarRating value={props.rate} />
 
           <div className={style.btn}>
             <Link className={style.link} to={`/detailCard/${props.id}`}>

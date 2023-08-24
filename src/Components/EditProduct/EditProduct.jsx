@@ -11,20 +11,20 @@ export default function EditProduct() {
   const product = useSelector((state) => state.allProduct);
   const [imageURL, setImageURL] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  
   const [input, setInput] = useState({
     _id: "",
     title: "",
     brand: "",
     price: null,
     description: "",
-    image: "",
+    image: product.image,
     ram: "",
     screenSize: "",
     cameraInches: "",
     count: null,
   });
-
+console.log("imagenessss", input)
   useEffect(() => {
     dispatch(getProductById(id));
   }, [dispatch, id]);
@@ -196,14 +196,12 @@ export default function EditProduct() {
             <option defaultChecked value="">
               Seleccione Marca
             </option>
-            <option value="APPLE">Apple</option>
+            
             <option value="MOTOROLA">Motorola</option>
             <option value="SAMSUNG">Samsung</option>
-            <option value="SONY">Sony</option>
             <option value="TECNO">Tecno</option>
             <option value="HUAWEI">Huawei</option>
-            <option value="XIAOMI">Xiaomi</option>Realme
-            <option value="REALME">Realme</option>
+            <option value="XIAOMI">Xiaomi</option>
           </select>
 
           <label className={style.label}>Imagen</label>
@@ -213,7 +211,7 @@ export default function EditProduct() {
             name="image"
             onChange={handleChange}
             accept="image/*"
-            required
+            
           />
           <input
             className={style.input}
@@ -221,7 +219,7 @@ export default function EditProduct() {
             name="image"
             onChange={handleImageChange}
             accept="image/*"
-            required
+            
           />
           <label className={style.label}>Stock</label>
           <input

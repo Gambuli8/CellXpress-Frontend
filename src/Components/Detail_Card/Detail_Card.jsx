@@ -80,7 +80,22 @@ export default function Detail_Card(productId) {
     dispatch(getComentarios(id))
   },[dispatch,id])
    
-  
+   useEffect(() => {
+    dispatch(getProduct());
+  }, [id, dispatch]);
+
+  const StarRating = ({ value }) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className={i <= value ? style.starActive : style.starInactive}>
+          &#9733;
+        </span>
+      );
+    }
+    return <button className={style.starRating}>{stars}</button>;
+  };
+
 
   return (
     <>
@@ -112,50 +127,41 @@ export default function Detail_Card(productId) {
                 <li className={style.totalPrice}>Total: ${product.price} </li>
               </div>
               <button className={style.btn_addCart} onClick={() => handlerAddToCart(product._id)}>Agregar al carrito</button>
-            
+              <h1>Valoracion: <StarRating value={product?.rate} /> </h1>
               <h3>Descripción:</h3>
               <p className={style.card__text}>{product?.description}</p>
             </div>
             
           </div>
+
+          <div className={style.cardComments}> 
+             
+              <h1>Reseñas de este producto: </h1>
+              <hr />
           {allcomentarios.map((c) =>{
-              return (
-                <div key = {c._id}
-                
-                id= {c._id}
-                //  comment= {c.review.comment}
-               >
-                 <div >{c.review?.nickname}</div>
-                <div >{c.review?.comment}</div>
-           
+            
+            return (
+              <div key = {c._id }
+              id= {c._id}
+              //comment= {c.review.comment}
+              >
+                <h1>Nombre: {c.review?.nickname}  </h1>
+                <h1>{c.review?.comment}</h1>
+                <h1>Valoracion: <StarRating value={c.review?.num} /> </h1>
+                <hr />
                  </div>
               )
               
             })
             
-            }
+          }
+          </div>
         </div>
       ) : (
-        <h1 className={style.loading}>Cargando...</h1>
+        <h1>Cargando...</h1>
         )}
     </div>
 
   </>
   );
 }
-
-
-// {elemento.products.map((e) => {
-//   return (
-//     <ul
-//       key={e._id}
-//       className={style.containerProduct}
-//       onClick={() =>
-//         setcalificar({
-//           productId: e.product._id,
-//           nickname: elemento.userId,
-//           num: stars,
-//           comment: calificar.comment,
-//         })
-//       }
-//     >

@@ -11,7 +11,6 @@ const StarRating = () => {
   useEffect(() => {
     dispatch(star(rating));
   }, [rating]);
-
   return (
     <div>
       Calificacion

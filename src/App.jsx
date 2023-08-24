@@ -27,10 +27,6 @@ function App() {
   //   //  window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
   // });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 91de06cdf1eab678a68f2fdc0757e5500fbc9a2f
   return (
     
     <>
