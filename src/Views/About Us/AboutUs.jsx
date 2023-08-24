@@ -64,109 +64,115 @@ export default function AboutUs() {
       <section className={style.sectionCreadores}>
         <div className={style.caracteristicas}>
           <img
-            src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
+            src="https://media.licdn.com/dms/image/C4E03AQFlQK-E084KCw/profile-displayphoto-shrink_400_400/0/1663274211350?e=1698278400&v=beta&t=jGQNl3bOW0UcZ16Bpmvq01e6bS0i95FDVMPfDOvBj8c"
             alt=""
-            width="50px"
-            height="50px"
+            width="70px"
+            height="70px"
+            className={style.imgLinkedln}
           />
           <p>Gabriel Beltran</p>
 
-          <a href="">
+          <a  target="_blank" rel='noreferrer' href="https://www.linkedin.com/in/gabriel-gerardo-beltran-medina-486529247/">
             <img
               src="https://cdn-icons-png.flaticon.com/128/145/145807.png"
               alt=""
-              width="20px"
-              height="20px"
+              width="40px"
+              height="40px"
             />
           </a>
         </div>
         <div className={style.caracteristicas}>
           <img
-            src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
+            src="https://media.licdn.com/dms/image/D4D35AQF441uqurfJrQ/profile-framedphoto-shrink_400_400/0/1682182165223?e=1693436400&v=beta&t=IYEDD-e9t_8CM-x-XIbNZiKa_eC1t4-ahL1XcLZNbnc"
             alt=""
-            width="50px"
-            height="50px"
+            width="70px"
+            height="70px"
+            className={style.imgLinkedln}
           />
           <p>Federico Cativiela</p>
 
-          <a href="">
+          <a  target="_blank" rel='noreferrer' href="https://www.linkedin.com/in/federico-cativiela/">
             <img
               src="https://cdn-icons-png.flaticon.com/128/145/145807.png"
               alt=""
-              width="20px"
-              height="20px"
+              width="40px"
+              height="40px"
             />
           </a>
         </div>
         <div className={style.caracteristicas}>
           <img
-            src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
+            src="https://media.licdn.com/dms/image/D4D35AQHgBsoJfjWf-A/profile-framedphoto-shrink_400_400/0/1692504892956?e=1693436400&v=beta&t=rAL7yqr_mJyE-y_yVufCQta3cDrDIK6Tl7KMp6o0_8E"
             alt=""
-            width="50px"
-            height="50px"
+            width="70px"
+            height="70px"
+            className={style.imgLinkedln}
           />
           <p>Juan Ruarte</p>
 
-          <a href="">
+          <a  target="_blank" rel='noreferrer' href="https://www.linkedin.com/in/juan-cruz-ruarte-aa302a255/">
             <img
               src="https://cdn-icons-png.flaticon.com/128/145/145807.png"
               alt=""
-              width="20px"
-              height="20px"
+              width="40px"
+              height="40px"
             />
           </a>
         </div>
         <div className={style.caracteristicas}>
           <img
-            src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
+            src="https://media.licdn.com/dms/image/D4D35AQE1wnNwF3L3Sw/profile-framedphoto-shrink_200_200/0/1680188401553?e=1693436400&v=beta&t=5MvnwAEhHzfAwak2jNOW2HaxGk_WN4IdKh8-sfWHC4A"
             alt=""
-            width="50px"
-            height="50px"
+            width="70px"
+            height="70px"
+            className={style.imgLinkedln}
           />
           <p>Geronimo Gambuli</p>
 
-          <a href="">
+          <a target="_blank" rel='noreferrer' href="https://www.linkedin.com/in/geronimo-gambuli-613a53204">
             <img
               src="https://cdn-icons-png.flaticon.com/128/145/145807.png"
               alt=""
-              width="20px"
-              height="20px"
+              width="40px"
+              height="40px"
             />
           </a>
         </div>
         <div className={style.caracteristicas}>
           <img
-            src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
+            src="https://media.licdn.com/dms/image/D4D03AQEVoVxUrOGezQ/profile-displayphoto-shrink_400_400/0/1667331643429?e=1698278400&v=beta&t=kItTl6Ys0FZ5i-eGq367Hm96Qy4QsHhdkN873DP6T70"
             alt=""
-            width="50px"
-            height="50px"
+            width="70px"
+            height="70px"
+            className={style.imgLinkedln}
           />
           <p>Angel Silva</p>
 
-          <a href="">
+          <a  target="_blank" rel='noreferrer' href="https://www.linkedin.com/in/angel-silva-dev/">
             <img
               src="https://cdn-icons-png.flaticon.com/128/145/145807.png"
               alt=""
-              width="20px"
-              height="20px"
+              width="40px"
+              height="40px"
             />
           </a>
         </div>
         <div className={style.caracteristicas}>
           <img
-            src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
+            src="https://media.licdn.com/dms/image/D4D35AQEIkOcs6-hSxA/profile-framedphoto-shrink_200_200/0/1686658421865?e=1693436400&v=beta&t=Fq7u6QI8NjkEeqsjg2AXKMKGvztX-W-7vfEugBsEOCg"
             alt=""
-            width="50px"
-            height="50px"
+            width="70px"
+            height="70px"
+            className={style.imgLinkedln}
           />
           <p>Matias Rueda</p>
 
-          <a href="">
+          <a  target="_blank" rel='noreferrer' href="https://www.linkedin.com/in/matias-sebastian-rueda/">
             <img
               src="https://cdn-icons-png.flaticon.com/128/145/145807.png"
               alt=""
-              width="20px"
-              height="20px"
+              width="40px"
+              height="40px"
             />
           </a>
         </div>

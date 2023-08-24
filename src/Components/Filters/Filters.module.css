@@ -1,20 +1,74 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  margin: 20px;
+  flex-direction: column;
+  width: 270px;
+  margin-top: 100px;
 }
 .containerMarca {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .select {
-  margin-right: 10px;
+  border: none;
+  border-radius: 15px 0 15px 0;
+  height: 30px;
+  text-align: center;
+  width: auto;
+  margin: 5px;
+  box-shadow: 3px 3px 10px #001d4a;
+  transition: 2s;
 }
 .filtercontainer {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  margin: 10px;
+  justify-content: center;
+  flex-direction: column;
+}
+.button {
+    margin: 10px;
+    cursor: pointer;
+    outline: none !important ;
+    box-shadow:none!important;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #84A7A1;
+    border-radius: 10px;
+    border: none;
+    transition: all 0.2s;
+}
+
+.button:hover{
+  transform: scale(1.1);
+}
+
+.input {
+  border: none;
+  border-radius: 15px 0 15px 0;
+  height: 30px;
+  text-align: center;
+  width: 40%;
+  margin: 5px;
+  box-shadow: 3px 3px 10px #001d4a;
+  transition: 2s;
+}
+.inputs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.input:focus {
+  border-radius: 0 15px 0 15px;
 }
