@@ -13,23 +13,19 @@ import "./App.css";
 import { CartProvider } from "./Components/Context/CartContext";
 import Login from "./Components/Login/Login";
 import DashboardAdmin from "./Views/DashboardAdmin/DashboardAdmin";
+import OrderBuy from "./Components/OrderBuy/OrderBuy";
 import "./App.css";
 import DetailUser from "./Components/DetailUser/DetailUser";
 // axios.defaults.baseURL = "http://localhost:3002"
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 import Banned from "./Components/ProtectedRoutes/banned";
 
-//BACK
+
 // axios.defaults.baseURL = "https://cellxpress.onrender.com";
 function App() {
   // window.addEventListener('popstate', function (e) {
   //   //  window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home")
   // });
-
- 
-
-
-
 
   return (
     

@@ -20,6 +20,7 @@ const Cards_Phone = ({ Product }) => {
             title={product.title}
             price={product.price}
             brand={product.brand}
+            rate= {product.rate}
             description={product.description}
             image={product.image}
             rating={product.rating}

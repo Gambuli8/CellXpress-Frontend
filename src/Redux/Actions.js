@@ -24,6 +24,10 @@ import {
   GET_PENDING_ORDER_BY_ID,
   CART_UPDATE_QUANTITY_SUCCESS,
   CART_UPDATE_QUANTITY_FAILURE,
+  STAR,
+  RESET_STAR,
+  GET_COMENTARIOS,
+  GET_REVIEW_USER,
 } from "./ActionsTypes";
 
 import axios from "axios";
@@ -239,18 +243,7 @@ export const deleteProduct = (productId, userId) => {
   };
 };
 
-// export const allDelete = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.delete(
-//         `http://localhost:3002/order/empty-cart/${userId}`
-//       );
-//       dispatch({ type: ALL_DELETE_CART, payload: response.data });
-//     } catch (error) {
-//       console.log(error.message.data);
-//     }
-//   };
-// };
+
 
 export const postUserId = (userId) => {
   return async (dispatch) => {
@@ -386,18 +379,6 @@ export const loginUser = (userlog) => {
     }
   };
 };
-// funcion  para calificar los Productos
-export const calificar = (info) => {
-  return async (dispatch) => {
-    // try {
-    //   const response = await axios.post(
-    //     "https://cellxpress.onrender.com/",
-    //   );
-    // } catch (error) {
-    //   alert(error.message);
-    // }
-  };
-};
 
 //funcion para traer todas las ordenes de compras
 export const orderBuy = () => {
@@ -514,3 +495,83 @@ export const updateCartItemQuantity =
       dispatch({ type: CART_UPDATE_QUANTITY_FAILURE, payload: error.message });
     }
   };
+
+export function star(order) {
+  return function (dispatch) {
+    return dispatch({
+      type: STAR,
+      payload: order,
+    });
+  };
+}
+
+export function resetStar() {
+  return function (dispatch) {
+    return dispatch({
+      type: RESET_STAR,
+    });
+  };
+}
+
+export const postCalificar = (user) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`https://cellxpress.onrender.com/rating/reviews/${user.productId}`, {
+        comment: user.comment,
+        num: user.num,
+        nickname: user.nickname,
+      });
+      Swal.fire({
+        text: "Producto Calificado",
+        icon: "success",
+        confirmButtonText: "ok",
+      });
+    } catch (error) {
+      Swal.fire({
+        text: "Ya calificaste este Producto",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
+    }
+  };
+};
+
+//get comentarios
+
+export const getComentarios = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(`https://cellxpress.onrender.com/products/${id}/reviews`)).data
+        .reviews;
+      console.log("999999999999999999999999999999999", response);
+
+      dispatch({
+        type: GET_COMENTARIOS,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+//get
+
+export const getReviewsUser = (id) => {
+  console.log(id);
+  return async (dispatch) => {
+    try {
+      const response = (
+        await axios.get(`https://cellxpress.onrender.com/products/reviews-by-user/${id}`)
+      ).data;
+      
+      dispatch({
+        type: GET_REVIEW_USER,
+        payload: response,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+//prueba
