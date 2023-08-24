@@ -150,38 +150,13 @@ const DetailUser = () => {
             <div key={elemento._id} className={style.ordenCompra}>
               <div className={style.ordenDetail}>
                 {elemento.products.map((e) => {
+                  
                  if(e.product.rating.length >0){
 
 
                   return (
-                    <ul
-                      key={e._id}
-                      className={style.containerProduct}
-                      onClick={() =>
-                        setcalificar({
-                          ...calificar,
-                          productId: e.product._id,
-                          num: stars,
-                          comment: calificar.comment,
-                          nickname: usuario,
-                        })
-                      }
-                    ><img
-                        src={e.product.image}
-                        alt={e.product.title}
-                        width="80px"
-                        height="80px"
-                      />
-                      <li className={style.label}>{e.product.title}</li>
-                      <li className={style.label}>{e.product.brand}</li>
-                      <li className={style.label}>${elemento.total}</li>
-                      <div></div>
-                      <li className={style.label}>{e.quantity}</li>
-                  </ul>
-                  )} 
-                  else{
-                    return (
-                      <ul
+
+<ul
                         key={e._id}
                         className={style.containerProduct}
                         onClick={() =>
@@ -217,7 +192,10 @@ const DetailUser = () => {
                           Enviar
                         </button>
                       </ul>
-                    )} })}
+
+                  )} 
+
+                    })}
               </div>
             </div>
           )

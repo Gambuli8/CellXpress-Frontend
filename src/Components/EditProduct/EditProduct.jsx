@@ -24,7 +24,7 @@ export default function EditProduct() {
     cameraInches: "",
     count: null,
   });
-console.log("imagenessss", input)
+
   useEffect(() => {
     dispatch(getProductById(id));
   }, [dispatch, id]);
