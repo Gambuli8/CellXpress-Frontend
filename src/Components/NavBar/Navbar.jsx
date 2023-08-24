@@ -41,7 +41,6 @@ export default function Navbar({
       label: (
         <button className={style.btn_logout} onClick={logout}>Log out</button>
       ),
-      icon: <SmileOutlined />,
       disabled: true,
     },
   ];
@@ -102,7 +101,7 @@ export default function Navbar({
             >
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
-                  {user.photoURL ? <img src={user.photoURL} alt={userParam.name} className={style.img} /> : <h3 className={style.h3} >{userParam.name}</h3>}
+                  {user.photoURL ? <img src={user.photoURL} alt={userParam.name} className={style.img} /> : <h4 className={style.h4} >{userParam.name}</h4> }
                   <DownOutlined /> 
                   
                 </Space>

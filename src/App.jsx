@@ -37,7 +37,7 @@ function App() {
             <Route path="/detailCard/:id" element={<ProtectedRoute><Detail_Card /></ProtectedRoute>} />
             <Route path="/aboutus" element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
             <Route path="/newproduct" element={<ProtectedRoute><NewProduct /></ProtectedRoute>} />
-            <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
+            <Route path="/register" element={<Register />} />
             <Route path="/carrito" element={<ProtectedRoute><DetailCarrito /></ProtectedRoute>} />
             <Route path="/login" element={<Login />} />
             {/* <Route path="/admin" element={<DashboardAdmin />} /> */}

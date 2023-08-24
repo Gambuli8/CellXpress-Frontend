@@ -31,6 +31,15 @@ function Login() {
       ...prevErrors,
       [name]: error,
     }));
+    if (user) {
+      dispatch(postUser(user));
+      setInput({
+        name: user.displayName,
+        phone: user.phoneNumber,
+        email: user.email,
+        password: user.uid,
+      });
+    }
   };
 
   const dispatch = useDispatch();
@@ -52,24 +61,14 @@ function Login() {
     if (Object.keys(validationErrors).length === 0) {
      
       await login(input.email, input.password);
-      // window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
-      navigate("/home")
+      user && window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
      
     }
   };
   const loginWithGoogle = async () => {
     await loginGoogle();
-    navigate("/home")
-    // window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
-    if (user) {
-      dispatch(postUser(user));
-      setInput({
-        name: user.displayName,
-        phone: user.phoneNumber,
-        email: user.email,
-        password: user.uid,
-      });
-    }
+    window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
+    
   };
 
  
