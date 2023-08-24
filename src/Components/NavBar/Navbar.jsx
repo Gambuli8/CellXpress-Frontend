@@ -10,6 +10,7 @@ import { getUsers } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { DownOutlined, SmileOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
+import { Link } from "react-router-dom";
 
 export default function Navbar({
   handleSubmit,
@@ -83,9 +84,9 @@ export default function Navbar({
         </NavLink>
 
         {!user && (
-          <NavLink to="/register" className={style.link}>
+          <Link to="/register" className={style.link}>
             Registrarse
-          </NavLink>
+          </Link>
         )}
         {!user && (
           <NavLink to="/login" className={style.link}>
