@@ -12,7 +12,7 @@ import { getProduct } from "../../Redux/Actions";
 import { useDispatch } from "react-redux";
 import { postOrder } from "../../Redux/Actions";
 import { useAuth } from "../../context/authContext";
-import { getUsers } from "../../Redux/Actions";
+import { getUsers, getComentarios} from "../../Redux/Actions";
 
 export default function Detail_Card(productId) {
   /*estado de productos */
@@ -22,6 +22,9 @@ export default function Detail_Card(productId) {
   const dispatch = useDispatch();
   const user = useAuth().user;
   const allUsers = useSelector((state) => state.allUsers);
+  const  allcomentarios = useSelector((state)=> state.comentarios)
+  
+  console.log("comentarios ",allcomentarios)
 
   useEffect(() => {
     dispatch(getUsers());
@@ -72,8 +75,27 @@ export default function Detail_Card(productId) {
    
     setProduct(allProduct.find((p) => p?._id == id))
   }, [ dispatch, allProduct, id]);
+ 
+  useEffect(()=>{
+    dispatch(getComentarios(id))
+  },[dispatch,id])
+   
+   useEffect(() => {
+    dispatch(getProduct());
+  }, [id, dispatch]);
 
-  
+  const StarRating = ({ value }) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className={i <= value ? style.starActive : style.starInactive}>
+          &#9733;
+        </span>
+      );
+    }
+    return <button className={style.starRating}>{stars}</button>;
+  };
+
 
   return (
     <>
@@ -105,31 +127,41 @@ export default function Detail_Card(productId) {
                 <li className={style.totalPrice}>Total: ${product.price} </li>
               </div>
               <button className={style.btn_addCart} onClick={() => handlerAddToCart(product._id)}>Agregar al carrito</button>
-              {/* <div className={style.raiting}>
-                <h3 className={style.raiting__text}>Calificación:</h3>
-                <p className={style.raiting__stars}>{product?.rating[0]?.rate}</p>
-                <div className={style.stars}>
-          {starRating.map((_, index) => {
-            return (
-              <img 
-              style={{transition: "color 200ms", width: '20px', height:'20px', outline: 'none', margin: '0 2px', padding: '0', fontSize: '1.2rem', color: ''}}
-              src="https://res.cloudinary.com/djqwbu0my/image/upload/v1690138662/star-vacia_zygqve.svg" 
-              alt='estrella rating' 
-              key={index}
-              />
-            );
-          })}
-        </div>
-              </div> */}
+              <h1>Valoracion: <StarRating value={product?.rate} /> </h1>
               <h3>Descripción:</h3>
               <p className={style.card__text}>{product?.description}</p>
             </div>
+            
+          </div>
+
+          <div className={style.cardComments}> 
+             
+              <h1>Reseñas de este producto: </h1>
+              <hr />
+          {allcomentarios.map((c) =>{
+            
+            return (
+              <div key = {c._id }
+              id= {c._id}
+              //comment= {c.review.comment}
+              >
+                <h1>Nombre: {c.review?.nickname}  </h1>
+                <h1>{c.review?.comment}</h1>
+                <h1>Valoracion: <StarRating value={c.review?.num} /> </h1>
+                <hr />
+                 </div>
+              )
+              
+            })
+            
+          }
           </div>
         </div>
       ) : (
         <h1>Cargando...</h1>
         )}
     </div>
+
   </>
   );
 }

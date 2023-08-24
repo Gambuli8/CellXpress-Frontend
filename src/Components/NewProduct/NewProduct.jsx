@@ -222,14 +222,11 @@ const NewProduct = () => {
             <option defaultChecked value="">
               Seleccione Marca
             </option>
-            <option value="APPLE">Apple</option>
             <option value="MOTOROLA">Motorola</option>
             <option value="SAMSUNG">Samsung</option>
-            <option value="SONY">Sony</option>
             <option value="TECNO">Tecno</option>
             <option value="HUAWEI">Huawei</option>
-            <option value="XIAOMI">Xiaomi</option>Realme
-            <option value="REALME">Realme</option>
+            <option value="XIAOMI">Xiaomi</option>
           </select>
 
           <label className={style.label}>Imagen</label>

@@ -11,6 +11,9 @@
   width: 100%;
   flex-direction: column;
   background-color: #001d4a;
+
+}.ordentitle{
+  color: white;
 }
 
 .containerEditUser {
@@ -33,23 +36,49 @@
 }
 
 .btn_back {
-  font-size: large;
-  width: auto;
-  height: auto;
-  border-radius: 15px 0 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  list-style: none;
+  color: black;
   margin: 10px;
-  padding: 5px;
-  background-color: black;
-  color: white;
-  transition: 1s;
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  font-size: 17px;
+  background-color: #84A7A1;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.2s;
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  top: 10px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn_edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  list-style: none;
+  color: black;
+  margin: 10px;
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  font-size: 17px;
+  background-color: #84A7A1;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.2s;
 }
 
 .btn_back:hover{
-  box-shadow: 5px 5px 15px #001d4a;
-  background-color: white;
-  cursor: pointer;
-  border-radius: 0 15px 0 15px;
-  color: black;
+  transform: scale(1.1);
 }
 
 .input{
@@ -74,7 +103,7 @@
 
 .containerOrdenesCompras {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   background-color: #1f6e8c;
   border-radius: 30px;
   width: 90%;
@@ -106,4 +135,9 @@
   justify-content: space-around;
   align-items: center;
   width: 90%;
+}.input[type="radio"]{
+  display: none;
+}.star{
+  cursor: pointer;
+  transition: color 200ms;
 }

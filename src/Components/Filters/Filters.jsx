@@ -63,17 +63,14 @@ const Filters = () => {
               <option defaultChecked value="">
                 Marca
               </option>
-              <option value="APPLE">Apple</option>
               <option value="MOTOROLA">Motorola</option>
               <option value="SAMSUNG">Samsung</option>
-              <option value="SONY">Sony</option>
               <option value="TECNO">Tecno</option>
               <option value="HUAWEI">Huawei</option>
-              <option value="XIAOMI">Xiaomi</option>Realme
-              <option value="REALME">Realme</option>
+              <option value="XIAOMI">Xiaomi</option>Realme  
             </select>
           </div>
-          <div>
+          <div className={style.inputs}>
             <input
               className={style.input}
               type="number"
@@ -90,11 +87,6 @@ const Filters = () => {
               placeholder="Precio Maximo"
             />
           </div>
-          <button className={style.button} >Buscar</button>
-          <button 
-          onClick={clearFilters}
-          className={style.button}
-          >Limpiar Filtros</button>
         </div>
 
         <div className={style.filtercontainer}>
@@ -152,7 +144,14 @@ const Filters = () => {
             </select>
           </div>
         </div>
-      </form>
+        <div className={style.btns}>
+          <button className={style.button} >Buscar</button>
+          <button 
+          onClick={clearFilters}
+          className={style.button}
+          >Limpiar Filtros</button>
+      </div>
+    </form>
     </div>
   );
 };

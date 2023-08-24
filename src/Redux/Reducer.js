@@ -21,6 +21,10 @@ import {
   GET_ORDER_BY_ID,
   GET_USER_BY_ID,
   GET_PENDING_ORDER_BY_ID,
+  STAR,
+  RESET_STAR,
+  GET_COMENTARIOS,
+  GET_REVIEW_USER
 } from "./ActionsTypes";
 
 let inicialState = {
@@ -34,6 +38,9 @@ let inicialState = {
   orderBuy: [],
   orderById: [],
   pendingOrderById: [],
+  star: [],
+  comentarios:[],
+  getreviewsuser:{}
 };
 
 const rootReducer = (state = inicialState, action) => {
@@ -71,11 +78,29 @@ const rootReducer = (state = inicialState, action) => {
         ...state,
         allProduct: action.payload,
       };
+
     case PIXELESFILTERS:
       return {
         ...state,
         allProduct: action.payload,
       };
+      
+    case STAR:
+      return {
+        ...state,
+        star: action.payload,
+      };
+      case GET_COMENTARIOS:
+        return {
+          ...state,
+          comentarios: action.payload,
+        };
+        
+        case GET_REVIEW_USER:
+          return {
+            ...state,
+            getreviewsuser: action.payload,
+          };
 
     case ORDERPHONE:
       if (action.payload === "asc") {
@@ -173,6 +198,12 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         pendingOrderById: action.payload,
+      };
+
+    case RESET_STAR:
+      return {
+        ...state,
+        star: [],
       };
   }
   return state;
