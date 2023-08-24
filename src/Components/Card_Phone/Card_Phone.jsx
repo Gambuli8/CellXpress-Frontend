@@ -54,6 +54,7 @@ const Card_Phone = (props) => {
       });
   
     } catch (error) {
+      
       Swal.fire({
         title: "fuiste baneado",
         text: 'hablar con el administrador para que te desbloquee',
@@ -75,6 +76,7 @@ const Card_Phone = (props) => {
     }
   }
 
+
   return (
     <>
       <div className={style.card}>
@@ -86,6 +88,7 @@ const Card_Phone = (props) => {
           <p className={style.text_title}>{props.brand.toUpperCase()}</p>
 
           <p className={style.text_body}>{props.title}</p>
+          <p className={style.text_body}>{props.rate}</p>
 
           <div className={style.btn}>
             <Link className={style.link} to={`/detailCard/${props.id}`}>

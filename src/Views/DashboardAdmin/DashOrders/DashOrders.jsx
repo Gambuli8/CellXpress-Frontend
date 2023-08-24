@@ -5,13 +5,23 @@ import { useEffect } from "react";
 import { orderBuy } from "../../../Redux/Actions";
 import { DownOutlined } from "@ant-design/icons";
 
+
 const DashOrder = () => {
-  const columns = [
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(orderBuy());
+  }, [orderBuy]);
+  
+  const data = useSelector((state) => state.orderBuy);
+    console.log("orderData", data);
+
+const columns = [
     {
       title: "Fecha de compra",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text) => <a>{text}</a>,
+      render: (text, record) => <a href={`/admin/${record._id}`} >{text}</a>,
     },
     {
       title: "Total",
@@ -49,14 +59,7 @@ const DashOrder = () => {
     },
   ];
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(orderBuy());
-  }, [orderBuy]);
-
-  const data = useSelector((state) => state.orderBuy);
-  console.log("orderData", data);
-
+    
   // const productCuantity = data.products.map(order);
 
   return (
