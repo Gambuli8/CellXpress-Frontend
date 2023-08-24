@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 
 
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import StarRating from "../StarRating/StarRating"
-import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   getOrderById,
