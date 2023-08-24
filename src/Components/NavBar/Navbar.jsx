@@ -101,8 +101,9 @@ export default function Navbar({
             >
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
-                  <img src={user.photoURL} alt={userParam.name} className={style.img} />
-                  <DownOutlined />
+                  {user.photoURL ? <img src={user.photoURL} alt={userParam.name} className={style.img} /> : <h3 className={style.h3} >{userParam.name}</h3>}
+                  <DownOutlined /> 
+                  
                 </Space>
               </a>
             </Dropdown>
