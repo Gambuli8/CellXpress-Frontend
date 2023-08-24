@@ -52,7 +52,7 @@ const Register = () => {
       try {
         setErrors({});
         signup(input.email, input.password);
-        navigate("/login");
+        window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
       } catch (error) {
         console.log(error);
       }
@@ -68,7 +68,7 @@ const Register = () => {
   };
   const fireDb = (user) => {
     dispatch(postUser(userFire));
-    navigate("/login");
+    window.location.assign("https://pf-cell-xpress-frontend.vercel.app/home");
   };
   useEffect(() => {
     if (user) {
