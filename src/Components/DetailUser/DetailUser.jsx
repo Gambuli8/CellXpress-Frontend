@@ -1,11 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import style from "./DetailUser.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import StarRating from "../StarRating/StarRating"
-import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getOrderById, editPutUser, getUserById } from "../../Redux/Actions";
-import TextArea from "rc-textarea";
 
 const DetailUser = () => {
   const { id } = useParams();
